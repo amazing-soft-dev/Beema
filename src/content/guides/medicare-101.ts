@@ -45,4 +45,37 @@ export const medicare101 = {
       },
     ],
   },
+  medigap: {
+    id: 'medigap',
+    title: 'Medigap plans: G, N and high-deductible G',
+    lead: 'A Medicare Supplement (Medigap) policy pays some or all of what Original Medicare leaves for you. Plans are named by letter, and each letter covers the same things whichever company sells it. Only the price and service differ.',
+    plans: [
+      {
+        name: 'Plan G',
+        tag: 'Most popular for new enrollees',
+        summary: 'Covers almost everything Original Medicare does not, except the Part B deductible.',
+        youPay: ['The yearly Part B deductible', 'Nothing else for covered services, including Part B excess charges'],
+        goodFor: 'People who want predictable costs and freedom to see any doctor who accepts Medicare.',
+      },
+      {
+        name: 'Plan N',
+        tag: 'Lower premium, small copays',
+        summary: 'Like Plan G, but you share a little more of the cost at the doctor.',
+        youPay: ['The yearly Part B deductible', 'Up to 0 for some office visits and up to 0 for emergency room visits that do not lead to admission', 'Part B excess charges, if your doctor charges them'],
+        goodFor: 'Healthy people who see the doctor a few times a year and want to save on the premium.',
+      },
+      {
+        name: 'High-deductible Plan G',
+        tag: 'Lowest premium, more risk',
+        summary: 'Same coverage as Plan G after you meet a yearly deductible set by Medicare.',
+        youPay: ['All covered costs until you reach the plan deductible, then nothing more for covered services that year'],
+        goodFor: 'People who can afford a larger bill in a bad year in exchange for a much lower monthly premium.',
+      },
+    ],
+    notes: [
+      'Medigap does not include prescription drugs, so most people add a Part D plan.',
+      'Plan F and Plan C are only available to people who were eligible for Medicare before January 1, 2020.',
+      'The best time to buy is your 6-month Medigap Open Enrollment, when no health questions are asked.',
+    ],
+  },
 } as const;
