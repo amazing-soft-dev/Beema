@@ -78,4 +78,20 @@ export const medicare101 = {
       'The best time to buy is your 6-month Medigap Open Enrollment, when no health questions are asked.',
     ],
   },
+  compare: {
+    id: 'compare',
+    title: 'Medicare Advantage vs Medigap, side by side',
+    lead: 'Both are good choices for different people. The biggest differences are which doctors you can see, how costs show up, and how easy it is to change your mind later.',
+    columns: ['Original Medicare + Medigap', 'Medicare Advantage'],
+    rows: [
+      { topic: 'Doctors and hospitals', medigap: 'Any provider in the U.S. that accepts Medicare. No referrals.', advantage: 'Usually the plan’s network (HMO or PPO). Some plans need referrals.' },
+      { topic: 'Monthly premium', medigap: 'Part B premium plus a Medigap premium and a Part D premium.', advantage: 'Part B premium plus the plan premium, which is $0 for many plans.' },
+      { topic: 'Costs when you get care', medigap: 'Little or nothing after the Part B deductible (Plan G).', advantage: 'Copays and coinsurance as you use care.' },
+      { topic: 'Yearly limit on costs', medigap: 'Costs stay low, so most people never need one.', advantage: 'Yes, a maximum out-of-pocket limit (MOOP) for covered care.' },
+      { topic: 'Prescription drugs', medigap: 'Add a separate Part D plan.', advantage: 'Usually included.' },
+      { topic: 'Dental, vision, hearing', medigap: 'Not included; buy separately if needed.', advantage: 'Often included, with limits.' },
+      { topic: 'Coverage when traveling', medigap: 'Anywhere in the U.S., and most plans cover some emergency care abroad.', advantage: 'Mainly in your plan’s area; emergencies are covered anywhere in the U.S.' },
+      { topic: 'Switching later', medigap: 'Changing Medigap plans later may require health questions in most states.', advantage: 'You can change plans every year during Annual Enrollment, but moving to Medigap later may require health questions.' },
+    ],
+  },
 } as const;
