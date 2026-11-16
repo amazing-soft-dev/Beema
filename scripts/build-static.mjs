@@ -13,5 +13,6 @@ const run = (args) => {
 };
 
 run(['scripts/fetch-fonts.mjs']);
+run(['scripts/images/build.mjs']);
 run([nextBin, 'build']);
 run(['scripts/check-export.mjs']);
