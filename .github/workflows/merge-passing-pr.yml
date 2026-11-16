@@ -1,0 +1,41 @@
+name: Merge passing pull request
+
+# workflow_run only fires from workflows on the default branch (main).
+on:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+
+permissions:
+  contents: read
+
+jobs:
+  merge:
+    name: Merge if eligible
+    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Merge-commit the pull request CI validated
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          REPO: ${{ github.repository }}
+          HEAD_BRANCH: ${{ github.event.workflow_run.head_branch }}
+          HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -euo pipefail
+          pr="$(gh pr list --repo "$REPO" --head "$HEAD_BRANCH" --state open \
+            --json number,baseRefName --jq '.[0] // empty | "\(.number) \(.baseRefName)"')"
+          if [ -z "$pr" ]; then echo "No open pull request for $HEAD_BRANCH."; exit 0; fi
+          read -r number base <<<"$pr"
+
+          eligible=false
+          if [ "$base" = "dev" ] && [[ "$HEAD_BRANCH" =~ ^(feat|fix|docs|ci|build)/ ]]; then eligible=true; fi
+          if [ "$base" = "main" ] && [ "$HEAD_BRANCH" = "dev" ]; then eligible=true; fi
+          if [ "$eligible" != true ]; then
+            echo "#$number ($HEAD_BRANCH → $base) is not an automatic pair; leaving it."
+            exit 0
+          fi
+
+          # Only merge if the head is still the commit CI validated.
+          gh pr merge "$number" --repo "$REPO" --merge --match-head-commit "$HEAD_SHA"
+          echo "Merged #$number ($HEAD_BRANCH → $base) at $HEAD_SHA."
