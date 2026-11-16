@@ -68,4 +68,28 @@ export const turning65 = {
       ] satisfies Step[],
     },
   },
+  windows: {
+    title: 'Your two most important windows',
+    iep: {
+      id: 'initial-enrollment',
+      title: 'The 7-month Initial Enrollment Period',
+      text: 'Your first chance to sign up for Medicare. It starts 3 months before the month you turn 65, includes that month, and ends 3 months after. If your birthday is on the 1st, everything moves one month earlier.',
+      months: [
+        { label: '3 months before', note: 'Best time to sign up: coverage starts on time' },
+        { label: '2 months before', note: 'Coverage starts the month you turn 65' },
+        { label: '1 month before', note: 'Coverage starts the month you turn 65' },
+        { label: 'The month you turn 65', note: 'Coverage starts the next month' },
+        { label: '1 month after', note: 'Coverage starts the next month' },
+        { label: '2 months after', note: 'Coverage starts the next month' },
+        { label: '3 months after', note: 'Last month of your window' },
+      ],
+    },
+    medigap: {
+      id: 'medigap-open-enrollment',
+      title: 'The 6-month Medigap Open Enrollment',
+      text: 'It starts the first month you are 65 or older and have Part B. During these 6 months, any company that sells Medicare Supplement (Medigap) policies in your state must sell you one at its best price, even if you have health problems.',
+      after: 'After it ends, insurers in most states can ask health questions and charge more or say no. Some states give extra rights, so ask us about yours.',
+    },
+    checklist: { label: 'Download the turning-65 checklist', href: '/guides/turning-65-checklist.pdf' },
+  },
 } as const;
