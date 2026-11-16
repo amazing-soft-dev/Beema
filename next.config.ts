@@ -9,10 +9,21 @@ import type { NextConfig } from 'next';
  */
 const isStaticExport = process.env.NEXT_OUTPUT === 'export';
 
+// Analytics run in Vercel production only. Every other build swaps the Vercel packages
+// for no-op stubs, so their client code is not shipped at all.
+const analyticsStub = './src/lib/analytics-stub.tsx';
+const analyticsAliases: Record<string, string> =
+  process.env.VERCEL_ENV === 'production' && !isStaticExport
+    ? {}
+    : { '@vercel/analytics/next': analyticsStub, '@vercel/speed-insights/next': analyticsStub, '@vercel/analytics': analyticsStub };
+
 const nextConfig: NextConfig = {
   reactCompiler: true,
   experimental: {
     turbopackRustReactCompiler: true,
+  },
+  turbopack: {
+    resolveAlias: analyticsAliases,
   },
   images: isStaticExport
     ? { loader: 'custom', loaderFile: './src/lib/image-loader.ts' }
