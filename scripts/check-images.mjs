@@ -1,7 +1,7 @@
 // Each photo is used exactly once.
 // - every manifest entry has its file in public/photos and a known license
 // - no unlisted files sit in public/photos
-// - src/ references each photo exactly once, as photo('<id>')
+// - src/ references each photo exactly once, as photo('<id>') or <Photo id="<id>" />
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { LICENSES, PHOTOS_DIR, photoFile, readManifest } from './images/lib.mjs';
@@ -33,7 +33,10 @@ const walk = (dir) =>
   });
 const source = walk('src').map((f) => readFileSync(f, 'utf8')).join('\n');
 for (const id of ids) {
-  const uses = source.match(new RegExp(`photo\\(\\s*['"\`]${id}['"\`]\\s*\\)`, 'g'))?.length ?? 0;
+  // photo('<id>') in code, or <Photo id="<id>" ... /> in JSX.
+  const call = String.raw`photo\(\s*['"\x60]${id}['"\x60]\s*\)`;
+  const jsx = String.raw`<Photo\b[^>]*\bid=['"]${id}['"]`;
+  const uses = source.match(new RegExp(`${call}|${jsx}`, 'g'))?.length ?? 0;
   if (uses !== 1) problems.push(`${id} is used ${uses} times in src/ (must be exactly once)`);
 }
 
