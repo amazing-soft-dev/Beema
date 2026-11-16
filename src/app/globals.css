@@ -314,10 +314,6 @@
     opacity: 1 !important;
     transform: none !important;
   }
-  img {
-    max-height: 70mm;
-    object-fit: cover;
-  }
   a {
     text-decoration: underline;
   }
