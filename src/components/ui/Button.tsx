@@ -1,0 +1,69 @@
+import Link from 'next/link';
+import type { ComponentProps, ReactNode } from 'react';
+
+/**
+ * Pill buttons from the Beema design, sized for older readers: at least 48px tall
+ * (56px for `lg`), 18px labels, and a 3px focus ring from globals.css.
+ *
+ * primary   lime with ink text, the main call to action
+ * secondary green-700 with white text
+ * outline   ink border on light backgrounds
+ * light     white outline for dark sections and photos
+ */
+export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'light';
+export type ButtonSize = 'md' | 'lg';
+
+const base =
+  'inline-flex items-center justify-center gap-2.5 rounded-pill border-2 font-medium whitespace-nowrap transition-colors duration-200 ease-out disabled:cursor-not-allowed disabled:opacity-60';
+
+const variants: Record<ButtonVariant, string> = {
+  primary: 'border-lime bg-lime text-ink hover:border-lime-hover hover:bg-lime-hover',
+  secondary: 'border-green-700 bg-green-700 text-white hover:border-green-800 hover:bg-green-800',
+  outline: 'border-ink bg-transparent text-ink hover:bg-ink hover:text-white',
+  light: 'border-white bg-transparent text-white hover:bg-white hover:text-ink',
+};
+
+const sizes: Record<ButtonSize, string> = {
+  md: 'min-h-12 px-6 text-base',
+  lg: 'min-h-14 px-8 text-lg',
+};
+
+export function buttonClasses(variant: ButtonVariant = 'primary', size: ButtonSize = 'md', className = '') {
+  return `${base} ${variants[variant]} ${sizes[size]} ${className}`.trim();
+}
+
+type Common = { variant?: ButtonVariant; size?: ButtonSize; icon?: ReactNode; className?: string; children: ReactNode };
+
+/** Link styled as a button. `tel:`, `mailto:` and external URLs render a plain anchor. */
+export function ButtonLink({ href, variant, size, icon, className, children, ...rest }: Common & { href: string } & Omit<ComponentProps<'a'>, 'href' | 'className' | 'children'>) {
+  const classes = buttonClasses(variant, size, className);
+  const content = (
+    <>
+      {icon}
+      <span>{children}</span>
+    </>
+  );
+  if (/^(tel:|mailto:|https?:)/.test(href)) {
+    const external = href.startsWith('http');
+    return (
+      <a href={href} className={classes} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} {...rest}>
+        {content}
+      </a>
+    );
+  }
+  return (
+    <Link href={href} className={classes} {...rest}>
+      {content}
+    </Link>
+  );
+}
+
+/** Native button with the same look. Defaults to type="button" so it never submits by accident. */
+export function Button({ variant, size, icon, className, children, type = 'button', ...rest }: Common & Omit<ComponentProps<'button'>, 'className' | 'children'>) {
+  return (
+    <button type={type} className={buttonClasses(variant, size, className)} {...rest}>
+      {icon}
+      <span>{children}</span>
+    </button>
+  );
+}
