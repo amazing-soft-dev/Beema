@@ -22,6 +22,7 @@
     "check:images": "node scripts/check-images.mjs",
     "check:export": "node scripts/check-export.mjs",
     "pdf": "next build && node scripts/pdf/render.mjs",
+    "pdf:library": "next build && node scripts/pdf/render.mjs --library",
     "pdf:check": "node scripts/pdf/check.mjs"
   },
   "dependencies": {
