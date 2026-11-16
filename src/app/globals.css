@@ -1,14 +1,230 @@
 @import 'tailwindcss';
 
-/* Design tokens arrive in issue #5 (senior-tuned Beema theme). */
+/*
+ * Senior-tuned Beema theme.
+ * Palette and type come from the Beema design audit (audit/tokens.json), adjusted for
+ * older readers: 18px body text, no gray body copy, ≥48px targets, AA+ contrast.
+ * tests/contrast.test.ts parses this block and checks every text/background pair.
+ */
+@theme {
+  /* Ink and greens */
+  --color-ink: #0f3d2e; /* body text, headings, footer background */
+  --color-green-850: #114534;
+  --color-green-800: #15543f;
+  --color-green-700: #1a5c44; /* links, secondary buttons */
+  --color-green-500: #2a8a64; /* accents on large text and icons only */
+
+  /* Call to action */
+  --color-lime: #c8f04d;
+  --color-lime-hover: #d6f96a;
+
+  /* Neutrals */
+  --color-muted: #4a5853; /* secondary text, still ≥ 7:1 on white */
+  --color-field: #6b7a74; /* form field borders, ≥ 3:1 non-text contrast */
+  --color-line: #d6d6d6; /* decorative dividers only */
+  --color-surface: #f8faf9;
+  --color-sand: #f5efe6;
+  --color-night: #171818;
+  --color-white: #ffffff;
+
+  /* Status */
+  --color-error: #b3172c; /* text-safe red, ≥ 6:1 on white */
+  --color-error-bg: #fdecee;
+  --color-success: #1a5c44;
+  --color-star: #f1c777; /* decorative, always paired with a text rating */
+
+  /* Focus ring: dark on light backgrounds, lime on dark ones */
+  --color-focus: #1a5c44;
+  --color-focus-on-dark: #c8f04d;
+
+  /* Fonts */
+  --font-sans: var(--font-geist), 'Geist', Arial, sans-serif;
+  --font-display: 'Switzer', var(--font-geist), Arial, sans-serif;
+
+  /* Type scale (mobile first; larger steps in the components layer) */
+  --text-base: 1.125rem; /* 18px body */
+  --text-base--line-height: 1.6;
+  --text-sm: 1rem; /* 16px is the floor, used sparingly */
+  --text-sm--line-height: 1.6;
+  --text-lead: 1.375rem; /* 22px */
+  --text-lead--line-height: 1.5;
+
+  /* Shape */
+  --radius-pill: 999px;
+  --radius-card: 16px;
+  --radius-card-sm: 8px;
+
+  /* Real Beema breakpoints: tablet 810, desktop 1200 */
+  --breakpoint-md: 810px;
+  --breakpoint-lg: 1200px;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/switzer-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/fonts/switzer-700.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
   }
   body {
-    background: #ffffff;
-    color: #0f3d2e;
-    font-size: 18px;
+    background: var(--color-white);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
     line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-ink);
+    text-wrap: balance;
+  }
+  p,
+  li {
+    text-wrap: pretty;
+  }
+  a {
+    color: inherit;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  .on-dark :focus-visible {
+    outline-color: var(--color-focus-on-dark);
+  }
+  ::selection {
+    background: var(--color-lime);
+    color: var(--color-ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Layout: 24px gutters on phone and tablet, 40px on desktop; 1200px reading container */
+  .container-x {
+    width: 100%;
+    max-width: 1280px;
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+  .section-y {
+    padding-block: 64px;
+  }
+
+  /* Headings: phone / tablet (≥810) / desktop (≥1200) */
+  .t-h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 2.25rem; /* 36 */
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+  .t-h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.875rem; /* 30 */
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .t-h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.5rem; /* 24 */
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+  }
+  .t-h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.375rem; /* 22 */
+    line-height: 1.3;
+  }
+  .t-lead {
+    font-size: var(--text-lead);
+    line-height: 1.5;
+  }
+  .t-label {
+    font-size: var(--text-base);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  .t-caps {
+    font-size: var(--text-sm);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 810px) {
+    .section-y {
+      padding-block: 96px;
+    }
+    .t-h1 {
+      font-size: 2.75rem; /* 44 */
+    }
+    .t-h2 {
+      font-size: 2.25rem; /* 36 */
+    }
+    .t-h3 {
+      font-size: 1.75rem; /* 28 */
+    }
+    .t-h4 {
+      font-size: 1.5rem; /* 24 */
+    }
+  }
+  @media (min-width: 1200px) {
+    .container-x {
+      padding-inline: 40px;
+    }
+    .section-y {
+      padding-block: 128px;
+    }
+    .t-h1 {
+      font-size: 3.5rem; /* 56 */
+    }
+    .t-h2 {
+      font-size: 2.75rem; /* 44 */
+    }
+    .t-h3 {
+      font-size: 2rem; /* 32 */
+    }
+    .t-h4 {
+      font-size: 1.625rem; /* 26 */
+    }
+    .t-lead {
+      font-size: 1.5rem; /* 24 */
+    }
   }
 }
