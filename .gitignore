@@ -40,3 +40,6 @@ next-env.d.ts
 
 # claude code local
 /.claude/
+
+# Switzer is fetched at build time (ITF FFL forbids redistribution via a public repo)
+/public/fonts/
