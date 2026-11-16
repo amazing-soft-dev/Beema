@@ -4,6 +4,8 @@ import type { ReactNode } from 'react';
 import { preload } from 'react-dom';
 import { PlaceholderRibbon } from '@/components/PlaceholderRibbon';
 import { Analytics } from '@/components/analytics/Analytics';
+import { CallTracking } from '@/components/analytics/CallTracking';
+import { CallbackPanel } from '@/components/layout/CallbackPanel';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { JsonLd, agencyJsonLd } from '@/components/seo/JsonLd';
@@ -42,10 +44,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* Pages render sections, not their own <main>. */}
         <main id="main" tabIndex={-1} className="outline-none">
           {children}
+          <CallbackPanel />
         </main>
         <SiteFooter />
         <JsonLd data={agencyJsonLd()} />
         <Analytics />
+        <CallTracking />
       </body>
     </html>
   );
