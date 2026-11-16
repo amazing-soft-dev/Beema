@@ -94,4 +94,27 @@ export const medicare101 = {
       { topic: 'Switching later', medigap: 'Changing Medigap plans later may require health questions in most states.', advantage: 'You can change plans every year during Annual Enrollment, but moving to Medigap later may require health questions.' },
     ],
   },
+  partD: {
+    id: 'part-d-basics',
+    title: 'Part D drug coverage basics',
+    points: [
+      { title: 'Each plan has its own drug list', text: 'A formulary is the list of drugs a plan covers, sorted into price tiers. Check that your medicines are on the list, and at what tier, before you join.' },
+      { title: 'Creditable coverage protects you', text: 'If your job or union drug coverage is “creditable” (at least as good as Part D), you can wait to join Part D without a penalty. Keep the yearly letter that says so.' },
+      { title: 'The 63-day rule', text: 'If you go 63 days in a row or more without Part D or other creditable coverage, a late penalty is added for each month you went without, usually for as long as you have Part D.' },
+      { title: 'There is a yearly cap', text: 'Since 2025, what you pay out of pocket for covered drugs in a year is capped. After you reach it, you pay nothing more for covered drugs that year.' },
+      { title: 'Check every fall', text: 'Plans change their drug lists, pharmacies and prices each year. Compare during Annual Enrollment.' },
+    ],
+  },
+  periods: {
+    id: 'enrollment-periods',
+    title: 'Enrollment periods at a glance',
+    rows: [
+      { name: 'Initial Enrollment Period', when: 'The 7 months around the month you turn 65', what: 'Sign up for Parts A and B, and join a Medicare Advantage or Part D plan.' },
+      { name: 'Annual Enrollment Period', when: 'October 15 to December 7 every year', what: 'Join, switch or drop a Medicare Advantage or Part D plan. Changes start January 1.' },
+      { name: 'Medicare Advantage Open Enrollment', when: 'January 1 to March 31 every year', what: 'If you have a Medicare Advantage plan, switch to another one or go back to Original Medicare (and join Part D), once.' },
+      { name: 'General Enrollment Period', when: 'January 1 to March 31 every year', what: 'Sign up for Part A or B if you missed your first chance. Coverage starts the month after you sign up; penalties may apply.' },
+      { name: 'Special Enrollment Periods', when: 'After certain life events', what: 'Losing job coverage, moving, qualifying for Extra Help or Medicaid, and other events let you sign up or change plans outside the usual windows.' },
+      { name: 'Medigap Open Enrollment', when: '6 months from the month you are 65+ and have Part B', what: 'Buy any Medigap policy sold in your state without health questions.' },
+    ],
+  },
 } as const;
