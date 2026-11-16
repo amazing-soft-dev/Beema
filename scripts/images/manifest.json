@@ -100,6 +100,16 @@
       "photographerUrl": "https://unsplash.com/@silverkblack",
       "alt": "A smiling older man with glasses sitting at a laptop",
       "focal": "50% 30%"
+    },
+    {
+      "id": "reviews-couple-laughing",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/elderly-couple-laughing-together-indoors-g6_KzjW26nQ",
+      "downloadUrl": "https://images.unsplash.com/photo-1763573676689-bf2d7b474208?w=2400&q=85&fm=jpg",
+      "photographer": "Chris Thornton",
+      "photographerUrl": "https://unsplash.com/@chris_thornton",
+      "alt": "An older couple laughing together on a sofa",
+      "focal": "50% 35%"
     }
   ]
 }
