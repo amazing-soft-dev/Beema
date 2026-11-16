@@ -120,6 +120,16 @@
       "photographerUrl": "https://unsplash.com/@sagredophotography",
       "alt": "Two older people walking along a wooden boardwalk through trees",
       "focal": "50% 50%"
+    },
+    {
+      "id": "faq-man-reading",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/an-elderly-man-with-glasses-reading-a-book-SKu7Ued7PXU",
+      "downloadUrl": "https://images.unsplash.com/photo-1758691032133-b17f5a103436?w=2400&q=85&fm=jpg",
+      "photographer": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/@silverkblack",
+      "alt": "An older man with glasses reading a book on his sofa",
+      "focal": "60% 35%"
     }
   ]
 }
