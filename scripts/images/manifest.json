@@ -90,6 +90,16 @@
       "photographerUrl": "https://unsplash.com/@silverkblack",
       "alt": "An older couple on a sofa reviewing papers together",
       "focal": "45% 35%"
+    },
+    {
+      "id": "book-call-laptop",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/smiling-elderly-man-with-glasses-at-laptop-computer-cMsdRjEApeo",
+      "downloadUrl": "https://images.unsplash.com/photo-1758612898691-afe3e1d08a0a?w=2400&q=85&fm=jpg",
+      "photographer": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/@silverkblack",
+      "alt": "A smiling older man with glasses sitting at a laptop",
+      "focal": "50% 30%"
     }
   ]
 }
