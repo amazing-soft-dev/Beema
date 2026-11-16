@@ -1,0 +1,4 @@
+{
+  "$comment": "Every photo on the site. Sources: Unsplash (Unsplash License, never Unsplash+) or Pexels (Pexels License). Add entries with `npm run images:fetch`; reference a photo exactly once with photo('<id>'). No Medicare cards, flags or government imagery.",
+  "photos": []
+}
