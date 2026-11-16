@@ -119,3 +119,6 @@ export const notices = {
   scopeOfAppointment:
     'Before your appointment starts, we will confirm which types of coverage you want to discuss, such as Medicare Advantage, Medicare Supplement (Medigap) insurance or prescription drug plans. Medicare rules require us to record this Scope of Appointment, and we will only talk about the products you agree to.',
 } as const;
+
+// Official Medicare cost figures (plan year, IRMAA tables).
+export * from './medicare-figures.ts';
