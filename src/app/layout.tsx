@@ -5,6 +5,7 @@ import { preload } from 'react-dom';
 import { PlaceholderRibbon } from '@/components/PlaceholderRibbon';
 import { Analytics } from '@/components/analytics/Analytics';
 import { CallTracking } from '@/components/analytics/CallTracking';
+import { ChatButton } from '@/components/chat/ChatButton';
 import { CallbackPanel } from '@/components/layout/CallbackPanel';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <JsonLd data={agencyJsonLd()} />
         <Analytics />
         <CallTracking />
+        <ChatButton />
       </body>
     </html>
   );
