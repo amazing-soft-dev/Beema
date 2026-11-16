@@ -40,6 +40,36 @@
       "photographerUrl": "https://unsplash.com/@mbennettphoto",
       "alt": "An older couple sitting on a bench looking out at the sea and mountains",
       "focal": "50% 60%"
+    },
+    {
+      "id": "team-advisor-1",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/woman-in-black-blazer-smiling-RIt88XBR3G0",
+      "downloadUrl": "https://images.unsplash.com/photo-1581065178047-8ee15951ede6?w=2400&q=85&fm=jpg",
+      "photographer": "Annika Palmari",
+      "photographerUrl": "https://unsplash.com/@palmariannika",
+      "alt": "Portrait of a smiling advisor in a black blazer",
+      "focal": "50% 25%"
+    },
+    {
+      "id": "team-advisor-2",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/a-smiling-man-wearing-glasses-and-a-suit-jacket-zXR0fNWHDDQ",
+      "downloadUrl": "https://images.unsplash.com/photo-1778692258270-bc0e80e975c0?w=2400&q=85&fm=jpg",
+      "photographer": "Kamal Dharma Teja Dasari",
+      "photographerUrl": "https://unsplash.com/@dharma632",
+      "alt": "Portrait of a smiling advisor with glasses in a suit jacket",
+      "focal": "50% 25%"
+    },
+    {
+      "id": "team-advisor-3",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/shallow-focus-photo-of-woman-in-gray-jacket-0Zx1bDv5BNY",
+      "downloadUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=2400&q=85&fm=jpg",
+      "photographer": "Christina @ wocintechchat.com",
+      "photographerUrl": "https://unsplash.com/@wocintechchat",
+      "alt": "Portrait of an advisor in a gray jacket",
+      "focal": "50% 25%"
     }
   ]
 }
