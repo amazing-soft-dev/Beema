@@ -8,6 +8,7 @@ import { CallTracking } from '@/components/analytics/CallTracking';
 import { ChatButton } from '@/components/chat/ChatButton';
 import { CallbackPanel } from '@/components/layout/CallbackPanel';
 import { SiteFooter } from '@/components/layout/SiteFooter';
+import { PrintFooter, PrintHeader } from '@/components/print/PrintFrame';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { JsonLd, agencyJsonLd } from '@/components/seo/JsonLd';
 import { site } from '@/content/site';
@@ -43,10 +44,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <PlaceholderRibbon />
         <SiteHeader />
         {/* Pages render sections, not their own <main>. */}
+        <PrintHeader />
         <main id="main" tabIndex={-1} className="outline-none">
           {children}
           <CallbackPanel />
         </main>
+        <PrintFooter />
         <SiteFooter />
         <JsonLd data={agencyJsonLd()} />
         <Analytics />

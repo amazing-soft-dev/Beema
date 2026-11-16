@@ -236,3 +236,89 @@
     }
   }
 }
+
+/*
+ * Print and "save as PDF": large, dark text on white, nothing interactive.
+ * PrintHeader/PrintFooter (src/components/print) add the logo, phone, date, plan year and
+ * required disclaimers. Elements can opt out with Tailwind's print:hidden.
+ */
+@media print {
+  @page {
+    margin: 16mm 14mm;
+  }
+  html {
+    font-size: 14pt;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  header#site-header,
+  footer,
+  nav,
+  form,
+  dialog,
+  iframe,
+  button,
+  [data-print-hide],
+  #callback-heading,
+  a[href^='#main'] {
+    display: none !important;
+  }
+  section:has(> div > div > #callback-heading) {
+    display: none !important;
+  }
+  main section {
+    padding-block: 10pt !important;
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .t-h1 {
+    font-size: 26pt !important;
+  }
+  .t-h2 {
+    font-size: 20pt !important;
+  }
+  .t-h3,
+  .t-h4 {
+    font-size: 16pt !important;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li,
+  td,
+  th,
+  dd,
+  dt {
+    color: #000 !important;
+  }
+  h2,
+  h3,
+  h4 {
+    break-after: avoid;
+  }
+  li,
+  tr,
+  article,
+  details {
+    break-inside: avoid;
+  }
+  /* Print every FAQ answer, not only the open ones. */
+  details > *:not(summary) {
+    display: block !important;
+  }
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  img {
+    max-height: 70mm;
+    object-fit: cover;
+  }
+  a {
+    text-decoration: underline;
+  }
+}
