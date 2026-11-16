@@ -1,0 +1,95 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [dev, main]
+  workflow_dispatch:
+
+# A newer push to the same branch or pull request cancels the older run.
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint and type check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: latest
+          cache: npm
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run check:images
+
+  build:
+    name: Build (${{ matrix.target }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [server, static]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: latest
+          cache: npm
+      - run: npm ci
+      - name: Build server app
+        if: matrix.target == 'server'
+        run: npm run build
+      - name: Build static export and check out/
+        if: matrix.target == 'static'
+        run: npm run build:static
+
+  ci-passed:
+    name: CI passed
+    needs: [lint, build]
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Post or update the summary comment
+        if: github.event_name == 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          LINT: ${{ needs.lint.result }}
+          BUILD: ${{ needs.build.result }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          icon() { [ "$1" = success ] && echo "✅" || echo "❌"; }
+          body="<!-- ci-summary -->
+          ### CI summary for \`${SHA:0:7}\`
+
+          | Job | Result |
+          | --- | --- |
+          | Lint and type check | $(icon "$LINT") $LINT |
+          | Build (server and static) | $(icon "$BUILD") $BUILD |
+
+          [Run details]($RUN_URL)"
+          body="$(printf '%s\n' "$body" | sed 's/^          //')"
+          id="$(gh api "repos/$REPO/issues/$PR/comments" --paginate \
+            --jq '[.[] | select(.body | startswith("<!-- ci-summary -->"))][0].id // empty')"
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$id" -f body="$body" >/dev/null
+          else
+            gh api -X POST "repos/$REPO/issues/$PR/comments" -f body="$body" >/dev/null
+          fi
+      - name: Require both jobs to succeed
+        if: needs.lint.result != 'success' || needs.build.result != 'success'
+        run: |
+          echo "Lint: ${{ needs.lint.result }}, Build: ${{ needs.build.result }}"
+          exit 1
