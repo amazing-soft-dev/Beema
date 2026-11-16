@@ -3,6 +3,7 @@ import { EnrollmentWindows } from '@/components/guides/EnrollmentWindows';
 import { LatePenalties } from '@/components/guides/LatePenalties';
 import { StepPath } from '@/components/guides/StepPath';
 import { PageIntro } from '@/components/layout/PageIntro';
+import { GuidePdfActions } from '@/components/print/GuidePdfActions';
 import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { Photo } from '@/components/ui/Photo';
@@ -34,6 +35,9 @@ export default function Turning65Page() {
           </ButtonLink>
         </nav>
       </PageIntro>
+      <div className="container-x pt-8">
+        <GuidePdfActions slug="turning-65" />
+      </div>
 
       <section className="section-y" aria-labelledby="paths-heading">
         <div className="container-x flex flex-col gap-8">
@@ -53,6 +57,9 @@ export default function Turning65Page() {
       </section>
       <EnrollmentWindows />
       <LatePenalties />
+      <div className="container-x pb-16">
+        <GuidePdfActions slug="turning-65" />
+      </div>
     </>
   );
 }
