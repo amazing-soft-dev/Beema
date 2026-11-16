@@ -70,6 +70,16 @@
       "photographerUrl": "https://unsplash.com/@wocintechchat",
       "alt": "Portrait of an advisor in a gray jacket",
       "focal": "50% 25%"
+    },
+    {
+      "id": "turning-65-walk",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/older-couple-walking-down-road-GrSfB6-OPoY",
+      "downloadUrl": "https://images.unsplash.com/photo-1625690987114-86f5af994b49?w=2400&q=85&fm=jpg",
+      "photographer": "Hector Reyes",
+      "photographerUrl": "https://unsplash.com/@capture_it",
+      "alt": "An older couple walking arm in arm down a quiet tree-lined road",
+      "focal": "40% 40%"
     }
   ]
 }
