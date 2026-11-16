@@ -37,4 +37,28 @@ export const home = {
     ],
     compare: { label: 'Compare them side by side', href: '/medicare-101#compare' },
   },
+  free: {
+    eyebrow: 'No cost to you',
+    title: 'Why talking with us is free',
+    text: 'Insurance companies pay us when you enroll in a plan through us. Your premium is the same as if you went to the insurer or Medicare.gov yourself.',
+    link: { label: 'More about how we work', href: '/about' },
+  },
+  window: {
+    eyebrow: 'Don’t miss your window',
+    title: 'You have 7 months to sign up when you turn 65',
+    text: 'Your Initial Enrollment Period starts 3 months before the month you turn 65 and ends 3 months after. Signing up late can mean a penalty for as long as you have Medicare.',
+    steps: ['3 months before', 'The month you turn 65', '3 months after'],
+    link: { label: 'Find my dates', href: '/tools/enrollment-calculator' },
+    secondary: { label: 'Read the turning-65 guide', href: '/turning-65' },
+  },
+  reviews: {
+    eyebrow: 'From the people we help',
+    title: 'Read what our clients say',
+    text: 'Real reviews from Google, Facebook and Trustpilot, shared with permission.',
+    link: { label: 'Read reviews', href: '/reviews' },
+  },
+  cta: {
+    title: 'Talk it through with a licensed advisor',
+    text: 'One call can answer most questions. No pressure, no cost.',
+  },
 } as const;
