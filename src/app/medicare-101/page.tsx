@@ -4,6 +4,7 @@ import { MedicareParts } from '@/components/guides/MedicareParts';
 import { MedigapPlans } from '@/components/guides/MedigapPlans';
 import { PartDAndPeriods } from '@/components/guides/PartDAndPeriods';
 import { PageIntro } from '@/components/layout/PageIntro';
+import { GuidePdfActions } from '@/components/print/GuidePdfActions';
 import { ButtonLink } from '@/components/ui/Button';
 import { Photo } from '@/components/ui/Photo';
 import { medicare101 } from '@/content/guides/medicare-101';
@@ -43,11 +44,17 @@ export default function Medicare101Page() {
           </ButtonLink>
         </nav>
       </PageIntro>
+      <div className="container-x pt-8">
+        <GuidePdfActions slug="medicare-101" />
+      </div>
       <MedicareParts />
       <MedigapPlans />
       <CompareTable />
       <PartDAndPeriods />
       <CostsHelp />
+      <div className="container-x pb-16">
+        <GuidePdfActions slug="medicare-101" />
+      </div>
     </>
   );
 }
