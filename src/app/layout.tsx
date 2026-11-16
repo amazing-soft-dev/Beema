@@ -3,6 +3,7 @@ import { Geist } from 'next/font/google';
 import type { ReactNode } from 'react';
 import { preload } from 'react-dom';
 import { PlaceholderRibbon } from '@/components/PlaceholderRibbon';
+import { Analytics } from '@/components/analytics/Analytics';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { JsonLd, agencyJsonLd } from '@/components/seo/JsonLd';
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         </main>
         <SiteFooter />
         <JsonLd data={agencyJsonLd()} />
+        <Analytics />
       </body>
     </html>
   );
