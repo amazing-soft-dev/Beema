@@ -11,7 +11,7 @@ import { site } from '@/content/site';
 // Placeholder home page: shows the shared primitives until the real home page lands (#16).
 export default function HomePage() {
   return (
-    <main>
+    <>
       <Section>
         <Container>
           <Eyebrow>Turning 65</Eyebrow>
@@ -57,6 +57,6 @@ export default function HomePage() {
           </div>
         </Container>
       </Section>
-    </main>
+    </>
   );
 }

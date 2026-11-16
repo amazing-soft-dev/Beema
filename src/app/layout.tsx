@@ -3,6 +3,7 @@ import { Geist } from 'next/font/google';
 import type { ReactNode } from 'react';
 import { preload } from 'react-dom';
 import { PlaceholderRibbon } from '@/components/PlaceholderRibbon';
+import { SiteHeader } from '@/components/layout/SiteHeader';
 import { site } from '@/content/site';
 import './globals.css';
 
@@ -27,8 +28,18 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={geist.variable}>
       <body>
+        <a
+          href="#main"
+          className="sr-only z-50 rounded-pill bg-lime px-6 py-3 font-semibold text-ink focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        >
+          Skip to main content
+        </a>
         <PlaceholderRibbon />
-        {children}
+        <SiteHeader />
+        {/* Pages render sections, not their own <main>. */}
+        <main id="main" tabIndex={-1} className="outline-none">
+          {children}
+        </main>
       </body>
     </html>
   );
