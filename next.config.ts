@@ -22,6 +22,8 @@ const nextConfig: NextConfig = {
   experimental: {
     turbopackRustReactCompiler: true,
   },
+  // Lets client code know there is no server (forms show a phone fallback instead).
+  env: { NEXT_PUBLIC_STATIC_EXPORT: isStaticExport ? '1' : '' },
   turbopack: {
     resolveAlias: analyticsAliases,
   },
