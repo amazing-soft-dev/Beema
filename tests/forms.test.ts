@@ -48,3 +48,23 @@ describe('rate limit', () => {
     assert.equal(rateLimited('203.0.113.9', t + 11 * 60 * 1000), false);
   });
 });
+
+import { planIntakeSchema } from '../src/lib/forms/schemas.ts';
+
+describe('plan intake schema', () => {
+  const base = { name: 'Pat Doe', zip: '78701', phone: '5550100123', bestTime: 'evening', consent: 'yes' };
+
+  it('accepts medicines and doctors, filling optional fields', () => {
+    const r = planIntakeSchema.parse({ ...base, drugs: [{ name: 'Metformin', dose: '500 mg' }], doctors: [] });
+    assert.deepEqual(r.drugs, [{ name: 'Metformin', dose: '500 mg', frequency: '' }]);
+  });
+
+  it('defaults missing lists to empty', () => {
+    assert.deepEqual(planIntakeSchema.parse(base).drugs, []);
+  });
+
+  it('caps each list at 15', () => {
+    const drugs = Array.from({ length: 16 }, (_, i) => ({ name: `Drug ${i}` }));
+    assert.equal(planIntakeSchema.safeParse({ ...base, drugs }).success, false);
+  });
+});
