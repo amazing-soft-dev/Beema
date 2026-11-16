@@ -1,8 +1,9 @@
-import { CalendarCheck, List, Phone } from '@phosphor-icons/react/dist/ssr';
+import { CalendarCheck, Phone } from '@phosphor-icons/react/dist/ssr';
 import { Logo } from '@/components/brand/Logo';
 import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { bookCall, site } from '@/content/site';
+import { MobileMenu } from './MobileMenu';
 import { NavLinks } from './NavLinks';
 import { ScrollState } from './ScrollState';
 
@@ -10,8 +11,8 @@ import { ScrollState } from './ScrollState';
  * Site header, on every page.
  * - Desktop (≥1200): row 1 logo, phone (click-to-call, top right) and Book a Call;
  *   row 2 the eight menu items. Two rows keep 18px labels without crowding.
- * - Below 1200: logo, phone and a Menu button. The menu is a <details> disclosure that
- *   works without JavaScript; #11 upgrades it to an accessible dialog.
+ * - Below 1200: logo, phone and a Menu button that opens the full-screen MobileMenu dialog.
+ *   Without JavaScript, the footer repeats every menu link.
  */
 export function SiteHeader() {
   const phoneLabel = `Call us at ${site.phone.display}`;
@@ -38,20 +39,9 @@ export function SiteHeader() {
             {bookCall.label}
           </ButtonLink>
 
-          <details className="group lg:hidden">
-            <summary className="inline-flex min-h-12 cursor-pointer list-none items-center gap-2 rounded-pill bg-ink px-4 font-semibold text-white [&::-webkit-details-marker]:hidden">
-              <Icon icon={List} weight="bold" />
-              <span>Menu</span>
-            </summary>
-            <nav aria-label="Main" className="absolute inset-x-0 top-full border-b border-line bg-white shadow-none">
-              <div className="container-x pb-6">
-                <NavLinks layout="column" />
-                <ButtonLink href={bookCall.href} size="lg" className="mt-6 w-full" icon={<Icon icon={CalendarCheck} />}>
-                  {bookCall.label}
-                </ButtonLink>
-              </div>
-            </nav>
-          </details>
+          <div className="lg:hidden">
+            <MobileMenu />
+          </div>
         </div>
       </div>
 
