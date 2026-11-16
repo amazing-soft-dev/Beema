@@ -7,7 +7,7 @@ import { site } from '@/content/site';
  * Without a key, development logs the email and succeeds; production reports failure so
  * the visitor is told to call instead of believing the message was sent.
  */
-const escape = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
+export const escapeHtml = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 
 export type EmailResult = { ok: true } | { ok: false; reason: string };
 
@@ -16,7 +16,7 @@ export function renderFields(fields: Record<string, string>) {
   return {
     text: rows.map(([k, v]) => `${k}: ${v}`).join('\n'),
     html: `<table cellpadding="6" style="border-collapse:collapse;font:16px/1.5 Arial,sans-serif">${rows
-      .map(([k, v]) => `<tr><th align="left" style="vertical-align:top;padding-right:16px">${escape(k)}</th><td>${escape(v).replace(/\n/g, '<br>')}</td></tr>`)
+      .map(([k, v]) => `<tr><th align="left" style="vertical-align:top;padding-right:16px">${escapeHtml(k)}</th><td>${escapeHtml(v).replace(/\n/g, '<br>')}</td></tr>`)
       .join('')}</table>`,
   };
 }
