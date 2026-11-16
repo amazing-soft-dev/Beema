@@ -18,6 +18,9 @@ const analyticsAliases: Record<string, string> =
     : { '@vercel/analytics/next': analyticsStub, '@vercel/speed-insights/next': analyticsStub, '@vercel/analytics': analyticsStub };
 
 const nextConfig: NextConfig = {
+  // API routes are named route.server.ts. Only the server build treats "server.ts" as a
+  // route extension, so the static export never sees POST handlers (it cannot run them).
+  pageExtensions: isStaticExport ? ['tsx', 'ts'] : ['server.ts', 'tsx', 'ts'],
   reactCompiler: true,
   experimental: {
     turbopackRustReactCompiler: true,
