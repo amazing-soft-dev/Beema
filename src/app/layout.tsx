@@ -3,6 +3,7 @@ import { Geist } from 'next/font/google';
 import type { ReactNode } from 'react';
 import { preload } from 'react-dom';
 import { PlaceholderRibbon } from '@/components/PlaceholderRibbon';
+import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { site } from '@/content/site';
 import './globals.css';
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <main id="main" tabIndex={-1} className="outline-none">
           {children}
         </main>
+        <SiteFooter />
       </body>
     </html>
   );
