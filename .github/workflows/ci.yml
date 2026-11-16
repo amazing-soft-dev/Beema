@@ -51,6 +51,12 @@ jobs:
       - name: Build static export and check out/
         if: matrix.target == 'static'
         run: npm run build:static
+      - name: Install Chromium for the accessibility check
+        if: matrix.target == 'static'
+        run: npx playwright install --with-deps chromium
+      - name: Accessibility check (axe, fails on serious or critical)
+        if: matrix.target == 'static'
+        run: npm run a11y
 
   ci-passed:
     name: CI passed
