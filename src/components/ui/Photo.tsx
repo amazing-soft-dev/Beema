@@ -22,7 +22,8 @@ export function Photo({
 }) {
   const p = photo(id);
   return (
-    <div className={`relative overflow-hidden ${rounded ? 'rounded-card' : ''} ${className}`.trim()}>
+    // Decorative photos are left out of print and PDFs to save paper.
+    <div className={`relative overflow-hidden print:hidden ${rounded ? 'rounded-card' : ''} ${className}`.trim()}>
       <Image src={p.src} alt={p.alt} fill sizes={sizes} priority={priority} className="object-cover" style={{ objectPosition: p.position }} />
     </div>
   );

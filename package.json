@@ -20,7 +20,9 @@
     "images:fetch": "node scripts/images/fetch.mjs",
     "images": "node scripts/images/build.mjs",
     "check:images": "node scripts/check-images.mjs",
-    "check:export": "node scripts/check-export.mjs"
+    "check:export": "node scripts/check-export.mjs",
+    "pdf": "next build && node scripts/pdf/render.mjs",
+    "pdf:check": "node scripts/pdf/check.mjs"
   },
   "dependencies": {
     "@calcom/embed-react": "1.5.3",
@@ -44,6 +46,7 @@
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "10.15.0",
     "eslint-config-next": "16.4.6",
+    "playwright": "1.65.1",
     "tailwindcss": "4.3.5",
     "typescript": "npm:@typescript/typescript6@6.0.2"
   }
