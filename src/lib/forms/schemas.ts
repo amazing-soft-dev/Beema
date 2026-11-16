@@ -69,3 +69,23 @@ export function fieldErrors(error: z.ZodError): FieldErrors {
   }
   return out;
 }
+
+const shortText = (max: number) => z.string().trim().max(max, `Please use ${max} characters or fewer.`).optional().default('');
+
+/** Plan comparison intake (#41): contact fields plus up to 15 medicines and 15 doctors. */
+export const planIntakeSchema = z.object({
+  name: nameField,
+  zip: zipField,
+  phone: phoneField,
+  bestTime: bestTimeField,
+  consent: consentField,
+  website: honeypotField,
+  drugs: z
+    .array(z.object({ name: z.string().trim().min(1).max(80), dose: shortText(40), frequency: shortText(40) }))
+    .max(15, 'Please list 15 medicines or fewer.')
+    .default([]),
+  doctors: z
+    .array(z.object({ name: z.string().trim().min(1).max(80), specialty: shortText(60), city: shortText(60) }))
+    .max(15, 'Please list 15 doctors or fewer.')
+    .default([]),
+});
