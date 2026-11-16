@@ -1,0 +1,36 @@
+name: Open pull request
+
+# A prefix branch opens a pull request into dev.
+# A push to dev opens (or updates) dev → main when dev is ahead.
+on:
+  push:
+    branches:
+      - 'feat/**'
+      - 'fix/**'
+      - 'docs/**'
+      - 'ci/**'
+      - 'build/**'
+      - dev
+
+concurrency:
+  group: open-pr-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  open:
+    name: Open or update pull request
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      # GH_TOKEN (a PAT), not GITHUB_TOKEN: pull requests opened or merged with the
+      # default token do not start the next workflow.
+      - name: Open or update
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          BRANCH: ${{ github.ref_name }}
+        run: bash .github/scripts/open-pull-request.sh
