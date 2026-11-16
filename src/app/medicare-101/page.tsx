@@ -1,4 +1,5 @@
 import { CompareTable } from '@/components/guides/CompareTable';
+import { CostsHelp } from '@/components/guides/CostsHelp';
 import { MedicareParts } from '@/components/guides/MedicareParts';
 import { MedigapPlans } from '@/components/guides/MedigapPlans';
 import { PartDAndPeriods } from '@/components/guides/PartDAndPeriods';
@@ -37,12 +38,16 @@ export default function Medicare101Page() {
           <ButtonLink href="#enrollment-periods" variant="outline">
             Key dates
           </ButtonLink>
+          <ButtonLink href="#costs" variant="outline">
+            Help with costs
+          </ButtonLink>
         </nav>
       </PageIntro>
       <MedicareParts />
       <MedigapPlans />
       <CompareTable />
       <PartDAndPeriods />
+      <CostsHelp />
     </>
   );
 }
