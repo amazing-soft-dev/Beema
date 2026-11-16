@@ -1,3 +1,4 @@
+import { CompareTable } from '@/components/guides/CompareTable';
 import { MedicareParts } from '@/components/guides/MedicareParts';
 import { MedigapPlans } from '@/components/guides/MedigapPlans';
 import { PageIntro } from '@/components/layout/PageIntro';
@@ -29,10 +30,14 @@ export default function Medicare101Page() {
           <ButtonLink href="#medigap" variant="outline">
             Medigap plans
           </ButtonLink>
+          <ButtonLink href="#compare" variant="outline">
+            Compare the two paths
+          </ButtonLink>
         </nav>
       </PageIntro>
       <MedicareParts />
       <MedigapPlans />
+      <CompareTable />
     </>
   );
 }
