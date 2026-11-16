@@ -13,7 +13,10 @@ export const PAGE_PDF_DIR = 'public/pdf';
 
 /** Source files and folders whose content ends up in the PDFs. */
 export const PDF_SOURCES = [
-  'src/content',
+  // Only the content the three guide pages use, so library-only edits do not force a rebuild.
+  'src/content/guides',
+  'src/content/medicare-figures.ts',
+  'src/content/site.ts',
   'src/components/guides',
   'src/components/print',
   'src/app/turning-65/page.tsx',
@@ -22,3 +25,7 @@ export const PDF_SOURCES = [
   'src/app/globals.css',
   'src/components/ui/Photo.tsx',
 ];
+
+/** Ready-made library PDFs, rendered only by `npm run pdf:library` (they may be replaced by uploads). */
+export { guidesLibrary as LIBRARY } from '../../src/content/guides-library.ts';
+export const LIBRARY_DIR = 'public/guides';
