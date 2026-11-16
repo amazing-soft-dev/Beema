@@ -8,6 +8,12 @@ const config = [
   },
   ...nextCoreWebVitals,
   ...nextTypescript,
+  {
+    // Type-only imports must be marked so Node's type stripping (unit tests) can erase them.
+    rules: {
+      '@typescript-eslint/consistent-type-imports': ['error', { fixStyle: 'separate-type-imports' }],
+    },
+  },
 ];
 
 export default config;
