@@ -12,5 +12,6 @@ const run = (args) => {
   if (res.status !== 0) process.exit(res.status ?? 1);
 };
 
+run(['scripts/fetch-fonts.mjs']);
 run([nextBin, 'build']);
 run(['scripts/check-export.mjs']);

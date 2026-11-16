@@ -7,7 +7,10 @@
     "node": ">=24"
   },
   "scripts": {
+    "fonts": "node scripts/fetch-fonts.mjs",
+    "predev": "npm run fonts",
     "dev": "next dev",
+    "prebuild": "npm run fonts",
     "build": "next build",
     "build:static": "node scripts/build-static.mjs",
     "start": "next start",
