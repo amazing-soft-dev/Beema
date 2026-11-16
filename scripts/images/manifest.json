@@ -80,6 +80,16 @@
       "photographerUrl": "https://unsplash.com/@capture_it",
       "alt": "An older couple walking arm in arm down a quiet tree-lined road",
       "focal": "40% 40%"
+    },
+    {
+      "id": "medicare-101-paperwork",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/elderly-couple-reviewing-documents-at-home-DQdilc0v6u8",
+      "downloadUrl": "https://images.unsplash.com/photo-1758691031749-607d43c14f63?w=2400&q=85&fm=jpg",
+      "photographer": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/@silverkblack",
+      "alt": "An older couple on a sofa reviewing papers together",
+      "focal": "45% 35%"
     }
   ]
 }
