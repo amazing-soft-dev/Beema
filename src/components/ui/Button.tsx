@@ -14,7 +14,8 @@ export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'light';
 export type ButtonSize = 'md' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2.5 rounded-pill border-2 font-medium whitespace-nowrap transition-colors duration-200 ease-out disabled:cursor-not-allowed disabled:opacity-60';
+  // Labels may wrap on narrow screens rather than overflow; py keeps wrapped labels inside the pill.
+  'inline-flex max-w-full items-center justify-center gap-2.5 rounded-pill border-2 py-2 text-center font-medium leading-snug transition-colors duration-200 ease-out disabled:cursor-not-allowed disabled:opacity-60 [&>svg]:shrink-0';
 
 const variants: Record<ButtonVariant, string> = {
   primary: 'border-lime bg-lime text-ink hover:border-lime-hover hover:bg-lime-hover',
