@@ -12,29 +12,33 @@ const WEIGHTS = [600, 700];
 const OUT_DIR = 'public/fonts';
 const CSS_URL = `https://api.fontshare.com/v2/css?f[]=switzer@${WEIGHTS.join(',')}&display=swap`;
 
-const target = (weight) => join(OUT_DIR, `switzer-${weight}.woff2`);
+// WOFF2 for the browser; TTF of the heading weight for build-time images (Satori can't read WOFF2).
+const FILES = [
+  ...WEIGHTS.map((weight) => ({ weight, format: 'woff2' })),
+  { weight: 600, format: 'ttf' },
+];
+const target = ({ weight, format }) => join(OUT_DIR, `switzer-${weight}.${format}`);
 
 async function main() {
-  if (WEIGHTS.every((w) => existsSync(target(w)))) {
+  const missing = FILES.filter((f) => !existsSync(target(f)));
+  if (!missing.length) {
     console.log('fetch-fonts: Switzer already present');
     return;
   }
   mkdirSync(OUT_DIR, { recursive: true });
   const css = await (await fetch(CSS_URL, { signal: AbortSignal.timeout(15_000) })).text();
 
-  // Each @font-face block lists the woff2 URL first, then its font-weight.
-  for (const block of css.split('@font-face').slice(1)) {
-    const url = /url\('([^']+\.woff2)'\)/.exec(block)?.[1];
-    const weight = Number(/font-weight:\s*(\d+)/.exec(block)?.[1]);
-    if (!url || !WEIGHTS.includes(weight)) continue;
+  // Each @font-face block lists woff2, woff and ttf URLs, then its font-weight.
+  const blocks = css.split('@font-face').slice(1);
+  for (const file of missing) {
+    const block = blocks.find((b) => Number(/font-weight:\s*(\d+)/.exec(b)?.[1]) === file.weight);
+    const url = block && new RegExp(`url\\('([^']+\\.${file.format})'\\)`).exec(block)?.[1];
+    if (!url) throw new Error(`no ${file.format} for weight ${file.weight} in Fontshare CSS`);
     const res = await fetch(url.startsWith('//') ? `https:${url}` : url, { signal: AbortSignal.timeout(15_000) });
-    if (!res.ok) throw new Error(`HTTP ${res.status} for weight ${weight}`);
-    writeFileSync(target(weight), Buffer.from(await res.arrayBuffer()));
-    console.log(`fetch-fonts: saved ${target(weight)}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${target(file)}`);
+    writeFileSync(target(file), Buffer.from(await res.arrayBuffer()));
+    console.log(`fetch-fonts: saved ${target(file)}`);
   }
-
-  const missing = WEIGHTS.filter((w) => !existsSync(target(w)));
-  if (missing.length) throw new Error(`weights not found in Fontshare CSS: ${missing.join(', ')}`);
 }
 
 main().catch((err) => {
