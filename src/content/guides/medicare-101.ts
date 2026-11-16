@@ -117,4 +117,14 @@ export const medicare101 = {
       { name: 'Medigap Open Enrollment', when: '6 months from the month you are 65+ and have Part B', what: 'Buy any Medigap policy sold in your state without health questions.' },
     ],
   },
+  costs: {
+    id: 'costs',
+    title: 'Help with costs, and what Medicare does not cover',
+    items: [
+      { id: 'irmaa', title: 'IRMAA: higher premiums for higher incomes', text: 'If your income two years ago was above a set limit, you pay an Income-Related Monthly Adjustment Amount on top of your Part B and Part D premiums. You can ask Social Security to use newer income after a life-changing event such as retiring.', link: { label: 'Use the IRMAA calculator', href: '/tools/irmaa-calculator' } },
+      { id: 'extra-help', title: 'Extra Help with drug costs', text: 'A federal program, also called the Low-Income Subsidy, that lowers Part D premiums, deductibles and copays for people with limited income and savings. Apply through Social Security, online or by phone.', link: { label: 'Extra Help on SSA.gov', href: 'https://www.ssa.gov/medicare/part-d-extra-help' } },
+      { id: 'savings-programs', title: 'Medicare Savings Programs', text: 'State programs (QMB, SLMB and QI) that can pay your Part B premium, and for some people Part A and B deductibles and coinsurance. Apply through your state Medicaid office. Qualifying for one also qualifies you for Extra Help.', link: { label: 'Medicare Savings Programs on Medicare.gov', href: 'https://www.medicare.gov/basics/costs/help/medicare-savings-programs' } },
+      { id: 'dental-vision-hearing', title: 'Dental, vision and hearing', text: 'Original Medicare does not cover most routine dental care, eye exams for glasses, or hearing aids. Many Medicare Advantage plans include some of this; with Medigap, you can buy separate dental, vision or hearing plans.', link: { label: 'Ask us about extra coverage', href: '/contact' } },
+    ],
+  },
 } as const;
