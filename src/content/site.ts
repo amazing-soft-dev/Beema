@@ -85,4 +85,13 @@ export const notices = {
   cmsDisclaimer: `We do not offer every plan available in your area. Currently we represent ${site.cms.organizations} organizations which offer ${site.cms.products} products in your area. Please contact Medicare.gov or 1-800-MEDICARE to get information on all of your options.`,
   govDisclaimer:
     'This website is not connected with or endorsed by the U.S. government or the federal Medicare program.',
+  /**
+   * Phone-contact consent. Shown next to an UNCHECKED checkbox on every form that asks for a
+   * phone number, and copied into each lead email so the exact wording agreed to is on record.
+   * Names the business, as the content plan requires. Have it reviewed before launch (#56).
+   */
+  phoneConsent: `By checking this box, I agree that ${site.legalName} and its licensed insurance agents may contact me at the phone number I provided about Medicare Advantage plans, Medicare Supplement (Medigap) insurance and Part D prescription drug plans, including by calls and text messages that may use automated technology. Consent is not a condition of any purchase. Message and data rates may apply. I can opt out at any time.`,
+  /** Scope of Appointment note for Book a Call. */
+  scopeOfAppointment:
+    'Before your appointment starts, we will confirm which types of coverage you want to discuss, such as Medicare Advantage, Medicare Supplement (Medigap) insurance or prescription drug plans. Medicare rules require us to record this Scope of Appointment, and we will only talk about the products you agree to.',
 } as const;
