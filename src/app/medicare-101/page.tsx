@@ -1,4 +1,5 @@
 import { MedicareParts } from '@/components/guides/MedicareParts';
+import { MedigapPlans } from '@/components/guides/MedigapPlans';
 import { PageIntro } from '@/components/layout/PageIntro';
 import { ButtonLink } from '@/components/ui/Button';
 import { Photo } from '@/components/ui/Photo';
@@ -25,9 +26,13 @@ export default function Medicare101Page() {
           <ButtonLink href="#parts" variant="secondary">
             The four parts
           </ButtonLink>
+          <ButtonLink href="#medigap" variant="outline">
+            Medigap plans
+          </ButtonLink>
         </nav>
       </PageIntro>
       <MedicareParts />
+      <MedigapPlans />
     </>
   );
 }
