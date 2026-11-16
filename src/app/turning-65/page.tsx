@@ -1,4 +1,5 @@
 import { CalendarCheck } from '@phosphor-icons/react/dist/ssr';
+import { EnrollmentWindows } from '@/components/guides/EnrollmentWindows';
 import { StepPath } from '@/components/guides/StepPath';
 import { PageIntro } from '@/components/layout/PageIntro';
 import { ButtonLink } from '@/components/ui/Button';
@@ -49,6 +50,7 @@ export default function Turning65Page() {
           </div>
         </div>
       </section>
+      <EnrollmentWindows />
     </>
   );
 }
