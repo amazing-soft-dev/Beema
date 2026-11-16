@@ -8,6 +8,7 @@ import { Icon } from '@/components/ui/Icon';
 import { Photo } from '@/components/ui/Photo';
 import { about } from '@/content/about';
 import { bookCall, site } from '@/content/site';
+import { isSolo, team } from '@/content/team';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
@@ -104,6 +105,23 @@ export default function AboutPage() {
           </Link>
         </div>
       </section>
+
+      {/* Solo agency: a founder bio here instead of a separate team (content plan). */}
+      {isSolo && team[0] && (
+        <section className="section-y" aria-labelledby="founder-heading">
+          <div className="container-x flex max-w-[70ch] flex-col gap-4">
+            <p className="t-caps text-green-700">Meet the founder</p>
+            <h2 id="founder-heading" className="t-h2">
+              {team[0].name}
+            </h2>
+            <p className="font-medium">{team[0].role}</p>
+            <p>{team[0].bio}</p>
+            <ButtonLink href={`${bookCall.href}?advisor=${team[0].slug}`} className="self-start">
+              Book a call with {team[0].name.split(' ')[0]}
+            </ButtonLink>
+          </div>
+        </section>
+      )}
 
       {a.press.length > 0 && (
         <section className="section-y" aria-labelledby="press-heading">
