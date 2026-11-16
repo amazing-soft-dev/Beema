@@ -30,6 +30,16 @@
       "photographerUrl": "https://unsplash.com/@ageing_better",
       "alt": "Older friends talking and laughing around a cafe table",
       "focal": "50% 40%"
+    },
+    {
+      "id": "cta-bench-sea",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/man-and-woman-sitting-on-bench-facing-sea-78hTqvjYMS4",
+      "downloadUrl": "https://images.unsplash.com/photo-1508963493744-76fce69379c0?w=2400&q=85&fm=jpg",
+      "photographer": "Matt Bennett",
+      "photographerUrl": "https://unsplash.com/@mbennettphoto",
+      "alt": "An older couple sitting on a bench looking out at the sea and mountains",
+      "focal": "50% 60%"
     }
   ]
 }
