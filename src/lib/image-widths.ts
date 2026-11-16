@@ -1,0 +1,7 @@
+/** Widths pre-built by `npm run images` for the static export (see scripts/images). */
+export const IMAGE_WIDTHS = [480, 768, 1200, 1600, 2400] as const;
+
+/** Smallest pre-built width that covers `width`, or the largest one. */
+export function pickWidth(width: number): number {
+  return IMAGE_WIDTHS.find((w) => w >= width) ?? IMAGE_WIDTHS[IMAGE_WIDTHS.length - 1]!;
+}
