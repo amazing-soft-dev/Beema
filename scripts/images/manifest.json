@@ -10,6 +10,26 @@
       "photographerUrl": "https://unsplash.com/@silverkblack",
       "alt": "An older couple smiling together at home, heads close",
       "focal": "50% 35%"
+    },
+    {
+      "id": "about-advisor-meeting",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/a-man-and-woman-sitting-at-a-table-with-a-laptop-M5k978V3qBc",
+      "downloadUrl": "https://images.unsplash.com/photo-1714974528703-e5ad41abc259?w=2400&q=85&fm=jpg",
+      "photographer": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/@silverkblack",
+      "alt": "An advisor with glasses smiling while talking with a client at a table",
+      "focal": "45% 40%"
+    },
+    {
+      "id": "about-cafe-friends",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/two-couples-talking-at-a-table-in-a-cafe-N8z6mWyPM4I",
+      "downloadUrl": "https://images.unsplash.com/photo-1764173039259-3cdf3d9a56e2?w=2400&q=85&fm=jpg",
+      "photographer": "Centre for Ageing Better",
+      "photographerUrl": "https://unsplash.com/@ageing_better",
+      "alt": "Older friends talking and laughing around a cafe table",
+      "focal": "50% 40%"
     }
   ]
 }
