@@ -92,4 +92,29 @@ export const turning65 = {
     },
     checklist: { label: 'Download the turning-65 checklist', href: '/guides/turning-65-checklist.pdf' },
   },
+  penalties: {
+    id: 'penalties',
+    title: 'Late penalties, and how to avoid them',
+    lead: 'If you sign up late without other qualifying coverage, Medicare can add a penalty to your premium. For Part B and Part D it usually lasts as long as you have that coverage.',
+    items: [
+      {
+        part: 'Part A',
+        rule: 'Only if you have to buy Part A (most people do not). Your premium can go up 10% for twice the number of years you could have had Part A but did not sign up.',
+      },
+      {
+        part: 'Part B',
+        rule: 'Your premium goes up 10% for each full 12-month period you could have had Part B but did not, unless you had job coverage that qualifies.',
+        exampleYears: 2,
+      },
+      {
+        part: 'Part D',
+        rule: 'If you go 63 days or more without Part D or other creditable drug coverage, a penalty of 1% of the national base premium is added for each month you went without.',
+      },
+    ],
+    avoid: [
+      'Sign up during your Initial Enrollment Period unless you have job coverage from an employer with 20 or more employees.',
+      'Keep a letter from your employer or drug plan showing your coverage was creditable.',
+      'When job coverage ends, sign up for Part B within 8 months and Part D within 63 days.',
+    ],
+  },
 } as const;
