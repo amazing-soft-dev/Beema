@@ -1,6 +1,7 @@
 import { CaretDown } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
 import { PageIntro } from '@/components/layout/PageIntro';
+import { GuidePdfActions } from '@/components/print/GuidePdfActions';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
@@ -31,6 +32,9 @@ export default function FaqPage() {
           ))}
         </nav>
       </PageIntro>
+      <div className="container-x pt-8">
+        <GuidePdfActions slug="faq" />
+      </div>
 
       <section className="section-y">
         <div className="container-x flex max-w-[860px] flex-col gap-14">
@@ -70,6 +74,9 @@ export default function FaqPage() {
           mainEntity: faqGroups.flatMap((g) => g.items).map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
         }}
       />
+      <div className="container-x pb-16">
+        <GuidePdfActions slug="faq" />
+      </div>
     </>
   );
 }
