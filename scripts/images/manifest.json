@@ -1,4 +1,15 @@
 {
   "$comment": "Every photo on the site. Sources: Unsplash (Unsplash License, never Unsplash+) or Pexels (Pexels License). Add entries with `npm run images:fetch`; reference a photo exactly once with photo('<id>'). No Medicare cards, flags or government imagery.",
-  "photos": []
+  "photos": [
+    {
+      "id": "home-hero-couple",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/elderly-couple-smiling-together-indoors-VEsvSr1WMrQ",
+      "downloadUrl": "https://images.unsplash.com/photo-1758686253706-5d45c46112f0?w=2400&q=85&fm=jpg",
+      "photographer": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/@silverkblack",
+      "alt": "An older couple smiling together at home, heads close",
+      "focal": "50% 35%"
+    }
+  ]
 }
