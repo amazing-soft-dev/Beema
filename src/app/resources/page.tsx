@@ -3,6 +3,7 @@ import type { Icon as PhosphorIcon } from '@phosphor-icons/react';
 import Link from 'next/link';
 import { NewsletterForm } from '@/components/forms/NewsletterForm';
 import { PageIntro } from '@/components/layout/PageIntro';
+import { GuideLibrary } from '@/components/resources/GuideLibrary';
 import { Reveal } from '@/components/motion/Reveal';
 import { Icon } from '@/components/ui/Icon';
 import { site } from '@/content/site';
@@ -63,7 +64,7 @@ export default function ResourcesPage() {
         </div>
       </section>
 
-      {/* Downloadable PDF library: #53. */}
+      <GuideLibrary />
 
       <section className="section-y bg-surface" aria-labelledby="tools-heading">
         <div className="container-x flex flex-col gap-8">
