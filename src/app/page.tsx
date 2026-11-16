@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { HomeHero } from '@/components/home/HomeHero';
+import { CtaBand, FreeAndWindow, ReviewsTeaser } from '@/components/home/HomeSections';
 import { TwoPaths } from '@/components/home/TwoPaths';
 import { site } from '@/content/site';
 
@@ -13,6 +14,9 @@ export default function HomePage() {
     <>
       <HomeHero />
       <TwoPaths />
+      <FreeAndWindow />
+      <ReviewsTeaser />
+      <CtaBand />
     </>
   );
 }
