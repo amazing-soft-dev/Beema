@@ -5,6 +5,7 @@ import { preload } from 'react-dom';
 import { PlaceholderRibbon } from '@/components/PlaceholderRibbon';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SiteHeader } from '@/components/layout/SiteHeader';
+import { JsonLd, agencyJsonLd } from '@/components/seo/JsonLd';
 import { site } from '@/content/site';
 import './globals.css';
 
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           {children}
         </main>
         <SiteFooter />
+        <JsonLd data={agencyJsonLd()} />
       </body>
     </html>
   );

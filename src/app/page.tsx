@@ -1,4 +1,5 @@
 import { CalendarCheck, Phone } from '@phosphor-icons/react/dist/ssr';
+import type { Metadata } from 'next';
 import { Reveal } from '@/components/motion/Reveal';
 import { TextAppear } from '@/components/motion/TextAppear';
 import { ButtonLink } from '@/components/ui/Button';
@@ -7,6 +8,9 @@ import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Icon } from '@/components/ui/Icon';
 import { Container, Section } from '@/components/ui/Layout';
 import { site } from '@/content/site';
+
+// Canonical for the home page only; other pages set theirs with buildMetadata().
+export const metadata: Metadata = { alternates: { canonical: '/' } };
 
 // Placeholder home page: shows the shared primitives until the real home page lands (#16).
 export default function HomePage() {
