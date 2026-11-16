@@ -9,6 +9,7 @@ import { chromium } from 'playwright';
 import { LIBRARY, LIBRARY_DIR, PAGE_PDFS, PAGE_PDF_DIR, PDF_SOURCES } from './config.mjs';
 import { addCheckboxes } from './fillable.mjs';
 import { sourcesHash } from './hash.mjs';
+import sharp from 'sharp';
 
 const PORT = 4310;
 const BASE = `http://localhost:${PORT}`;
@@ -48,6 +49,10 @@ try {
     for (const g of LIBRARY) {
       const out = `${LIBRARY_DIR}/${g.slug}.pdf`;
       await printTo(page, `${BASE}/print/library/${g.slug}`, out);
+      // Cover thumbnail for the Resources library: the first page, 360px wide.
+      const box = (await page.locator('article').first().boundingBox()) ?? { x: 0, y: 0, width: 816 };
+      const shot = await page.screenshot({ clip: { x: box.x, y: box.y, width: box.width, height: Math.round(box.width * (11 / 8.5)) } });
+      await sharp(shot).resize({ width: 360 }).webp({ quality: 80 }).toFile(`${LIBRARY_DIR}/${g.slug}-cover.webp`);
       // Checklists: measure each printed box on its fixed-size page, then add a fillable field.
       const boxes = await page.evaluate(() =>
         [...document.querySelectorAll('[data-pdf-page]')].flatMap((pg, pageIndex) => {
