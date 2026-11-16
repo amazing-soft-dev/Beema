@@ -80,6 +80,30 @@ export const nav: NavItem[] = [
 
 export const bookCall: NavItem = { label: 'Book a Call', href: '/book-a-call' };
 
+/** Footer link groups. Every page of the main menu is repeated (no-JavaScript fallback). */
+export const footerNav: { heading: string; links: NavItem[] }[] = [
+  { heading: 'Explore', links: [...nav, { label: 'Meet the Team', href: '/about/team' }, bookCall] },
+  {
+    heading: 'Tools and guides',
+    links: [
+      { label: 'Enrollment date calculator', href: '/tools/enrollment-calculator' },
+      { label: 'Plan comparison', href: '/tools/plan-comparison' },
+      { label: 'IRMAA calculator', href: '/tools/irmaa-calculator' },
+      { label: 'Glossary', href: '/resources/glossary' },
+    ],
+  },
+  {
+    heading: 'Legal',
+    links: [
+      { label: 'Privacy policy', href: '/legal/privacy' },
+      { label: 'Terms of use', href: '/legal/terms' },
+      { label: 'CMS disclaimer', href: '/legal/cms-disclaimer' },
+      { label: 'Licensing', href: '/legal/licensing' },
+      { label: 'Accessibility statement', href: '/legal/accessibility' },
+    ],
+  },
+];
+
 /** Required notices. Components in src/components/compliance render these; never paraphrase them. */
 export const notices = {
   cmsDisclaimer: `We do not offer every plan available in your area. Currently we represent ${site.cms.organizations} organizations which offer ${site.cms.products} products in your area. Please contact Medicare.gov or 1-800-MEDICARE to get information on all of your options.`,
