@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+/* Design tokens arrive in issue #5 (senior-tuned Beema theme). */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: #ffffff;
+    color: #0f3d2e;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+}
