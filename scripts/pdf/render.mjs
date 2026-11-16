@@ -7,6 +7,7 @@ import { mkdirSync, statSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { chromium } from 'playwright';
 import { LIBRARY, LIBRARY_DIR, PAGE_PDFS, PAGE_PDF_DIR, PDF_SOURCES } from './config.mjs';
+import { addCheckboxes } from './fillable.mjs';
 import { sourcesHash } from './hash.mjs';
 
 const PORT = 4310;
@@ -44,7 +45,21 @@ try {
 
   if (library) {
     mkdirSync(LIBRARY_DIR, { recursive: true });
-    for (const g of LIBRARY) await printTo(page, `${BASE}/print/library/${g.slug}`, `${LIBRARY_DIR}/${g.slug}.pdf`);
+    for (const g of LIBRARY) {
+      const out = `${LIBRARY_DIR}/${g.slug}.pdf`;
+      await printTo(page, `${BASE}/print/library/${g.slug}`, out);
+      // Checklists: measure each printed box on its fixed-size page, then add a fillable field.
+      const boxes = await page.evaluate(() =>
+        [...document.querySelectorAll('[data-pdf-page]')].flatMap((pg, pageIndex) => {
+          const p = pg.getBoundingClientRect();
+          return [...pg.querySelectorAll('[data-checkbox-box]')].map((el) => {
+            const r = el.getBoundingClientRect();
+            return { pageIndex, x: r.left - p.left, y: r.top - p.top, w: r.width, h: r.height, label: el.getAttribute('data-checkbox-box') ?? '' };
+          });
+        }),
+      );
+      if (boxes.length) console.log(`pdf: ${out}: ${await addCheckboxes(out, boxes)} fillable checkboxes`);
+    }
   } else {
     mkdirSync(PAGE_PDF_DIR, { recursive: true });
     const files = {};
