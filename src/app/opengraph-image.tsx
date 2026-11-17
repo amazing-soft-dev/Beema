@@ -27,7 +27,7 @@ export default async function OpengraphImage() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          <img src={logo} width={Math.round(84 * logoRatio)} height={84} alt="" />
+          <div style={{ display: 'flex', width: Math.round(84 * logoRatio), height: 84, backgroundImage: `url(${logo})`, backgroundSize: '100% 100%' }} />
           <div style={{ fontSize: 38, fontFamily: display }}>{site.name}</div>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
