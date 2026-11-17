@@ -1,4 +1,4 @@
-import { FilePdf, Phone, ShieldCheck } from '@phosphor-icons/react/dist/ssr';
+import { CalendarCheck, Sparkle } from '@phosphor-icons/react/dist/ssr';
 import { Reveal } from '@/components/motion/Reveal';
 import { TextAppear } from '@/components/motion/TextAppear';
 import { ButtonLink } from '@/components/ui/Button';
@@ -6,47 +6,71 @@ import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Icon } from '@/components/ui/Icon';
 import { Photo } from '@/components/ui/Photo';
 import { home } from '@/content/home';
-import { site } from '@/content/site';
-import { ZipForm } from './ZipForm';
+import { bookCall, planMatch, site } from '@/content/site';
 
-/** Home hero: who the site is for, the ZIP box, the phone number and the checklist. */
+/**
+ * Framer home hero (audit/components/home-sections.md §1, motion/hero-intro.md): a full-bleed
+ * photo under the clear header with the home overlay gradient, the H1 rising 0.4s after load,
+ * the lead and calls to action fading up 50px with it, and the brand wordmark rising 75px
+ * along the bottom edge. The overlay keeps white text above 4.5:1.
+ */
 export function HomeHero() {
   const h = home.hero;
   return (
-    <section className="bg-sand">
-      <div className="container-x grid items-center gap-10 py-12 md:py-16 lg:grid-cols-[1.05fr_1fr] lg:gap-16 lg:py-20">
-        <div className="flex flex-col gap-6">
-          <Eyebrow>{h.eyebrow}</Eyebrow>
-          <TextAppear as="h1" onMount className="t-h1 max-w-[20ch]">
+    <section data-hero="dark" className="under-header on-dark relative isolate flex min-h-[720px] flex-col justify-end overflow-hidden text-white lg:min-h-[900px]" aria-labelledby="home-title">
+      <Photo id="home-hero-couple" priority rounded={false} sizes="100vw" className="!absolute inset-0 -z-20" />
+      {/* Framer home-hero overlay, darkened a little so 18px text stays readable on any crop. */}
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,.6)_0%,rgba(0,0,0,.42)_50%,rgba(0,0,0,.62)_100%)]" />
+
+      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-6 pt-10 pb-4 lg:px-10">
+        <div className="flex max-w-[44rem] flex-col gap-6">
+          <Reveal onMount y="md" delay={0.4}>
+            <Eyebrow variant="pill" tone="dark" ping className="bg-white/15 backdrop-blur-md">
+              {h.eyebrow}
+            </Eyebrow>
+          </Reveal>
+          <TextAppear as="h1" id="home-title" onMount className="t-h1 text-white">
             {h.title}
           </TextAppear>
-          <p className="t-lead max-w-[46ch]">{h.lead}</p>
-
-          <Reveal className="rounded-card bg-white p-6 md:p-8" stagger={1}>
-            <ZipForm label={h.zipLabel} hint={h.zipHint} button={h.zipButton} />
+          <Reveal onMount y="md" delay={0.4} className="t-lead max-w-[40rem]">
+            {h.lead}
           </Reveal>
-
-          <div className="flex flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center">
-            <div>
-              <p className="text-base font-medium">{h.callPrompt}</p>
-              <a href={`tel:${site.phone.tel}`} className="inline-flex min-h-12 items-center gap-2 text-2xl font-semibold underline-offset-4 hover:underline">
-                <Icon icon={Phone} weight="fill" />
-                {site.phone.display}
-              </a>
-              <p className="text-base">{site.tty.display}</p>
-            </div>
-            <ButtonLink href={h.checklist.href} variant="outline" icon={<Icon icon={FilePdf} />} className="sm:ml-auto">
-              {h.checklist.label}
+          <Reveal onMount y="md" delay={0.4} className="flex flex-wrap gap-4">
+            <ButtonLink href={planMatch.href} size="lg" icon={<Icon icon={Sparkle} weight="fill" />}>
+              {planMatch.label}
             </ButtonLink>
-          </div>
+            <ButtonLink href={bookCall.href} size="lg" variant="light" icon={<Icon icon={CalendarCheck} />}>
+              {h.secondaryCta}
+            </ButtonLink>
+          </Reveal>
+          <Reveal onMount y="md" delay={0.6} className="text-base">
+            {h.callPrompt}{' '}
+            <a href={`tel:${site.phone.tel}`} className="font-semibold underline underline-offset-4">
+              {site.phone.display}
+            </a>{' '}
+            ({site.tty.display})
+          </Reveal>
         </div>
 
-        <div className="relative">
-          <Photo id="home-hero-couple" priority sizes="(min-width: 1200px) 600px, 100vw" className="aspect-[4/3] w-full lg:aspect-[5/6]" />
-          <p className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-pill bg-white px-4 py-2 font-semibold shadow-none md:bottom-6 md:left-6">
-            <Icon icon={ShieldCheck} weight="fill" className="text-navy-700" />
-            {h.badge}
-          </p>
+        {/* Framer's wordmark: the brand name across the full width, sitting on the bottom edge. */}
+        <div aria-hidden="true" className="-mb-[2.2vw] overflow-hidden select-none print:hidden">
+          <Reveal onMount y="lg" delay={0.4}>
+            <svg viewBox="0 0 1000 120" className="block w-full" focusable="false">
+              <text
+                x="500"
+                y="104"
+                textAnchor="middle"
+                textLength="996"
+                lengthAdjust="spacingAndGlyphs"
+                fill="currentColor"
+                fontSize="128"
+                fontWeight="600"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                {site.name}
+              </text>
+            </svg>
+          </Reveal>
         </div>
       </div>
     </section>
