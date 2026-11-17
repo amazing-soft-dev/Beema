@@ -1,4 +1,6 @@
 import type { Block } from '../pages/types.ts';
+import { caregiverGuide } from './helping-a-parent-with-medicare.ts';
+import { planGvsN } from './medigap-plan-g-vs-plan-n.ts';
 import { turning65Steps } from './turning-65-what-to-do-and-when.ts';
 
 /**
@@ -34,7 +36,7 @@ export type Article = {
   pdf?: string;
 };
 
-export const articles: Article[] = [turning65Steps].sort((a, b) => b.published.localeCompare(a.published));
+export const articles: Article[] = [turning65Steps, planGvsN, caregiverGuide].sort((a, b) => b.published.localeCompare(a.published));
 
 export const findArticle = (slug: string) => articles.find((a) => a.slug === slug);
 export const articleHref = (slug: string) => `/blog/${slug}`;
