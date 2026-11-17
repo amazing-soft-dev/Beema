@@ -28,7 +28,7 @@ export function EnrollmentWindows() {
               return (
                 <li
                   key={m.label}
-                  className={`flex flex-col gap-1 rounded-card-sm p-4 md:min-h-40 ${birthday ? 'bg-gold text-ink' : early ? 'bg-ink text-white' : 'bg-sand'}`}
+                  className={`flex flex-col gap-1 rounded-card-sm p-4 md:min-h-40 ${birthday ? 'bg-gold text-on-gold' : early ? 'bg-ink text-white' : 'bg-sand'}`}
                 >
                   <span className="text-base font-semibold">Month {i + 1}</span>
                   <span className="font-semibold">{m.label}</span>
