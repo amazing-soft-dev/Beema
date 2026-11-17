@@ -2,7 +2,8 @@ import { CalendarCheck, Phone } from '@phosphor-icons/react/dist/ssr';
 import { Logo } from '@/components/brand/Logo';
 import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
-import { bookCall, site } from '@/content/site';
+import { availableMenu, bookCall, site } from '@/content/site';
+import { existingRoutes } from '@/lib/routes';
 import { MobileMenu } from './MobileMenu';
 import { NavLinks } from './NavLinks';
 import { ScrollState } from './ScrollState';
@@ -10,12 +11,14 @@ import { ScrollState } from './ScrollState';
 /**
  * Site header, on every page.
  * - Desktop (≥1200): row 1 logo, phone (click-to-call, top right) and Book a Call;
- *   row 2 the eight menu items. Two rows keep 18px labels without crowding.
+ *   row 2 the five menu items (src/content/menu.ts).
  * - Below 1200: logo, phone and a Menu button that opens the full-screen MobileMenu dialog.
  *   Without JavaScript, the footer repeats every menu link.
  */
 export function SiteHeader() {
   const phoneLabel = `Call us at ${site.phone.display}`;
+  // Built at build time: only links whose page exists.
+  const items = availableMenu(existingRoutes());
   return (
     <header
       id="site-header"
@@ -40,14 +43,14 @@ export function SiteHeader() {
           </ButtonLink>
 
           <div className="lg:hidden">
-            <MobileMenu />
+            <MobileMenu items={items} />
           </div>
         </div>
       </div>
 
       <nav aria-label="Main" className="hidden border-t border-line lg:block">
         <div className="container-x py-1">
-          <NavLinks layout="row" />
+          <NavLinks items={items} layout="row" />
         </div>
       </nav>
     </header>

@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
+import type { MenuItem } from '@/content/menu';
 import { bookCall, site } from '@/content/site';
 import { NavLinks } from './NavLinks';
 
@@ -13,7 +14,7 @@ import { NavLinks } from './NavLinks';
  * showModal() traps focus, makes the page behind inert and closes on Escape.
  * We add: focus back on the Menu button, page scroll lock, and closing on navigation.
  */
-export function MobileMenu() {
+export function MobileMenu({ items }: { items: MenuItem[] }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
@@ -94,7 +95,7 @@ export function MobileMenu() {
           </button>
         </div>
         <nav aria-label="Main" className="container-x py-4">
-          <NavLinks layout="column" />
+          <NavLinks items={items} layout="column" />
         </nav>
         <div className="container-x flex flex-col gap-4 pb-10">
           <ButtonLink href={bookCall.href} size="lg" icon={<Icon icon={CalendarCheck} />}>
