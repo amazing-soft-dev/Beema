@@ -51,6 +51,7 @@ export function ChatButton() {
     <button
       type="button"
       onClick={openChat}
+      data-chat-button=""
       className="fixed right-4 bottom-4 z-30 inline-flex min-h-14 items-center gap-2 rounded-pill bg-ink px-5 font-semibold text-white print:hidden md:right-6 md:bottom-6"
     >
       <Icon icon={ChatCircleDots} weight="fill" size={26} />
