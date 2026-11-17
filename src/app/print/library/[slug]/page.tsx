@@ -3,9 +3,18 @@ import { notFound } from 'next/navigation';
 import { glossary } from '@/content/glossary';
 import { guidesLibrary } from '@/content/guides-library';
 import type { ChecklistGroup } from '@/content/library/checklists';
-import { annualEnrollmentChecklist, partBSignup, turning65Checklist } from '@/content/library/checklists';
+import {
+  annualEnrollmentChecklist,
+  caregiverChecklist,
+  dentalVisionChecklist,
+  finalExpenseWorksheet,
+  gapWorksheet,
+  partBSignup,
+  turning65Checklist,
+} from '@/content/library/checklists';
+import { disclosures } from '@/content/disclosures';
 import { medicare101 } from '@/content/guides/medicare-101';
-import { site } from '@/content/site';
+import { notices, site } from '@/content/site';
 
 /**
  * Large-print layouts for the ready-made PDF library (npm run pdf:library renders them to
@@ -47,7 +56,7 @@ function ChecklistGroups({ groups }: { groups: ChecklistGroup[] }) {
  * Checklists print on fixed Letter-size page blocks with no page margin, so each box's
  * position on screen is its position on the PDF page and a fillable field can be laid on it.
  */
-function ChecklistPages({ header, pages }: { header: React.ReactNode; pages: ChecklistGroup[][] }) {
+function ChecklistPages({ header, pages, footer }: { header: React.ReactNode; pages: ChecklistGroup[][]; footer?: React.ReactNode }) {
   return (
     <>
       <style>{'@page { size: letter; margin: 0 } body > :not(main), main > :not(article) { display: none !important }'}</style>
@@ -55,6 +64,7 @@ function ChecklistPages({ header, pages }: { header: React.ReactNode; pages: Che
         <div key={i} data-pdf-page="" className="relative h-[11in] w-[8.5in] overflow-hidden bg-white px-[0.6in] py-[0.55in] break-after-page">
           {i === 0 && header}
           <ChecklistGroups groups={groups} />
+          {i === pages.length - 1 && footer}
           <p className="absolute right-[0.6in] bottom-[0.4in] left-[0.6in] text-[11pt]">
             Page {i + 1} of {pages.length}. Tick the boxes on screen or on paper.
           </p>
@@ -138,6 +148,37 @@ function Body({ slug }: { slug: string }) {
           </section>
         </div>
       );
+    case 'gap-worksheet':
+      return (
+        <table className="w-full border-collapse text-left text-[14pt]">
+          <thead>
+            <tr>
+              <th scope="col" className="border-2 border-black p-2">
+                Cost
+              </th>
+              {gapWorksheet.columns.map((c) => (
+                <th key={c} scope="col" className="border-2 border-black p-2 text-center">
+                  {c}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {gapWorksheet.rows.map((r) => (
+              <tr key={r}>
+                <th scope="row" className="border-2 border-black p-3 align-middle">
+                  {r}
+                </th>
+                {gapWorksheet.columns.map((c) => (
+                  <td key={c} className="border-2 border-black p-3 text-center">
+                    <span aria-hidden="true" data-checkbox-box={r + ': ' + c} className="inline-block size-[20pt] rounded-[3pt] border-[2pt] border-black align-middle" />
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      );
     case 'medicare-glossary':
       return (
         <dl className="columns-1 text-[14pt]">
@@ -173,11 +214,48 @@ export default async function LibraryPrintPage({ params }: { params: Promise<{ s
         {site.placeholder && <p className="mt-1 text-[12pt] font-semibold">Sample content: business details are placeholders.</p>}
     </header>
   );
-  const checklist = slug === 'turning-65-checklist' ? [turning65Checklist.slice(0, 2), turning65Checklist.slice(2)] : slug === 'annual-enrollment-checklist' ? [annualEnrollmentChecklist] : null;
+  // Plan §5: every PDF carries the phone number (header) and the TPMO disclaimer; add-on PDFs
+  // also carry their non-Medicare product disclosure, and the worksheets say they are not quotes.
+  const addOn = guide.addOn ? disclosures[guide.addOn] : null;
+  const footer = (
+    <div className="mt-6 flex flex-col gap-2 border-t-2 border-black pt-3 text-[11pt] leading-snug">
+      {slug === 'final-expense-worksheet' && <p className="font-semibold">This worksheet is a planning tool, not a quote or an offer of insurance.</p>}
+      {addOn ? (
+        <p>
+          <strong>{addOn.title}.</strong> {addOn.text}
+        </p>
+      ) : (
+        <p>{notices.cmsDisclaimer}</p>
+      )}
+      <p>{notices.govDisclaimer}</p>
+    </div>
+  );
+  const checklists: Record<string, ChecklistGroup[][]> = {
+    'turning-65-checklist': [turning65Checklist.slice(0, 2), turning65Checklist.slice(2)],
+    'annual-enrollment-checklist': [annualEnrollmentChecklist],
+    'final-expense-worksheet': [finalExpenseWorksheet],
+    'dental-vision-checklist': [dentalVisionChecklist],
+    'caregiver-checklist': [caregiverChecklist],
+  };
+  const checklist = checklists[slug];
   if (checklist) {
     return (
       <article className="text-black">
-        <ChecklistPages header={header} pages={checklist} />
+        <ChecklistPages header={header} pages={checklist} footer={footer} />
+      </article>
+    );
+  }
+  if (slug === 'gap-worksheet') {
+    // One fixed Letter page, so the table's boxes become fillable checkboxes too.
+    return (
+      <article className="text-black">
+        <style>{'@page { size: letter; margin: 0 } body > :not(main), main > :not(article) { display: none !important }'}</style>
+        <div data-pdf-page="" className="relative h-[11in] w-[8.5in] overflow-hidden bg-white px-[0.6in] py-[0.55in]">
+          {header}
+          <p className="mb-4 text-[16pt]">Tick one box in each row. Anything in the last column is a gap worth talking about.</p>
+          <Body slug={slug} />
+          {footer}
+        </div>
       </article>
     );
   }
@@ -185,6 +263,7 @@ export default async function LibraryPrintPage({ params }: { params: Promise<{ s
     <article className="mx-auto max-w-[760px] px-6 py-10 text-black print:max-w-none print:p-0">
       {header}
       <Body slug={slug} />
+      {footer}
     </article>
   );
 }
