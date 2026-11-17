@@ -109,6 +109,17 @@ export function SiteFooter() {
           </p>
           <CmsDisclaimer variant="plain" />
           <GovDisclaimer />
+          <p>
+            For free, unbiased help you can also use{' '}
+            <a href="https://www.medicare.gov/plan-compare/" className="underline underline-offset-4">
+              Medicare.gov Plan Finder
+            </a>
+            , call 1-800-MEDICARE (1-800-633-4227, TTY 1-877-486-2048), or contact your local{' '}
+            <a href="https://www.shiphelp.org/" className="underline underline-offset-4">
+              State Health Insurance Assistance Program (SHIP)
+            </a>
+            .
+          </p>
           <ThemeChoices className="mt-4" />
           <p className="pt-4">
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
