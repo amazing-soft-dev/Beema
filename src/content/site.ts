@@ -22,12 +22,13 @@ export const site = {
   /** Flip to false in #57 once every TODO below holds real data. */
   placeholder: true,
 
-  name: 'Silver Path Medicare Advisors', // TODO(#57)
-  shortName: 'Silver Path', // TODO(#57)
-  legalName: 'Silver Path Medicare Advisors, LLC', // TODO(#57)
+  // Working name from the Hybrid Website Plan (Nov 2026). Nothing is registered yet.
+  name: 'Senior AI Plans', // TODO(#57)
+  shortName: 'Senior AI Plans', // TODO(#57)
+  legalName: 'Senior AI Plans, LLC', // TODO(#57)
   tagline: 'Plain-English Medicare help for people turning 65.',
   description:
-    'Free, licensed help for people turning 65 or new to Medicare: compare Original Medicare with Medigap and Medicare Advantage, check your enrollment dates, and talk to a local advisor.',
+    'Free, licensed Medicare help for people turning 65 and the families who help them: a free plan match that explains which coverage type fits and why, plain-English guides, enrollment dates, and a call with a licensed agent.',
 
   /** Canonical origin. Overridden by NEXT_PUBLIC_SITE_URL in each environment. */
   url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.example.com', // TODO(#57)
