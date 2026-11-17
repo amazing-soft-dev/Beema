@@ -1,6 +1,5 @@
-import { ArrowRight, CalendarCheck, Star } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight, CalendarCheck } from '@phosphor-icons/react/dist/ssr';
 import { Reveal } from '@/components/motion/Reveal';
-import { TextAppear } from '@/components/motion/TextAppear';
 import { ButtonLink } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Icon } from '@/components/ui/Icon';
@@ -40,27 +39,6 @@ export function FreeAndWindow() {
             </ButtonLink>
           </div>
         </Reveal>
-      </div>
-    </section>
-  );
-}
-
-/** Reviews teaser. Shows no ratings or quotes itself, so nothing unverified appears here. */
-export function ReviewsTeaser() {
-  const r = home.reviews;
-  return (
-    <section className="section-y" aria-labelledby="reviews-teaser">
-      <div className="container-x flex flex-col items-start gap-5 md:flex-row md:items-end md:justify-between">
-        <div className="flex max-w-[50ch] flex-col gap-4">
-          <Eyebrow>{r.eyebrow}</Eyebrow>
-          <TextAppear id="reviews-teaser" className="t-h2">
-            {r.title}
-          </TextAppear>
-          <p className="t-lead">{r.text}</p>
-        </div>
-        <ButtonLink href={r.link.href} size="lg" variant="secondary" icon={<Icon icon={Star} weight="fill" />}>
-          {r.link.label}
-        </ButtonLink>
       </div>
     </section>
   );

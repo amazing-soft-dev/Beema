@@ -2,7 +2,9 @@ import type { Metadata } from 'next';
 import { ByTheNumbers } from '@/components/home/ByTheNumbers';
 import { HelpTicker } from '@/components/home/HelpTicker';
 import { HomeHero } from '@/components/home/HomeHero';
-import { FreeAndWindow, ReviewsTeaser } from '@/components/home/HomeSections';
+import { ChecklistBand, HomeCta, HomeReviews, LatestArticles } from '@/components/home/HomeClosing';
+import { FreeAndWindow } from '@/components/home/HomeSections';
+import { MatchBox } from '@/components/home/MatchBox';
 import { WhoItsFor } from '@/components/home/WhoItsFor';
 import { ServiceTiles } from '@/components/home/ServiceTiles';
 import { TwoPaths } from '@/components/home/TwoPaths';
@@ -22,8 +24,12 @@ export default function HomePage() {
       <ServiceTiles />
       <TwoPaths />
       <ByTheNumbers />
+      <MatchBox />
       <FreeAndWindow />
-      <ReviewsTeaser />
+      <HomeReviews />
+      <ChecklistBand />
+      <LatestArticles />
+      <HomeCta />
     </>
   );
 }
