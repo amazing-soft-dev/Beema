@@ -70,6 +70,7 @@ export const dentalVisionHearingPage: ContentPage = {
       ],
     },
   ],
+  pdf: 'dental-vision-checklist',
   next: {
     title: 'Book an extra-protection review',
     text: 'We check what your Medicare coverage already includes before suggesting any separate plan.',
