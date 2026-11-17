@@ -60,4 +60,4 @@ if (failures) {
   console.error(`\na11y: ${failures} serious or critical issue(s) on ${pages.length} pages`);
   process.exit(1);
 }
-console.log(`\na11y: ${pages.length} pages, no serious or critical issues`);
+console.log(`\na11y: ${pages.length} pages in light and dark, no serious or critical issues`);
