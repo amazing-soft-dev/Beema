@@ -22,7 +22,7 @@ export function HomeHero() {
           </TextAppear>
           <p className="t-lead max-w-[46ch]">{h.lead}</p>
 
-          <Reveal className="rounded-card bg-white p-6 md:p-8" delay={0.1}>
+          <Reveal className="rounded-card bg-white p-6 md:p-8" stagger={1}>
             <ZipForm label={h.zipLabel} hint={h.zipHint} button={h.zipButton} />
           </Reveal>
 

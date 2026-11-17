@@ -16,7 +16,7 @@ export function PartDAndPeriods() {
           </TextAppear>
           <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {partD.points.map((p, i) => (
-              <Reveal key={p.title} as="li" delay={(i % 3) * 0.08} className="flex flex-col gap-3 rounded-card bg-white p-6">
+              <Reveal key={p.title} as="li" stagger={i % 3} className="flex flex-col gap-3 rounded-card bg-white p-6">
                 <Icon icon={Pill} weight="fill" size={28} className="text-navy-700" />
                 <h3 className="t-h4">{p.title}</h3>
                 <p>{p.text}</p>

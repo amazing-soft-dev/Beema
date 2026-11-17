@@ -76,7 +76,7 @@ export default function ReviewsPage() {
               {reviews.quotes
                 .filter((q) => q.consent)
                 .map((q, i) => (
-                  <Reveal key={q.name} as="li" delay={(i % 2) * 0.1} className="flex flex-col gap-4 rounded-card bg-white p-6 md:p-8">
+                  <Reveal key={q.name} as="li" stagger={i % 2} className="flex flex-col gap-4 rounded-card bg-white p-6 md:p-8">
                     <Icon icon={ChatCircleText} weight="fill" size={32} className="text-navy-700" />
                     <blockquote className="t-lead">“{q.quote}”</blockquote>
                     {q.story && <p>{q.story}</p>}
