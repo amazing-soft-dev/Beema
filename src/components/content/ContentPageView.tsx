@@ -1,4 +1,5 @@
 import { FilePdf } from '@phosphor-icons/react/dist/ssr';
+import { ProductDisclosure } from '@/components/compliance/ProductDisclosure';
 import { PageIntro } from '@/components/layout/PageIntro';
 import { Reveal } from '@/components/motion/Reveal';
 import { DownloadGuideLink } from '@/components/resources/DownloadGuideLink';
@@ -9,7 +10,11 @@ import { Breadcrumb } from './Breadcrumb';
 import { ContentSections, JumpLinks } from './ContentSections';
 import { NextSteps } from './NextSteps';
 
-/** A whole content page from its data: hero, sections, related PDF and next steps. */
+/**
+ * A whole content page from its data: hero, sections, related PDF and next steps. Pages about
+ * non-Medicare products show their disclosure under the hero and again in the closing panel,
+ * in place of the CMS (Medicare plans) disclaimer.
+ */
 export function ContentPageView({ page }: { page: ContentPage }) {
   const guide = page.pdf ? findGuide(page.pdf) : undefined;
   return (
@@ -17,6 +22,12 @@ export function ContentPageView({ page }: { page: ContentPage }) {
       <PageIntro eyebrow={page.intro.eyebrow} title={page.intro.title} lead={page.intro.lead} breadcrumb={<Breadcrumb trail={page.crumbs} />}>
         {page.jump && <JumpLinks sections={page.sections} />}
       </PageIntro>
+
+      {page.disclosure && (
+        <div className="container-x pt-10 md:pt-16">
+          <ProductDisclosure kind={page.disclosure} />
+        </div>
+      )}
 
       <ContentSections sections={page.sections} />
 
@@ -39,7 +50,15 @@ export function ContentPageView({ page }: { page: ContentPage }) {
         </section>
       )}
 
-      <NextSteps title={page.next.title} text={page.next.text} primary={page.next.primary} secondary={page.next.secondary} />
+      <NextSteps
+        title={page.next.title}
+        text={page.next.text}
+        primary={page.next.primary}
+        secondary={page.next.secondary}
+        disclaimer={!page.disclosure}
+      >
+        {page.disclosure && <ProductDisclosure kind={page.disclosure} compact className="mt-2" />}
+      </NextSteps>
     </>
   );
 }
