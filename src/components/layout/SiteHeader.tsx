@@ -1,60 +1,26 @@
-import { CalendarCheck, Phone } from '@phosphor-icons/react/dist/ssr';
-import { Logo } from '@/components/brand/Logo';
-import { ButtonLink } from '@/components/ui/Button';
-import { ThemeToggle } from '@/components/theme/ThemeSwitch';
-import { Icon } from '@/components/ui/Icon';
-import { availableMenu, bookCall, site } from '@/content/site';
+import { availableMenu } from '@/content/site';
 import { existingRoutes } from '@/lib/routes';
-import { MobileMenu } from './MobileMenu';
-import { NavLinks } from './NavLinks';
-import { ScrollState } from './ScrollState';
+import { HeaderShell } from './HeaderShell';
+import { TopBar } from './TopBar';
 
 /**
- * Site header, on every page.
- * - Desktop (≥1200): row 1 logo, phone (click-to-call, top right) and Book a Call;
- *   row 2 the five menu items (src/content/menu.ts).
- * - Below 1200: logo, phone and a Menu button that opens the full-screen MobileMenu dialog.
+ * Site header, on every page: the Framer floating pill (HeaderShell).
+ * - Desktop (≥1200): logo, the five menu items and Book a Call in one pill, with a slim
+ *   row above it for the phone number, TTY and the theme switch.
+ * - Below 1200: logo and a Menu button that opens the full-screen MobileMenu dialog.
  *   Without JavaScript, the footer repeats every menu link.
+ * The sticky wrapper has no height, so the page starts under the header; header.css adds
+ * the matching top space to <main>, and dark heroes slide up beneath it.
  */
 export function SiteHeader() {
-  const phoneLabel = `Call us at ${site.phone.display}`;
   // Built at build time: only links whose page exists.
   const items = availableMenu(existingRoutes());
   return (
-    <header
-      id="site-header"
-      className="sticky top-0 z-40 border-b border-transparent bg-white transition-colors duration-200 data-[scrolled]:border-line"
-    >
-      <ScrollState targetId="site-header" />
-      <div className="container-x flex min-h-20 items-center justify-between gap-4 py-2">
-        <Logo />
-
-        <div className="flex items-center gap-3">
-          <ThemeToggle className="max-md:hidden" />
-          {/* Phone: always visible. Full number from 810px, icon button with label below. */}
-          <a
-            href={`tel:${site.phone.tel}`}
-            aria-label={phoneLabel}
-            className="inline-flex min-h-12 min-w-12 items-center justify-center gap-2 rounded-pill border-2 border-ink px-3 font-semibold md:px-5"
-          >
-            <Icon icon={Phone} weight="fill" />
-            <span className="hidden md:inline">{site.phone.display}</span>
-          </a>
-          <ButtonLink href={bookCall.href} className="max-lg:hidden" icon={<Icon icon={CalendarCheck} />}>
-            {bookCall.label}
-          </ButtonLink>
-
-          <div className="lg:hidden">
-            <MobileMenu items={items} />
-          </div>
-        </div>
-      </div>
-
-      <nav aria-label="Main" className="hidden border-t border-line lg:block">
-        <div className="container-x py-1">
-          <NavLinks items={items} layout="row" />
-        </div>
-      </nav>
-    </header>
+    <>
+      <TopBar />
+      <header id="site-header" className="pointer-events-none sticky top-0 z-40 h-0">
+        <HeaderShell items={items} />
+      </header>
+    </>
   );
 }
