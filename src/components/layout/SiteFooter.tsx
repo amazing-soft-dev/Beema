@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { LogoMark } from '@/components/brand/Logo';
 import { CmsDisclaimer } from '@/components/compliance/CmsDisclaimer';
 import { GovDisclaimer } from '@/components/compliance/GovDisclaimer';
+import { Reveal } from '@/components/motion/Reveal';
 import { ThemeChoices } from '@/components/theme/ThemeSwitch';
 import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
@@ -127,6 +128,17 @@ export function SiteFooter() {
         </div>
       </div>
 
+      {/* Framer's giant faded wordmark, cropped at the bottom; it rises 150px into view. */}
+      <div aria-hidden="true" className="mx-auto h-[12vw] max-h-48 max-w-[1440px] overflow-clip px-6 select-none lg:px-10 print:hidden">
+        <Reveal y="xxl">
+          {/* SVG text: decoration at 20% opacity that scales with the width. */}
+          <svg viewBox="0 0 1000 150" className="block w-full" focusable="false">
+            <text x="500" y="128" textAnchor="middle" textLength="990" lengthAdjust="spacingAndGlyphs" fill="currentColor" opacity="0.2" fontSize="150" fontWeight="600" style={{ fontFamily: 'var(--font-display)' }}>
+              {site.name}
+            </text>
+          </svg>
+        </Reveal>
+      </div>
     </footer>
   );
 }
