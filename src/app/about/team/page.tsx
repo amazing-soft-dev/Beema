@@ -36,7 +36,7 @@ export default function TeamPage() {
       <section className="section-y">
         <ul className="container-x grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {team.map((advisor, i) => (
-            <Reveal key={advisor.slug} as="li" delay={i * 0.1}>
+            <Reveal key={advisor.slug} as="li" stagger={i}>
               <AdvisorCard advisor={advisor} image={portraits[advisor.photo]} />
             </Reveal>
           ))}

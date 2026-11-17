@@ -16,7 +16,7 @@ export function CostsHelp() {
         </TextAppear>
         <div className="grid gap-6 md:grid-cols-2">
           {c.items.map((item, i) => (
-            <Reveal key={item.id} as="article" id={item.id} delay={(i % 2) * 0.1} className="flex scroll-mt-40 flex-col gap-3 rounded-card bg-white p-6 md:p-8">
+            <Reveal key={item.id} as="article" id={item.id} stagger={i % 2} className="flex scroll-mt-40 flex-col gap-3 rounded-card bg-white p-6 md:p-8">
               <h3 className="t-h3">{item.title}</h3>
               <p>{item.text}</p>
               {item.link.href.startsWith('http') ? (

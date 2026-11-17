@@ -23,7 +23,7 @@ export function TwoPaths() {
 
         <div className="grid gap-6 md:grid-cols-2">
           {p.options.map((o, i) => (
-            <Reveal key={o.title} as="article" delay={i * 0.1} className={`flex flex-col gap-6 rounded-card p-6 md:p-10 ${i === 0 ? 'bg-surface' : 'bg-sand'}`}>
+            <Reveal key={o.title} as="article" stagger={i} className={`flex flex-col gap-6 rounded-card p-6 md:p-10 ${i === 0 ? 'bg-surface' : 'bg-sand'}`}>
               <div className="flex flex-col gap-3">
                 <p className="t-caps text-navy-700">{o.label}</p>
                 <h3 className="t-h3">{o.title}</h3>
