@@ -68,3 +68,30 @@ export const partBSignup = {
     { title: 'Watch for your card and your first bill', text: 'Your Medicare card arrives by mail. If you do not get Social Security, Medicare bills you for the Part B premium.' },
   ],
 } as const;
+
+/** Gap worksheet (plan §5): who pays for each cost Medicare leaves out. One box per column. */
+export const gapWorksheet = {
+  columns: ['Covered by me (savings)', 'Covered by a plan I have', 'Not covered yet'],
+  rows: ['Dental care', 'Eye exams and glasses', 'Hearing aids', 'Hospital out-of-pocket costs', 'Funeral and final costs', 'Long-term care at home or in a facility'],
+};
+
+/** Final expense planning worksheet (plan §5). A planning tool, not a quote. */
+export const finalExpenseWorksheet: ChecklistGroup[] = [
+  { title: 'Your wishes', items: ['I have written down my funeral or memorial wishes.', 'I have chosen burial or cremation.', 'I have told someone where these wishes are kept.'] },
+  { title: 'Expected final bills', items: ['I know the rough cost of the funeral I want.', 'I have listed other bills (medical, credit cards, final utility bills).', 'I know which bills my estate pays and which my family might face.'] },
+  { title: 'What I already have', items: ['I have listed existing life insurance policies and their amounts.', 'I have checked any pre-paid funeral plan or burial account.', 'I know how much savings is set aside for final costs.'] },
+  { title: 'Beneficiaries', items: ['I have named a beneficiary on each policy and account.', 'My beneficiaries are up to date.', 'Someone I trust knows where the policies are kept.'] },
+];
+
+/** Dental and vision questions checklist (plan §5). */
+export const dentalVisionChecklist: ChecklistGroup[] = [
+  { title: 'Before you compare', items: ['I checked what my Medicare Advantage plan already includes, if I have one.', 'I listed my dentist and eye doctor.', 'I know what work I may need: cleanings, fillings, crowns, dentures, glasses.'] },
+  { title: 'Questions to ask each plan', items: ['Is my dentist or eye doctor in the network?', 'How long is the waiting period for major work?', 'What is the annual maximum, and what do I pay after it?', 'How much is the allowance for glasses, contacts or hearing aids?', 'Can I keep the plan if I move?'] },
+];
+
+/** Caregiver's Medicare checklist (plan §5): introduces the Family tier without requiring it. */
+export const caregiverChecklist: ChecklistGroup[] = [
+  { title: 'Permission first', items: ['My parent signed Medicare’s authorization form (CMS-10106).', 'My parent signed each insurance company’s authorization form.', 'A health care power of attorney is in place, if my parent wants one.'] },
+  { title: 'Documents to gather', items: ['Medicare card and every plan ID card', 'List of prescriptions, doses and pharmacies', 'Doctors and specialists with phone numbers', 'The Annual Notice of Change each September'] },
+  { title: 'Key dates each year', items: ['By September 30: read the Annual Notice of Change.', 'October 15 to December 7: review and change plans if needed.', 'January 1 to March 31: one Medicare Advantage change, if needed.'] },
+];
