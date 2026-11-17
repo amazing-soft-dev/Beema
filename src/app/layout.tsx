@@ -12,6 +12,7 @@ import { PrintFooter, PrintHeader } from '@/components/print/PrintFrame';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { JsonLd, agencyJsonLd } from '@/components/seo/JsonLd';
 import { site } from '@/content/site';
+import { themeScript } from '@/lib/theme';
 import './globals.css';
 
 // Body face. Self-hosted by next/font at build time (SIL Open Font License).
@@ -44,7 +45,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   // Headings use Switzer 600 (fetched at build time, see scripts/fetch-fonts.mjs).
   preload('/fonts/switzer-600.woff2', { as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' });
   return (
-    <html lang="en" className={geist.variable}>
+    // suppressHydrationWarning: the head script may set data-theme before React hydrates.
+    <html lang="en" className={geist.variable} suppressHydrationWarning>
+      <head>
+        {/* Applies a saved Light/Dark choice before first paint (src/lib/theme.ts). */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <a
           href="#main"
