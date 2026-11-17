@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { CheckCircle, PaperPlaneTilt, WarningCircle } from '@phosphor-icons/react';
 import { ConsentCheckbox } from '@/components/compliance/ConsentCheckbox';
 import { Button } from '@/components/ui/Button';
@@ -46,7 +47,12 @@ export function LeadForm({
           {title}
         </h2>
       )}
-      <p className="text-base">All fields are required. We only use your details to call you back.</p>
+      <p className="text-base">
+        All fields are required. We only use your details to call you back, between 8 a.m. and 9 p.m. your time, and never sell them. Reply STOP to any text to opt out.{' '}
+        <Link href="/legal/privacy" className="underline underline-offset-4">
+          Privacy &amp; consent terms
+        </Link>
+      </p>
       {/* Field names match the API schema; ids are prefixed so two forms can share a page. */}
       <TextField id={id('name')} name="name" label="Your name" autoComplete="name" required error={errors.name} />
       <div className="grid gap-5 sm:grid-cols-2">
