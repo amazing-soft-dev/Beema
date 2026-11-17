@@ -1,0 +1,40 @@
+/*
+ * CSS-driven motion matched to the Beema Framer site (audit/motion/*.md).
+ * JS springs live in src/lib/motion.ts; these are the loops and hovers CSS does better.
+ * Imported by globals.css. Print and reduced motion turn every loop off.
+ */
+
+/* Marquee ticker: right to left at ≈30px/s, seamless (loops-and-sliders.md#marquee).
+   The track holds the items twice and moves by half its width. */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee {
+  overflow: hidden;
+  /* ticker-edge fade from the Framer tokens */
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
+}
+.marquee[data-paused] .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+@media print {
+  .marquee-track {
+    animation: none;
+  }
+}
