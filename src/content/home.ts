@@ -19,6 +19,29 @@ export const home = {
       { title: 'Helping a parent', text: 'Permission forms, key dates and how to help without taking over.', link: { label: 'Read the caregiver’s guide', href: '/blog/helping-a-parent-with-medicare' } },
     ],
   },
+  services: {
+    eyebrow: 'Services',
+    title: 'Help for every step, and nothing you don’t need',
+    lead: 'Our own free plan match, plain-English Medicare help, and honest advice about the coverage Medicare leaves out.',
+    tiles: [
+      { group: 'AI Plan Match', title: 'Free plan match', text: 'Which coverage type fits you, with three reasons and the trade-offs.', href: '/plan-match', icon: 'sparkle' },
+      { group: 'Medicare', title: 'Turning 65', text: 'Your enrollment dates and choices, step by step.', href: '/turning-65', icon: 'calendar' },
+      { group: 'Medicare', title: 'Medigap', text: 'Plan G, Plan N and the 6-month window to buy.', href: '/medigap', icon: 'shield' },
+      { group: 'Medicare', title: 'Medicare Advantage', text: 'Networks, extras and the yearly limit, honestly.', href: '/medicare-advantage', icon: 'stethoscope' },
+      { group: 'Medicare', title: 'Part D drug plans', text: 'Check your drugs and avoid the late penalty.', href: '/part-d', icon: 'pill' },
+      { group: 'Beyond Medicare', title: 'What Medicare doesn’t cover', text: 'Dental, vision, hearing and final costs. Not Medicare plans.', href: '/beyond-medicare', icon: 'lifebuoy' },
+    ],
+  },
+  numbers: {
+    eyebrow: 'By the numbers',
+    title: 'The Medicare dates that matter most',
+    stats: [
+      { value: 7, suffix: ' months', label: 'Initial Enrollment Period', text: 'Around your 65th birthday month to sign up.' },
+      { value: 6, suffix: ' months', label: 'Medigap Open Enrollment', text: 'To buy any Medigap plan with no health questions.' },
+      { value: 63, suffix: ' days', label: 'Without drug coverage', text: 'Go longer and a Part D penalty may apply.' },
+      { value: 8, suffix: ' months', label: 'After job coverage ends', text: 'To sign up for Part B without a penalty.' },
+    ],
+  },
   paths: {
     eyebrow: 'Your two main choices',
     title: 'There are two ways to get your Medicare coverage',
