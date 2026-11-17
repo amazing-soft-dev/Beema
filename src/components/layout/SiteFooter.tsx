@@ -4,7 +4,8 @@ import { LogoMark } from '@/components/brand/Logo';
 import { CmsDisclaimer } from '@/components/compliance/CmsDisclaimer';
 import { GovDisclaimer } from '@/components/compliance/GovDisclaimer';
 import { Icon } from '@/components/ui/Icon';
-import { footerNav, site } from '@/content/site';
+import { availableMenu, footerGroups, site } from '@/content/site';
+import { existingRoutes } from '@/lib/routes';
 
 /**
  * Footer on every page: contact details, licensing, the required CMS and government
@@ -14,6 +15,8 @@ import { footerNav, site } from '@/content/site';
 export function SiteFooter() {
   const { address } = site;
   const states = site.licensedStates.map((s) => s.name).join(', ');
+  const routes = existingRoutes();
+  const groups = footerGroups(availableMenu(routes), routes);
   return (
     <footer className="on-dark bg-ink text-white" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
@@ -54,8 +57,8 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <nav aria-label="Footer" className="grid gap-10 md:grid-cols-3">
-          {footerNav.map((group) => (
+        <nav aria-label="Footer" className="grid gap-10 sm:grid-cols-2 xl:grid-cols-5">
+          {groups.map((group) => (
             <div key={group.heading}>
               <h3 className="t-caps text-gold">{group.heading}</h3>
               <ul className="mt-4 flex flex-col">

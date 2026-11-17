@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { nav } from '@/content/site';
+import type { MenuItem } from '@/content/menu';
 
 /** True when `href` is the current page or one of its sections (except Home). */
 export function isActive(pathname: string, href: string) {
@@ -10,25 +10,30 @@ export function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
+/** True when the current page is the item's landing page or one of its group links. */
+export function isItemActive(pathname: string, item: MenuItem) {
+  return isActive(pathname, item.href) || (item.groups ?? []).some((g) => g.links.some((l) => isActive(pathname, l.href)));
+}
+
 /**
- * Primary menu links. The current page is marked with aria-current and a gold underline
- * (Beema's underline, made permanent so it doesn't rely on hover).
+ * The five top-level menu items. The current section is marked with aria-current and keeps
+ * the Framer underline (motion.css `.u-line`), so it never relies on hover.
  */
-export function NavLinks({ layout }: { layout: 'row' | 'column' }) {
+export function NavLinks({ items, layout }: { items: MenuItem[]; layout: 'row' | 'column' }) {
   const pathname = usePathname() ?? '/';
   const row = layout === 'row';
   return (
     <ul className={row ? 'flex flex-wrap items-center gap-x-1' : 'flex flex-col'}>
-      {nav.map((item) => {
-        const active = isActive(pathname, item.href);
+      {items.map((item) => {
+        const active = isItemActive(pathname, item);
         return (
-          <li key={item.href}>
+          <li key={item.label}>
             <Link
               href={item.href}
               aria-current={active ? 'page' : undefined}
               className={
                 row
-                  ? `relative inline-flex min-h-12 items-center rounded-card-sm px-3 font-medium hover:bg-surface ${active ? 'after:absolute after:inset-x-3 after:bottom-1.5 after:h-[3px] after:rounded-pill after:bg-gold' : ''}`
+                  ? 'u-line inline-flex min-h-12 items-center px-3 font-medium [--u-bottom:8px] [--u-inset:12px]'
                   : `flex min-h-14 items-center border-b border-line px-1 text-lg font-medium ${active ? 'text-navy-700 underline decoration-gold decoration-[3px] underline-offset-8' : ''}`
               }
             >
