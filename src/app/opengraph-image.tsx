@@ -27,7 +27,6 @@ export default async function OpengraphImage() {
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element -- Satori renders plain <img> only */}
           <img src={logo} width={Math.round(84 * logoRatio)} height={84} alt="" />
           <div style={{ fontSize: 38, fontFamily: display }}>{site.name}</div>
         </div>
