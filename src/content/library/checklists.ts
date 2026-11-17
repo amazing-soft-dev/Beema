@@ -94,4 +94,5 @@ export const caregiverChecklist: ChecklistGroup[] = [
   { title: 'Permission first', items: ['My parent signed Medicare’s authorization form (CMS-10106).', 'My parent signed each insurance company’s authorization form.', 'A health care power of attorney is in place, if my parent wants one.'] },
   { title: 'Documents to gather', items: ['Medicare card and every plan ID card', 'List of prescriptions, doses and pharmacies', 'Doctors and specialists with phone numbers', 'The Annual Notice of Change each September'] },
   { title: 'Key dates each year', items: ['By September 30: read the Annual Notice of Change.', 'October 15 to December 7: review and change plans if needed.', 'January 1 to March 31: one Medicare Advantage change, if needed.'] },
+  { title: 'Getting help', items: ['Book the free yearly plan review with a licensed agent, together with your parent.', 'Optional: our planned Family tier adds a caregiver dashboard and reminders. It is never needed to get help.'] },
 ];
