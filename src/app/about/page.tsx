@@ -1,6 +1,9 @@
-import { ArrowRight, CheckCircle, MapPin } from '@phosphor-icons/react/dist/ssr';
+import { ArrowRight, CheckCircle, MapPin, Robot } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
+import { Breadcrumb } from '@/components/content/Breadcrumb';
 import { PageIntro } from '@/components/layout/PageIntro';
+import { LineWipe } from '@/components/motion/LineWipe';
+import { ZoomOutCard } from '@/components/motion/ZoomOutCard';
 import { Reveal } from '@/components/motion/Reveal';
 import { TextAppear } from '@/components/motion/TextAppear';
 import { ButtonLink } from '@/components/ui/Button';
@@ -25,6 +28,7 @@ export default function AboutPage() {
         eyebrow={a.intro.eyebrow}
         title={a.intro.title}
         lead={a.intro.lead}
+        breadcrumb={<Breadcrumb trail={[{ label: 'About', href: '/about' }]} />}
         aside={<Photo id="about-advisor-meeting" priority sizes="(min-width: 1200px) 560px, 100vw" className="aspect-[4/3] w-full" />}
       >
         <div className="flex flex-wrap gap-4">
@@ -35,7 +39,8 @@ export default function AboutPage() {
         </div>
       </PageIntro>
 
-      <section className="section-y" aria-labelledby="story-heading">
+      {/* Framer About Us: the photo card zooms out as it enters; the section clips the start pose. */}
+      <section className="section-y overflow-x-clip" aria-labelledby="story-heading">
         <div className="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="flex flex-col gap-5">
             <TextAppear id="story-heading" className="t-h2">
@@ -45,9 +50,9 @@ export default function AboutPage() {
               <p key={p.slice(0, 24)}>{p}</p>
             ))}
           </div>
-          <Reveal>
+          <ZoomOutCard>
             <Photo id="about-cafe-friends" sizes="(min-width: 1200px) 560px, 100vw" className="aspect-[3/2] w-full" />
-          </Reveal>
+          </ZoomOutCard>
         </div>
       </section>
 
@@ -57,7 +62,10 @@ export default function AboutPage() {
             <TextAppear id="mission-heading" className="t-h2">
               {a.mission.title}
             </TextAppear>
-            <p className="t-lead">{a.mission.text}</p>
+            {/* Framer line wipe: each line wipes to full ink as it passes mid-screen. */}
+            <LineWipe className="t-lead" barClassName="bg-surface">
+              {a.mission.text}
+            </LineWipe>
           </div>
           <ul className="grid gap-6 md:grid-cols-3">
             {a.mission.values.map((v, i) => (
@@ -86,12 +94,39 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <section className="section-y bg-surface" aria-labelledby="ai-heading">
+        <div className="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
+          <div className="flex flex-col gap-4">
+            <Icon icon={Robot} weight="fill" size={40} className="text-navy-700" />
+            <TextAppear id="ai-heading" className="t-h2">
+              {a.ai.title}
+            </TextAppear>
+            <Link href="/legal/ai-health-data" className="self-start font-semibold text-navy-700 underline underline-offset-4">
+              AI Tool &amp; Health Data Notice
+            </Link>
+          </div>
+          <ol className="flex flex-col gap-5">
+            {a.ai.points.map((p, i) => (
+              <Reveal key={p.slice(0, 24)} as="li" stagger={i} className="grid grid-cols-[40px_1fr] gap-3">
+                <span className="flex size-10 items-center justify-center rounded-pill bg-gold font-semibold text-on-gold" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <span>{p}</span>
+              </Reveal>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       <section className="section-y bg-sand" aria-labelledby="states-heading">
         <div className="container-x flex flex-col gap-6">
-          <h2 id="states-heading" className="t-h2">
+          <TextAppear id="states-heading" className="t-h2">
             {a.states.title}
-          </h2>
+          </TextAppear>
           <p className="max-w-[60ch]">{a.states.text}</p>
+          <p className="max-w-[60ch]">
+            <strong>{a.lines.title}:</strong> {a.lines.text}
+          </p>
           <ul className="flex flex-wrap gap-3">
             {site.licensedStates.map((s) => (
               <li key={s.code} className="inline-flex min-h-12 items-center gap-2 rounded-pill bg-white px-5 font-semibold">

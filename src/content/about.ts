@@ -33,7 +33,21 @@ export const about = {
       'Insurance companies pay us a commission when you enroll in a plan through us.',
       'You pay the same premium whether you enroll with us, through the insurer directly or on Medicare.gov. Plan prices are set by the insurer and approved by regulators.',
       'We are paid the same way whichever plan you choose, so we can focus on the one that fits you.',
+      'Our optional Plus and Family subscriptions are paid by the subscriber for ongoing service only. They never involve a plan sale, and you never need one to get advice or enroll.',
     ],
+  },
+  ai: {
+    title: 'How our AI Plan Match works',
+    points: [
+      'You answer a few plain questions about your work coverage, budget, travel and, if you agree, your doctors and prescriptions.',
+      'Written rules, reviewed by our licensed agents, suggest a type of coverage and explain three reasons it fits, plus the trade-offs.',
+      'It never picks a plan or a company, and nothing in it favors what pays us more.',
+      'A licensed person reviews every match with you before any enrollment.',
+    ],
+  },
+  lines: {
+    title: 'Lines of authority',
+    text: 'Our agents hold a health license for Medicare, Medigap, hospital indemnity and dental plans, and a life license for final expense, in the states below.',
   },
   states: {
     title: 'Where we are licensed',
