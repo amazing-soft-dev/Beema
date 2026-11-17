@@ -36,11 +36,11 @@ export function LogoMark({ size = 40, tone = 'auto', className = '' }: { size?: 
 }
 
 /** Home link with mark and business name. */
-export function Logo({ tone = 'auto' }: { tone?: LogoTone }) {
+export function Logo({ tone = 'auto', nameClassName = '' }: { tone?: LogoTone; nameClassName?: string }) {
   return (
     <Link href="/" className="inline-flex min-h-12 items-center gap-3 text-current">
       <LogoMark tone={tone} />
-      <span className="font-display text-xl leading-tight font-semibold">{site.name}</span>
+      <span className={`font-display text-xl leading-tight font-semibold ${nameClassName}`}>{site.name}</span>
       <span className="sr-only">, home page</span>
     </Link>
   );
