@@ -12,9 +12,10 @@ export default function manifest(): MetadataRoute.Manifest {
     display: 'browser',
     background_color: '#ffffff',
     theme_color: '#0b2545',
+    // Uploaded Android icons (public/brand/senior_ai_plans_light).
     icons: [
-      { src: '/icon', sizes: '64x64', type: 'image/png' },
-      { src: '/apple-icon', sizes: '180x180', type: 'image/png' },
+      { src: '/brand/senior_ai_plans_light/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+      { src: '/brand/senior_ai_plans_light/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
     ],
   };
 }

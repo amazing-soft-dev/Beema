@@ -40,6 +40,7 @@ expectFile(has('sitemap'), 'sitemap.xml');
 expectFile(has('robots'), 'robots.txt');
 expectFile(has('manifest'), 'manifest.webmanifest');
 expectFile(existsSync(join(APP, 'llms.txt')), 'llms.txt');
+expectFile(existsSync(join(APP, 'favicon.ico')), 'favicon.ico');
 // Icons may be emitted as icon.png, icon.svg or icon (generated), so match the prefix.
 for (const base of ['icon', 'apple-icon']) {
   if (has(base) && !outRoot.some((f) => f === base || f.startsWith(`${base}.`))) problems.push(`missing ${OUT}/${base}.*`);

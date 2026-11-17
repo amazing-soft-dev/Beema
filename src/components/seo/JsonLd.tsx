@@ -13,7 +13,7 @@ export function agencyJsonLd(): Record<string, unknown> {
     name: site.name,
     legalName: site.legalName,
     url: site.url,
-    logo: new URL('/icon', site.url).toString(),
+    logo: new URL('/brand/senior_ai_plans_light/android-chrome-512x512.png', site.url).toString(),
     telephone: site.phone.tel,
     email: site.email,
     foundingDate: String(site.foundedYear),

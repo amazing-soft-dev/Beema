@@ -140,6 +140,20 @@
 }
 
 @layer components {
+  /*
+   * Logo: the light (navy and gold) mark by default, the dark (white and teal) mark on dark
+   * surfaces. `data-tone` forces one; `auto` follows `.on-dark` (and the dark theme).
+   */
+  .logo-mark > [data-logo='dark'],
+  .logo-mark[data-tone='dark'] > [data-logo='light'],
+  .on-dark .logo-mark[data-tone='auto'] > [data-logo='light'] {
+    display: none;
+  }
+  .logo-mark[data-tone='dark'] > [data-logo='dark'],
+  .on-dark .logo-mark[data-tone='auto'] > [data-logo='dark'] {
+    display: block;
+  }
+
   /* Layout: 24px gutters on phone and tablet, 40px on desktop; 1200px reading container */
   .container-x {
     width: 100%;

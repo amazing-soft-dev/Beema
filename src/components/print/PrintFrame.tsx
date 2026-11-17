@@ -17,7 +17,7 @@ export function PrintHeader() {
   return (
     <div className="hidden print:mb-6 print:flex print:items-center print:justify-between print:border-b-2 print:border-ink print:pb-3">
       <div className="flex items-center gap-3">
-        <LogoMark size={36} />
+        <LogoMark size={36} tone="light" />
         <span className="text-[16pt] font-semibold">{site.name}</span>
       </div>
       <div className="text-right text-[12pt]">
