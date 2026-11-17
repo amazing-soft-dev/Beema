@@ -27,7 +27,7 @@ export async function POST(request: Request) {
     to: email,
     subject: `You are signed up for ${site.shortName} Medicare updates`,
     text: `Thank you for signing up. We send a short update a few times a year, mostly before Annual Enrollment each fall.\n\nTo unsubscribe at any time, reply to this email or write to ${site.email} with "Unsubscribe".\nPrivacy policy: ${privacy}\n${site.legalName}`,
-    html: `<div style="font:18px/1.6 Arial,sans-serif;color:#0f3d2e"><p>Thank you for signing up. We send a short update a few times a year, mostly before Annual Enrollment each fall.</p><p style="font-size:16px">To unsubscribe at any time, reply to this email or <a href="${unsubscribe}">click here to email us</a>. <a href="${privacy}">Privacy policy</a>.<br>${site.legalName}</p></div>`,
+    html: `<div style="font:18px/1.6 Arial,sans-serif;color:#0b2545"><p>Thank you for signing up. We send a short update a few times a year, mostly before Annual Enrollment each fall.</p><p style="font-size:16px">To unsubscribe at any time, reply to this email or <a href="${unsubscribe}">click here to email us</a>. <a href="${privacy}">Privacy policy</a>.<br>${site.legalName}</p></div>`,
     replyTo: process.env.LEADS_TO_EMAIL ?? site.email,
   });
   return ok();
