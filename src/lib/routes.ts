@@ -23,3 +23,15 @@ export function listStaticRoutes(appDir = join(process.cwd(), 'src/app')): strin
   walk(appDir);
   return routes.sort((a, b) => (a === '/' ? -1 : b === '/' ? 1 : a.localeCompare(b)));
 }
+
+/**
+ * The routes for the menu filter, or null when src/app is not on disk (a server function
+ * running outside the build), in which case the full menu is shown.
+ */
+export function existingRoutes(): Set<string> | null {
+  try {
+    return new Set(listStaticRoutes());
+  } catch {
+    return null;
+  }
+}

@@ -1,4 +1,4 @@
-import { nav, notices, site } from '@/content/site';
+import { availableMenu, legalLinks, notices, site } from '@/content/site';
 import { listStaticRoutes } from '@/lib/routes';
 
 export const dynamic = 'force-static';
@@ -7,7 +7,11 @@ export const dynamic = 'force-static';
 export function GET() {
   const url = (path: string) => new URL(path, site.url).toString();
   const routes = new Set(listStaticRoutes());
-  const pages = nav.filter((item) => routes.has(item.href));
+  const items = availableMenu(routes);
+  const seen = new Set<string>();
+  const pages = [...items, ...items.flatMap((i) => i.groups?.flatMap((g) => g.links) ?? []), ...legalLinks.filter((l) => routes.has(l.href))].filter(
+    (p) => !seen.has(p.href) && seen.add(p.href),
+  );
   const body = [
     `# ${site.name}`,
     '',

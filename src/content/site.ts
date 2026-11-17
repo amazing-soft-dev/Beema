@@ -16,8 +16,6 @@ export type StateLicense = {
 
 export type Hours = { days: string; time: string };
 
-export type NavItem = { label: string; href: string };
-
 export const site = {
   /** Flip to false in #57 once every TODO below holds real data. */
   placeholder: true,
@@ -67,43 +65,8 @@ export const site = {
   existingClients: { label: 'Existing clients', href: '/contact#existing-clients' },
 } as const;
 
-/** Primary menu, in the order the content plan suggests. Book a Call is rendered as a button. */
-export const nav: NavItem[] = [
-  { label: 'Home', href: '/' },
-  { label: 'Turning 65', href: '/turning-65' },
-  { label: 'Medicare 101', href: '/medicare-101' },
-  { label: 'Resources', href: '/resources' },
-  { label: 'Reviews', href: '/reviews' },
-  { label: 'About Us', href: '/about' },
-  { label: 'FAQ', href: '/faq' },
-  { label: 'Contact', href: '/contact' },
-];
-
-export const bookCall: NavItem = { label: 'Book a Call', href: '/book-a-call' };
-
-/** Footer link groups. Every page of the main menu is repeated (no-JavaScript fallback). */
-export const footerNav: { heading: string; links: NavItem[] }[] = [
-  { heading: 'Explore', links: [...nav, { label: 'Meet the Team', href: '/about/team' }, bookCall] },
-  {
-    heading: 'Tools and guides',
-    links: [
-      { label: 'Enrollment date calculator', href: '/tools/enrollment-calculator' },
-      { label: 'Plan comparison', href: '/tools/plan-comparison' },
-      { label: 'IRMAA calculator', href: '/tools/irmaa-calculator' },
-      { label: 'Glossary', href: '/resources/glossary' },
-    ],
-  },
-  {
-    heading: 'Legal',
-    links: [
-      { label: 'Privacy policy', href: '/legal/privacy' },
-      { label: 'Terms of use', href: '/legal/terms' },
-      { label: 'CMS disclaimer', href: '/legal/cms-disclaimer' },
-      { label: 'Licensing', href: '/legal/licensing' },
-      { label: 'Accessibility statement', href: '/legal/accessibility' },
-    ],
-  },
-];
+// Menu, header buttons and footer links: src/content/menu.ts (re-exported here).
+export * from './menu.ts';
 
 /** Required notices. Components in src/components/compliance render these; never paraphrase them. */
 export const notices = {
