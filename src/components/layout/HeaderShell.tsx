@@ -11,7 +11,7 @@ import type { MenuItem } from '@/content/menu';
 import { bookCall, site } from '@/content/site';
 import { headerSpring } from '@/lib/motion';
 import { MobileMenu } from './MobileMenu';
-import { NavLinks } from './NavLinks';
+import { DesktopNav } from './DesktopNav';
 
 /**
  * Framer floating header (audit/components/header.md, motion/header-scroll.md).
@@ -57,7 +57,7 @@ export function HeaderShell({ items }: { items: MenuItem[] }) {
             <Logo tone={clear ? 'dark' : 'auto'} />
 
             <nav aria-label="Main" className="max-lg:hidden">
-              <NavLinks items={items} layout="row" />
+              <DesktopNav items={items} />
             </nav>
 
             <div className="flex items-center gap-2">
