@@ -34,6 +34,13 @@ let failures = 0;
 for (const path of pages) {
   const page = await context.newPage();
   await page.goto(`http://localhost:${PORT}${path}`, { waitUntil: 'networkidle' });
+  // Let load animations (header drop-in, hero text) finish so axe sees final colors.
+  await page.evaluate(() =>
+    Promise.race([
+      Promise.all(document.getAnimations().filter((a) => a.effect?.getTiming().iterations !== Infinity).map((a) => a.finished.catch(() => {}))),
+      new Promise((resolve) => setTimeout(resolve, 4000)),
+    ]),
+  );
   const { violations } = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice']).analyze();
   const bad = violations.filter((v) => FAIL_ON.includes(v.impact ?? ''));
   for (const v of bad) {

@@ -45,6 +45,10 @@
 .header-shell[data-clear] :focus-visible {
   outline-color: var(--color-focus-on-dark);
 }
+/* Dropdown panels stay white, so they keep the navy focus ring. */
+.header-shell .on-light :focus-visible {
+  outline-color: var(--color-focus);
+}
 
 @media (prefers-reduced-motion: reduce) {
   .header-shell,

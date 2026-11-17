@@ -1,7 +1,7 @@
 'use client';
 
 import { CalendarCheck, Phone } from '@phosphor-icons/react';
-import { MotionConfig, motion } from 'motion/react';
+import { MotionConfig, motion, useReducedMotion } from 'motion/react';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Logo } from '@/components/brand/Logo';
@@ -11,7 +11,7 @@ import type { MenuItem } from '@/content/menu';
 import { bookCall, site } from '@/content/site';
 import { headerSpring } from '@/lib/motion';
 import { MobileMenu } from './MobileMenu';
-import { NavLinks } from './NavLinks';
+import { DesktopNav } from './DesktopNav';
 
 /**
  * Framer floating header (audit/components/header.md, motion/header-scroll.md).
@@ -28,6 +28,8 @@ export function HeaderShell({ items }: { items: MenuItem[] }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [overHero, setOverHero] = useState(false);
+  // Navigation must never be hidden for people who asked for less motion: no drop-in.
+  const reduce = useReducedMotion();
 
   // Re-check on every route: each page decides whether its top is a dark hero.
   useEffect(() => {
@@ -47,7 +49,7 @@ export function HeaderShell({ items }: { items: MenuItem[] }) {
       <motion.div
         className="header-shell pointer-events-auto"
         data-clear={clear ? '' : undefined}
-        initial={{ opacity: 0.001, y: -10 }}
+        initial={reduce ? false : { opacity: 0.001, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={headerSpring}
       >
@@ -57,7 +59,7 @@ export function HeaderShell({ items }: { items: MenuItem[] }) {
             <Logo tone={clear ? 'dark' : 'auto'} />
 
             <nav aria-label="Main" className="max-lg:hidden">
-              <NavLinks items={items} layout="row" />
+              <DesktopNav items={items} />
             </nav>
 
             <div className="flex items-center gap-2">
