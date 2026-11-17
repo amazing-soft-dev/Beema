@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Geist } from 'next/font/google';
+import Script from 'next/script';
 import type { ReactNode } from 'react';
 import { preload } from 'react-dom';
 import { PlaceholderRibbon } from '@/components/PlaceholderRibbon';
@@ -14,6 +15,7 @@ import { JsonLd, agencyJsonLd } from '@/components/seo/JsonLd';
 import { site } from '@/content/site';
 import { themeScript } from '@/lib/theme';
 import './globals.css';
+import './header.css';
 
 // Body face. Self-hosted by next/font at build time (SIL Open Font License).
 const geist = Geist({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-geist', display: 'swap' });
@@ -49,7 +51,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
     <html lang="en" className={geist.variable} suppressHydrationWarning>
       <head>
         {/* Applies a saved Light/Dark choice before first paint (src/lib/theme.ts). */}
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <Script id="theme-choice" strategy="beforeInteractive">
+          {themeScript}
+        </Script>
       </head>
       <body>
         <a

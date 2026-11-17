@@ -1,0 +1,63 @@
+/*
+ * Floating header layout and states (HeaderShell). Imported by the root layout.
+ * Values from audit/components/header.md and audit/motion/header-scroll.md.
+ */
+
+/* Space the sticky, zero-height header covers at the top of the page. */
+:root {
+  --header-space: 88px; /* 16 + 56 pill + 16 */
+}
+@media (min-width: 1200px) {
+  :root {
+    --header-space: 114px; /* 24 + 66 pill + 24 */
+  }
+}
+#main {
+  padding-top: var(--header-space);
+}
+/* A dark hero slides up under the header and keeps the header's space as top padding. */
+.under-header {
+  margin-top: calc(-1 * var(--header-space));
+  padding-top: var(--header-space);
+}
+
+.header-shell {
+  color: var(--color-ink);
+  transition: color 0.4s cubic-bezier(0.65, 0, 0.35, 1) 0.13s;
+}
+.header-pill {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-line);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition:
+    background-color 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.13s,
+    border-color 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.13s;
+}
+/* Over a dark hero, before scrolling: frosted glass with white text. */
+.header-shell[data-clear] {
+  color: #ffffff;
+}
+.header-shell[data-clear] .header-pill {
+  background-color: rgb(255 255 255 / 0.06);
+  border-color: rgb(255 255 255 / 0.12);
+}
+.header-shell[data-clear] :focus-visible {
+  outline-color: var(--color-focus-on-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-shell,
+  .header-pill {
+    transition: none;
+  }
+}
+@media print {
+  #main {
+    padding-top: 0;
+  }
+  .under-header {
+    margin-top: 0;
+    padding-top: 0;
+  }
+}
