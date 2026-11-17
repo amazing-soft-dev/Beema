@@ -5,7 +5,9 @@ import { Breadcrumb } from '@/components/content/Breadcrumb';
 import { PageIntro } from '@/components/layout/PageIntro';
 import { PlanMatchTool } from '@/components/match/PlanMatchTool';
 import { Reveal } from '@/components/motion/Reveal';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { Icon } from '@/components/ui/Icon';
+import { site } from '@/content/site';
 import { freeAlternatives } from '@/lib/match/engine';
 import { buildMetadata } from '@/lib/seo';
 
@@ -85,6 +87,19 @@ export default function PlanMatchPage() {
           </aside>
         </div>
       </section>
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'WebApplication',
+          name: 'AI Plan Match',
+          applicationCategory: 'UtilitiesApplication',
+          operatingSystem: 'Any (web browser)',
+          url: new URL('/plan-match', site.url).toString(),
+          description: 'Suggests a Medicare coverage type with plain-language reasons and trade-offs. A licensed agent reviews every match before any enrollment.',
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+          provider: { '@type': 'InsuranceAgency', name: site.name },
+        }}
+      />
     </>
   );
 }

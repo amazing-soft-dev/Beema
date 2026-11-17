@@ -1,15 +1,15 @@
 import type { MetadataRoute } from 'next';
 import { site } from '@/content/site';
-import { listStaticRoutes } from '@/lib/routes';
+import { sitemapEntries } from '@/lib/sitemap-entries';
 
 export const dynamic = 'force-static';
 
-/** Generated from the page files at build time. Guides get a higher priority. */
+/** Generated at build time from the page files and the blog (src/lib/sitemap-entries.ts). */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const important = new Set(['/', '/turning-65', '/medicare-101', '/book-a-call']);
-  return listStaticRoutes().map((route) => ({
-    url: new URL(route, site.url).toString(),
-    changeFrequency: route.startsWith('/legal') ? 'yearly' : 'monthly',
-    priority: route === '/' ? 1 : important.has(route) ? 0.9 : route.startsWith('/legal') ? 0.3 : 0.7,
+  return sitemapEntries().map((e) => ({
+    url: new URL(e.path, site.url).toString(),
+    changeFrequency: e.changeFrequency,
+    priority: e.priority,
+    ...(e.lastModified ? { lastModified: e.lastModified } : {}),
   }));
 }
