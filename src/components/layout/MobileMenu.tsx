@@ -1,21 +1,23 @@
 'use client';
 
-import { CalendarCheck, List, Phone, X } from '@phosphor-icons/react';
+import { CalendarCheck, List, Phone, Sparkle, X } from '@phosphor-icons/react';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import { Logo } from '@/components/brand/Logo';
 import { ButtonLink } from '@/components/ui/Button';
 import { ThemeChoices } from '@/components/theme/ThemeSwitch';
 import { Icon } from '@/components/ui/Icon';
 import type { MenuItem } from '@/content/menu';
-import { bookCall, site } from '@/content/site';
-import { NavLinks } from './NavLinks';
+import { bookCall, planMatch, site } from '@/content/site';
+import { MobileNav } from './MobileNav';
 
 /**
- * Full-screen menu below 1200px, built on the native <dialog> element:
+ * Full-screen menu below 1200px, built on the native <dialog> element. It fades in over
+ * 0.2s like Framer's menu (audit/motion/mobile-menu.md; motion.css .menu-dialog).
  * showModal() traps focus, makes the page behind inert and closes on Escape.
  * We add: focus back on the Menu button, page scroll lock, and closing on navigation.
  */
-export function MobileMenu({ items }: { items: MenuItem[] }) {
+export function MobileMenu({ items, showMatch }: { items: MenuItem[]; showMatch: boolean }) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
@@ -82,10 +84,10 @@ export function MobileMenu({ items }: { items: MenuItem[] }) {
         ref={dialogRef}
         id="mobile-menu"
         aria-label="Menu"
-        className="m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto bg-white p-0 text-ink backdrop:bg-ink/40"
+        className="menu-dialog m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto bg-white p-0 text-ink backdrop:bg-ink/40"
       >
         <div className="container-x flex min-h-20 items-center justify-between border-b border-line">
-          <span className="font-display text-xl font-semibold">{site.shortName}</span>
+          <Logo />
           <button
             type="button"
             onClick={() => setOpen(false)}
@@ -96,10 +98,15 @@ export function MobileMenu({ items }: { items: MenuItem[] }) {
           </button>
         </div>
         <nav aria-label="Main" className="container-x py-4">
-          <NavLinks items={items} layout="column" />
+          <MobileNav items={items} />
         </nav>
         <div className="container-x flex flex-col gap-4 pb-10">
-          <ButtonLink href={bookCall.href} size="lg" icon={<Icon icon={CalendarCheck} />}>
+          {showMatch && (
+            <ButtonLink href={planMatch.href} size="lg" icon={<Icon icon={Sparkle} weight="fill" />}>
+              {planMatch.label}
+            </ButtonLink>
+          )}
+          <ButtonLink href={bookCall.href} size="lg" variant="secondary" icon={<Icon icon={CalendarCheck} />}>
             {bookCall.label}
           </ButtonLink>
           <ButtonLink href={`tel:${site.phone.tel}`} variant="outline" size="lg" icon={<Icon icon={Phone} weight="fill" />}>
