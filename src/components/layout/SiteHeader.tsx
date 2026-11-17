@@ -1,6 +1,7 @@
 import { CalendarCheck, Phone } from '@phosphor-icons/react/dist/ssr';
 import { Logo } from '@/components/brand/Logo';
 import { ButtonLink } from '@/components/ui/Button';
+import { ThemeToggle } from '@/components/theme/ThemeSwitch';
 import { Icon } from '@/components/ui/Icon';
 import { bookCall, site } from '@/content/site';
 import { MobileMenu } from './MobileMenu';
@@ -26,6 +27,7 @@ export function SiteHeader() {
         <Logo />
 
         <div className="flex items-center gap-3">
+          <ThemeToggle className="max-md:hidden" />
           {/* Phone: always visible. Full number from 810px, icon button with label below. */}
           <a
             href={`tel:${site.phone.tel}`}
