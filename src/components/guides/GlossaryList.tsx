@@ -26,7 +26,7 @@ export function GlossaryList({ terms }: { terms: GlossaryTerm[] }) {
       <nav aria-label="Glossary letters" className="flex flex-wrap gap-2">
         {letters.map((l) =>
           present.has(l) ? (
-            <a key={l} href={`#letter-${l}`} className="inline-flex size-12 items-center justify-center rounded-card-sm bg-surface text-lg font-semibold hover:bg-lime">
+            <a key={l} href={`#letter-${l}`} className="inline-flex size-12 items-center justify-center rounded-card-sm bg-surface text-lg font-semibold hover:bg-gold">
               {l}
             </a>
           ) : (
@@ -72,7 +72,7 @@ export function GlossaryList({ terms }: { terms: GlossaryTerm[] }) {
                 <dd className="mt-2 max-w-[70ch]">
                   {t.definition}{' '}
                   {t.href && (
-                    <Link href={t.href} className="font-semibold text-green-700 underline underline-offset-4">
+                    <Link href={t.href} className="font-semibold text-navy-700 underline underline-offset-4">
                       Learn more
                     </Link>
                   )}

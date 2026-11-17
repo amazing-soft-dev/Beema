@@ -43,7 +43,7 @@ export function IrmaaCalculator() {
           <legend className="t-label mb-2 font-semibold">How did you file your {f.incomeYear} taxes?</legend>
           {STATUSES.map(([value, label]) => (
             <label key={value} className="flex min-h-12 cursor-pointer items-start gap-3 text-lg">
-              <input type="radio" name="status" value={value} checked={status === value} onChange={() => setStatus(value)} className="mt-1 size-6 shrink-0 accent-green-700" />
+              <input type="radio" name="status" value={value} checked={status === value} onChange={() => setStatus(value)} className="mt-1 size-6 shrink-0 accent-navy-700" />
               {label}
             </label>
           ))}

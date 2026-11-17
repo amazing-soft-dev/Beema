@@ -11,7 +11,7 @@ export function isActive(pathname: string, href: string) {
 }
 
 /**
- * Primary menu links. The current page is marked with aria-current and a lime underline
+ * Primary menu links. The current page is marked with aria-current and a gold underline
  * (Beema's underline, made permanent so it doesn't rely on hover).
  */
 export function NavLinks({ layout }: { layout: 'row' | 'column' }) {
@@ -28,8 +28,8 @@ export function NavLinks({ layout }: { layout: 'row' | 'column' }) {
               aria-current={active ? 'page' : undefined}
               className={
                 row
-                  ? `relative inline-flex min-h-12 items-center rounded-card-sm px-3 font-medium hover:bg-surface ${active ? 'after:absolute after:inset-x-3 after:bottom-1.5 after:h-[3px] after:rounded-pill after:bg-lime' : ''}`
-                  : `flex min-h-14 items-center border-b border-line px-1 text-lg font-medium ${active ? 'text-green-700 underline decoration-lime decoration-[3px] underline-offset-8' : ''}`
+                  ? `relative inline-flex min-h-12 items-center rounded-card-sm px-3 font-medium hover:bg-surface ${active ? 'after:absolute after:inset-x-3 after:bottom-1.5 after:h-[3px] after:rounded-pill after:bg-gold' : ''}`
+                  : `flex min-h-14 items-center border-b border-line px-1 text-lg font-medium ${active ? 'text-navy-700 underline decoration-gold decoration-[3px] underline-offset-8' : ''}`
               }
             >
               {item.label}

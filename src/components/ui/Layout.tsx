@@ -15,7 +15,7 @@ const tones: Record<SectionTone, string> = {
   light: 'bg-white text-ink',
   surface: 'bg-surface text-ink',
   sand: 'bg-sand text-ink',
-  // `on-dark` switches the focus ring to lime (globals.css).
+  // `on-dark` switches the focus ring to gold (globals.css).
   dark: 'on-dark bg-ink text-white [&_h1]:text-white [&_h2]:text-white [&_h3]:text-white [&_h4]:text-white',
 };
 

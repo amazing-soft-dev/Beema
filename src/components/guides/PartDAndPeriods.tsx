@@ -17,7 +17,7 @@ export function PartDAndPeriods() {
           <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {partD.points.map((p, i) => (
               <Reveal key={p.title} as="li" delay={(i % 3) * 0.08} className="flex flex-col gap-3 rounded-card bg-white p-6">
-                <Icon icon={Pill} weight="fill" size={28} className="text-green-700" />
+                <Icon icon={Pill} weight="fill" size={28} className="text-navy-700" />
                 <h3 className="t-h4">{p.title}</h3>
                 <p>{p.text}</p>
               </Reveal>
@@ -53,7 +53,7 @@ export function PartDAndPeriods() {
                     <th scope="row" className="p-4 align-top font-semibold max-md:block max-md:p-0 max-md:text-xl">
                       {r.name}
                     </th>
-                    <td className="p-4 align-top font-medium text-green-700 max-md:block max-md:px-0 max-md:pt-1 max-md:pb-0">{r.when}</td>
+                    <td className="p-4 align-top font-medium text-navy-700 max-md:block max-md:px-0 max-md:pt-1 max-md:pb-0">{r.when}</td>
                     <td className="p-4 align-top max-md:block max-md:px-0 max-md:pt-1 max-md:pb-0">{r.what}</td>
                   </tr>
                 ))}

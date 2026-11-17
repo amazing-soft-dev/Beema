@@ -23,7 +23,7 @@ export function AdvisorCard({ advisor, image }: { advisor: Advisor; image: Photo
       <div className="flex flex-1 flex-col gap-4 p-6 md:p-8">
         <div>
           <h2 className="t-h3">{advisor.name}</h2>
-          <p className="font-medium text-green-700">{advisor.role}</p>
+          <p className="font-medium text-navy-700">{advisor.role}</p>
         </div>
         <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 text-base">
           <dt className="font-semibold">Licensed in</dt>

@@ -18,7 +18,7 @@ import './globals.css';
 const geist = Geist({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-geist', display: 'swap' });
 
 export const viewport: Viewport = {
-  themeColor: '#0f3d2e',
+  themeColor: '#0b2545',
 };
 
 export const metadata: Metadata = {
@@ -37,7 +37,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <a
           href="#main"
-          className="sr-only z-50 rounded-pill bg-lime px-6 py-3 font-semibold text-ink focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+          className="sr-only z-50 rounded-pill bg-gold px-6 py-3 font-semibold text-ink focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
         >
           Skip to main content
         </a>

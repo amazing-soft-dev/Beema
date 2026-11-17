@@ -39,7 +39,7 @@ export function MedigapPlans() {
         <ul className="flex flex-col gap-3">
           {m.notes.map((n) => (
             <li key={n} className="flex gap-3">
-              <Icon icon={Info} weight="fill" className="mt-0.5 shrink-0 text-green-700" />
+              <Icon icon={Info} weight="fill" className="mt-0.5 shrink-0 text-navy-700" />
               {n}
             </li>
           ))}

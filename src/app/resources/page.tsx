@@ -37,10 +37,10 @@ function Grid({ items }: { items: Item[] }) {
       {items.map((it, i) => (
         <Reveal key={it.href} as="li" delay={(i % 3) * 0.08}>
           <Link href={it.href} className="group flex h-full flex-col gap-3 rounded-card bg-surface p-6 hover:bg-sand md:p-8">
-            <Icon icon={it.icon} weight="fill" size={32} className="text-green-700" />
+            <Icon icon={it.icon} weight="fill" size={32} className="text-navy-700" />
             <span className="t-h4">{it.title}</span>
             <span>{it.text}</span>
-            <span className="mt-auto inline-flex items-center gap-2 font-semibold text-green-700 underline-offset-4 group-hover:underline">
+            <span className="mt-auto inline-flex items-center gap-2 font-semibold text-navy-700 underline-offset-4 group-hover:underline">
               Open <Icon icon={ArrowRight} />
             </span>
           </Link>
@@ -78,7 +78,7 @@ export default function ResourcesPage() {
       <section className="section-y" aria-labelledby="webinars-heading">
         <div className="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="flex flex-col gap-4">
-            <Icon icon={VideoCamera} weight="fill" size={36} className="text-green-700" />
+            <Icon icon={VideoCamera} weight="fill" size={36} className="text-navy-700" />
             <h2 id="webinars-heading" className="t-h2">
               Videos and webinars
             </h2>

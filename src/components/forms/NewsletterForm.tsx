@@ -14,7 +14,7 @@ export function NewsletterForm() {
   if (status === 'sent') {
     return (
       <p role="status" className="flex items-center gap-2 font-semibold">
-        <Icon icon={CheckCircle} weight="fill" className="text-green-700" />
+        <Icon icon={CheckCircle} weight="fill" className="text-navy-700" />
         You are signed up. Check your email for a confirmation.
       </p>
     );

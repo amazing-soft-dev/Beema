@@ -22,7 +22,7 @@ export default function ContactPage() {
             <h2 className="t-h2">Ways to reach us</h2>
             <ul className="flex flex-col gap-6">
               <li className="flex gap-4">
-                <Icon icon={Phone} weight="fill" size={28} className="mt-1 shrink-0 text-green-700" />
+                <Icon icon={Phone} weight="fill" size={28} className="mt-1 shrink-0 text-navy-700" />
                 <div>
                   <p className="font-semibold">Phone</p>
                   <a href={`tel:${site.phone.tel}`} className="inline-flex min-h-12 items-center text-2xl font-semibold underline underline-offset-4">
@@ -34,7 +34,7 @@ export default function ContactPage() {
                 </div>
               </li>
               <li className="flex gap-4">
-                <Icon icon={Clock} weight="fill" size={28} className="mt-1 shrink-0 text-green-700" />
+                <Icon icon={Clock} weight="fill" size={28} className="mt-1 shrink-0 text-navy-700" />
                 <div>
                   <p className="font-semibold">Hours</p>
                   <ul>
@@ -47,7 +47,7 @@ export default function ContactPage() {
                 </div>
               </li>
               <li className="flex gap-4">
-                <Icon icon={Envelope} weight="fill" size={28} className="mt-1 shrink-0 text-green-700" />
+                <Icon icon={Envelope} weight="fill" size={28} className="mt-1 shrink-0 text-navy-700" />
                 <div>
                   <p className="font-semibold">Email</p>
                   <a href={`mailto:${site.email}`} className="inline-flex min-h-12 items-center underline underline-offset-4">
@@ -56,7 +56,7 @@ export default function ContactPage() {
                 </div>
               </li>
               <li className="flex gap-4">
-                <Icon icon={MapPin} weight="fill" size={28} className="mt-1 shrink-0 text-green-700" />
+                <Icon icon={MapPin} weight="fill" size={28} className="mt-1 shrink-0 text-navy-700" />
                 <div>
                   <p className="font-semibold">Mailing address</p>
                   <address className="not-italic">
@@ -76,13 +76,13 @@ export default function ContactPage() {
 
       <section id="existing-clients" className="section-y scroll-mt-40 bg-sand" aria-labelledby="clients-heading">
         <div className="container-x flex max-w-[70ch] flex-col gap-4">
-          <Icon icon={UserCircle} weight="fill" size={40} className="text-green-700" />
+          <Icon icon={UserCircle} weight="fill" size={40} className="text-navy-700" />
           <h2 id="clients-heading" className="t-h2">
             Already a client?
           </h2>
           <p>
             Questions about a plan you have, a claim, a bill or your ID card? Call {site.phone.display} and say “client service”, or email{' '}
-            <a href={`mailto:${site.email}?subject=Existing%20client`} className="font-semibold text-green-700 underline underline-offset-4">
+            <a href={`mailto:${site.email}?subject=Existing%20client`} className="font-semibold text-navy-700 underline underline-offset-4">
               {site.email}
             </a>{' '}
             with “Existing client” in the subject. For questions about coverage or claims, the phone number on the back of your insurance card is often fastest.

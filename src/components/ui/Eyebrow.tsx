@@ -20,7 +20,7 @@ export function Eyebrow({
     const look = tone === 'dark' ? 'border-white/40 text-white' : 'border-ink/25 text-ink';
     return <p className={`inline-flex min-h-9 items-center rounded-pill border px-4 font-medium ${look} ${className}`.trim()}>{children}</p>;
   }
-  const color = tone === 'dark' ? 'text-lime' : 'text-green-700';
+  const color = tone === 'dark' ? 'text-gold' : 'text-navy-700';
   return (
     <p className={`t-caps inline-flex items-center gap-2.5 ${color} ${className}`.trim()}>
       <span className="h-0.5 w-4 rounded-pill bg-current" aria-hidden="true" />

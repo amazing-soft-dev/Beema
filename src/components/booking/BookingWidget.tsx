@@ -37,7 +37,7 @@ export function BookingWidget() {
     <div className="flex flex-col gap-8">
       {advisor && (
         <p className="rounded-card-sm bg-sand p-4">
-          You are booking with <strong>{advisor.name}</strong>. <a href="/book-a-call" className="font-semibold text-green-700 underline underline-offset-4">Book with anyone instead</a>
+          You are booking with <strong>{advisor.name}</strong>. <a href="/book-a-call" className="font-semibold text-navy-700 underline underline-offset-4">Book with anyone instead</a>
         </p>
       )}
 
@@ -45,9 +45,9 @@ export function BookingWidget() {
         <legend className="t-label mb-3 font-semibold">1. How would you like to meet?</legend>
         <div className="grid gap-3 sm:grid-cols-3">
           {MEETINGS.map((m) => (
-            <label key={m.value} className="flex min-h-20 cursor-pointer items-center gap-3 rounded-card-sm border-2 border-field bg-white p-4 has-[:checked]:border-green-700 has-[:checked]:bg-surface">
-              <input type="radio" name="meeting" value={m.value} checked={meeting === m.value} onChange={() => setMeeting(m.value)} className="size-6 shrink-0 accent-green-700" />
-              <Icon icon={m.icon} size={28} className="shrink-0 text-green-700" />
+            <label key={m.value} className="flex min-h-20 cursor-pointer items-center gap-3 rounded-card-sm border-2 border-field bg-white p-4 has-[:checked]:border-navy-700 has-[:checked]:bg-surface">
+              <input type="radio" name="meeting" value={m.value} checked={meeting === m.value} onChange={() => setMeeting(m.value)} className="size-6 shrink-0 accent-navy-700" />
+              <Icon icon={m.icon} size={28} className="shrink-0 text-navy-700" />
               <span>
                 <span className="block font-semibold">{m.label}</span>
                 <span className="block text-base">{m.note}</span>
@@ -84,7 +84,7 @@ export function BookingWidget() {
             <div className="rounded-card bg-surface p-6 md:p-8">
               <p className="t-h4">Online booking is not set up yet</p>
               <p className="mt-2">
-                Call <a href={`tel:${site.phone.tel}`} className="font-semibold text-green-700 underline underline-offset-4">{site.phone.display}</a> ({site.tty.display}) and we
+                Call <a href={`tel:${site.phone.tel}`} className="font-semibold text-navy-700 underline underline-offset-4">{site.phone.display}</a> ({site.tty.display}) and we
                 will book your {MEETINGS.find((m) => m.value === meeting)!.label.toLowerCase()} about {topic.toLowerCase()} right away, or leave your number and we will call you.
               </p>
             </div>

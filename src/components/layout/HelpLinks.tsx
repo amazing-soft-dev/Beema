@@ -23,7 +23,7 @@ export function HelpLinks() {
         <ul className="flex flex-col">
           {LINKS.map((l) => (
             <li key={l.href}>
-              <Link href={l.href} className="inline-flex min-h-12 items-center text-lg font-semibold text-green-700 underline underline-offset-4">
+              <Link href={l.href} className="inline-flex min-h-12 items-center text-lg font-semibold text-navy-700 underline underline-offset-4">
                 {l.label}
               </Link>
             </li>

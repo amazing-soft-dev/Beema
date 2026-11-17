@@ -9,7 +9,7 @@ import { footerNav, site } from '@/content/site';
 /**
  * Footer on every page: contact details, licensing, the required CMS and government
  * disclaimers, and every menu page (also the no-JavaScript fallback for the mobile menu).
- * Dark section: white text on ink, lime focus ring, underlined links.
+ * Dark section: white text on ink, gold focus ring, underlined links.
  */
 export function SiteFooter() {
   const { address } = site;
@@ -56,7 +56,7 @@ export function SiteFooter() {
         <nav aria-label="Footer" className="grid gap-10 md:grid-cols-3">
           {footerNav.map((group) => (
             <div key={group.heading}>
-              <h3 className="t-caps text-lime">{group.heading}</h3>
+              <h3 className="t-caps text-gold">{group.heading}</h3>
               <ul className="mt-4 flex flex-col">
                 {group.links.map((link) => (
                   <li key={link.href}>

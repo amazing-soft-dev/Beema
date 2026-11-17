@@ -15,7 +15,7 @@ export default function CmsDisclaimerPage() {
           heading: 'The plans we represent',
           body: (
             <>
-              <blockquote className="rounded-card-sm border-l-4 border-green-700 bg-surface p-5">{notices.cmsDisclaimer}</blockquote>
+              <blockquote className="rounded-card-sm border-l-4 border-navy-700 bg-surface p-5">{notices.cmsDisclaimer}</blockquote>
               <p>
                 In plain words: we work with {site.cms.organizations} insurance companies, not every company that sells Medicare plans where you live. To see
                 every option, use Medicare.gov or call Medicare.
@@ -27,7 +27,7 @@ export default function CmsDisclaimerPage() {
           heading: 'We are not the government',
           body: (
             <>
-              <blockquote className="rounded-card-sm border-l-4 border-green-700 bg-surface p-5">{notices.govDisclaimer}</blockquote>
+              <blockquote className="rounded-card-sm border-l-4 border-navy-700 bg-surface p-5">{notices.govDisclaimer}</blockquote>
               <p>We are a licensed, independent insurance agency. We do not use the Medicare card image or government logos, and we will never ask for your Medicare number to “update” your card.</p>
             </>
           ),
