@@ -8,7 +8,7 @@ import { useEffect, useId, useRef, useState } from 'react';
 import { ArrowSwap } from '@/components/ui/ArrowSwap';
 import { Icon } from '@/components/ui/Icon';
 import type { MenuItem } from '@/content/menu';
-import { isActive, isItemActive } from './NavLinks';
+import { isActive, isItemActive } from './nav-state';
 
 /**
  * Desktop menu (≥1200). Items with pages under them open a panel on click, tap or keyboard,

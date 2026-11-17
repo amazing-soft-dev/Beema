@@ -82,7 +82,7 @@ export function HeaderShell({ items, showMatch }: { items: MenuItem[]; showMatch
                 </ButtonLink>
               )}
               <div className="lg:hidden">
-                <MobileMenu items={items} />
+                <MobileMenu items={items} showMatch={showMatch} />
               </div>
             </div>
           </div>

@@ -169,3 +169,26 @@
     opacity: 0;
   }
 }
+
+/* Mobile menu (mobile-menu.md): the full-screen panel fades in over .2s ease-out, no slide,
+   no link stagger; it fades out the same way. */
+.menu-dialog {
+  opacity: 0;
+  transition:
+    opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    overlay 0.2s allow-discrete,
+    display 0.2s allow-discrete;
+}
+.menu-dialog[open] {
+  opacity: 1;
+}
+@starting-style {
+  .menu-dialog[open] {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .menu-dialog {
+    transition: none;
+  }
+}
