@@ -1,6 +1,6 @@
 import { ArrowRight, CheckCircle, MinusCircle } from '@phosphor-icons/react/dist/ssr';
 import Link from 'next/link';
-import { Reveal } from '@/components/motion/Reveal';
+import { SlideIn, SlideRow } from '@/components/motion/SlideIn';
 import { TextAppear } from '@/components/motion/TextAppear';
 import { ButtonLink } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
@@ -11,7 +11,7 @@ import { home } from '@/content/home';
 export function TwoPaths() {
   const p = home.paths;
   return (
-    <section className="section-y" aria-labelledby="paths-heading">
+    <section className="section-y overflow-x-clip" aria-labelledby="paths-heading">
       <div className="container-x flex flex-col gap-10 lg:gap-14">
         <div className="flex max-w-[60ch] flex-col gap-4">
           <Eyebrow>{p.eyebrow}</Eyebrow>
@@ -21,9 +21,11 @@ export function TwoPaths() {
           <p className="t-lead">{p.lead}</p>
         </div>
 
+        {/* Framer Why Beema: the two columns slide in 200px from their sides. */}
+        <SlideRow className="-mx-2 px-2">
         <div className="grid gap-6 md:grid-cols-2">
           {p.options.map((o, i) => (
-            <Reveal key={o.title} as="article" stagger={i} className={`flex flex-col gap-6 rounded-card p-6 md:p-10 ${i === 0 ? 'bg-surface' : 'bg-sand'}`}>
+            <SlideIn key={o.title} as="article" from={i === 0 ? 'left' : 'right'} className={`flex flex-col gap-6 rounded-card p-6 md:p-10 ${i === 0 ? 'bg-surface' : 'bg-sand'}`}>
               <div className="flex flex-col gap-3">
                 <p className="t-caps text-navy-700">{o.label}</p>
                 <h3 className="t-h3">{o.title}</h3>
@@ -56,9 +58,10 @@ export function TwoPaths() {
               <ButtonLink href={o.href} variant="outline" className="mt-auto self-start" icon={<Icon icon={ArrowRight} />}>
                 {o.cta}
               </ButtonLink>
-            </Reveal>
+            </SlideIn>
           ))}
         </div>
+        </SlideRow>
 
         <Link href={p.compare.href} className="inline-flex min-h-12 items-center gap-2 self-start text-lg font-semibold text-navy-700 underline underline-offset-4">
           {p.compare.label}
