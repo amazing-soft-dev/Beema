@@ -69,7 +69,8 @@ fi
 } >/tmp/pr-body.md
 
 if [ -n "$existing" ]; then
-  gh pr edit "$existing" --body-file /tmp/pr-body.md
+  # REST, not `gh pr edit`: its GraphQL query needs read:org, which GH_TOKEN does not have.
+  gh api -X PATCH "repos/{owner}/{repo}/pulls/$existing" -F body=@/tmp/pr-body.md >/dev/null
   echo "Updated pull request #$existing."
 else
   gh pr create --base main --head dev --title "release: dev → main" --body-file /tmp/pr-body.md
