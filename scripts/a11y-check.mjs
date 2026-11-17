@@ -29,8 +29,10 @@ const pages = walk(OUT)
   .sort();
 
 const browser = await chromium.launch();
-const context = await browser.newContext({ reducedMotion: 'reduce' });
 let failures = 0;
+// Every page in both color themes (the site follows prefers-color-scheme).
+for (const colorScheme of ['light', 'dark']) {
+const context = await browser.newContext({ reducedMotion: 'reduce', colorScheme });
 for (const path of pages) {
   const page = await context.newPage();
   await page.goto(`http://localhost:${PORT}${path}`, { waitUntil: 'networkidle' });
@@ -45,10 +47,12 @@ for (const path of pages) {
   const bad = violations.filter((v) => FAIL_ON.includes(v.impact ?? ''));
   for (const v of bad) {
     failures += 1;
-    console.error(`✖ ${path} [${v.impact}] ${v.id}: ${v.help}\n    ${v.nodes.slice(0, 3).map((n) => n.target.join(' ')).join('\n    ')}`);
+    console.error(`✖ ${path} (${colorScheme}) [${v.impact}] ${v.id}: ${v.help}\n    ${v.nodes.slice(0, 3).map((n) => n.target.join(' ')).join('\n    ')}`);
   }
-  if (!bad.length) console.log(`✔ ${path}`);
+  if (!bad.length) console.log(`✔ ${path} (${colorScheme})`);
   await page.close();
+}
+await context.close();
 }
 await browser.close();
 server.close();
