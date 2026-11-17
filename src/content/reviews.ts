@@ -23,7 +23,19 @@ export type ClientQuote = {
   story?: string;
   /** Must be true: written permission to publish name and quote is on file. */
   consent: true;
+  /** CMS testimonial rules: the reviewer is (or was) a member of the plan they describe. */
+  planMember: true;
+  /** Paid or compensated endorsements must say so on the page. */
+  paid: boolean;
 };
+
+/** CMS marketing rules for testimonials (plan §6), shown on the Reviews page. */
+export const testimonialRules = [
+  'Every story is from a real client who was a member of the plan they talk about.',
+  'We publish names and quotes only with written permission on file.',
+  'If anyone is ever paid or rewarded for a review, we label it as a paid endorsement.',
+  'Reviews describe one person’s experience; your plan choices and costs may differ.',
+];
 
 export const reviews = {
   platforms: [
