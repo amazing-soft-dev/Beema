@@ -20,7 +20,7 @@ type Item = { title: string; text: string; href: string; icon: PhosphorIcon };
 const GUIDES: Item[] = [
   { title: 'Turning 65 guide', text: 'Step-by-step paths for retiring at 65 or working past 65.', href: '/turning-65', icon: CalendarCheck },
   { title: 'Medicare 101', text: 'The four parts, Medigap, Medicare Advantage and key dates.', href: '/medicare-101', icon: BookOpen },
-  { title: 'Medigap vs Medicare Advantage', text: 'The two paths compared side by side.', href: '/medicare-101#compare', icon: Scales },
+  { title: 'Medigap vs Medicare Advantage', text: 'The two paths compared side by side.', href: '/medigap#compare', icon: Scales },
   { title: 'Questions and answers', text: 'Short answers to the questions we hear most.', href: '/faq', icon: Question },
   { title: 'Glossary', text: 'Medicare terms and abbreviations from A to Z.', href: '/resources/glossary', icon: ListMagnifyingGlass },
 ];

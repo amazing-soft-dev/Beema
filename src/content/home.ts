@@ -22,7 +22,7 @@ export const home = {
         summary: 'Government Medicare pays first, a Medicare Supplement (Medigap) policy pays most of what is left, and a separate Part D plan covers prescriptions.',
         pros: ['See any doctor or hospital in the U.S. that accepts Medicare', 'Few surprise bills: costs are predictable', 'No referrals needed to see a specialist'],
         tradeoffs: ['Higher monthly premium', 'You buy a separate drug plan', 'Usually no dental, vision or hearing coverage'],
-        href: '/medicare-101#medigap',
+        href: '/medigap',
         cta: 'Learn about Medigap',
       },
       {
@@ -31,11 +31,11 @@ export const home = {
         summary: 'A private plan approved by Medicare (also called Part C) replaces Original Medicare and usually includes drug coverage.',
         pros: ['Low or $0 monthly premium in many areas', 'Often includes drugs, dental, vision and hearing', 'A yearly limit on what you pay out of pocket'],
         tradeoffs: ['You usually use the plan’s network of doctors', 'Copays add up when you use care', 'Coverage away from home can be limited'],
-        href: '/medicare-101#medicare-advantage',
+        href: '/medicare-advantage',
         cta: 'Learn about Medicare Advantage',
       },
     ],
-    compare: { label: 'Compare them side by side', href: '/medicare-101#compare' },
+    compare: { label: 'Compare them side by side', href: '/medigap#compare' },
   },
   free: {
     eyebrow: 'No cost to you',
