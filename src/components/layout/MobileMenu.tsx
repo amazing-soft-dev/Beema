@@ -4,6 +4,7 @@ import { CalendarCheck, List, Phone, X } from '@phosphor-icons/react';
 import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { ButtonLink } from '@/components/ui/Button';
+import { ThemeChoices } from '@/components/theme/ThemeSwitch';
 import { Icon } from '@/components/ui/Icon';
 import type { MenuItem } from '@/content/menu';
 import { bookCall, site } from '@/content/site';
@@ -107,6 +108,7 @@ export function MobileMenu({ items }: { items: MenuItem[] }) {
           <p className="text-center text-base">
             {site.tty.display} · {site.hours[0]?.days}, {site.hours[0]?.time}
           </p>
+          <ThemeChoices className="mt-4" />
         </div>
       </dialog>
     </>

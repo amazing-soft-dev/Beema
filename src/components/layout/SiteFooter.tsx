@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { LogoMark } from '@/components/brand/Logo';
 import { CmsDisclaimer } from '@/components/compliance/CmsDisclaimer';
 import { GovDisclaimer } from '@/components/compliance/GovDisclaimer';
+import { ThemeChoices } from '@/components/theme/ThemeSwitch';
 import { Icon } from '@/components/ui/Icon';
 import { availableMenu, footerGroups, site } from '@/content/site';
 import { existingRoutes } from '@/lib/routes';
@@ -83,6 +84,7 @@ export function SiteFooter() {
               Licensing details
             </Link>
           </p>
+          <ThemeChoices className="mb-4" />
           <CmsDisclaimer variant="plain" />
           <GovDisclaimer />
           <p>
