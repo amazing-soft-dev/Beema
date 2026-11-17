@@ -21,4 +21,7 @@ describe('blog articles', () => {
     });
   }
 
+  it('includes a caregiver guide for the Family tier audience', () => {
+    assert.ok(articles.some((a) => a.topic === 'caregivers'));
+  });
 });
