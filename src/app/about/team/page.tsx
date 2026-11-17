@@ -28,7 +28,7 @@ export default function TeamPage() {
         lead="Licensed advisors who explain Medicare in plain words and help you choose. Book a call with any of us."
       >
         {site.placeholder && (
-          <p className="rounded-card-sm bg-white p-4 text-base">
+          <p className="rounded-card-sm bg-white p-4 text-base text-ink">
             <strong>Sample team.</strong> These names, bios and photos are placeholders and will be replaced with the real team.
           </p>
         )}
