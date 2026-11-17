@@ -232,7 +232,7 @@ export default async function LibraryPrintPage({ params }: { params: Promise<{ s
   );
   const checklists: Record<string, ChecklistGroup[][]> = {
     'turning-65-checklist': [turning65Checklist.slice(0, 2), turning65Checklist.slice(2)],
-    'annual-enrollment-checklist': [annualEnrollmentChecklist],
+    'annual-enrollment-checklist': [annualEnrollmentChecklist.slice(0, 1), annualEnrollmentChecklist.slice(1)],
     'final-expense-worksheet': [finalExpenseWorksheet.slice(0, 2), finalExpenseWorksheet.slice(2)],
     'dental-vision-checklist': [dentalVisionChecklist.slice(0, 1), dentalVisionChecklist.slice(1)],
     'caregiver-checklist': [caregiverChecklist.slice(0, 2), caregiverChecklist.slice(2)],
