@@ -25,7 +25,7 @@ export function TwoPaths() {
           {p.options.map((o, i) => (
             <Reveal key={o.title} as="article" delay={i * 0.1} className={`flex flex-col gap-6 rounded-card p-6 md:p-10 ${i === 0 ? 'bg-surface' : 'bg-sand'}`}>
               <div className="flex flex-col gap-3">
-                <p className="t-caps text-green-700">{o.label}</p>
+                <p className="t-caps text-navy-700">{o.label}</p>
                 <h3 className="t-h3">{o.title}</h3>
                 <p>{o.summary}</p>
               </div>
@@ -35,7 +35,7 @@ export function TwoPaths() {
                   <ul className="mt-3 flex flex-col gap-3">
                     {o.pros.map((item) => (
                       <li key={item} className="flex gap-3">
-                        <Icon icon={CheckCircle} weight="fill" className="mt-0.5 shrink-0 text-green-700" />
+                        <Icon icon={CheckCircle} weight="fill" className="mt-0.5 shrink-0 text-navy-700" />
                         {item}
                       </li>
                     ))}
@@ -60,7 +60,7 @@ export function TwoPaths() {
           ))}
         </div>
 
-        <Link href={p.compare.href} className="inline-flex min-h-12 items-center gap-2 self-start text-lg font-semibold text-green-700 underline underline-offset-4">
+        <Link href={p.compare.href} className="inline-flex min-h-12 items-center gap-2 self-start text-lg font-semibold text-navy-700 underline underline-offset-4">
           {p.compare.label}
           <Icon icon={ArrowRight} />
         </Link>

@@ -31,7 +31,7 @@ export async function POST(request: Request) {
     `You received this one email because you asked for it on our website. We have not added you to any mailing list. Privacy policy: ${privacy}`,
     site.legalName,
   ].join('\n');
-  const html = `<div style="font:18px/1.6 Arial,sans-serif;color:#0f3d2e"><p>Hello ${escapeHtml(name)},</p><p>Here is the guide you asked for: <strong>${guide.title}</strong> (${guide.planYear}).</p><p><a href="${link}" style="display:inline-block;background:#c8f04d;color:#0f3d2e;padding:14px 28px;border-radius:999px;font-weight:bold;text-decoration:none">Download the PDF</a></p><p>Questions? Call ${site.phone.display} (${site.tty.display}).</p><p style="font-size:16px">You received this one email because you asked for it on our website. We have not added you to any mailing list. <a href="${privacy}">Privacy policy</a>.<br>${site.legalName}</p></div>`;
+  const html = `<div style="font:18px/1.6 Arial,sans-serif;color:#0b2545"><p>Hello ${escapeHtml(name)},</p><p>Here is the guide you asked for: <strong>${guide.title}</strong> (${guide.planYear}).</p><p><a href="${link}" style="display:inline-block;background:#f5c451;color:#0b2545;padding:14px 28px;border-radius:999px;font-weight:bold;text-decoration:none">Download the PDF</a></p><p>Questions? Call ${site.phone.display} (${site.tty.display}).</p><p style="font-size:16px">You received this one email because you asked for it on our website. We have not added you to any mailing list. <a href="${privacy}">Privacy policy</a>.<br>${site.legalName}</p></div>`;
 
   const sent = await sendEmail({ to: email, subject: `Your guide: ${guide.title}`, text, html, replyTo: process.env.LEADS_TO_EMAIL ?? site.email });
   if (!sent.ok) {

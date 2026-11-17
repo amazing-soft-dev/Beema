@@ -45,7 +45,7 @@ export function GuideLibrary() {
                   PDF{size ? `, ${size}` : ''}, {g.pages} {g.pages === 1 ? 'page' : 'pages'}. {g.planYear} plan year, updated {fmt(g.updated)}.
                 </p>
                 <DownloadGuideLink slug={g.slug} />
-                <a href={guideHref(g.slug)} target="_blank" rel="noopener" className="inline-flex min-h-12 items-center gap-2 self-start font-semibold text-green-700 underline underline-offset-4">
+                <a href={guideHref(g.slug)} target="_blank" rel="noopener" className="inline-flex min-h-12 items-center gap-2 self-start font-semibold text-navy-700 underline underline-offset-4">
                   <Icon icon={ArrowSquareOut} /> Open to print
                   <span className="sr-only"> {g.title} (opens in a new tab)</span>
                 </a>

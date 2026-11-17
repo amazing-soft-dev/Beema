@@ -111,7 +111,7 @@ export function EnrollmentCalculator() {
             ] as const
           ).map(([value, label]) => (
             <label key={value} className="flex min-h-12 cursor-pointer items-start gap-3 text-lg">
-              <input type="radio" name="working" value={value} checked={working === value} onChange={() => setWorking(value)} className="mt-1 size-6 shrink-0 accent-green-700" />
+              <input type="radio" name="working" value={value} checked={working === value} onChange={() => setWorking(value)} className="mt-1 size-6 shrink-0 accent-navy-700" />
               {label}
             </label>
           ))}
@@ -196,8 +196,8 @@ function Timeline({ r }: { r: Result }) {
       </div>
       <ol className="flex flex-col">
         {rows.map((row) => (
-          <li key={row.what} className="grid gap-1 border-l-4 border-lime py-4 pl-6 md:grid-cols-[220px_1fr] md:gap-6">
-            <p className="font-semibold text-green-700">{row.when}</p>
+          <li key={row.what} className="grid gap-1 border-l-4 border-gold py-4 pl-6 md:grid-cols-[220px_1fr] md:gap-6">
+            <p className="font-semibold text-navy-700">{row.when}</p>
             <div>
               <p className="t-h4">{row.what}</p>
               {row.detail && <p className="mt-1">{row.detail}</p>}

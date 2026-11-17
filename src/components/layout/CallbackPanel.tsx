@@ -23,7 +23,7 @@ export function CallbackPanel() {
           </h2>
           <p className="t-lead">Leave your number and a licensed advisor will call at a time that suits you. It is free and there is no obligation.</p>
           <p className="flex items-center gap-2">
-            <Icon icon={Phone} weight="fill" className="text-green-700" />
+            <Icon icon={Phone} weight="fill" className="text-navy-700" />
             Or call now:{' '}
             <a href={`tel:${site.phone.tel}`} className="font-semibold underline underline-offset-4">
               {site.phone.display}

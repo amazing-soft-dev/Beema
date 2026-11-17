@@ -54,7 +54,7 @@ export default function FaqPage() {
                     <div className="flex flex-col gap-3 pr-10 pb-6">
                       <p>{f.a}</p>
                       {f.link && (
-                        <Link href={f.link.href} className="self-start font-semibold text-green-700 underline underline-offset-4">
+                        <Link href={f.link.href} className="self-start font-semibold text-navy-700 underline underline-offset-4">
                           {f.link.label}
                         </Link>
                       )}

@@ -16,13 +16,13 @@ export function EmailCopyForm({ slug, title }: { slug: string; title: string }) 
   if (status === 'sent') {
     return (
       <p role="status" className="flex items-center gap-2 font-semibold">
-        <Icon icon={CheckCircle} weight="fill" className="text-green-700" /> Sent. Check your inbox.
+        <Icon icon={CheckCircle} weight="fill" className="text-navy-700" /> Sent. Check your inbox.
       </p>
     );
   }
   if (!open) {
     return (
-      <button type="button" onClick={() => setOpen(true)} aria-expanded={false} className="inline-flex min-h-12 items-center gap-2 self-start font-semibold text-green-700 underline underline-offset-4">
+      <button type="button" onClick={() => setOpen(true)} aria-expanded={false} className="inline-flex min-h-12 items-center gap-2 self-start font-semibold text-navy-700 underline underline-offset-4">
         <Icon icon={EnvelopeSimple} /> Email me a copy
       </button>
     );

@@ -1,41 +1,41 @@
 @import 'tailwindcss';
 
 /*
- * Senior-tuned Beema theme.
+ * Senior-tuned Beema layout in the Senior AI Plans colors.
  * Palette and type come from the Beema design audit (audit/tokens.json), adjusted for
  * older readers: 18px body text, no gray body copy, ≥48px targets, AA+ contrast.
  * tests/contrast.test.ts parses this block and checks every text/background pair.
  */
 @theme {
-  /* Ink and greens */
-  --color-ink: #0f3d2e; /* body text, headings, footer background */
-  --color-green-850: #114534;
-  --color-green-800: #15543f;
-  --color-green-700: #1a5c44; /* links, secondary buttons */
-  --color-green-500: #2a8a64; /* accents on large text and icons only */
+  /* Ink and navy, from the Senior AI Plans logo (public/brand/senior_ai_plans_light.png) */
+  --color-ink: #0b2545; /* body text, headings, footer background */
+  --color-navy-850: #0d2c55;
+  --color-navy-800: #11386b;
+  --color-navy-700: #154a8a; /* links, secondary buttons */
+  --color-navy-500: #2f6fb8; /* accents on large text and icons only */
 
-  /* Call to action */
-  --color-lime: #c8f04d;
-  --color-lime-hover: #d6f96a;
+  /* Call to action: the logo's gold */
+  --color-gold: #f5c451;
+  --color-gold-hover: #ffd572;
 
   /* Neutrals */
-  --color-muted: #4a5853; /* secondary text, still ≥ 7:1 on white */
-  --color-field: #6b7a74; /* form field borders, ≥ 3:1 non-text contrast */
-  --color-line: #d6d6d6; /* decorative dividers only */
-  --color-surface: #f8faf9;
-  --color-sand: #f5efe6;
-  --color-night: #171818;
+  --color-muted: #44546a; /* secondary text, still ≥ 7:1 on white */
+  --color-field: #687990; /* form field borders, ≥ 3:1 non-text contrast */
+  --color-line: #d5dce6; /* decorative dividers only */
+  --color-surface: #f5f8fc;
+  --color-sand: #fbf5e9; /* warm cream band, a pale tint of the gold */
+  --color-night: #0a1424;
   --color-white: #ffffff;
 
   /* Status */
   --color-error: #b3172c; /* text-safe red, ≥ 6:1 on white */
   --color-error-bg: #fdecee;
-  --color-success: #1a5c44;
+  --color-success: #1a6a45;
   --color-star: #f1c777; /* decorative, always paired with a text rating */
 
-  /* Focus ring: dark on light backgrounds, lime on dark ones */
-  --color-focus: #1a5c44;
-  --color-focus-on-dark: #c8f04d;
+  /* Focus ring: navy on light backgrounds, gold on dark ones */
+  --color-focus: #154a8a;
+  --color-focus-on-dark: #f5c451;
 
   /* Fonts */
   --font-sans: var(--font-geist), 'Geist', Arial, sans-serif;
@@ -113,7 +113,7 @@
     outline-color: var(--color-focus-on-dark);
   }
   ::selection {
-    background: var(--color-lime);
+    background: var(--color-gold);
     color: var(--color-ink);
   }
 

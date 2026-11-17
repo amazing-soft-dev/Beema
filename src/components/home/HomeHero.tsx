@@ -44,7 +44,7 @@ export function HomeHero() {
         <div className="relative">
           <Photo id="home-hero-couple" priority sizes="(min-width: 1200px) 600px, 100vw" className="aspect-[4/3] w-full lg:aspect-[5/6]" />
           <p className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-pill bg-white px-4 py-2 font-semibold shadow-none md:bottom-6 md:left-6">
-            <Icon icon={ShieldCheck} weight="fill" className="text-green-700" />
+            <Icon icon={ShieldCheck} weight="fill" className="text-navy-700" />
             {h.badge}
           </p>
         </div>

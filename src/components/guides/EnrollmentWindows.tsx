@@ -28,7 +28,7 @@ export function EnrollmentWindows() {
               return (
                 <li
                   key={m.label}
-                  className={`flex flex-col gap-1 rounded-card-sm p-4 md:min-h-40 ${birthday ? 'bg-lime text-ink' : early ? 'bg-ink text-white' : 'bg-sand'}`}
+                  className={`flex flex-col gap-1 rounded-card-sm p-4 md:min-h-40 ${birthday ? 'bg-gold text-ink' : early ? 'bg-ink text-white' : 'bg-sand'}`}
                 >
                   <span className="text-base font-semibold">Month {i + 1}</span>
                   <span className="font-semibold">{m.label}</span>
@@ -48,7 +48,7 @@ export function EnrollmentWindows() {
         </div>
 
         <Reveal id={w.medigap.id} className="scroll-mt-40 grid gap-6 rounded-card bg-sand p-6 md:grid-cols-[auto_1fr] md:p-10">
-          <Icon icon={ShieldCheck} weight="fill" size={48} className="text-green-700" />
+          <Icon icon={ShieldCheck} weight="fill" size={48} className="text-navy-700" />
           <div className="flex flex-col gap-3">
             <h3 className="t-h3">{w.medigap.title}</h3>
             <p>{w.medigap.text}</p>

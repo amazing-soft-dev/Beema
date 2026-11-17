@@ -31,7 +31,7 @@ export function LeadForm({
   if (status === 'sent') {
     return (
       <div role="status" className="flex flex-col gap-3 rounded-card bg-surface p-6 md:p-8">
-        <Icon icon={CheckCircle} weight="fill" size={40} className="text-green-700" />
+        <Icon icon={CheckCircle} weight="fill" size={40} className="text-navy-700" />
         <h2 className="t-h3">Thank you. We got your request.</h2>
         <p>A licensed advisor will call you at the time you chose, usually within one business day.</p>
       </div>

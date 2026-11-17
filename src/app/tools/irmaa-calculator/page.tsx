@@ -47,7 +47,7 @@ export default function IrmaaCalculatorPage() {
               <p className="mt-2">
                 If your income went down because of a life-changing event, such as retiring, working less, marriage, divorce or the death of a spouse,
                 you can ask Social Security to use your newer income with{' '}
-                <a href={f.sources.lifeChangingEvent} className="font-semibold text-green-700 underline underline-offset-4">
+                <a href={f.sources.lifeChangingEvent} className="font-semibold text-navy-700 underline underline-offset-4">
                   form SSA-44
                 </a>
                 .
