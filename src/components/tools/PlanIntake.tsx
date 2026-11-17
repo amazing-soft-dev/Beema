@@ -96,7 +96,7 @@ export function PlanIntake() {
     <div className="flex flex-col gap-6">
       <ol className="grid grid-cols-4 gap-2" aria-label="Progress">
         {STEPS.map((label, i) => (
-          <li key={label} aria-current={i === step ? 'step' : undefined} className={`rounded-card-sm px-3 py-2 text-base font-semibold ${i === step ? 'bg-ink text-white' : i < step ? 'bg-gold text-ink' : 'bg-surface'}`}>
+          <li key={label} aria-current={i === step ? 'step' : undefined} className={`rounded-card-sm px-3 py-2 text-base font-semibold ${i === step ? 'bg-ink text-white' : i < step ? 'bg-gold text-on-gold' : 'bg-surface'}`}>
             <span className="block">Step {i + 1}</span>
             <span className="hidden font-normal md:block">{label}</span>
           </li>

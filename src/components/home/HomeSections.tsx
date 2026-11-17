@@ -28,7 +28,7 @@ export function FreeAndWindow() {
           <p>{w.text}</p>
           <ol className="grid gap-2 sm:grid-cols-[1fr_1.2fr_1fr]" aria-label="The 7-month Initial Enrollment Period">
             {w.steps.map((s, i) => (
-              <li key={s} className={`rounded-card-sm px-4 py-3 text-center font-semibold ${i === 1 ? 'bg-gold text-ink' : 'bg-white/10'}`}>
+              <li key={s} className={`rounded-card-sm px-4 py-3 text-center font-semibold ${i === 1 ? 'bg-gold text-on-gold' : 'bg-white/10'}`}>
                 {s}
               </li>
             ))}
