@@ -38,3 +38,24 @@
     animation: none;
   }
 }
+
+/* About card zoom-out start pose (scroll-reveals.md#about-scale); ZoomOutCard springs it to
+   rest when half of the card is in view. Framer's matrix(1.8,0,0,1.8,0,260) = move 260px
+   down, then scale 1.8. */
+.zoom-card {
+  transform-origin: 50% 50%;
+}
+@media screen and (min-width: 810px) and (prefers-reduced-motion: no-preference) {
+  @media (scripting: enabled) {
+    .zoom-card[data-zoom='pending'] {
+      transform: translateY(45px) scale(1.2);
+    }
+  }
+}
+@media screen and (min-width: 1200px) and (prefers-reduced-motion: no-preference) {
+  @media (scripting: enabled) {
+    .zoom-card[data-zoom='pending'] {
+      transform: translateY(260px) scale(1.8);
+    }
+  }
+}
