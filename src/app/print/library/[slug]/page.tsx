@@ -166,11 +166,11 @@ function Body({ slug }: { slug: string }) {
           <tbody>
             {gapWorksheet.rows.map((r) => (
               <tr key={r}>
-                <th scope="row" className="border-2 border-black p-3 align-middle">
+                <th scope="row" className="border-2 border-black px-3 py-2 align-middle">
                   {r}
                 </th>
                 {gapWorksheet.columns.map((c) => (
-                  <td key={c} className="border-2 border-black p-3 text-center">
+                  <td key={c} className="border-2 border-black px-3 py-2 text-center">
                     <span aria-hidden="true" data-checkbox-box={r + ': ' + c} className="inline-block size-[20pt] rounded-[3pt] border-[2pt] border-black align-middle" />
                   </td>
                 ))}
@@ -252,7 +252,7 @@ export default async function LibraryPrintPage({ params }: { params: Promise<{ s
         <style>{'@page { size: letter; margin: 0 } body > :not(main), main > :not(article) { display: none !important }'}</style>
         <div data-pdf-page="" className="relative h-[11in] w-[8.5in] overflow-hidden bg-white px-[0.6in] py-[0.55in]">
           {header}
-          <p className="mb-4 text-[16pt]">Tick one box in each row. Anything in the last column is a gap worth talking about.</p>
+          <p className="mb-3 text-[15pt] leading-snug">Tick one box in each row. Anything in the last column is a gap worth talking about.</p>
           <Body slug={slug} />
           {footer}
         </div>
