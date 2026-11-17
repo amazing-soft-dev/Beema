@@ -72,6 +72,7 @@ export const beyondMedicarePage: ContentPage = {
       ],
     },
   ],
+  pdf: 'gap-worksheet',
   next: {
     title: 'Book an extra-protection review',
     text: 'A licensed agent looks at your Medicare coverage first, then at whether a separate policy would really help. Separate from any Medicare appointment.',
