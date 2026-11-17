@@ -2,14 +2,22 @@
 export const home = {
   hero: {
     eyebrow: 'Turning 65 or new to Medicare?',
-    title: 'Plain-English Medicare help for people turning 65',
-    lead: 'Retiring at 65 or still working, we help you understand your choices, avoid late penalties and pick coverage that fits. Talking with us is free.',
-    zipLabel: 'Enter your ZIP code to compare plans in your area',
-    zipHint: '5 digits, for example 78701',
-    zipButton: 'Compare plans',
-    callPrompt: 'Prefer to talk? Call a licensed advisor',
-    checklist: { label: 'Download the turning-65 checklist', note: 'Free PDF, large print', href: '/guides/turning-65-checklist.pdf' },
-    badge: 'Free help from licensed advisors',
+    title: 'Medicare made simple, for you and your family',
+    lead: 'Whether you are turning 65 or helping a parent, our free AI Plan Match explains which coverage fits and why, and a licensed agent helps you enroll at no cost.',
+    secondaryCta: 'Book a free call',
+    callPrompt: 'Prefer to talk? Call a licensed agent at',
+  },
+  ticker: {
+    label: 'What we help with',
+    items: ['Turning 65', 'Medigap Plan G and N', 'Medicare Advantage', 'Part D drug plans', 'Annual plan reviews', 'Dental, vision and hearing', 'Final expense', 'Helping a parent'],
+  },
+  whoFor: {
+    eyebrow: 'Who we help',
+    lead: 'People turning 65 who want plain answers, and the sons and daughters helping a parent. Our help is free, our match never pushes a plan, and a licensed person is always there to talk.',
+    audiences: [
+      { title: 'Turning 65 or new to Medicare', text: 'Your dates, your choices and the trade-offs, in plain words.', link: { label: 'Start with the Turning 65 guide', href: '/turning-65' } },
+      { title: 'Helping a parent', text: 'Permission forms, key dates and how to help without taking over.', link: { label: 'Read the caregiver’s guide', href: '/blog/helping-a-parent-with-medicare' } },
+    ],
   },
   paths: {
     eyebrow: 'Your two main choices',
