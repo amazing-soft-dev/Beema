@@ -11,6 +11,7 @@ export const caregiverGuide: Article = {
   planYear: medicareFigures.planYear,
   readMinutes: 6,
   author: defaultAuthor,
+  pdf: 'caregiver-checklist',
   sections: [
     {
       heading: 'Start with permission',
