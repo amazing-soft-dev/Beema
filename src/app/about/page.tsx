@@ -61,7 +61,7 @@ export default function AboutPage() {
           </div>
           <ul className="grid gap-6 md:grid-cols-3">
             {a.mission.values.map((v, i) => (
-              <Reveal key={v.title} as="li" delay={i * 0.1} className="rounded-card bg-white p-6 md:p-8">
+              <Reveal key={v.title} as="li" stagger={i} className="rounded-card bg-white p-6 md:p-8">
                 <h3 className="t-h4">{v.title}</h3>
                 <p className="mt-2">{v.text}</p>
               </Reveal>

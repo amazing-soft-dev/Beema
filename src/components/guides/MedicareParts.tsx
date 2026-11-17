@@ -18,7 +18,7 @@ export function MedicareParts() {
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           {p.items.map((part, i) => (
-            <Reveal key={part.id} as="article" delay={(i % 2) * 0.1} id={part.id} className="flex scroll-mt-40 flex-col gap-5 rounded-card bg-surface p-6 md:p-8">
+            <Reveal key={part.id} as="article" stagger={i % 2} id={part.id} className="flex scroll-mt-40 flex-col gap-5 rounded-card bg-surface p-6 md:p-8">
               <div className="flex items-center gap-4">
                 <span className="flex size-14 shrink-0 items-center justify-center rounded-card-sm bg-ink font-display text-3xl font-semibold text-gold" aria-hidden="true">
                   {part.letter}

@@ -18,7 +18,7 @@ export function MedigapPlans() {
         </div>
         <div className="grid gap-6 lg:grid-cols-3">
           {m.plans.map((p, i) => (
-            <Reveal key={p.name} as="article" delay={i * 0.1} className="flex flex-col gap-4 rounded-card bg-white p-6 md:p-8">
+            <Reveal key={p.name} as="article" stagger={i} className="flex flex-col gap-4 rounded-card bg-white p-6 md:p-8">
               <p className="t-caps self-start rounded-pill bg-sand px-3 py-1 text-ink">{p.tag}</p>
               <h3 className="t-h3">{p.name}</h3>
               <p>{p.summary}</p>

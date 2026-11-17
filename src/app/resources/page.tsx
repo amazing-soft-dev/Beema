@@ -35,7 +35,7 @@ function Grid({ items }: { items: Item[] }) {
   return (
     <ul className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {items.map((it, i) => (
-        <Reveal key={it.href} as="li" delay={(i % 3) * 0.08}>
+        <Reveal key={it.href} as="li" stagger={i % 3}>
           <Link href={it.href} className="group flex h-full flex-col gap-3 rounded-card bg-surface p-6 hover:bg-sand md:p-8">
             <Icon icon={it.icon} weight="fill" size={32} className="text-navy-700" />
             <span className="t-h4">{it.title}</span>

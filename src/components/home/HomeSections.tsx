@@ -22,7 +22,7 @@ export function FreeAndWindow() {
             {free.link.label}
           </ButtonLink>
         </Reveal>
-        <Reveal as="article" delay={0.1} className="flex flex-col gap-5 rounded-card bg-ink p-6 text-white md:p-10 on-dark">
+        <Reveal as="article" stagger={1} className="flex flex-col gap-5 rounded-card bg-ink p-6 text-white md:p-10 on-dark">
           <Eyebrow tone="dark">{w.eyebrow}</Eyebrow>
           <h2 className="t-h3 text-white">{w.title}</h2>
           <p>{w.text}</p>

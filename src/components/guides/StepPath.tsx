@@ -12,7 +12,7 @@ export function StepPath({ id, label, steps, tone = 'surface' }: { id: string; l
       </h3>
       <ol className="mt-6 flex flex-col gap-6">
         {steps.map((s, i) => (
-          <Reveal key={s.title} as="li" delay={Math.min(i, 3) * 0.05} className="grid grid-cols-[48px_1fr] gap-4">
+          <Reveal key={s.title} as="li" stagger={Math.min(i, 3)} className="grid grid-cols-[48px_1fr] gap-4">
             <span className="flex size-12 items-center justify-center rounded-full bg-ink text-xl font-semibold text-white" aria-hidden="true">
               {i + 1}
             </span>
