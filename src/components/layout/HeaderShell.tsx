@@ -1,7 +1,7 @@
 'use client';
 
 import { CalendarCheck, Phone } from '@phosphor-icons/react';
-import { MotionConfig, motion } from 'motion/react';
+import { MotionConfig, motion, useReducedMotion } from 'motion/react';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Logo } from '@/components/brand/Logo';
@@ -28,6 +28,8 @@ export function HeaderShell({ items }: { items: MenuItem[] }) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [overHero, setOverHero] = useState(false);
+  // Navigation must never be hidden for people who asked for less motion: no drop-in.
+  const reduce = useReducedMotion();
 
   // Re-check on every route: each page decides whether its top is a dark hero.
   useEffect(() => {
@@ -47,7 +49,7 @@ export function HeaderShell({ items }: { items: MenuItem[] }) {
       <motion.div
         className="header-shell pointer-events-auto"
         data-clear={clear ? '' : undefined}
-        initial={{ opacity: 0.001, y: -10 }}
+        initial={reduce ? false : { opacity: 0.001, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={headerSpring}
       >
