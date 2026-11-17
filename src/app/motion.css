@@ -59,3 +59,73 @@
     }
   }
 }
+
+/* Link underline that unfolds (nav-underline.md): a 2px line edge-on at rotateY(90deg)
+   turns flat over .4s ease-in-out. Also on keyboard focus and for the current page, so
+   nothing depends on hover. */
+.u-line {
+  position: relative;
+}
+.u-line::after {
+  content: '';
+  position: absolute;
+  inset-inline: var(--u-inset, 0);
+  bottom: var(--u-bottom, 0.35em);
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: perspective(200px) rotateY(90deg);
+  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.u-line:hover::after,
+.u-line:focus-visible::after,
+.u-line[aria-current='page']::after,
+.u-line[aria-expanded='true']::after {
+  transform: none;
+}
+
+/* "Read more ↗" arrow swap (button-hover.md): the arrow leaves along its direction and a
+   copy arrives from the opposite side, .6s with a soft ease-out. --ax/--ay set the axis. */
+.arrow-swap {
+  position: relative;
+  display: inline-flex;
+  overflow: hidden;
+  flex-shrink: 0;
+  --ax: 100%;
+  --ay: 0%;
+}
+.arrow-swap[data-dir='up-right'] {
+  --ax: 100%;
+  --ay: -100%;
+}
+.arrow-swap > * {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.arrow-swap > :last-child {
+  position: absolute;
+  inset: 0;
+  transform: translate(calc(var(--ax) * -1), calc(var(--ay) * -1));
+}
+:is(a, button):is(:hover, :focus-visible) .arrow-swap > :first-child {
+  transform: translate(var(--ax), var(--ay));
+}
+:is(a, button):is(:hover, :focus-visible) .arrow-swap > :last-child {
+  transform: none;
+}
+
+/* Round arrow buttons for carousels and sliders: fill on hover in ≈.18s (button-hover.md). */
+.arrow-btn {
+  transition:
+    background-color 0.18s ease-out,
+    color 0.18s ease-out,
+    border-color 0.18s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .u-line::after {
+    transition: none;
+  }
+  .arrow-swap > * {
+    transition: none;
+  }
+}

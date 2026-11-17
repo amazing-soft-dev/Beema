@@ -9,19 +9,24 @@ import type { ComponentProps, ReactNode } from 'react';
  * secondary navy-700 with white text
  * outline   ink border on light backgrounds
  * light     white outline for dark sections and photos
+ *
+ * Hover timing from the Framer site (audit/motion/button-hover.md): the gold button eases
+ * out over .3s, the others fill over .4s ease-in-out. Keyboard focus gets the same look.
  */
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'light';
 export type ButtonSize = 'md' | 'lg';
 
 const base =
   // Labels may wrap on narrow screens rather than overflow; py keeps wrapped labels inside the pill.
-  'inline-flex max-w-full items-center justify-center gap-2.5 rounded-pill border-2 py-2 text-center font-medium leading-snug transition-colors duration-200 ease-out disabled:cursor-not-allowed disabled:opacity-60 [&>svg]:shrink-0';
+  'inline-flex max-w-full items-center justify-center gap-2.5 rounded-pill border-2 py-2 text-center font-medium leading-snug transition-[background-color,border-color,color] disabled:cursor-not-allowed disabled:opacity-60 [&>svg]:shrink-0';
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'border-gold bg-gold text-on-gold hover:border-gold-hover hover:bg-gold-hover',
-  secondary: 'border-navy-700 bg-navy-700 text-white hover:border-navy-800 hover:bg-navy-800',
-  outline: 'border-ink bg-transparent text-ink hover:bg-ink hover:text-white',
-  light: 'border-white bg-transparent text-white hover:bg-white hover:text-ink',
+  primary:
+    'border-gold bg-gold text-on-gold duration-300 ease-[cubic-bezier(.22,1,.36,1)] hover:border-gold-hover hover:bg-gold-hover focus-visible:border-gold-hover focus-visible:bg-gold-hover',
+  secondary:
+    'border-navy-700 bg-navy-700 text-white duration-400 ease-[cubic-bezier(.65,0,.35,1)] hover:border-navy-800 hover:bg-navy-800 focus-visible:border-navy-800 focus-visible:bg-navy-800',
+  outline: 'border-ink bg-transparent text-ink duration-400 ease-[cubic-bezier(.65,0,.35,1)] hover:bg-ink hover:text-white focus-visible:bg-ink focus-visible:text-white',
+  light: 'border-white bg-transparent text-white duration-400 ease-[cubic-bezier(.65,0,.35,1)] hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink',
 };
 
 const sizes: Record<ButtonSize, string> = {
