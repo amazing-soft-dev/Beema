@@ -88,8 +88,22 @@ export const home = {
     text: 'Real reviews from Google, Facebook and Trustpilot, shared with permission.',
     link: { label: 'Read reviews', href: '/reviews' },
   },
+  matchBox: {
+    eyebrow: 'Free AI Plan Match',
+    title: 'A plan match that explains itself',
+    text: 'Answer a few plain questions and see which coverage type fits you, with three reasons and the trade-offs. Free, with nothing to buy.',
+    cards: [
+      'Suggests a coverage type, never a company, and never favors what pays us more.',
+      'Three plain reasons it fits you, plus the trade-offs to know.',
+      'Lists free help too: Medicare.gov Plan Finder, 1-800-MEDICARE and your SHIP.',
+      'A licensed agent reviews every match with you before any enrollment.',
+    ],
+  },
+  checklist: { title: 'Turning 65? Get the free checklist' },
+  articles: { title: 'Plain answers from our blog' },
   cta: {
-    title: 'Talk it through with a licensed advisor',
-    text: 'One call can answer most questions. No pressure, no cost.',
+    title: 'Talk it through with a licensed agent',
+    button: 'Book a free call',
+    points: ['Free, paid by insurance companies', 'No pressure, your choice', 'A yearly review, every fall'],
   },
 } as const;
