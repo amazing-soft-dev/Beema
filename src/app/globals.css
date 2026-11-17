@@ -1,4 +1,5 @@
 @import 'tailwindcss';
+@import './motion.css';
 
 /*
  * Senior-tuned Beema layout in the Senior AI Plans colors.
