@@ -129,3 +129,43 @@
     transition: none;
   }
 }
+
+/* Ping dot on hero eyebrow pills (buttons-and-pills.md §8): a ring grows from the dot to
+   2.25x and fades, every 1.5s. Decorative; still for reduced motion and print. */
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2.25);
+    opacity: 0;
+  }
+}
+.ping-dot {
+  position: relative;
+  display: inline-flex;
+  width: 8px;
+  height: 8px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: currentColor;
+}
+.ping-dot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0.75;
+  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ping-dot::before {
+    animation: none;
+    opacity: 0;
+  }
+}
+@media print {
+  .ping-dot::before {
+    animation: none;
+    opacity: 0;
+  }
+}
