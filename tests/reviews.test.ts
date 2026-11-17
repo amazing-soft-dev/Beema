@@ -13,8 +13,12 @@ describe('reviews content', () => {
     assert.equal(reviews.quotes.length, 0, 'client quotes need real clients and written permission');
   });
 
-  it('only lists quotes with recorded consent', () => {
-    for (const q of reviews.quotes) assert.equal(q.consent, true);
+  it('only lists quotes with recorded consent from plan members', () => {
+    for (const q of reviews.quotes) {
+      assert.equal(q.consent, true);
+      assert.equal(q.planMember, true);
+      assert.equal(typeof q.paid, 'boolean');
+    }
   });
 
   it('keeps ratings between 1 and 5', () => {
