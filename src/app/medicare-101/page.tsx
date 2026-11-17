@@ -1,3 +1,5 @@
+import { Breadcrumb } from '@/components/content/Breadcrumb';
+import { NextSteps } from '@/components/content/NextSteps';
 import { CompareTable } from '@/components/guides/CompareTable';
 import { CostsHelp } from '@/components/guides/CostsHelp';
 import { MedicareParts } from '@/components/guides/MedicareParts';
@@ -21,6 +23,7 @@ export default function Medicare101Page() {
   return (
     <>
       <PageIntro
+        breadcrumb={<Breadcrumb trail={[{ label: 'Services', href: '/services' }, { label: 'Medicare 101', href: '/medicare-101' }]} />}
         eyebrow={m.intro.eyebrow}
         title={m.intro.title}
         lead={m.intro.lead}
@@ -55,6 +58,11 @@ export default function Medicare101Page() {
       <div className="container-x pb-16">
         <GuidePdfActions slug="medicare-101" />
       </div>
+      <NextSteps
+        title="Compare my options on a call"
+        text="A licensed agent walks through Original Medicare with Medigap and Medicare Advantage for your doctors, drugs and budget."
+        primary={{ label: 'Compare my options on a call', href: '/book-a-call?topic=turning-65' }}
+      />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import { TextAppear } from '@/components/motion/TextAppear';
 import { medicare101 } from '@/content/guides/medicare-101';
+import { ReadMore } from '@/components/content/ReadMore';
 
 /**
  * Medicare Advantage vs Medigap. A real table with a caption, column headers and row
@@ -49,6 +50,7 @@ export function CompareTable() {
             ))}
           </tbody>
         </table>
+        <ReadMore href="/medicare-advantage">Read about Medicare Advantage, with the trade-offs</ReadMore>
       </div>
     </section>
   );
