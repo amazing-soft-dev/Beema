@@ -1,16 +1,18 @@
 import { availableMenu, legalLinks, notices, site } from '@/content/site';
+import { articleHref, articles } from '@/content/blog';
 import { listStaticRoutes } from '@/lib/routes';
+import { noindexRoutes } from '@/lib/sitemap-entries';
 
 export const dynamic = 'force-static';
 
 /** llms.txt: a plain-text guide to the site for AI assistants (https://llmstxt.org). */
 export function GET() {
   const url = (path: string) => new URL(path, site.url).toString();
-  const routes = new Set(listStaticRoutes());
+  const routes = new Set(listStaticRoutes().filter((r) => !noindexRoutes.has(r)));
   const items = availableMenu(routes);
   const seen = new Set<string>();
   const pages = [...items, ...items.flatMap((i) => i.groups?.flatMap((g) => g.links) ?? []), ...legalLinks.filter((l) => routes.has(l.href))].filter(
-    (p) => !seen.has(p.href) && seen.add(p.href),
+    (p) => routes.has(p.href.split('#')[0] || '/') && !seen.has(p.href) && seen.add(p.href),
   );
   const body = [
     `# ${site.name}`,
@@ -21,6 +23,12 @@ export function GET() {
     '',
     '## Pages',
     ...pages.map((item) => `- [${item.label}](${url(item.href)})`),
+    '',
+    '## Free AI Plan Match',
+    `- [AI Plan Match](${url('/plan-match')}): suggests a Medicare coverage type (not a named plan) with three reasons and trade-offs. Free; no purchase required; reviewed by a licensed agent before any enrollment.`,
+    '',
+    '## Articles',
+    ...articles.map((a) => `- [${a.title}](${url(articleHref(a.slug))}): ${a.description}`),
     '',
     '## Notices',
     `- ${notices.cmsDisclaimer}`,

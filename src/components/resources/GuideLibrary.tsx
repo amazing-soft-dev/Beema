@@ -40,6 +40,7 @@ export function GuideLibrary() {
                   <Image src={`/guides/${g.slug}-cover.webp`} alt={`Cover of the ${g.title} guide`} fill sizes="(min-width: 1200px) 360px, (min-width: 810px) 50vw, 100vw" className="object-cover object-top" unoptimized />
                 </div>
                 <h3 className="t-h4">{g.title}</h3>
+                {g.addOn && <p className="t-caps self-start rounded-pill border-2 border-ink px-3 py-1 text-ink">Not Medicare: add-on products</p>}
                 <p>{g.description}</p>
                 <p className="text-base">
                   PDF{size ? `, ${size}` : ''}, {g.pages} {g.pages === 1 ? 'page' : 'pages'}. {g.planYear} plan year, updated {fmt(g.updated)}.

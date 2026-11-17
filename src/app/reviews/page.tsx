@@ -1,10 +1,14 @@
-import { ChatCircleText, PencilSimple, Star } from '@phosphor-icons/react/dist/ssr';
+import { PencilSimple, Scales, Star } from '@phosphor-icons/react/dist/ssr';
+import { Breadcrumb } from '@/components/content/Breadcrumb';
+import { NextSteps } from '@/components/content/NextSteps';
 import { PageIntro } from '@/components/layout/PageIntro';
+import { TestimonialSlider } from '@/components/motion/TestimonialSlider';
+import { TextAppear } from '@/components/motion/TextAppear';
 import { Reveal } from '@/components/motion/Reveal';
 import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { Photo } from '@/components/ui/Photo';
-import { reviews } from '@/content/reviews';
+import { reviews, testimonialRules } from '@/content/reviews';
 import { buildMetadata } from '@/lib/seo';
 
 export const metadata = buildMetadata({
@@ -32,17 +36,18 @@ export default function ReviewsPage() {
         eyebrow="Reviews"
         title="What our clients say"
         lead="We ask every client how we did. Here are their ratings and, with permission, a few of their stories."
+        breadcrumb={<Breadcrumb trail={[{ label: 'About', href: '/about' }, { label: 'Reviews', href: '/reviews' }]} />}
         aside={<Photo id="reviews-couple-laughing" priority sizes="(min-width: 1200px) 560px, 100vw" className="aspect-[4/3] w-full" />}
       />
 
       <section className="section-y" aria-labelledby="ratings-heading">
         <div className="container-x flex flex-col gap-8">
-          <h2 id="ratings-heading" className="t-h2">
+          <TextAppear id="ratings-heading" className="t-h2">
             Ratings
-          </h2>
+          </TextAppear>
           <ul className="grid gap-6 md:grid-cols-3">
-            {reviews.platforms.map((p) => (
-              <li key={p.name} className="flex flex-col gap-3 rounded-card bg-surface p-6">
+            {reviews.platforms.map((p, i) => (
+              <Reveal key={p.name} as="li" stagger={i} className="flex flex-col gap-3 rounded-card bg-surface p-6">
                 <p className="t-h4">{p.name}</p>
                 {p.rating !== null ? (
                   <>
@@ -59,7 +64,7 @@ export default function ReviewsPage() {
                     Read our {p.name} reviews
                   </a>
                 )}
-              </li>
+              </Reveal>
             ))}
           </ul>
           {rated.length === 0 && <p className="text-base">We only show ratings copied from our real review profiles.</p>}
@@ -68,35 +73,40 @@ export default function ReviewsPage() {
 
       <section className="section-y bg-surface" aria-labelledby="stories-heading">
         <div className="container-x flex flex-col gap-8">
-          <h2 id="stories-heading" className="t-h2">
+          <TextAppear id="stories-heading" className="t-h2">
             Client stories
-          </h2>
+          </TextAppear>
           {reviews.quotes.length ? (
-            <ul className="grid gap-6 md:grid-cols-2">
-              {reviews.quotes
-                .filter((q) => q.consent)
-                .map((q, i) => (
-                  <Reveal key={q.name} as="li" stagger={i % 2} className="flex flex-col gap-4 rounded-card bg-white p-6 md:p-8">
-                    <Icon icon={ChatCircleText} weight="fill" size={32} className="text-navy-700" />
-                    <blockquote className="t-lead">“{q.quote}”</blockquote>
-                    {q.story && <p>{q.story}</p>}
-                    <p className="font-semibold">
-                      {q.name}, <span className="font-normal">{q.detail}</span>
-                    </p>
-                  </Reveal>
-                ))}
-            </ul>
+            <TestimonialSlider quotes={reviews.quotes.filter((q) => q.consent && q.planMember)} />
           ) : (
             <p className="max-w-[60ch]">Client stories will appear here once clients give us written permission to share them.</p>
           )}
         </div>
       </section>
 
-      <section className="section-y" aria-labelledby="leave-heading">
+      <section className="section-y" aria-labelledby="rules-heading">
+        <div className="container-x grid gap-8 lg:grid-cols-[1fr_2fr]">
+          <div className="flex flex-col gap-3">
+            <Icon icon={Scales} weight="fill" size={36} className="text-navy-700" />
+            <TextAppear id="rules-heading" className="t-h2">
+              How we handle reviews
+            </TextAppear>
+          </div>
+          <ul className="flex flex-col gap-4">
+            {testimonialRules.map((r, i) => (
+              <Reveal key={r} as="li" stagger={i % 2} className="rounded-card-sm border-l-4 border-navy-700 bg-surface p-4">
+                {r}
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section-y bg-sand" aria-labelledby="leave-heading">
         <div className="container-x flex flex-col items-start gap-5">
-          <h2 id="leave-heading" className="t-h2">
+          <TextAppear id="leave-heading" className="t-h2">
             Worked with us?
-          </h2>
+          </TextAppear>
           <p className="max-w-[60ch]">A short review helps other people turning 65 find honest help. Thank you for taking a minute.</p>
           {writable.length ? (
             <div className="flex flex-wrap gap-4">
@@ -113,6 +123,7 @@ export default function ReviewsPage() {
           )}
         </div>
       </section>
+      <NextSteps />
     </>
   );
 }
