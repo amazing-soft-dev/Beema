@@ -3,22 +3,29 @@ import type { ReactNode } from 'react';
 /**
  * Section labels from the Beema design, enlarged to 16px.
  * line  caps text after a 16px rule ("— TURNING 65")
- * pill  bordered pill ("About us")
+ * pill  bordered pill ("About us"); `ping` adds Framer's pinging dot (motion.css)
  */
 export function Eyebrow({
   children,
   variant = 'line',
   tone = 'light',
+  ping = false,
   className = '',
 }: {
   children: ReactNode;
   variant?: 'line' | 'pill';
   tone?: 'light' | 'dark';
+  ping?: boolean;
   className?: string;
 }) {
   if (variant === 'pill') {
     const look = tone === 'dark' ? 'border-white/40 text-white' : 'border-ink/25 text-ink';
-    return <p className={`inline-flex min-h-9 items-center rounded-pill border px-4 font-medium ${look} ${className}`.trim()}>{children}</p>;
+    return (
+      <p className={`inline-flex min-h-9 items-center gap-2.5 rounded-pill border px-4 font-medium ${look} ${className}`.trim()}>
+        {ping && <span className={`ping-dot ${tone === 'dark' ? 'text-gold' : 'text-navy-700'}`} aria-hidden="true" />}
+        {children}
+      </p>
+    );
   }
   const color = tone === 'dark' ? 'text-gold' : 'text-navy-700';
   return (
