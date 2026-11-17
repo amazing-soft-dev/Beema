@@ -52,13 +52,13 @@ export function ButtonLink({ href, variant, size, icon, className, children, ...
   if (/^(tel:|mailto:|https?:)/.test(href)) {
     const external = href.startsWith('http');
     return (
-      <a href={href} className={classes} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} {...rest}>
+      <a href={href} className={classes} data-variant={variant ?? 'primary'} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})} {...rest}>
         {content}
       </a>
     );
   }
   return (
-    <Link href={href} className={classes} {...rest}>
+    <Link href={href} className={classes} data-variant={variant ?? 'primary'} {...rest}>
       {content}
     </Link>
   );
@@ -67,7 +67,7 @@ export function ButtonLink({ href, variant, size, icon, className, children, ...
 /** Native button with the same look. Defaults to type="button" so it never submits by accident. */
 export function Button({ variant, size, icon, className, children, type = 'button', ...rest }: Common & Omit<ComponentProps<'button'>, 'className' | 'children'>) {
   return (
-    <button type={type} className={buttonClasses(variant, size, className)} {...rest}>
+    <button type={type} className={buttonClasses(variant, size, className)} data-variant={variant ?? 'primary'} {...rest}>
       {icon}
       <span>{children}</span>
     </button>
