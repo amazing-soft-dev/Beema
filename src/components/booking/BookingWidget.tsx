@@ -20,7 +20,7 @@ const noSubscribe = () => () => {};
 
 /**
  * Meeting type and topic, then the Cal.com calendar for that event type.
- * NEXT_PUBLIC_CAL_LINK is the Cal.com username or team (e.g. "silver-path"), with event
+ * NEXT_PUBLIC_CAL_LINK is the Cal.com username or team (e.g. "senior-ai-plans"), with event
  * types named "phone", "video" and "in-person". Without it, visitors get the phone number
  * and the callback form instead of a dead calendar.
  */
