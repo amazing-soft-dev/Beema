@@ -47,7 +47,7 @@ export function HeaderShell({ items, showMatch }: { items: MenuItem[]; showMatch
   return (
     <MotionConfig reducedMotion="user">
       <motion.div
-        className="header-shell pointer-events-auto"
+        className={`header-shell pointer-events-auto ${clear ? 'on-dark' : ''}`}
         data-clear={clear ? '' : undefined}
         initial={reduce ? false : { opacity: 0.001, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
