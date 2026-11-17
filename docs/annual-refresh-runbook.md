@@ -23,7 +23,12 @@ Have the agency's compliance lead or counsel confirm:
 - [ ] The Scope of Appointment note and how SOAs are recorded before meetings.
 - [ ] The privacy policy and terms of use (currently template text).
 - [ ] No Medicare card image or government-style logos anywhere; no invented reviews or ratings.
-- [ ] Licensing page: NPN and every state license number.
+- [ ] Licensing page: NPN, every state license number, and the health and life lines.
+- [ ] AI Plan Match: the rules in `src/lib/match/engine.ts` and the result wording, signed off by the FMO before the tool goes live (plan §10, phase 2); results stay at coverage-type level.
+- [ ] AI Tool & Health Data Notice: what is kept, the 24-month review log, and deletion.
+- [ ] Non-Medicare product disclosures (`src/content/disclosures.ts`) and the carrier notices that go with each quote.
+- [ ] Subscription Terms & Fee Disclosure and Plans & Pricing: keep the Start buttons off and prices TBD until written state fee confirmation (plan §6).
+- [ ] Brand: Senior AI Plans is a working name; confirm it does not sound like a government program before buying the domain.
 
 ## C. Every fall, before October 15
 
@@ -32,8 +37,10 @@ Have the agency's compliance lead or counsel confirm:
 3. **Ready-made PDFs.** Bump `planYear` and `updated` for each guide in `src/content/guides-library.ts`, then `npm run pdf:library` (or upload newly designed files with the same names to `public/guides/` and update the dates).
 4. **Guide-page PDFs.** `npm run pdf` (CI's `pdf:check` fails until you do).
 5. **CMS disclaimer counts.** Update `cms.organizations` and `cms.products` if your carrier contracts changed.
-6. **Review your analytics** (`guide_download`, `call_click`, `form_submit`) to see which guides seniors use most, and refresh the weakest ones.
-7. Ship the changes through the normal pull request flow, ideally by October 1.
+6. **Compliance pages.** Re-read the AI Tool & Health Data Notice, Subscription Terms, Product Disclosures and the blog articles' cost figures (each shows its plan year), and bump `planYear` in `src/content/blog/`.
+7. **AI Plan Match.** Review a sample of the `plan_match` log lines with a licensed agent, and adjust the rules if any result looks steered or wrong.
+8. **Review your analytics** (`guide_download`, `call_click`, `form_submit`, `tool_result`) to see which guides seniors use most, and refresh the weakest ones.
+9. Ship the changes through the normal pull request flow, ideally by October 1.
 
 ## D. When a dependency or the platform changes
 

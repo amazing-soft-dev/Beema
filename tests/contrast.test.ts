@@ -79,4 +79,9 @@ check('dark sections in the dark theme', darkSection, [
   ['white', 'night', 7],
   ['gold', 'ink', 7],
   ['focus-on-dark', 'ink', 3],
+  // Light cards inside the dark section
+  ['ink', 'surface', 7],
+  ['ink', 'sand', 7],
+  ['navy-700', 'surface', 4.5],
+  ['muted', 'surface', 4.5],
 ]);
