@@ -45,12 +45,14 @@ if [ "$base" = "dev" ]; then
 fi
 
 # dev → main: collect issues from merged branch names and closing keywords since main.
+# grep exits 1 when nothing matches. Under pipefail that stopped the script before the
+# pull request opened, so an empty match now means "no issues from keywords".
 {
   git log --merges --format=%s "origin/main..HEAD" |
     sed -nE 's#.* from [^/ ]+/(feat|fix|docs|ci|build)/([0-9]+)-.*#\2#p'
   git log --format=%B "origin/main..HEAD" |
-    grep -oiE '\b(close[sd]?|fix(e[sd])?|resolve[sd]?) #[0-9]+' |
-    grep -oE '[0-9]+'
+    { grep -oiE '\b(close[sd]?|fix(e[sd])?|resolve[sd]?) #[0-9]+' || true; } |
+    { grep -oE '[0-9]+' || true; }
 } | sort -n | uniq >/tmp/issues.txt
 
 {

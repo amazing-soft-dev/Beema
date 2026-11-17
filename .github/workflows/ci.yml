@@ -25,6 +25,8 @@ jobs:
           node-version: latest
           cache: npm
       - run: npm ci
+      - name: Check workflow scripts parse
+        run: for f in .github/scripts/*.sh; do bash -n "$f"; done
       - run: npm run lint
       - run: npm run typecheck
       - run: npm test
