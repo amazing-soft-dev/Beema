@@ -1,4 +1,6 @@
 import { CalendarCheck } from '@phosphor-icons/react/dist/ssr';
+import { Breadcrumb } from '@/components/content/Breadcrumb';
+import { NextSteps } from '@/components/content/NextSteps';
 import { EnrollmentWindows } from '@/components/guides/EnrollmentWindows';
 import { LatePenalties } from '@/components/guides/LatePenalties';
 import { StepPath } from '@/components/guides/StepPath';
@@ -21,6 +23,7 @@ export default function Turning65Page() {
   return (
     <>
       <PageIntro
+        breadcrumb={<Breadcrumb trail={[{ label: 'Services', href: '/services' }, { label: 'Turning 65', href: '/turning-65' }]} />}
         eyebrow={t.intro.eyebrow}
         title={t.intro.title}
         lead={t.intro.lead}
@@ -60,6 +63,11 @@ export default function Turning65Page() {
       <div className="container-x pb-16">
         <GuidePdfActions slug="turning-65" />
       </div>
+      <NextSteps
+        title="Know your dates? Find your coverage."
+        text="The free plan match suggests the coverage type that fits your situation, or get the turning-65 checklist and work through it at your own pace."
+        secondary={{ label: 'Get the checklist PDF', href: '/guides/turning-65-checklist.pdf' }}
+      />
     </>
   );
 }
