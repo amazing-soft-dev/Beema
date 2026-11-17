@@ -123,12 +123,27 @@
   :root[data-theme='dark'] .on-dark {
     --color-ink: #06101e;
     --color-white: #e9eff7;
+    /* Light cards inside a dark section keep their light-theme colors. */
+    --color-surface: #f5f8fc;
+    --color-sand: #fbf5e9;
+    --color-line: #d5dce6;
+    --color-muted: #44546a;
+    --color-navy-700: #154a8a;
+    --color-error: #b3172c;
+    --color-error-bg: #fdecee;
   }
 }
 @media screen and (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) .on-dark {
     --color-ink: #06101e;
     --color-white: #e9eff7;
+    --color-surface: #f5f8fc;
+    --color-sand: #fbf5e9;
+    --color-line: #d5dce6;
+    --color-muted: #44546a;
+    --color-navy-700: #154a8a;
+    --color-error: #b3172c;
+    --color-error-bg: #fdecee;
   }
 }
 
