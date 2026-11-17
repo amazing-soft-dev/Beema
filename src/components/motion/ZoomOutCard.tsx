@@ -1,0 +1,44 @@
+'use client';
+
+import { animate, useInView, useReducedMotion } from 'motion/react';
+import { type ReactNode, useEffect, useRef } from 'react';
+import { zoomSpring } from '@/lib/motion';
+
+/**
+ * Framer About Us card zoom-out (audit/motion/scroll-reveals.md#about-scale).
+ * The card starts enlarged and lowered, then settles to its place with a spring when half
+ * of it is in view, once:
+ *   desktop (≥1200)  scale 1.8, y 260
+ *   tablet  (≥810)   scale 1.2, y 45
+ *   phone            no effect
+ * Opacity stays 1. The start pose comes from CSS (.zoom-card in motion.css), so it is right
+ * before JavaScript loads; the outer box is observed because it is never transformed.
+ * Reduced motion, print and no JavaScript show the card in place.
+ */
+export function ZoomOutCard({ children, className = '' }: { children: ReactNode; className?: string }) {
+  const outer = useRef<HTMLDivElement>(null);
+  const inner = useRef<HTMLDivElement>(null);
+  const inView = useInView(outer, { once: true, amount: 0.5 });
+  const reduce = useReducedMotion();
+
+  useEffect(() => {
+    const el = inner.current;
+    if (!el || !inView || reduce) return;
+    const start = new DOMMatrix(getComputedStyle(el).transform === 'none' ? undefined : getComputedStyle(el).transform);
+    // Hand the pose from CSS to inline values, then spring both to rest.
+    el.dataset.zoom = 'running';
+    const controls = animate(el, { scale: [start.a, 1], y: [start.f, 0] }, zoomSpring);
+    controls.then(() => {
+      el.dataset.zoom = 'done';
+    });
+    return () => controls.stop();
+  }, [inView, reduce]);
+
+  return (
+    <div ref={outer} className={className}>
+      <div ref={inner} className="zoom-card h-full" data-zoom="pending">
+        {children}
+      </div>
+    </div>
+  );
+}
