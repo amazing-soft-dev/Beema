@@ -3,6 +3,7 @@ import { Reveal } from '@/components/motion/Reveal';
 import { TextAppear } from '@/components/motion/TextAppear';
 import { Icon } from '@/components/ui/Icon';
 import { medicare101 } from '@/content/guides/medicare-101';
+import { ReadMore } from '@/components/content/ReadMore';
 
 /** Medigap Plans G, N and high-deductible G compared as cards, plus key notes. */
 export function MedigapPlans() {
@@ -44,6 +45,7 @@ export function MedigapPlans() {
             </li>
           ))}
         </ul>
+        <ReadMore href="/medigap">Read the full Medigap guide</ReadMore>
       </div>
     </section>
   );

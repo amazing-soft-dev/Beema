@@ -3,6 +3,7 @@ import { Reveal } from '@/components/motion/Reveal';
 import { TextAppear } from '@/components/motion/TextAppear';
 import { Icon } from '@/components/ui/Icon';
 import { medicare101 } from '@/content/guides/medicare-101';
+import { ReadMore } from '@/components/content/ReadMore';
 
 /** Part D basics and a table of every enrollment period. */
 export function PartDAndPeriods() {
@@ -23,6 +24,7 @@ export function PartDAndPeriods() {
               </Reveal>
             ))}
           </ul>
+          <ReadMore href="/part-d">Read the full Part D guide</ReadMore>
         </div>
       </section>
 
