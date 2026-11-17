@@ -20,7 +20,7 @@ export function MedicareParts() {
           {p.items.map((part, i) => (
             <Reveal key={part.id} as="article" delay={(i % 2) * 0.1} id={part.id} className="flex scroll-mt-40 flex-col gap-5 rounded-card bg-surface p-6 md:p-8">
               <div className="flex items-center gap-4">
-                <span className="flex size-14 shrink-0 items-center justify-center rounded-card-sm bg-ink font-display text-3xl font-semibold text-lime" aria-hidden="true">
+                <span className="flex size-14 shrink-0 items-center justify-center rounded-card-sm bg-ink font-display text-3xl font-semibold text-gold" aria-hidden="true">
                   {part.letter}
                 </span>
                 <h3 className="t-h3">
@@ -32,7 +32,7 @@ export function MedicareParts() {
                 <ul className="mt-2 flex flex-col gap-2">
                   {part.covers.map((c) => (
                     <li key={c} className="flex gap-3">
-                      <Icon icon={CheckCircle} weight="fill" className="mt-0.5 shrink-0 text-green-700" />
+                      <Icon icon={CheckCircle} weight="fill" className="mt-0.5 shrink-0 text-navy-700" />
                       {c}
                     </li>
                   ))}

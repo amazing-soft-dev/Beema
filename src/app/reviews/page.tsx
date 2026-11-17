@@ -55,7 +55,7 @@ export default function ReviewsPage() {
                   <p>Our {p.name} rating will appear here soon.</p>
                 )}
                 {p.profileUrl && (
-                  <a href={p.profileUrl} className="mt-auto font-semibold text-green-700 underline underline-offset-4">
+                  <a href={p.profileUrl} className="mt-auto font-semibold text-navy-700 underline underline-offset-4">
                     Read our {p.name} reviews
                   </a>
                 )}
@@ -77,7 +77,7 @@ export default function ReviewsPage() {
                 .filter((q) => q.consent)
                 .map((q, i) => (
                   <Reveal key={q.name} as="li" delay={(i % 2) * 0.1} className="flex flex-col gap-4 rounded-card bg-white p-6 md:p-8">
-                    <Icon icon={ChatCircleText} weight="fill" size={32} className="text-green-700" />
+                    <Icon icon={ChatCircleText} weight="fill" size={32} className="text-navy-700" />
                     <blockquote className="t-lead">“{q.quote}”</blockquote>
                     {q.story && <p>{q.story}</p>}
                     <p className="font-semibold">

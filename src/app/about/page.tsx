@@ -78,7 +78,7 @@ export default function AboutPage() {
           <ul className="flex flex-col gap-5">
             {a.free.points.map((p) => (
               <li key={p.slice(0, 24)} className="flex gap-3">
-                <Icon icon={CheckCircle} weight="fill" size={28} className="shrink-0 text-green-700" />
+                <Icon icon={CheckCircle} weight="fill" size={28} className="shrink-0 text-navy-700" />
                 <span>{p}</span>
               </li>
             ))}
@@ -95,12 +95,12 @@ export default function AboutPage() {
           <ul className="flex flex-wrap gap-3">
             {site.licensedStates.map((s) => (
               <li key={s.code} className="inline-flex min-h-12 items-center gap-2 rounded-pill bg-white px-5 font-semibold">
-                <Icon icon={MapPin} weight="fill" className="text-green-700" />
+                <Icon icon={MapPin} weight="fill" className="text-navy-700" />
                 {s.name}
               </li>
             ))}
           </ul>
-          <Link href="/legal/licensing" className="self-start font-semibold text-green-700 underline underline-offset-4">
+          <Link href="/legal/licensing" className="self-start font-semibold text-navy-700 underline underline-offset-4">
             Licensing details
           </Link>
         </div>
@@ -110,7 +110,7 @@ export default function AboutPage() {
       {isSolo && team[0] && (
         <section className="section-y" aria-labelledby="founder-heading">
           <div className="container-x flex max-w-[70ch] flex-col gap-4">
-            <p className="t-caps text-green-700">Meet the founder</p>
+            <p className="t-caps text-navy-700">Meet the founder</p>
             <h2 id="founder-heading" className="t-h2">
               {team[0].name}
             </h2>
@@ -126,7 +126,7 @@ export default function AboutPage() {
       {a.press.length > 0 && (
         <section className="section-y" aria-labelledby="press-heading">
           <div className="container-x">
-            <h2 id="press-heading" className="t-caps text-green-700">
+            <h2 id="press-heading" className="t-caps text-navy-700">
               As seen in
             </h2>
             <ul className="mt-6 flex flex-wrap gap-8">

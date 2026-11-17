@@ -24,7 +24,7 @@ export function StepPath({ id, label, steps, tone = 'surface' }: { id: string; l
               <p>{s.text}</p>
               {s.tip && (
                 <p className="flex gap-2 rounded-card-sm bg-white p-4 text-base">
-                  <Icon icon={Lightbulb} weight="fill" className="mt-0.5 shrink-0 text-green-700" />
+                  <Icon icon={Lightbulb} weight="fill" className="mt-0.5 shrink-0 text-navy-700" />
                   {s.tip}
                 </p>
               )}

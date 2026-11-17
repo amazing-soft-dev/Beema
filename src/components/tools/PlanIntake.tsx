@@ -83,7 +83,7 @@ export function PlanIntake() {
   if (status === 'sent') {
     return (
       <div role="status" className="flex flex-col gap-5 rounded-card bg-surface p-6 md:p-10">
-        <Icon icon={CheckCircle} weight="fill" size={44} className="text-green-700" />
+        <Icon icon={CheckCircle} weight="fill" size={44} className="text-navy-700" />
         <h2 className="t-h3">Thank you. An advisor will compare plans for you.</h2>
         <p>We will call at the time you chose, usually within one business day. Here is what you sent:</p>
         {listed}
@@ -96,7 +96,7 @@ export function PlanIntake() {
     <div className="flex flex-col gap-6">
       <ol className="grid grid-cols-4 gap-2" aria-label="Progress">
         {STEPS.map((label, i) => (
-          <li key={label} aria-current={i === step ? 'step' : undefined} className={`rounded-card-sm px-3 py-2 text-base font-semibold ${i === step ? 'bg-ink text-white' : i < step ? 'bg-lime text-ink' : 'bg-surface'}`}>
+          <li key={label} aria-current={i === step ? 'step' : undefined} className={`rounded-card-sm px-3 py-2 text-base font-semibold ${i === step ? 'bg-ink text-white' : i < step ? 'bg-gold text-ink' : 'bg-surface'}`}>
             <span className="block">Step {i + 1}</span>
             <span className="hidden font-normal md:block">{label}</span>
           </li>
@@ -149,7 +149,7 @@ export function PlanIntake() {
             <div className="flex flex-col gap-4">
               {listed}
               <p>
-                This version of the site cannot send forms. Call <a href={`tel:${site.phone.tel}`} className="font-semibold text-green-700 underline">{site.phone.display}</a> and an advisor will
+                This version of the site cannot send forms. Call <a href={`tel:${site.phone.tel}`} className="font-semibold text-navy-700 underline">{site.phone.display}</a> and an advisor will
                 compare plans with you.
               </p>
             </div>
@@ -198,7 +198,7 @@ function PlanFinderNote() {
   return (
     <p className="rounded-card-sm bg-sand p-5">
       Prefer to compare on your own? Use the official{' '}
-      <a href={PLAN_FINDER_URL} className="font-semibold text-green-700 underline underline-offset-4">
+      <a href={PLAN_FINDER_URL} className="font-semibold text-navy-700 underline underline-offset-4">
         Medicare.gov Plan Finder
       </a>
       , which lists every plan in your area. Have your medicine list ready.

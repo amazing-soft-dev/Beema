@@ -20,12 +20,12 @@ export function CostsHelp() {
               <h3 className="t-h3">{item.title}</h3>
               <p>{item.text}</p>
               {item.link.href.startsWith('http') ? (
-                <a href={item.link.href} className="mt-auto inline-flex min-h-12 items-center gap-2 font-semibold text-green-700 underline underline-offset-4">
+                <a href={item.link.href} className="mt-auto inline-flex min-h-12 items-center gap-2 font-semibold text-navy-700 underline underline-offset-4">
                   {item.link.label}
                   <Icon icon={ArrowRight} />
                 </a>
               ) : (
-                <Link href={item.link.href} className="mt-auto inline-flex min-h-12 items-center gap-2 font-semibold text-green-700 underline underline-offset-4">
+                <Link href={item.link.href} className="mt-auto inline-flex min-h-12 items-center gap-2 font-semibold text-navy-700 underline underline-offset-4">
                   {item.link.label}
                   <Icon icon={ArrowRight} />
                 </Link>

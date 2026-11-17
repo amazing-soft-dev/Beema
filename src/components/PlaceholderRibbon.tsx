@@ -7,7 +7,7 @@ import { site } from '@/content/site';
 export function PlaceholderRibbon() {
   if (!site.placeholder) return null;
   return (
-    <aside aria-label="Sample content notice" className="bg-[#171818] px-4 py-2 text-center text-base text-white">
+    <aside aria-label="Sample content notice" className="bg-night px-4 py-2 text-center text-base text-white">
       <strong>Sample content.</strong> Business details on this site are placeholders and not yet real.
     </aside>
   );

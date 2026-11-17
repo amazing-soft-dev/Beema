@@ -22,7 +22,7 @@ export function LatePenalties() {
             <ul className="mt-3 flex flex-col gap-3">
               {p.avoid.map((a) => (
                 <li key={a} className="flex gap-3">
-                  <Icon icon={CheckCircle} weight="fill" className="mt-0.5 shrink-0 text-green-700" />
+                  <Icon icon={CheckCircle} weight="fill" className="mt-0.5 shrink-0 text-navy-700" />
                   {a}
                 </li>
               ))}

@@ -5,8 +5,8 @@ import type { ComponentProps, ReactNode } from 'react';
  * Pill buttons from the Beema design, sized for older readers: at least 48px tall
  * (56px for `lg`), 18px labels, and a 3px focus ring from globals.css.
  *
- * primary   lime with ink text, the main call to action
- * secondary green-700 with white text
+ * primary   gold with ink text, the main call to action
+ * secondary navy-700 with white text
  * outline   ink border on light backgrounds
  * light     white outline for dark sections and photos
  */
@@ -18,8 +18,8 @@ const base =
   'inline-flex max-w-full items-center justify-center gap-2.5 rounded-pill border-2 py-2 text-center font-medium leading-snug transition-colors duration-200 ease-out disabled:cursor-not-allowed disabled:opacity-60 [&>svg]:shrink-0';
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'border-lime bg-lime text-ink hover:border-lime-hover hover:bg-lime-hover',
-  secondary: 'border-green-700 bg-green-700 text-white hover:border-green-800 hover:bg-green-800',
+  primary: 'border-gold bg-gold text-ink hover:border-gold-hover hover:bg-gold-hover',
+  secondary: 'border-navy-700 bg-navy-700 text-white hover:border-navy-800 hover:bg-navy-800',
   outline: 'border-ink bg-transparent text-ink hover:bg-ink hover:text-white',
   light: 'border-white bg-transparent text-white hover:bg-white hover:text-ink',
 };

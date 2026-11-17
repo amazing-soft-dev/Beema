@@ -17,13 +17,13 @@ export function LegalPage({ title, lead, updated, sections }: { title: string; l
       <section className="section-y">
         <div className="container-x flex max-w-[78ch] flex-col gap-10">
           {site.placeholder && (
-            <p role="note" className="rounded-card-sm border-l-4 border-green-700 bg-surface p-5 text-base">
+            <p role="note" className="rounded-card-sm border-l-4 border-navy-700 bg-surface p-5 text-base">
               <strong>Template text.</strong> This page is a plain-language starting point. Have it reviewed by the agency’s counsel and compliance
               team before launch.
             </p>
           )}
           {sections.map((s, i) => (
-            <section key={s.heading} aria-labelledby={`legal-${i}`} className="flex flex-col gap-3 [&_a]:font-semibold [&_a]:text-green-700 [&_a]:underline [&_a]:underline-offset-4 [&_li]:ml-6 [&_ul]:list-disc [&_ul]:space-y-2">
+            <section key={s.heading} aria-labelledby={`legal-${i}`} className="flex flex-col gap-3 [&_a]:font-semibold [&_a]:text-navy-700 [&_a]:underline [&_a]:underline-offset-4 [&_li]:ml-6 [&_ul]:list-disc [&_ul]:space-y-2">
               <h2 id={`legal-${i}`} className="t-h3">
                 {i + 1}. {s.heading}
               </h2>

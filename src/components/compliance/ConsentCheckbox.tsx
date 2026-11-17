@@ -31,7 +31,7 @@ export function ConsentCheckbox({
           required
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
-          className="mt-0.5 size-6 shrink-0 cursor-pointer accent-green-700"
+          className="mt-0.5 size-6 shrink-0 cursor-pointer accent-navy-700"
         />
         <span>{CONSENT_TEXT}</span>
       </label>
