@@ -24,6 +24,7 @@ export function SiteFooter() {
           <Link href="/" className="inline-flex min-h-12 items-center gap-3 self-start">
             <LogoMark />
             <span className="font-display text-xl font-semibold text-white">{site.name}</span>
+            <span className="sr-only">, home page</span>
           </Link>
           <p className="max-w-[40ch]">{site.tagline} Our help is free to you.</p>
           <ul className="flex flex-col gap-3">
