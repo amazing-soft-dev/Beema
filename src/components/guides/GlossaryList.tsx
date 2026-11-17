@@ -26,7 +26,7 @@ export function GlossaryList({ terms }: { terms: GlossaryTerm[] }) {
       <nav aria-label="Glossary letters" className="flex flex-wrap gap-2">
         {letters.map((l) =>
           present.has(l) ? (
-            <a key={l} href={`#letter-${l}`} className="inline-flex size-12 items-center justify-center rounded-card-sm bg-surface text-lg font-semibold hover:bg-gold">
+            <a key={l} href={`#letter-${l}`} className="inline-flex size-12 items-center justify-center rounded-card-sm bg-surface text-lg font-semibold hover:bg-gold hover:text-on-gold">
               {l}
             </a>
           ) : (

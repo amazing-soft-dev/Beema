@@ -48,7 +48,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         <a
           href="#main"
-          className="sr-only z-50 rounded-pill bg-gold px-6 py-3 font-semibold text-ink focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+          className="sr-only z-50 rounded-pill bg-gold px-6 py-3 font-semibold text-on-gold focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
         >
           Skip to main content
         </a>
