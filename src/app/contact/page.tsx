@@ -1,4 +1,8 @@
-import { Clock, Envelope, MapPin, Phone, UserCircle } from '@phosphor-icons/react/dist/ssr';
+import { Clock, Envelope, MapPin, Phone, Sparkle, UserCircle } from '@phosphor-icons/react/dist/ssr';
+import Link from 'next/link';
+import { Breadcrumb } from '@/components/content/Breadcrumb';
+import { Reveal } from '@/components/motion/Reveal';
+import { TextAppear } from '@/components/motion/TextAppear';
 import { LeadForm } from '@/components/forms/LeadForm';
 import { PageIntro } from '@/components/layout/PageIntro';
 import { Icon } from '@/components/ui/Icon';
@@ -15,11 +19,16 @@ export default function ContactPage() {
   const { address } = site;
   return (
     <>
-      <PageIntro eyebrow="Contact" title="Talk with a licensed advisor" lead="Call us, email us, or leave your number and we will call you at a time that suits you." />
+      <PageIntro
+        eyebrow="Contact"
+        title="Talk with a licensed agent"
+        lead="Call us, email us, or leave your number and we will call you at a time that suits you."
+        breadcrumb={<Breadcrumb trail={[{ label: 'Contact', href: '/contact' }]} />}
+      />
       <section className="section-y">
         <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           <div className="flex flex-col gap-8">
-            <h2 className="t-h2">Ways to reach us</h2>
+            <TextAppear className="t-h2">Ways to reach us</TextAppear>
             <ul className="flex flex-col gap-6">
               <li className="flex gap-4">
                 <Icon icon={Phone} weight="fill" size={28} className="mt-1 shrink-0 text-navy-700" />
@@ -70,12 +79,15 @@ export default function ContactPage() {
               </li>
             </ul>
           </div>
-          <LeadForm endpoint="/api/contact" form="contact" idPrefix="contact" title="Request a call back" />
+          <Reveal y="lg">
+            <LeadForm endpoint="/api/contact" form="contact" idPrefix="contact" title="Request a callback" />
+          </Reveal>
         </div>
       </section>
 
-      <section id="existing-clients" className="section-y scroll-mt-40 bg-sand" aria-labelledby="clients-heading">
-        <div className="container-x flex max-w-[70ch] flex-col gap-4">
+      <section className="section-y bg-sand" aria-label="Clients and subscribers">
+        <div className="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
+        <div id="existing-clients" className="flex scroll-mt-40 flex-col gap-4">
           <Icon icon={UserCircle} weight="fill" size={40} className="text-navy-700" />
           <h2 id="clients-heading" className="t-h2">
             Already a client?
@@ -87,6 +99,23 @@ export default function ContactPage() {
             </a>{' '}
             with “Existing client” in the subject. For questions about coverage or claims, the phone number on the back of your insurance card is often fastest.
           </p>
+          <Link href="/book-a-call?topic=annual-review" className="self-start font-semibold text-navy-700 underline underline-offset-4">
+            Book your free annual review
+          </Link>
+        </div>
+        <div id="subscribers" className="flex scroll-mt-40 flex-col gap-4">
+          <Icon icon={Sparkle} weight="fill" size={40} className="text-navy-700" />
+          <h2 id="subscribers-heading" className="t-h2">
+            Plus and Family subscribers
+          </h2>
+          <p>
+            Our optional subscriptions are coming later. Once you subscribe, your alerts, reminders and caregiver help will be managed here. You never need a
+            subscription to get help with Medicare.
+          </p>
+          <Link href="/plans-pricing" className="self-start font-semibold text-navy-700 underline underline-offset-4">
+            Plans &amp; Pricing
+          </Link>
+        </div>
         </div>
       </section>
     </>
