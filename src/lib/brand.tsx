@@ -2,31 +2,21 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 /**
- * Brand mark for generated images (icons, Open Graph). Rendered by next/og (Satori),
- * so it uses inline styles and plain flexbox only.
- * The mark: a lime path rising across a deep-green tile, echoing "Silver Path".
+ * Brand values for generated images (Open Graph). Rendered by next/og (Satori), so pages
+ * use inline styles and plain flexbox only. Colors match the tokens in globals.css.
  */
-export const brandColors = { ink: '#0f3d2e', green: '#1a5c44', lime: '#c8f04d', sand: '#f5efe6', white: '#ffffff' } as const;
+export const brandColors = { ink: '#0b2545', navy: '#154a8a', gold: '#f5c451', sand: '#fbf5e9', white: '#ffffff' } as const;
 
-export function BrandMark({ size, tile = brandColors.ink }: { size: number; tile?: string }) {
-  return (
-    <div
-      style={{
-        width: size,
-        height: size,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: tile,
-        borderRadius: Math.round(size * 0.22),
-      }}
-    >
-      <svg width={size * 0.66} height={size * 0.66} viewBox="0 0 64 64" fill="none">
-        <path d="M8 52 C 24 52, 26 32, 40 28 S 54 16, 55 12" stroke={brandColors.lime} strokeWidth={7} strokeLinecap="round" />
-        <circle cx="55" cy="12" r="6" fill={brandColors.white} />
-      </svg>
-    </div>
-  );
+/** Trimmed width ÷ height of the uploaded logos (same as src/components/brand/Logo.tsx). */
+export const logoRatio = 0.855;
+
+/**
+ * The trimmed 192px logo (scripts/brand/build-logos.mjs) as a data URL for Satori: `light` (navy and gold) for light
+ * backgrounds, `dark` (white and teal) for dark ones.
+ */
+export async function brandLogo(tone: 'light' | 'dark') {
+  const data = await readFile(join(process.cwd(), `public/brand/logo-${tone}-192.png`));
+  return `data:image/png;base64,${data.toString('base64')}`;
 }
 
 /**
