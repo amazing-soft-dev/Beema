@@ -38,7 +38,7 @@ Have the agency's compliance lead or counsel confirm:
 4. **Guide-page PDFs.** `npm run pdf` (CI's `pdf:check` fails until you do).
 5. **CMS disclaimer counts.** Update `cms.organizations` and `cms.products` if your carrier contracts changed.
 6. **Compliance pages.** Re-read the AI Tool & Health Data Notice, Subscription Terms, Product Disclosures and the blog articles' cost figures (each shows its plan year), and bump `planYear` in `src/content/blog/`.
-7. **AI Plan Match.** Review a sample of the `plan_match` log lines with a licensed agent, and adjust the rules if any result looks steered or wrong.
+7. **AI Plan Match.** Review a selection of recent `plan_match` log lines with a licensed agent, and adjust the rules if any result looks steered or wrong.
 8. **Review your analytics** (`guide_download`, `call_click`, `form_submit`, `tool_result`) to see which guides seniors use most, and refresh the weakest ones.
 9. Ship the changes through the normal pull request flow, ideally by October 1.
 
