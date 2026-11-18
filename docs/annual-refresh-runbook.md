@@ -9,7 +9,7 @@ Two checklists: one to launch with real business data, and one to repeat every f
 3. Team photos: add real portraits to `scripts/images/manifest.json` (or keep stock photos only if you are comfortable with them), run `npm run images:fetch`, and delete the stock portraits you replaced.
 4. `src/content/reviews.ts`: copy real ratings and counts from Google, Facebook and Trustpilot, add the profile and "write a review" links, and add client quotes only with written permission (`consent: true`).
 5. Accounts and environment (Vercel and `.env.local`, see `.env.example`): Resend with a verified sending domain, Cal.com event types `phone`, `video` and `in-person`, Crisp website ID, `NEXT_PUBLIC_SITE_URL`.
-6. Set `site.placeholder` to `false`. This removes the sample notices and allows indexing (`robots.txt` and page metadata).
+6. Set `site.placeholder` to `false`. This allows indexing (`robots.txt` and page metadata).
 7. Run `npm run pdf` and `npm run pdf:library` so every PDF carries the real details, and commit them.
 8. Compliance review (below), then merge.
 
