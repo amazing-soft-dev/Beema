@@ -2,7 +2,7 @@
 
 The Hybrid Website Plan (November 2026) in code: plain-English Medicare help for people turning 65 and the families who help them, the free AI Plan Match, Medicare and Beyond Medicare pages, a blog, large-print PDFs, booking and contact forms, built for older readers. Carrier commissions on Medicare and add-on products are about 80% of the business; the AI Plan Match (free Basic now, optional Plus and Family later) is the other 20%. Work lands on `dev` through an automatic pull request, and a green CI run promotes it to `main`. Production is a Next.js app that Vercel deploys from `main`.
 
-> **Placeholder mode.** Business details in `src/content/site.ts` (name, phone, NPN, licensed states, team, CMS disclaimer counts) are realistic samples marked `TODO(#57)`. While `site.placeholder` is `true`, every page shows a "Sample content" notice and is `noindex`, and `robots.txt` blocks crawling. Replace them before launch (see `docs/annual-refresh-runbook.md`).
+> **Placeholder mode.** Business details in `src/content/site.ts` (name, phone, NPN, licensed states, team, CMS disclaimer counts) are realistic stand-ins marked `TODO(#57)`. While `site.placeholder` is `true`, every page is `noindex` and `robots.txt` blocks crawling, so the stand-in details never reach search results. Replace them before launch (see `docs/annual-refresh-runbook.md`).
 
 ## How the GitHub workflow works
 
