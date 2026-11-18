@@ -2,7 +2,8 @@
 
 import { CalendarCheck, List, Phone, Sparkle, X } from '@phosphor-icons/react';
 import { usePathname } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
+import { createPortal } from 'react-dom';
 import { Logo } from '@/components/brand/Logo';
 import { ButtonLink } from '@/components/ui/Button';
 import { ThemeChoices } from '@/components/theme/ThemeSwitch';
@@ -10,6 +11,8 @@ import { Icon } from '@/components/ui/Icon';
 import type { MenuItem } from '@/content/menu';
 import { bookCall, planMatch, site } from '@/content/site';
 import { MobileNav } from './MobileNav';
+
+const noSubscribe = () => () => {};
 
 /**
  * Full-screen menu below 1200px, built on the native <dialog> element. It fades in over
@@ -22,6 +25,9 @@ export function MobileMenu({ items, showMatch }: { items: MenuItem[]; showMatch:
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  // The dialog is portalled to <body> after hydration, so it never inherits the header's
+  // clear (on-dark) styles: the white panel always gets the page's own logo and colors.
+  const mounted = useSyncExternalStore(noSubscribe, () => true, () => false);
 
   // Close when a link navigates to another page.
   const [lastPath, setLastPath] = useState(pathname);
@@ -49,7 +55,7 @@ export function MobileMenu({ items, showMatch }: { items: MenuItem[]; showMatch:
       dialog.removeEventListener('keydown', onKeyDown);
       dialog.removeEventListener('close', onNativeClose);
     };
-  }, []);
+  }, [mounted]);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -80,6 +86,8 @@ export function MobileMenu({ items, showMatch }: { items: MenuItem[]; showMatch:
         <span>Menu</span>
       </button>
 
+      {mounted &&
+        createPortal(
       <dialog
         ref={dialogRef}
         id="mobile-menu"
@@ -117,7 +125,9 @@ export function MobileMenu({ items, showMatch }: { items: MenuItem[]; showMatch:
           </p>
           <ThemeChoices className="mt-4" />
         </div>
-      </dialog>
+      </dialog>,
+          document.body,
+        )}
     </>
   );
 }

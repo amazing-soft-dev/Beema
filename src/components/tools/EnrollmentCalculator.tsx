@@ -41,7 +41,7 @@ function compute(birth: string, working: Working) {
   };
 }
 
-const field = 'min-h-14 rounded-card-sm border-2 border-field bg-white px-4 text-lg';
+const field = 'min-h-14 w-full min-w-0 rounded-card-sm border-2 border-field bg-white px-4 text-lg';
 
 /** Turning-65 enrollment date calculator: date of birth and work situation → dated timeline. */
 export function EnrollmentCalculator() {
@@ -75,10 +75,11 @@ export function EnrollmentCalculator() {
 
   return (
     <div className="grid gap-10 lg:grid-cols-[minmax(0,420px)_1fr] lg:gap-16">
-      <form onSubmit={submit} noValidate className="flex flex-col gap-6 rounded-card bg-surface p-6 md:p-8 print:hidden" aria-describedby={error ? 'calc-error' : undefined}>
+      <form onSubmit={submit} noValidate className="flex min-w-0 flex-col gap-6 rounded-card bg-surface p-6 md:p-8 print:hidden" aria-describedby={error ? 'calc-error' : undefined}>
         <fieldset className="flex flex-col gap-3">
           <legend className="t-label mb-2 font-semibold">Your date of birth</legend>
-          <div className="grid grid-cols-[1.4fr_0.8fr_1fr] gap-3">
+          {/* minmax(0, …) lets the columns shrink below the select and inputs’ natural width. */}
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-[minmax(0,1.4fr)_minmax(0,0.8fr)_minmax(0,1fr)]">
             <label className="flex flex-col gap-1 text-base">
               Month
               <select value={month} onChange={(e) => setMonth(e.target.value)} className={field} autoComplete="bday-month">
@@ -128,7 +129,7 @@ export function EnrollmentCalculator() {
         </Button>
       </form>
 
-      <div aria-live="polite">
+      <div aria-live="polite" className="min-w-0">
         {result ? <Timeline r={result} /> : <p className="t-lead">Enter your date of birth to see your personal Medicare dates.</p>}
       </div>
     </div>
