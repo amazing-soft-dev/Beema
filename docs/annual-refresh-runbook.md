@@ -6,7 +6,7 @@ Two checklists: one to launch with real business data, and one to repeat every f
 
 1. In `src/content/site.ts`, replace every value marked `TODO(#57)`: name, legal name, URL, phone, email, hours, address, founding year, NPN, licensed states with license numbers, and the CMS disclaimer counts (`cms.organizations`, `cms.products`) for the plans you actually represent.
 2. `src/content/about.ts`: replace the founder story. `src/content/team.ts`: real advisors, states and bios (one entry switches the site to solo mode).
-3. Team photos: add real portraits to `scripts/images/manifest.json` (or keep stock photos only if you are comfortable with them), run `npm run images:fetch`, remove the sample portraits.
+3. Team photos: add real portraits to `scripts/images/manifest.json` (or keep stock photos only if you are comfortable with them), run `npm run images:fetch`, and delete the stock portraits you replaced.
 4. `src/content/reviews.ts`: copy real ratings and counts from Google, Facebook and Trustpilot, add the profile and "write a review" links, and add client quotes only with written permission (`consent: true`).
 5. Accounts and environment (Vercel and `.env.local`, see `.env.example`): Resend with a verified sending domain, Cal.com event types `phone`, `video` and `in-person`, Crisp website ID, `NEXT_PUBLIC_SITE_URL`.
 6. Set `site.placeholder` to `false`. This removes the sample notices and allows indexing (`robots.txt` and page metadata).
