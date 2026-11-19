@@ -1,6 +1,7 @@
 import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
 import { type Answers, freeAlternatives, isBirthMonth, isZip, match, matchTitle, windowFor } from '../src/lib/match/engine.ts';
+import { home } from '../src/content/home.ts';
 
 const today = '2026-11-17';
 const base: Answers = { zip: '78701', birthMonth: '1961-12', work: 'none', doctors: 'skip', drugs: 'skip', budget: 'unsure', travel: 'sometimes' };
@@ -72,5 +73,18 @@ describe('AI Plan Match rules', () => {
     assert.ok(!isBirthMonth('1961-13'));
     assert.equal(matchTitle('medigap'), 'Original Medicare with a Medigap plan');
     assert.equal(matchTitle('nonsense'), undefined);
+  });
+});
+
+describe('home plan match example', () => {
+  it('is a real engine result: one coverage type, three reasons, no company, no dates', () => {
+    const e = home.matchBox.example;
+    const m = match(e.answers, e.today);
+    assert.equal(m.type, 'medigap');
+    assert.equal(new Set(m.reasons).size, 3);
+    assert.ok(m.tradeoffs.length >= 2);
+    assert.equal(m.window, undefined);
+    assert.doesNotMatch(JSON.stringify(m), /Humana|UnitedHealthcare|Aetna|Cigna|Mutual of Omaha|Blue Cross|Wellcare/i);
+    assert.match(e.label, /example/i);
   });
 });
