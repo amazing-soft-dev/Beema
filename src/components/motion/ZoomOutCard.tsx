@@ -13,7 +13,8 @@ import { zoomSpring } from '@/lib/motion';
  *   phone            no effect
  * Opacity stays 1. The start pose comes from CSS (.zoom-card in motion.css), so it is right
  * before JavaScript loads; the outer box is observed because it is never transformed.
- * Reduced motion, print and no JavaScript show the card in place.
+ * Reduced motion, print and no JavaScript show the card in place, and so does a page that
+ * opens or jumps below the card before it was ever half in view.
  */
 export function ZoomOutCard({ children, className = '' }: { children: ReactNode; className?: string }) {
   const outer = useRef<HTMLDivElement>(null);
@@ -21,9 +22,28 @@ export function ZoomOutCard({ children, className = '' }: { children: ReactNode;
   const inView = useInView(outer, { once: true, amount: 0.5 });
   const reduce = useReducedMotion();
 
+  // Already scrolled past it (a reload mid-page, the back button, a link to a lower section,
+  // a fast jump): the "half in view" moment never comes, so the card would stay enlarged over
+  // the next section. Once its top is above the viewport while it still waits, show it in place.
   useEffect(() => {
     const el = inner.current;
-    if (!el || !inView || reduce) return;
+    const box = outer.current;
+    if (!el || !box) return;
+    const settleIfPassed = () => {
+      if (el.dataset.zoom !== 'pending') return window.removeEventListener('scroll', settleIfPassed);
+      if (box.getBoundingClientRect().top < 0) {
+        el.dataset.zoom = 'done';
+        window.removeEventListener('scroll', settleIfPassed);
+      }
+    };
+    settleIfPassed();
+    window.addEventListener('scroll', settleIfPassed, { passive: true });
+    return () => window.removeEventListener('scroll', settleIfPassed);
+  }, []);
+
+  useEffect(() => {
+    const el = inner.current;
+    if (!el || !inView || reduce || el.dataset.zoom !== 'pending') return;
     const start = new DOMMatrix(getComputedStyle(el).transform === 'none' ? undefined : getComputedStyle(el).transform);
     // Hand the pose from CSS to inline values, then spring both to rest.
     el.dataset.zoom = 'running';
