@@ -19,8 +19,9 @@ const getLayout = (): Layout => (window.matchMedia(query).matches ? 'fan' : 'fla
  * Framer Services fan carousel (audit/components/services-carousel.md). From 810px the active
  * card sits flat in the middle and its neighbours tilt away (±7°, skew ±4°), narrow to 83% and
  * dim to 50%; arrows step one card and every card moves on one spring (k 260, c 32). Phones get
- * a flat slideshow. No autoplay. Only the active card is in the tab order; the position is
- * announced. Reduced motion: the spring becomes instant (MotionConfig).
+ * a flat slideshow. No autoplay. Clicking a side card brings it to the middle. Only the active
+ * card is in the tab order; the position is announced. Reduced motion: the spring becomes
+ * instant (MotionConfig).
  */
 export function FanCarousel({ items, label, start = 0 }: { items: { key: string; node: ReactNode }[]; label: string; start?: number }) {
   const [index, setIndex] = useState(start);
@@ -51,7 +52,6 @@ export function FanCarousel({ items, label, start = 0 }: { items: { key: string;
               <motion.div
                 key={item.key}
                 aria-hidden={d !== 0}
-                inert={d !== 0}
                 aria-roledescription="slide"
                 aria-label={`${i + 1} of ${count}`}
                 className="absolute top-0 left-1/2 h-full"
@@ -71,7 +71,25 @@ export function FanCarousel({ items, label, start = 0 }: { items: { key: string;
                 }
                 transition={carouselSpring}
               >
-                {item.node}
+                {/* Side cards keep their links out of reach: inert, so nothing inside can be focused or followed. */}
+                <div inert={d !== 0} className="h-full">
+                  {item.node}
+                </div>
+                {/*
+                  Clicking or tapping a visible side card brings it to the middle. Pointer only:
+                  keyboard and screen reader users already have the arrows and arrow keys, so the
+                  overlay stays out of the tab order inside the hidden slide.
+                */}
+                {d !== 0 && far <= 2 && (
+                  <button
+                    type="button"
+                    tabIndex={-1}
+                    onClick={() => go(i)}
+                    className="absolute inset-0 cursor-pointer rounded-card hover:ring-2 hover:ring-white/60"
+                  >
+                    <span className="sr-only">Show card {i + 1} of {count}</span>
+                  </button>
+                )}
               </motion.div>
             );
           })}
