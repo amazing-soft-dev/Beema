@@ -46,38 +46,39 @@ export function SiteFooter() {
       </h2>
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
         <div className="flex flex-col gap-10 pb-12">
-          <div className="flex flex-col gap-6">
-            <Link href="/" className="inline-flex min-h-12 items-center gap-3 self-start">
-              <LogoMark size={58} />
-              <span className="font-display text-2xl font-semibold text-white">{site.name}</span>
-              <span className="sr-only">, home page</span>
-            </Link>
-            <p>{site.tagline} Our help is free to you.</p>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <a href={`tel:${site.phone.tel}`} className="u-line inline-flex min-h-12 items-center gap-3 text-xl font-semibold">
-                  <Icon icon={Phone} weight="fill" />
-                  {site.phone.display}
-                </a>
-                <p className="ml-9">
-                  {site.tty.display}. {site.hours.map((h) => `${h.days}, ${h.time}`).join('; ')}.
-                </p>
-              </li>
-              <li>
-                <a href={`mailto:${site.email}`} className="u-line inline-flex min-h-12 items-center gap-3">
-                  <Icon icon={Envelope} />
-                  {site.email}
-                </a>
-              </li>
-              <li className="flex gap-3">
+          {/* Brand and contact details side by side from 810px: logo and blurb, phone and hours, email and address. */}
+          <div className="grid gap-6 md:grid-cols-[1.1fr_1fr_1fr] md:gap-8">
+            <div className="flex flex-col gap-3">
+              <Link href="/" className="inline-flex min-h-12 items-center gap-3 self-start">
+                <LogoMark size={44} />
+                <span className="font-display text-xl font-semibold text-white">{site.name}</span>
+                <span className="sr-only">, home page</span>
+              </Link>
+              <p className="max-w-[36ch]">{site.tagline} Our help is free to you.</p>
+            </div>
+            <div>
+              <a href={`tel:${site.phone.tel}`} className="u-line inline-flex min-h-12 items-center gap-3 text-xl font-semibold">
+                <Icon icon={Phone} weight="fill" />
+                {site.phone.display}
+              </a>
+              <p className="ml-9 text-base">
+                {site.tty.display}. {site.hours.map((h) => `${h.days}, ${h.time}`).join('; ')}.
+              </p>
+            </div>
+            <div>
+              <a href={`mailto:${site.email}`} className="u-line inline-flex min-h-12 items-center gap-3">
+                <Icon icon={Envelope} />
+                {site.email}
+              </a>
+              <div className="flex gap-3 text-base">
                 <Icon icon={MapPin} className="mt-1 shrink-0" />
                 <address className="not-italic">
                   {address.street}
                   <br />
                   {address.city}, {address.region} {address.postalCode}
                 </address>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
 
           {/*
