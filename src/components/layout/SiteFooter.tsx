@@ -112,30 +112,39 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-white/20 py-10 text-base">
+        {/* Required notices, word for word, in two columns from 1200px. */}
+        <div className="grid gap-4 border-t border-white/20 py-8 text-base lg:grid-cols-2 lg:gap-x-12">
+          <div className="flex flex-col gap-4">
+            <p>
+              {site.legalName} is a licensed insurance agency in {states}. National Producer Number (NPN) {site.npn}.{' '}
+              <Link href="/legal/licensing" className="underline underline-offset-4">
+                Licensing details
+              </Link>
+            </p>
+            <CmsDisclaimer variant="plain" />
+          </div>
+          <div className="flex flex-col gap-4">
+            <GovDisclaimer />
+            <p>
+              For free, unbiased help you can also use{' '}
+              <a href="https://www.medicare.gov/plan-compare/" className="underline underline-offset-4">
+                Medicare.gov Plan Finder
+              </a>
+              , call 1-800-MEDICARE (1-800-633-4227, TTY 1-877-486-2048), or contact your local{' '}
+              <a href="https://www.shiphelp.org/" className="underline underline-offset-4">
+                State Health Insurance Assistance Program (SHIP)
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+
+        {/* Bottom bar: copyright on the left, the color theme choices on the right. */}
+        <div className="flex flex-col-reverse gap-4 border-t border-white/20 py-6 text-base md:flex-row md:items-center md:justify-between">
           <p>
-            {site.legalName} is a licensed insurance agency in {states}. National Producer Number (NPN) {site.npn}.{' '}
-            <Link href="/legal/licensing" className="underline underline-offset-4">
-              Licensing details
-            </Link>
-          </p>
-          <CmsDisclaimer variant="plain" />
-          <GovDisclaimer />
-          <p>
-            For free, unbiased help you can also use{' '}
-            <a href="https://www.medicare.gov/plan-compare/" className="underline underline-offset-4">
-              Medicare.gov Plan Finder
-            </a>
-            , call 1-800-MEDICARE (1-800-633-4227, TTY 1-877-486-2048), or contact your local{' '}
-            <a href="https://www.shiphelp.org/" className="underline underline-offset-4">
-              State Health Insurance Assistance Program (SHIP)
-            </a>
-            .
-          </p>
-          <ThemeChoices className="mt-4" />
-          <p className="pt-4">
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </p>
+          <ThemeChoices inline />
         </div>
       </div>
 
