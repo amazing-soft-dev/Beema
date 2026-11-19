@@ -172,6 +172,26 @@
       "focal": "50% 30%"
     },
     {
+      "id": "checklist-ticking",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/person-writing-bucket-list-on-book-RLw-UC03Gwc",
+      "downloadUrl": "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=2400&q=85&fm=jpg",
+      "photographer": "Glenn Carstens-Peters",
+      "photographerUrl": "https://unsplash.com/@glenncarstenspeters",
+      "alt": "A hand ticking off items on a handwritten checklist",
+      "focal": "70% 50%"
+    },
+    {
+      "id": "numbers-calendar",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/a-calendar-with-red-push-buttons-pinned-to-it-bwOAixLG0uc",
+      "downloadUrl": "https://images.unsplash.com/photo-1633526543814-9718c8922b7a?w=2400&q=85&fm=jpg",
+      "photographer": "Towfiqu barbhuiya",
+      "photographerUrl": "https://unsplash.com/@towfiqu999999",
+      "alt": "A calendar page with red pins on several dates and one date circled",
+      "focal": "50% 50%"
+    },
+    {
       "id": "reviews-couple-laughing",
       "source": "unsplash",
       "sourceUrl": "https://unsplash.com/photos/elderly-couple-laughing-together-indoors-g6_KzjW26nQ",
