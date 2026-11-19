@@ -34,12 +34,16 @@ const options: { value: ThemeChoice; label: string; icon: typeof Sun }[] = [
   { value: 'dark', label: 'Dark', icon: Moon },
 ];
 
-/** Three labelled radio buttons: device setting, light or dark. */
-export function ThemeChoices({ className = '' }: { className?: string }) {
+/**
+ * Three labelled radio buttons: device setting, light or dark. `inline` puts the legend
+ * beside the choices on one row (the footer's bottom bar); a floated legend still names
+ * the group for screen readers.
+ */
+export function ThemeChoices({ className = '', inline = false }: { className?: string; inline?: boolean }) {
   const choice = useChoice();
   return (
     <fieldset className={className}>
-      <legend className="t-label mb-3 font-semibold">Color theme</legend>
+      <legend className={`t-label font-semibold ${inline ? 'float-left me-4 leading-12' : 'mb-3'}`}>Color theme</legend>
       <div className="flex flex-wrap gap-2">
         {options.map((o) => (
           <label

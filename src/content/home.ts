@@ -98,6 +98,16 @@ export const home = {
       'Lists free help too: Medicare.gov Plan Finder, 1-800-MEDICARE and your SHIP.',
       'A licensed agent reviews every match with you before any enrollment.',
     ],
+    /**
+     * Sample shown beside the box. The result is worked out by the real match engine from
+     * these answers (MatchPreview), so it always reads exactly like the tool. Not a real person.
+     */
+    example: {
+      label: 'Example result',
+      caption: 'Example for someone who travels often, wants to keep their doctors and prefers predictable costs.',
+      today: '2026-01-15',
+      answers: { zip: '00000', birthMonth: '1955-06', work: 'none', doctors: 'keep-specific', drugs: 'few', budget: 'predictable', travel: 'often' },
+    },
   },
   checklist: { title: 'Turning 65? Get the free checklist' },
   articles: { title: 'Plain answers from our blog' },
