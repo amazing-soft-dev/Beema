@@ -114,12 +114,12 @@
     {
       "id": "team-advisor-1",
       "source": "unsplash",
-      "sourceUrl": "https://unsplash.com/photos/woman-in-black-blazer-smiling-RIt88XBR3G0",
-      "downloadUrl": "https://images.unsplash.com/photo-1581065178047-8ee15951ede6?w=2400&q=85&fm=jpg",
-      "photographer": "Annika Palmari",
-      "photographerUrl": "https://unsplash.com/@palmariannika",
-      "alt": "Portrait of a smiling advisor in a black blazer",
-      "focal": "50% 25%"
+      "sourceUrl": "https://unsplash.com/photos/a-woman-in-a-red-suit-posing-for-a-picture-fFZiuze6TcM",
+      "downloadUrl": "https://images.unsplash.com/photo-1712799891569-f651f9110365?w=2400&q=85&fm=jpg",
+      "photographer": "Rosa Rafael",
+      "photographerUrl": "https://unsplash.com/@rosarafael",
+      "alt": "Portrait of a confident advisor in a red blazer",
+      "focal": "45% 25%"
     },
     {
       "id": "team-advisor-2",
