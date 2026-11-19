@@ -6,10 +6,10 @@ Two checklists: one to launch with real business data, and one to repeat every f
 
 1. In `src/content/site.ts`, replace every value marked `TODO(#57)`: name, legal name, URL, phone, email, hours, address, founding year, NPN, licensed states with license numbers, and the CMS disclaimer counts (`cms.organizations`, `cms.products`) for the plans you actually represent.
 2. `src/content/about.ts`: replace the founder story. `src/content/team.ts`: real advisors, states and bios (one entry switches the site to solo mode).
-3. Team photos: add real portraits to `scripts/images/manifest.json` (or keep stock photos only if you are comfortable with them), run `npm run images:fetch`, remove the sample portraits.
+3. Team photos: add real portraits to `scripts/images/manifest.json` (or keep stock photos only if you are comfortable with them), run `npm run images:fetch`, and delete the stock portraits you replaced.
 4. `src/content/reviews.ts`: copy real ratings and counts from Google, Facebook and Trustpilot, add the profile and "write a review" links, and add client quotes only with written permission (`consent: true`).
 5. Accounts and environment (Vercel and `.env.local`, see `.env.example`): Resend with a verified sending domain, Cal.com event types `phone`, `video` and `in-person`, Crisp website ID, `NEXT_PUBLIC_SITE_URL`.
-6. Set `site.placeholder` to `false`. This removes the sample notices and allows indexing (`robots.txt` and page metadata).
+6. Set `site.placeholder` to `false`. This allows indexing (`robots.txt` and page metadata).
 7. Run `npm run pdf` and `npm run pdf:library` so every PDF carries the real details, and commit them.
 8. Compliance review (below), then merge.
 
@@ -38,7 +38,7 @@ Have the agency's compliance lead or counsel confirm:
 4. **Guide-page PDFs.** `npm run pdf` (CI's `pdf:check` fails until you do).
 5. **CMS disclaimer counts.** Update `cms.organizations` and `cms.products` if your carrier contracts changed.
 6. **Compliance pages.** Re-read the AI Tool & Health Data Notice, Subscription Terms, Product Disclosures and the blog articles' cost figures (each shows its plan year), and bump `planYear` in `src/content/blog/`.
-7. **AI Plan Match.** Review a sample of the `plan_match` log lines with a licensed agent, and adjust the rules if any result looks steered or wrong.
+7. **AI Plan Match.** Review a selection of recent `plan_match` log lines with a licensed agent, and adjust the rules if any result looks steered or wrong.
 8. **Review your analytics** (`guide_download`, `call_click`, `form_submit`, `tool_result`) to see which guides seniors use most, and refresh the weakest ones.
 9. Ship the changes through the normal pull request flow, ideally by October 1.
 

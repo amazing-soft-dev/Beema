@@ -2,9 +2,9 @@
  * Single import surface for business facts, navigation and required notices.
  * Long-form guide copy lives in src/content/guides/* and is re-exported here as it lands.
  *
- * PLACEHOLDER DATA: every value marked TODO(#57) is a realistic sample, not real
- * business information. While `placeholder` is true the site is noindexed and shows a
- * "Sample content" ribbon (see src/components/PlaceholderRibbon.tsx).
+ * PLACEHOLDER DATA: every value marked TODO(#57) is a realistic stand-in, not real
+ * business information. While `placeholder` is true the site is noindexed and
+ * robots.txt blocks crawling (see src/app/layout.tsx and src/app/robots.ts).
  */
 
 export type StateLicense = {

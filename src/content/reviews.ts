@@ -1,7 +1,7 @@
 /**
  * Reviews. Nothing here may be invented: ratings, counts and quotes are added only from
  * real review profiles and with each client's written permission (TODO(#57)).
- * Empty values render honest "coming soon" states instead of sample numbers.
+ * Empty values render honest "coming soon" states instead of made-up numbers.
  */
 export type Platform = {
   name: 'Google' | 'Facebook' | 'Trustpilot';

@@ -211,7 +211,6 @@ export default async function LibraryPrintPage({ params }: { params: Promise<{ s
         <p className="mt-2 text-[14pt]">
           {guide.planYear} plan year · Last updated {fmt(guide.updated)} · Questions? Call {site.phone.display} ({site.tty.display})
         </p>
-        {site.placeholder && <p className="mt-1 text-[12pt] font-semibold">Sample content: business details are placeholders.</p>}
     </header>
   );
   // Plan §5: every PDF carries the phone number (header) and the TPMO disclaimer; add-on PDFs

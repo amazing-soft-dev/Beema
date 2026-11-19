@@ -3,7 +3,6 @@ import { Geist } from 'next/font/google';
 import Script from 'next/script';
 import type { ReactNode } from 'react';
 import { preload } from 'react-dom';
-import { PlaceholderRibbon } from '@/components/PlaceholderRibbon';
 import { Analytics } from '@/components/analytics/Analytics';
 import { CallTracking } from '@/components/analytics/CallTracking';
 import { ChatButton } from '@/components/chat/ChatButton';
@@ -63,7 +62,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         >
           Skip to main content
         </a>
-        <PlaceholderRibbon />
         <SiteHeader />
         {/* Pages render sections, not their own <main>. */}
         <PrintHeader />

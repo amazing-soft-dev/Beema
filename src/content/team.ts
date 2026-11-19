@@ -1,8 +1,8 @@
 /**
- * Advisors. PLACEHOLDER: names, bios, states and photos are samples, marked TODO(#57).
- * While site.placeholder is true the team page says so, so stock portraits never pass
- * for real staff. With a single entry the site switches to "solo" mode: About shows a
- * founder bio and the team page shows one card.
+ * Advisors. PLACEHOLDER: names, bios, states and photos are stand-ins, marked TODO(#57);
+ * swap in the real team (and their portraits in scripts/images/manifest.json) before
+ * launch. With a single entry the site switches to "solo" mode: About shows a founder
+ * bio and the team page shows one card.
  */
 export type Advisor = {
   slug: string;
