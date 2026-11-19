@@ -56,9 +56,16 @@
   --radius-card: 16px;
   --radius-card-sm: 8px;
 
-  /* Real Beema breakpoints: tablet 810, desktop 1200 */
+  /*
+   * Real Beema breakpoints: tablet 810, desktop 1200. The others keep Tailwind's default
+   * widths but are restated in px: Tailwind cannot order rem breakpoints against px ones and
+   * emitted sm: after md:/lg:, so sm: utilities overrode them on tablets and desktops.
+   */
+  --breakpoint-sm: 640px;
   --breakpoint-md: 810px;
   --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
 }
 
 /*
