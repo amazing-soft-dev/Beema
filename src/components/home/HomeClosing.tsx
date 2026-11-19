@@ -11,6 +11,7 @@ import { ArrowSwap } from '@/components/ui/ArrowSwap';
 import { ButtonLink } from '@/components/ui/Button';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Icon } from '@/components/ui/Icon';
+import { Photo } from '@/components/ui/Photo';
 import { articles } from '@/content/blog';
 import { findGuide } from '@/content/guides-library';
 import { home } from '@/content/home';
@@ -96,7 +97,7 @@ export function LatestArticles() {
 }
 
 /**
- * Framer CTA banner: a dark band whose background drifts against the scroll (parallax), the
+ * Framer CTA banner: a dark band whose advisor photo drifts against the scroll (parallax), the
  * heading rising into view, a three-point checklist and the calls to action, then the
  * not-government notice.
  */
@@ -105,11 +106,19 @@ export function HomeCta() {
   return (
     <section className="pb-16 md:pb-24" aria-labelledby="cta-heading">
       <div className="container-x flex flex-col gap-6">
-        <div className="on-dark relative isolate overflow-hidden rounded-card bg-ink px-6 pt-24 pb-10 text-white md:px-12 md:pt-40 md:pb-14">
-          <Parallax className="-z-10">
-            <div className="h-full w-full bg-[radial-gradient(circle_at_80%_20%,rgba(245,196,81,.35),transparent_45%),radial-gradient(circle_at_10%_90%,rgba(69,201,207,.25),transparent_50%)]" />
-          </Parallax>
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+        <div className="on-dark relative isolate overflow-hidden rounded-card bg-ink text-white">
+          {/*
+            The advisor photo drifts against the scroll. From 1200px it fills the band and an ink
+            scrim keeps the left half solid for the text; below that it is a block above the text,
+            fading into the ink, so the copy never sits on the photo.
+          */}
+          <div className="relative aspect-[16/10] md:aspect-[2/1] lg:absolute lg:inset-0 lg:-z-10 lg:aspect-auto">
+            <Parallax>
+              <Photo id="cta-advisor-headset" rounded={false} sizes="(min-width: 1280px) 1200px, 100vw" className="!absolute inset-0" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgb(11_37_69/0)_55%,#0b2545_100%)] lg:bg-[linear-gradient(90deg,#0b2545_0%,#0b2545_28%,rgb(11_37_69/0.7)_50%,rgb(11_37_69/0.1)_78%)]" />
+            </Parallax>
+          </div>
+          <div className="flex flex-col gap-10 px-6 pt-2 pb-10 md:px-12 md:pb-14 lg:flex-row lg:items-end lg:justify-between lg:pt-40">
             <div className="flex max-w-[30rem] flex-col gap-6">
               <TextAppear id="cta-heading" className="t-h2 text-white">
                 {c.title}
@@ -124,7 +133,7 @@ export function HomeCta() {
               </Reveal>
               <p className="text-base">{site.tty.display}</p>
             </div>
-            <Reveal as="ul" stagger={1} className="flex flex-col gap-3 rounded-card-sm bg-white/10 p-6">
+            <Reveal as="ul" stagger={1} className="flex flex-col gap-3 rounded-card-sm bg-ink/75 p-6 ring-1 ring-white/15 backdrop-blur-md">
               {c.points.map((p) => (
                 <li key={p} className="flex items-center gap-3">
                   <Icon icon={Check} weight="bold" className="shrink-0 text-gold" />

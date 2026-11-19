@@ -8,6 +8,7 @@ import { TextAppear } from '@/components/motion/TextAppear';
 import { ArrowSwap } from '@/components/ui/ArrowSwap';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Icon } from '@/components/ui/Icon';
+import { Photo } from '@/components/ui/Photo';
 import { availableMenu } from '@/content/site';
 import { existingRoutes } from '@/lib/routes';
 import { buildMetadata } from '@/lib/seo';
@@ -37,6 +38,7 @@ export default function ServicesPage() {
         eyebrow="Our services"
         title="Medicare help, and the coverage around it"
         lead="Start with the free plan match, read the guide for your situation, or talk with a licensed agent. Each group below is kept separate, so our tool and the extra policies never look like Medicare plans."
+        aside={<Photo id="services-advisor-couple" priority sizes="(min-width: 1200px) 560px, 100vw" className="aspect-[4/3] w-full" />}
         breadcrumb={<Breadcrumb trail={[{ label: 'Services', href: '/services' }]} />}
       />
 

@@ -12,6 +12,66 @@
       "focal": "50% 35%"
     },
     {
+      "id": "service-plan-match",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/elderly-couple-smiling-while-looking-at-laptop-together-XIdcEnBVHfI",
+      "downloadUrl": "https://images.unsplash.com/photo-1758686254493-7b3e49a8f325?w=2400&q=85&fm=jpg",
+      "photographer": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/@silverkblack",
+      "alt": "An older couple smiling as they look at a laptop together at home",
+      "focal": "55% 35%"
+    },
+    {
+      "id": "service-turning-65",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/man-kissing-woman-on-check-beside-body-of-water-glpYh1cWf0o",
+      "downloadUrl": "https://images.unsplash.com/photo-1514415008039-efa173293080?w=2400&q=85&fm=jpg",
+      "photographer": "Esther Ann",
+      "photographerUrl": "https://unsplash.com/@estherann",
+      "alt": "An older man kissing his smiling wife on the cheek by the sea",
+      "focal": "60% 40%"
+    },
+    {
+      "id": "service-medigap",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/doctor-consulting-with-an-elderly-patient-in-an-office-Ey-IxmbZ5TQ",
+      "downloadUrl": "https://images.unsplash.com/photo-1758691462858-f1286e5daf40?w=2400&q=85&fm=jpg",
+      "photographer": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/@silverkblack",
+      "alt": "A doctor talking with an older man in her office",
+      "focal": "40% 35%"
+    },
+    {
+      "id": "service-medicare-advantage",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/group-of-women-exercising-together-in-a-park-YFzKE1P6l80",
+      "downloadUrl": "https://images.unsplash.com/photo-1758798458635-f01402b40919?w=2400&q=85&fm=jpg",
+      "photographer": "Khanh Do",
+      "photographerUrl": "https://unsplash.com/@donguyenkhanhs",
+      "alt": "A group of women stretching together at an outdoor exercise class in a park",
+      "focal": "45% 35%"
+    },
+    {
+      "id": "service-part-d",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/pharmacist-showing-pill-bottle-to-woman-NNpo-liY5aU",
+      "downloadUrl": "https://images.unsplash.com/photo-1576091358783-a212ec293ff3?w=2400&q=85&fm=jpg",
+      "photographer": "National Cancer Institute",
+      "photographerUrl": "https://unsplash.com/@nci",
+      "alt": "A pharmacist explaining a prescription bottle to an older woman",
+      "focal": "50% 30%"
+    },
+    {
+      "id": "service-beyond-medicare",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/an-elderly-woman-holding-a-pair-of-glasses-T_yNRLnYau8",
+      "downloadUrl": "https://images.unsplash.com/photo-1633158832433-11a30ad1e10d?w=2400&q=85&fm=jpg",
+      "photographer": "Towfiqu barbhuiya",
+      "photographerUrl": "https://unsplash.com/@towfiqu999999",
+      "alt": "An older woman's hands holding a pair of reading glasses",
+      "focal": "50% 50%"
+    },
+    {
       "id": "about-advisor-meeting",
       "source": "unsplash",
       "sourceUrl": "https://unsplash.com/photos/a-man-and-woman-sitting-at-a-table-with-a-laptop-M5k978V3qBc",
@@ -40,6 +100,16 @@
       "photographerUrl": "https://unsplash.com/@mbennettphoto",
       "alt": "An older couple sitting on a bench looking out at the sea and mountains",
       "focal": "50% 60%"
+    },
+    {
+      "id": "cta-advisor-headset",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/man-in-white-button-up-shirt-smiling-WaGMKmJ2F0Y",
+      "downloadUrl": "https://images.unsplash.com/photo-1603714228681-b399854b8f80?w=2400&q=85&fm=jpg",
+      "photographer": "LumenSoft Technologies",
+      "photographerUrl": "https://unsplash.com/@candelarms",
+      "alt": "A smiling advisor wearing a headset, ready to take a call",
+      "focal": "70% 35%"
     },
     {
       "id": "team-advisor-1",
@@ -130,6 +200,36 @@
       "photographerUrl": "https://unsplash.com/@silverkblack",
       "alt": "An older man with glasses reading a book on his sofa",
       "focal": "60% 35%"
+    },
+    {
+      "id": "services-advisor-couple",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/man-in-black-suit-jacket-and-woman-in-pink-and-white-floral-dress-dC_KGjeCId8",
+      "downloadUrl": "https://images.unsplash.com/photo-1631217875019-8cb2649c3478?w=2400&q=85&fm=jpg",
+      "photographer": "National Cancer Institute",
+      "photographerUrl": "https://unsplash.com/@nci",
+      "alt": "An advisor going over papers on a clipboard with an older couple",
+      "focal": "55% 35%"
+    },
+    {
+      "id": "plans-pricing-bench",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/a-man-and-a-woman-sitting-on-a-park-bench-KshCdlnfP30",
+      "downloadUrl": "https://images.unsplash.com/photo-1706806594887-85582f65b32a?w=2400&q=85&fm=jpg",
+      "photographer": "Centre for Ageing Better",
+      "photographerUrl": "https://unsplash.com/@ageing_better",
+      "alt": "An older man and woman chatting over cups of tea at a picnic table in a park",
+      "focal": "50% 45%"
+    },
+    {
+      "id": "contact-phone-smile",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/elderly-woman-smiling-while-looking-at-smartphone-cHbyGVOQspk",
+      "downloadUrl": "https://images.unsplash.com/photo-1758691031979-6128d4029604?w=2400&q=85&fm=jpg",
+      "photographer": "Vitaly Gariev",
+      "photographerUrl": "https://unsplash.com/@silverkblack",
+      "alt": "An older woman smiling as she looks at her phone at home",
+      "focal": "45% 35%"
     }
   ]
 }
