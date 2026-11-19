@@ -105,7 +105,6 @@ export const home = {
     example: {
       label: 'Example result',
       caption: 'Example for someone who travels often, wants to keep their doctors and prefers predictable costs.',
-      review: 'A licensed agent reviews every match with you before any enrollment.',
       today: '2026-01-15',
       answers: { zip: '00000', birthMonth: '1955-06', work: 'none', doctors: 'keep-specific', drugs: 'few', budget: 'predictable', travel: 'often' },
     },

@@ -1,4 +1,4 @@
-import { CheckCircle, MinusCircle, ShieldCheck } from '@phosphor-icons/react/dist/ssr';
+import { CheckCircle, Info, MinusCircle } from '@phosphor-icons/react/dist/ssr';
 import { Icon } from '@/components/ui/Icon';
 import { home } from '@/content/home';
 import { match } from '@/lib/match/engine';
@@ -8,7 +8,8 @@ import { match } from '@/lib/match/engine';
  * coverage type (never a company), three reasons it fits and the main trade-offs, styled
  * like the real result card. It is worked out by the real engine from the example answers
  * in home.ts, so it can never drift from the tool, and it is labelled as an example twice
- * (badge and caption). A light card, so it keeps ink text inside the dark band in both themes.
+ * (badge and caption). The licensed-agent review is the last card under it, so it is not
+ * repeated here. A light card, so it keeps ink text inside the dark band in both themes.
  */
 export function MatchPreview({ className = '' }: { className?: string }) {
   const e = home.matchBox.example;
@@ -43,9 +44,9 @@ export function MatchPreview({ className = '' }: { className?: string }) {
         </ul>
       </div>
       <figcaption className="flex gap-3 border-t border-line pt-4 text-base">
-        <Icon icon={ShieldCheck} weight="fill" className="mt-0.5 shrink-0 text-navy-700" />
+        <Icon icon={Info} weight="fill" className="mt-0.5 shrink-0 text-navy-700" />
         <span>
-          {e.caption} {e.review}
+          {e.caption}
         </span>
       </figcaption>
     </figure>
