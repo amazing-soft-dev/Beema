@@ -17,13 +17,13 @@ import { bookCall, planMatch, site } from '@/content/site';
 export function HomeHero() {
   const h = home.hero;
   return (
-    <section data-hero="dark" className="under-header on-dark relative isolate flex min-h-[720px] flex-col justify-end overflow-hidden text-white lg:min-h-[900px]" aria-labelledby="home-title">
+    <section data-hero="dark" className="under-header on-dark relative isolate hero-screen flex flex-col justify-end overflow-hidden text-white" aria-labelledby="home-title">
       <Photo id="home-hero-couple" priority rounded={false} sizes="100vw" className="!absolute inset-0 -z-20" />
       {/* Framer home-hero overlay, darkened a little so 18px text stays readable on any crop. */}
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,.6)_0%,rgba(0,0,0,.42)_50%,rgba(0,0,0,.62)_100%)]" />
 
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-6 pt-10 pb-4 lg:px-10">
-        <div className="flex max-w-[44rem] flex-col gap-6">
+      <div className="hero-inner mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-6 pt-10 pb-4 lg:px-10">
+        <div className="hero-copy flex max-w-[44rem] flex-col gap-6">
           <Reveal onMount y="md" delay={0.4}>
             <Eyebrow variant="pill" tone="dark" ping className="bg-white/15 backdrop-blur-md">
               {h.eyebrow}
@@ -52,13 +52,18 @@ export function HomeHero() {
           </Reveal>
         </div>
 
-        {/* Framer's wordmark: the brand name across the full width, sitting on the bottom edge. */}
-        <div aria-hidden="true" className="-mb-[2.2vw] overflow-hidden select-none print:hidden">
+        {/*
+          Framer's wordmark: the brand name across the full width, sitting on the bottom edge.
+          The viewBox hugs the glyphs (Switzer 600 at 128 units rises 93 above the baseline and
+          the name has no descenders), so the whole word stays inside the hero at every width;
+          the wrapper only clips the 75px rise while it plays.
+        */}
+        <div aria-hidden="true" className="hero-word overflow-hidden select-none print:hidden">
           <Reveal onMount y="lg" delay={0.4}>
-            <svg viewBox="0 0 1000 120" className="block w-full" focusable="false">
+            <svg viewBox="0 0 1000 104" className="block w-full" focusable="false">
               <text
                 x="500"
-                y="104"
+                y="99"
                 textAnchor="middle"
                 textLength="996"
                 lengthAdjust="spacingAndGlyphs"
