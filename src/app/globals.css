@@ -200,6 +200,10 @@
   a {
     color: inherit;
   }
+  /* A phone number never breaks after its hyphen ("(555) 010-" / "0165"). */
+  a[href^='tel:'] {
+    white-space: nowrap;
+  }
   :focus-visible {
     outline: 3px solid var(--color-focus);
     outline-offset: 3px;
