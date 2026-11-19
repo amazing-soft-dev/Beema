@@ -34,7 +34,8 @@ export function PageIntro({
       className={`under-header ${dark ? 'on-dark bg-ink text-white [&_h1]:text-white' : 'bg-sand'}`}
       data-hero={dark ? 'dark' : undefined}
     >
-      <div className={`container-x grid gap-10 pt-10 pb-16 md:pt-16 md:pb-24 lg:pt-24 lg:pb-32 ${aside ? 'items-center lg:grid-cols-[1.1fr_1fr] lg:gap-16' : ''}`}>
+      {/* Without a photo the band is text only, so it stays compact instead of leaving an empty half. */}
+      <div className={`container-x grid gap-10 ${aside ? 'items-center pt-10 pb-16 md:pt-16 md:pb-24 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:pt-24 lg:pb-32' : 'pt-8 pb-12 md:pt-12 md:pb-16 lg:pt-16 lg:pb-20'}`}>
         <div className="flex max-w-[62ch] flex-col gap-5">
           {breadcrumb}
           <Eyebrow variant="pill" tone={dark ? 'dark' : 'light'} ping className="self-start">
