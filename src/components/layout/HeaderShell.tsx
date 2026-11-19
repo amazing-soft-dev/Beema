@@ -63,20 +63,25 @@ export function HeaderShell({ items, showMatch }: { items: MenuItem[]; showMatch
               <DesktopNav items={items} />
             </nav>
 
-            <div className="flex items-center gap-2">
+            {/*
+              The pill holds 1316px of content at most. With the logo name, the menu and both
+              buttons on one line there is no room for the number as well, so the call link is
+              an icon here (its name says the number) and the number itself is in the top bar.
+              The cluster never shrinks and the labels never wrap.
+            */}
+            <div className="flex shrink-0 items-center gap-2">
               <a
                 href={`tel:${site.phone.tel}`}
                 aria-label={phoneLabel}
-                className="inline-flex min-h-12 min-w-12 items-center justify-center gap-2 rounded-pill px-3 font-semibold lg:max-[1439px]:hidden"
+                className="inline-flex min-h-12 min-w-12 items-center justify-center rounded-pill px-3 font-semibold lg:max-[1439px]:hidden"
               >
                 <Icon icon={Phone} weight="fill" />
-                <span className="hidden 2xl:inline">{site.phone.display}</span>
               </a>
-              <ButtonLink href={bookCall.href} variant={clear ? 'light' : 'secondary'} className="max-lg:hidden" icon={<Icon icon={CalendarCheck} />}>
+              <ButtonLink href={bookCall.href} variant={clear ? 'light' : 'secondary'} className="whitespace-nowrap max-lg:hidden" icon={<Icon icon={CalendarCheck} />}>
                 {bookCall.label}
               </ButtonLink>
               {showMatch && (
-                <ButtonLink href={planMatch.href} className="max-lg:hidden" icon={<Icon icon={Sparkle} weight="fill" />}>
+                <ButtonLink href={planMatch.href} className="whitespace-nowrap max-lg:hidden" icon={<Icon icon={Sparkle} weight="fill" />}>
                   <span className="min-[1440px]:hidden">Free plan match</span>
                   <span className="max-[1439px]:hidden">{planMatch.label}</span>
                 </ButtonLink>
