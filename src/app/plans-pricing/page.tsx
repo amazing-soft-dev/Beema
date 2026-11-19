@@ -8,6 +8,7 @@ import { Reveal } from '@/components/motion/Reveal';
 import { TextAppear } from '@/components/motion/TextAppear';
 import { TierTable } from '@/components/pricing/TierTable';
 import { Icon } from '@/components/ui/Icon';
+import { Photo } from '@/components/ui/Photo';
 import { caregiverFaq, features, notIncluded, tiers } from '@/content/pricing';
 import { freeAlternatives } from '@/lib/match/engine';
 import { buildMetadata } from '@/lib/seo';
@@ -26,6 +27,7 @@ export default function PlansPricingPage() {
         eyebrow="Plans & Pricing"
         title="The match is free. Extra help is optional."
         lead="Basic is free for everyone. Plus and Family add year-round watching and help for caregivers. None of them sells insurance, and none is needed to get advice or enroll."
+        aside={<Photo id="plans-pricing-bench" priority sizes="(min-width: 1200px) 560px, 100vw" className="aspect-[4/3] w-full" />}
         breadcrumb={
           <Breadcrumb
             trail={[

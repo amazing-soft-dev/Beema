@@ -6,6 +6,7 @@ import { TextAppear } from '@/components/motion/TextAppear';
 import { LeadForm } from '@/components/forms/LeadForm';
 import { PageIntro } from '@/components/layout/PageIntro';
 import { Icon } from '@/components/ui/Icon';
+import { Photo } from '@/components/ui/Photo';
 import { site } from '@/content/site';
 import { buildMetadata } from '@/lib/seo';
 
@@ -23,6 +24,7 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="Talk with a licensed agent"
         lead="Call us, email us, or leave your number and we will call you at a time that suits you."
+        aside={<Photo id="contact-phone-smile" priority sizes="(min-width: 1200px) 560px, 100vw" className="aspect-[4/3] w-full" />}
         breadcrumb={<Breadcrumb trail={[{ label: 'Contact', href: '/contact' }]} />}
       />
       <section className="section-y">
