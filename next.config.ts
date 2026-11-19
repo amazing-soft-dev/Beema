@@ -32,7 +32,8 @@ const nextConfig: NextConfig = {
   },
   images: isStaticExport
     ? { loader: 'custom', loaderFile: './src/lib/image-loader.ts' }
-    : { formats: ['image/avif', 'image/webp'] },
+    : // 85 is PHOTO_QUALITY (src/lib/image-widths.ts); Next only serves qualities listed here.
+      { formats: ['image/avif', 'image/webp'], qualities: [85] },
   ...(isStaticExport ? { output: 'export', trailingSlash: true } : {}),
 };
 
