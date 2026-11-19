@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { PHOTO_QUALITY } from '@/lib/image-widths';
 import { photo } from '@/lib/photos';
 
 /**
@@ -24,7 +25,7 @@ export function Photo({
   return (
     // Decorative photos are left out of print and PDFs to save paper.
     <div className={`relative overflow-hidden print:hidden ${rounded ? 'rounded-card' : ''} ${className}`.trim()}>
-      <Image src={p.src} alt={p.alt} fill sizes={sizes} priority={priority} className="object-cover" style={{ objectPosition: p.position }} />
+      <Image src={p.src} alt={p.alt} fill quality={PHOTO_QUALITY} sizes={sizes} priority={priority} className="object-cover" style={{ objectPosition: p.position }} />
     </div>
   );
 }

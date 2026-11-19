@@ -24,7 +24,7 @@ export default function ContactPage() {
         eyebrow="Contact"
         title="Talk with a licensed agent"
         lead="Call us, email us, or leave your number and we will call you at a time that suits you."
-        aside={<Photo id="contact-phone-smile" priority sizes="(min-width: 1200px) 560px, 100vw" className="aspect-[4/3] w-full" />}
+        aside={<Photo id="contact-phone-call" priority sizes="(min-width: 1200px) 560px, 100vw" className="aspect-[4/3] w-full" />}
         breadcrumb={<Breadcrumb trail={[{ label: 'Contact', href: '/contact' }]} />}
       />
       <section className="section-y">

@@ -6,6 +6,8 @@ export const PHOTOS_DIR = 'public/photos';
 export const VARIANTS_DIR = 'public/images';
 /** Keep in sync with src/lib/image-widths.ts (asserted by tests/images-manifest.test.ts). */
 export const WIDTHS = [480, 768, 1200, 1600, 2400];
+/** WebP quality for the static-export variants; keep in sync with PHOTO_QUALITY in src/lib/image-widths.ts. */
+export const WEBP_QUALITY = 85;
 export const LICENSES = {
   unsplash: { name: 'Unsplash License', url: 'https://unsplash.com/license' },
   pexels: { name: 'Pexels License', url: 'https://www.pexels.com/license/' },

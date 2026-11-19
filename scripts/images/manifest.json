@@ -4,12 +4,12 @@
     {
       "id": "home-hero-couple",
       "source": "unsplash",
-      "sourceUrl": "https://unsplash.com/photos/elderly-couple-smiling-together-indoors-VEsvSr1WMrQ",
-      "downloadUrl": "https://images.unsplash.com/photo-1758686253706-5d45c46112f0?w=2400&q=85&fm=jpg",
-      "photographer": "Vitaly Gariev",
-      "photographerUrl": "https://unsplash.com/@silverkblack",
-      "alt": "An older couple smiling together at home, heads close",
-      "focal": "50% 35%"
+      "sourceUrl": "https://unsplash.com/photos/a-man-and-woman-smiling-3Lk0CJLrkkY",
+      "downloadUrl": "https://images.unsplash.com/photo-1668421915771-94a6b00076fc?w=2400&q=85&fm=jpg",
+      "photographer": "Rachel S",
+      "photographerUrl": "https://unsplash.com/@shutterbunny",
+      "alt": "An older couple smiling together, cheek to cheek",
+      "focal": "50% 30%"
     },
     {
       "id": "service-plan-match",
@@ -64,22 +64,22 @@
     {
       "id": "service-beyond-medicare",
       "source": "unsplash",
-      "sourceUrl": "https://unsplash.com/photos/an-elderly-woman-holding-a-pair-of-glasses-T_yNRLnYau8",
-      "downloadUrl": "https://images.unsplash.com/photo-1633158832433-11a30ad1e10d?w=2400&q=85&fm=jpg",
-      "photographer": "Towfiqu barbhuiya",
-      "photographerUrl": "https://unsplash.com/@towfiqu999999",
-      "alt": "An older woman's hands holding a pair of reading glasses",
-      "focal": "50% 50%"
+      "sourceUrl": "https://unsplash.com/photos/an-older-man-with-glasses-smiles-warmly--PT38jgtOxA",
+      "downloadUrl": "https://images.unsplash.com/photo-1778077128777-ccb864dc3ec3?w=2400&q=85&fm=jpg",
+      "photographer": "Hasan Mrad",
+      "photographerUrl": "https://unsplash.com/@hssanmrad",
+      "alt": "An older man in reading glasses with a broad, warm smile",
+      "focal": "50% 35%"
     },
     {
       "id": "about-advisor-meeting",
       "source": "unsplash",
-      "sourceUrl": "https://unsplash.com/photos/a-man-and-woman-sitting-at-a-table-with-a-laptop-M5k978V3qBc",
-      "downloadUrl": "https://images.unsplash.com/photo-1714974528703-e5ad41abc259?w=2400&q=85&fm=jpg",
-      "photographer": "Vitaly Gariev",
-      "photographerUrl": "https://unsplash.com/@silverkblack",
-      "alt": "An advisor with glasses smiling while talking with a client at a table",
-      "focal": "45% 40%"
+      "sourceUrl": "https://unsplash.com/photos/a-woman-sitting-at-a-table-with-two-other-people-OasnhJq9it0",
+      "downloadUrl": "https://images.unsplash.com/photo-1685609240087-a308b156b581?w=2400&q=85&fm=jpg",
+      "photographer": "Age Cymru",
+      "photographerUrl": "https://unsplash.com/@agecymru",
+      "alt": "An advisor with glasses listening to an older client across a table with notes",
+      "focal": "50% 40%"
     },
     {
       "id": "about-cafe-friends",
@@ -124,12 +124,12 @@
     {
       "id": "team-advisor-2",
       "source": "unsplash",
-      "sourceUrl": "https://unsplash.com/photos/a-smiling-man-wearing-glasses-and-a-suit-jacket-zXR0fNWHDDQ",
-      "downloadUrl": "https://images.unsplash.com/photo-1778692258270-bc0e80e975c0?w=2400&q=85&fm=jpg",
-      "photographer": "Kamal Dharma Teja Dasari",
-      "photographerUrl": "https://unsplash.com/@dharma632",
-      "alt": "Portrait of a smiling advisor with glasses in a suit jacket",
-      "focal": "50% 25%"
+      "sourceUrl": "https://unsplash.com/photos/a-man-in-a-suit-and-glasses-posing-for-a-picture-qpyR0WKV_Cs",
+      "downloadUrl": "https://images.unsplash.com/photo-1642257859842-c95f9fa8121d?w=2400&q=85&fm=jpg",
+      "photographer": "Olawale Munna",
+      "photographerUrl": "https://unsplash.com/@shattathecreator",
+      "alt": "Portrait of a smiling advisor with glasses in a dark suit",
+      "focal": "45% 20%"
     },
     {
       "id": "team-advisor-3",
@@ -242,14 +242,14 @@
       "focal": "50% 45%"
     },
     {
-      "id": "contact-phone-smile",
+      "id": "contact-phone-call",
       "source": "unsplash",
-      "sourceUrl": "https://unsplash.com/photos/elderly-woman-smiling-while-looking-at-smartphone-cHbyGVOQspk",
-      "downloadUrl": "https://images.unsplash.com/photo-1758691031979-6128d4029604?w=2400&q=85&fm=jpg",
-      "photographer": "Vitaly Gariev",
-      "photographerUrl": "https://unsplash.com/@silverkblack",
-      "alt": "An older woman smiling as she looks at her phone at home",
-      "focal": "45% 35%"
+      "sourceUrl": "https://unsplash.com/photos/elderly-woman-talking-on-a-mobile-phone-WguyxHY3qoU",
+      "downloadUrl": "https://images.unsplash.com/photo-1763467669416-3b82470c7e73?w=2400&q=85&fm=jpg",
+      "photographer": "Maxim Tolchinskiy",
+      "photographerUrl": "https://unsplash.com/@shaikhulud",
+      "alt": "An older woman in a knitted hat talking on her phone",
+      "focal": "45% 30%"
     }
   ]
 }
