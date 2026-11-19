@@ -51,20 +51,35 @@ export function ChecklistBand() {
   if (!guide) return null;
   return (
     <section className="section-y" aria-labelledby="checklist-heading">
-      <Reveal className="container-x flex flex-col items-start gap-6 rounded-card bg-sand p-6 md:flex-row md:items-center md:justify-between md:p-12">
-        <div className="flex max-w-[52ch] gap-4">
-          <Icon icon={FilePdf} weight="fill" size={44} className="shrink-0 text-navy-700" />
-          <div className="flex flex-col gap-2">
-            <h2 id="checklist-heading" className="t-h3">
-              {home.checklist.title}
-            </h2>
-            <p>
-              {guide.description} Large print with boxes to tick, {guide.planYear} plan year. No sign-up.
-            </p>
+      <div className="container-x">
+        <Reveal className="relative isolate overflow-hidden rounded-card bg-sand">
+          {/*
+            The checklist photo: a block above the text on phones, and from 810px the right part of
+            the card behind a sand scrim that is near solid where the text ends, so the copy and the
+            button keep the card's own contrast. The scrim uses the sand token, so it follows the theme.
+          */}
+          <div className="relative aspect-[16/9] md:absolute md:inset-y-0 md:right-0 md:-z-10 md:aspect-auto md:w-[62%]">
+            <Photo id="checklist-ticking" rounded={false} sizes="(min-width: 1280px) 760px, (min-width: 810px) 62vw, 100vw" className="!absolute inset-0" />
+            <div aria-hidden="true" className="absolute inset-0 bg-linear-to-t from-sand to-transparent to-50% md:bg-linear-to-r md:from-sand md:via-sand/70 md:via-30% md:to-transparent md:to-75%" />
           </div>
-        </div>
-        <DownloadGuideLink slug={guide.slug} />
-      </Reveal>
+          <div className="flex flex-col items-start gap-6 p-6 md:max-w-[36rem] md:p-12">
+            <div className="flex gap-4">
+              <Icon icon={FilePdf} weight="fill" size={44} className="shrink-0 text-navy-700" />
+              <div className="flex flex-col gap-2">
+                <h2 id="checklist-heading" className="t-h3">
+                  {home.checklist.title}
+                </h2>
+                <p>
+                  {guide.description} Large print with boxes to tick, {guide.planYear} plan year. No sign-up.
+                </p>
+              </div>
+            </div>
+            <div className="md:ps-15">
+              <DownloadGuideLink slug={guide.slug} />
+            </div>
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 }
