@@ -40,12 +40,12 @@ export function SiteFooter() {
   const routes = existingRoutes();
   const groups = footerGroups(availableMenu(routes), routes);
   return (
-    <footer className="on-dark overflow-x-clip bg-ink pt-12 text-white md:pt-16 lg:pt-20" aria-labelledby="footer-heading">
+    <footer className="on-dark overflow-x-clip bg-ink pt-12 text-white lg:pt-16" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Site information
       </h2>
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-        <div className="flex flex-col gap-10 pb-12">
+        <div className="flex flex-col gap-8 pb-8">
           {/* Brand and contact details side by side from 810px: logo and blurb, phone and hours, email and address. */}
           <div className="grid gap-6 md:grid-cols-[1.1fr_1fr_1fr] md:gap-8">
             <div className="flex flex-col gap-3">
@@ -87,7 +87,7 @@ export function SiteFooter() {
             neighbours (About, Contact) share one column: at most seven rows at desktop. The nav
             runs the full width so its six columns stay wide enough for one-line labels.
           */}
-          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-white/20 pt-10 md:grid-cols-4 md:gap-x-8 lg:grid-cols-6">
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-white/20 pt-8 md:grid-cols-4 md:gap-x-8 lg:grid-cols-6">
             {footerColumns(groups).map((column) => {
               const wide = column.length === 1 && column[0]!.links.length > WIDE;
               return (
@@ -113,7 +113,7 @@ export function SiteFooter() {
         </div>
 
         {/* Required notices, word for word, in two columns from 1200px. */}
-        <div className="grid gap-4 border-t border-white/20 py-8 text-base lg:grid-cols-2 lg:gap-x-12">
+        <div className="grid gap-4 border-t border-white/20 py-6 text-base lg:grid-cols-2 lg:gap-x-12">
           <div className="flex flex-col gap-4">
             <p>
               {site.legalName} is a licensed insurance agency in {states}. National Producer Number (NPN) {site.npn}.{' '}
@@ -140,7 +140,7 @@ export function SiteFooter() {
         </div>
 
         {/* Bottom bar: copyright on the left, the color theme choices on the right. */}
-        <div className="flex flex-col-reverse gap-4 border-t border-white/20 py-6 text-base md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col-reverse gap-4 border-t border-white/20 py-4 text-base md:flex-row md:items-center md:justify-between">
           <p>
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </p>
@@ -148,8 +148,8 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Framer's giant faded wordmark, cropped at the bottom; it rises 150px into view. */}
-      <div aria-hidden="true" className="mx-auto h-[12vw] max-h-48 max-w-[1440px] overflow-clip px-6 select-none lg:px-10 print:hidden">
+      {/* Framer's faded wordmark, cropped to the top of its letters; it rises 150px into view. */}
+      <div aria-hidden="true" className="mx-auto h-[8vw] max-h-28 max-w-[1440px] overflow-clip px-6 select-none lg:px-10 print:hidden">
         <Reveal y="xxl">
           {/* SVG text: decoration at 20% opacity that scales with the width. */}
           <svg viewBox="0 0 1000 150" className="block w-full" focusable="false">
