@@ -53,12 +53,17 @@ export function ServiceTiles() {
             key: t.href,
             node: (
               <Link href={t.href} className="flex h-full flex-col overflow-hidden rounded-card bg-[linear-gradient(160deg,#154a8a_0%,#0b2545_70%)] text-white ring-1 ring-white/15">
-                <div className="relative isolate h-[48%] shrink-0">
+                <div className="relative isolate h-[42%] shrink-0 md:h-[55%]">
                   {cardPhotos[t.href]}
+                  {/* Fades the photo into the card's navy so the seam disappears. */}
+                  <div aria-hidden="true" className="absolute inset-0 bg-[linear-gradient(180deg,rgb(20_70_130/0)_55%,#144682_100%)]" />
+                  <span className="t-caps absolute top-4 left-4 rounded-pill border border-white/40 bg-ink/75 px-3 py-1 backdrop-blur-sm md:top-6 md:left-6">{t.group}</span>
                 </div>
-                <div className="flex flex-1 flex-col gap-3 p-6 md:p-8">
-                  <span className="t-caps self-start rounded-pill border border-white/40 bg-black/20 px-3 py-1">{t.group}</span>
-                  <Icon icon={icons[t.icon] ?? ShieldCheck} weight="fill" size={40} className="text-gold" />
+                <div className="flex flex-1 flex-col gap-3 px-6 pb-6 md:px-8 md:pb-8">
+                  {/* Gold icon badge riding on the seam between the photo and the text. */}
+                  <span className="relative -mt-7 inline-flex size-14 items-center justify-center rounded-pill bg-gold text-on-gold ring-4 ring-[#144682]">
+                    <Icon icon={icons[t.icon] ?? ShieldCheck} weight="fill" size={28} />
+                  </span>
                   <span className="t-h3 text-white">{t.title}</span>
                   <span>{t.text}</span>
                   <span className="mt-auto inline-flex items-center gap-2 font-semibold text-gold">
