@@ -52,13 +52,18 @@ export function HomeHero() {
           </Reveal>
         </div>
 
-        {/* Framer's wordmark: the brand name across the full width, sitting on the bottom edge. */}
-        <div aria-hidden="true" className="-mb-[2.2vw] overflow-hidden select-none print:hidden">
+        {/*
+          Framer's wordmark: the brand name across the full width, sitting on the bottom edge.
+          The viewBox hugs the glyphs (Switzer 600 at 128 units rises 93 above the baseline and
+          the name has no descenders), so the whole word stays inside the hero at every width;
+          the wrapper only clips the 75px rise while it plays.
+        */}
+        <div aria-hidden="true" className="overflow-hidden select-none print:hidden">
           <Reveal onMount y="lg" delay={0.4}>
-            <svg viewBox="0 0 1000 120" className="block w-full" focusable="false">
+            <svg viewBox="0 0 1000 104" className="block w-full" focusable="false">
               <text
                 x="500"
-                y="104"
+                y="99"
                 textAnchor="middle"
                 textLength="996"
                 lengthAdjust="spacingAndGlyphs"
