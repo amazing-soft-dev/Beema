@@ -42,6 +42,16 @@
       "focal": "50% 60%"
     },
     {
+      "id": "cta-advisor-headset",
+      "source": "unsplash",
+      "sourceUrl": "https://unsplash.com/photos/man-in-white-button-up-shirt-smiling-WaGMKmJ2F0Y",
+      "downloadUrl": "https://images.unsplash.com/photo-1603714228681-b399854b8f80?w=2400&q=85&fm=jpg",
+      "photographer": "LumenSoft Technologies",
+      "photographerUrl": "https://unsplash.com/@candelarms",
+      "alt": "A smiling advisor wearing a headset, ready to take a call",
+      "focal": "70% 35%"
+    },
+    {
       "id": "team-advisor-1",
       "source": "unsplash",
       "sourceUrl": "https://unsplash.com/photos/woman-in-black-blazer-smiling-RIt88XBR3G0",
