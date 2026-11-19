@@ -17,18 +17,35 @@ import { existingRoutes } from '@/lib/routes';
  * Dark section: white text on ink, gold focus ring, dark logo. Also the no-JavaScript
  * fallback for the menu: every menu and legal page is listed here.
  */
+type FooterGroup = ReturnType<typeof footerGroups>[number];
+
+/** A group with more links than this gets two list columns. */
+const WIDE = 6;
+
+/** Packs the footer groups into grid columns: short neighbours (three links or fewer) stack together. */
+function footerColumns(groups: FooterGroup[]): FooterGroup[][] {
+  const columns: FooterGroup[][] = [];
+  for (const group of groups) {
+    const last = columns.at(-1);
+    const shortStack = last?.every((g) => g.links.length <= 3) && last.reduce((n, g) => n + g.links.length, 0) + group.links.length <= WIDE;
+    if (group.links.length <= 3 && last && shortStack) last.push(group);
+    else columns.push([group]);
+  }
+  return columns;
+}
+
 export function SiteFooter() {
   const { address } = site;
   const states = site.licensedStates.map((s) => s.name).join(', ');
   const routes = existingRoutes();
   const groups = footerGroups(availableMenu(routes), routes);
   return (
-    <footer className="on-dark overflow-x-clip bg-ink pt-16 text-white md:pt-24 lg:pt-40" aria-labelledby="footer-heading">
+    <footer className="on-dark overflow-x-clip bg-ink pt-12 text-white md:pt-16 lg:pt-20" aria-labelledby="footer-heading">
       <h2 id="footer-heading" className="sr-only">
         Site information
       </h2>
       <div className="mx-auto max-w-[1440px] px-6 lg:px-10">
-        <div className="grid gap-12 pb-16 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16">
+        <div className="flex flex-col gap-10 pb-12">
           <div className="flex flex-col gap-6">
             <Link href="/" className="inline-flex min-h-12 items-center gap-3 self-start">
               <LogoMark size={58} />
@@ -63,21 +80,34 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <nav aria-label="Footer" className="grid gap-10 sm:grid-cols-2 xl:grid-cols-5">
-            {groups.map((group) => (
-              <div key={group.heading}>
-                <h3 className="t-caps text-gold">{group.heading}</h3>
-                <ul className="mt-4 flex flex-col">
-                  {group.links.map((link) => (
-                    <li key={link.href}>
-                      <Link href={link.href} className="u-line inline-flex min-h-12 items-center py-1 leading-snug [--u-bottom:6px]">
-                        {link.label}
-                      </Link>
-                    </li>
+          {/*
+            Every link keeps its 48px target, so height comes from the longest list. Long groups
+            (Services, Legal) split into two list columns over two grid columns, and short
+            neighbours (About, Contact) share one column: at most seven rows at desktop. The nav
+            runs the full width so its six columns stay wide enough for one-line labels.
+          */}
+          <nav aria-label="Footer" className="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-white/20 pt-10 md:grid-cols-4 md:gap-x-8 lg:grid-cols-6">
+            {footerColumns(groups).map((column) => {
+              const wide = column.length === 1 && column[0]!.links.length > WIDE;
+              return (
+                <div key={column[0]!.heading} className={`flex flex-col gap-8 ${wide ? 'col-span-2' : ''}`}>
+                  {column.map((group) => (
+                    <div key={group.heading}>
+                      <h3 className="t-caps text-gold">{group.heading}</h3>
+                      <ul className={`mt-3 ${wide ? 'columns-2 gap-x-6' : ''}`}>
+                        {group.links.map((link) => (
+                          <li key={link.href} className="break-inside-avoid">
+                            <Link href={link.href} className="u-line inline-flex min-h-12 items-center py-1 leading-snug [--u-bottom:6px]">
+                              {link.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </nav>
         </div>
 
