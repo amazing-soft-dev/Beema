@@ -4,6 +4,7 @@ import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { bookCall, site } from '@/content/site';
 import type { Advisor } from '@/content/team';
+import { PHOTO_QUALITY } from '@/lib/image-widths';
 import type { Photo } from '@/lib/photos';
 
 const stateName = (code: string) => site.licensedStates.find((s) => s.code === code)?.name ?? code;
@@ -18,7 +19,7 @@ export function AdvisorCard({ advisor, image }: { advisor: Advisor; image: Photo
   return (
     <article className="flex flex-col overflow-hidden rounded-card bg-surface">
       <div className="relative aspect-[4/5] w-full">
-        <Image src={image.src} alt={`${advisor.name}, ${advisor.role}`} fill sizes="(min-width: 1200px) 400px, (min-width: 810px) 50vw, 100vw" className="object-cover" style={{ objectPosition: image.position }} />
+        <Image src={image.src} alt={`${advisor.name}, ${advisor.role}`} fill quality={PHOTO_QUALITY} sizes="(min-width: 1200px) 400px, (min-width: 810px) 50vw, 100vw" className="object-cover" style={{ objectPosition: image.position }} />
       </div>
       <div className="flex flex-1 flex-col gap-4 p-6 md:p-8">
         <div>
