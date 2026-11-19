@@ -22,8 +22,8 @@ export function HomeHero() {
       {/* Framer home-hero overlay, darkened a little so 18px text stays readable on any crop. */}
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,.6)_0%,rgba(0,0,0,.42)_50%,rgba(0,0,0,.62)_100%)]" />
 
-      <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-6 pt-10 pb-4 lg:px-10">
-        <div className="flex max-w-[44rem] flex-col gap-6">
+      <div className="hero-inner mx-auto flex w-full max-w-[1440px] flex-col gap-10 px-6 pt-10 pb-4 lg:px-10">
+        <div className="hero-copy flex max-w-[44rem] flex-col gap-6">
           <Reveal onMount y="md" delay={0.4}>
             <Eyebrow variant="pill" tone="dark" ping className="bg-white/15 backdrop-blur-md">
               {h.eyebrow}
@@ -58,7 +58,7 @@ export function HomeHero() {
           the name has no descenders), so the whole word stays inside the hero at every width;
           the wrapper only clips the 75px rise while it plays.
         */}
-        <div aria-hidden="true" className="overflow-hidden select-none print:hidden">
+        <div aria-hidden="true" className="hero-word overflow-hidden select-none print:hidden">
           <Reveal onMount y="lg" delay={0.4}>
             <svg viewBox="0 0 1000 104" className="block w-full" focusable="false">
               <text

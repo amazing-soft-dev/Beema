@@ -35,6 +35,23 @@
     min-height: max(560px, calc(100svh - 48px - 72px - env(safe-area-inset-bottom)));
   }
 }
+/*
+ * Short laptop screens (1366×768, 1280×720): tighter gaps so the copy, the calls to action
+ * and the full wordmark still fit on the first screen. Text sizes stay the same. Below about
+ * 790px tall the wordmark also caps its height; the SVG keeps its ratio and centers.
+ */
+@media (min-width: 1200px) and (max-height: 860px) {
+  .hero-inner {
+    padding-top: 0.5rem;
+    row-gap: 1.5rem;
+  }
+  .hero-copy {
+    row-gap: 1rem;
+  }
+  .hero-word svg {
+    max-height: max(80px, calc(100svh - 630px));
+  }
+}
 
 .header-shell {
   color: var(--color-ink);
