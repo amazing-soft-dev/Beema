@@ -3,7 +3,8 @@ import type { ReactNode } from 'react';
 /**
  * Section labels from the Beema design, enlarged to 16px.
  * line  caps text after a 16px rule ("— TURNING 65")
- * pill  bordered pill ("About us"); `ping` adds Framer's pinging dot (motion.css)
+ * pill  bordered pill ("About us"); `ping` adds Framer's pinging dot (motion.css). It keeps its
+ *       own width (self-start), so a column of text never stretches it to the full width.
  */
 export function Eyebrow({
   children,
@@ -21,7 +22,7 @@ export function Eyebrow({
   if (variant === 'pill') {
     const look = tone === 'dark' ? 'border-white/40 text-white' : 'border-ink/25 text-ink';
     return (
-      <p className={`inline-flex min-h-9 items-center gap-2.5 rounded-pill border px-4 font-medium ${look} ${className}`.trim()}>
+      <p className={`inline-flex min-h-9 items-center gap-2.5 self-start rounded-pill border px-4 font-medium ${look} ${className}`.trim()}>
         {ping && <span className={`ping-dot ${tone === 'dark' ? 'text-gold' : 'text-navy-700'}`} aria-hidden="true" />}
         {children}
       </p>
