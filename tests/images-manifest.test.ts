@@ -13,7 +13,7 @@ describe('image pipeline', () => {
   it('uses one photo quality for next/image, its allow-list and the WebP variants', () => {
     assert.equal(WEBP_QUALITY, PHOTO_QUALITY);
     const config = readFileSync(new URL('../next.config.ts', import.meta.url), 'utf8');
-    assert.match(config, new RegExp(`qualities: \[${PHOTO_QUALITY}\]`));
+    assert.ok(config.includes(`qualities: [${PHOTO_QUALITY}]`), `next.config.ts must allow quality ${PHOTO_QUALITY}`);
   });
 
   it('throws a clear error for an unknown photo id', () => {
