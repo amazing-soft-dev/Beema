@@ -74,12 +74,12 @@
     {
       "id": "about-advisor-meeting",
       "source": "unsplash",
-      "sourceUrl": "https://unsplash.com/photos/a-man-and-woman-sitting-at-a-table-with-a-laptop-M5k978V3qBc",
-      "downloadUrl": "https://images.unsplash.com/photo-1714974528703-e5ad41abc259?w=2400&q=85&fm=jpg",
-      "photographer": "Vitaly Gariev",
-      "photographerUrl": "https://unsplash.com/@silverkblack",
-      "alt": "An advisor with glasses smiling while talking with a client at a table",
-      "focal": "45% 40%"
+      "sourceUrl": "https://unsplash.com/photos/a-woman-sitting-at-a-table-with-two-other-people-OasnhJq9it0",
+      "downloadUrl": "https://images.unsplash.com/photo-1685609240087-a308b156b581?w=2400&q=85&fm=jpg",
+      "photographer": "Age Cymru",
+      "photographerUrl": "https://unsplash.com/@agecymru",
+      "alt": "An advisor with glasses listening to an older client across a table with notes",
+      "focal": "50% 40%"
     },
     {
       "id": "about-cafe-friends",
