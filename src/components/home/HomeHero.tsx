@@ -17,7 +17,7 @@ import { bookCall, planMatch, site } from '@/content/site';
 export function HomeHero() {
   const h = home.hero;
   return (
-    <section data-hero="dark" className="under-header on-dark relative isolate flex min-h-[720px] flex-col justify-end overflow-hidden text-white lg:min-h-[900px]" aria-labelledby="home-title">
+    <section data-hero="dark" className="under-header on-dark relative isolate hero-screen flex flex-col justify-end overflow-hidden text-white" aria-labelledby="home-title">
       <Photo id="home-hero-couple" priority rounded={false} sizes="100vw" className="!absolute inset-0 -z-20" />
       {/* Framer home-hero overlay, darkened a little so 18px text stays readable on any crop. */}
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(0,0,0,.6)_0%,rgba(0,0,0,.42)_50%,rgba(0,0,0,.62)_100%)]" />
