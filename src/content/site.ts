@@ -84,9 +84,13 @@ export const notices = {
    */
   callRecording:
     'Calls with our licensed agents, including the sound of video calls, are recorded for quality and because Medicare rules require it. By continuing a call with us, you agree to the recording. We keep recordings for at least 6 years.',
-  /** Scope of Appointment note for Book a Call. */
+  /**
+   * Scope of Appointment note for Book a Call, with the CMS model-form statements (review
+   * 2026-11-25, INS-07). CY2027 rules: the SOA must be complete before the appointment and is
+   * valid for 12 months; there is no 48-hour wait.
+   */
   scopeOfAppointment:
-    'Before your appointment starts, we will confirm which types of coverage you want to discuss, such as Medicare Advantage, Medicare Supplement (Medigap) insurance or prescription drug plans. Medicare rules require us to record this Scope of Appointment, and we will only talk about the products you agree to.',
+    'Before your appointment, you choose which types of coverage you want to discuss, such as Medicare Advantage, Medicare Supplement (Medigap) insurance or prescription drug plans. Medicare rules require us to record this Scope of Appointment before we meet, and we will only talk about the products you choose. It stays valid for 12 months. The person you meet is a licensed agent, not a government employee, and may be paid based on your enrollment in a plan. Booking does not oblige you to enroll in a plan, does not affect your current or future Medicare enrollment, and does not enroll you in anything.',
 } as const;
 
 // Official Medicare cost figures (plan year, IRMAA tables).

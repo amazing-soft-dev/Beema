@@ -21,6 +21,13 @@ describe('required notices', () => {
     assert.match(notices.callRecording, /at least 6 years/);
   });
 
+  it('Scope of Appointment note carries the model-form statements and no 48-hour wait', () => {
+    for (const phrase of ['before we meet', 'valid for 12 months', 'may be paid based on your enrollment', 'does not oblige you to enroll', 'does not affect your current or future Medicare enrollment']) {
+      assert.ok(notices.scopeOfAppointment.includes(phrase), phrase);
+    }
+    assert.doesNotMatch(notices.scopeOfAppointment, /48/);
+  });
+
   it('phone consent names the business', () => {
     assert.ok(notices.phoneConsent.includes(site.legalName));
   });
