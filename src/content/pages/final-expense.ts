@@ -78,9 +78,9 @@ export const finalExpensePage: ContentPage = {
   ],
   pdf: 'final-expense-worksheet',
   next: {
-    title: 'Book a separate final expense call',
+    title: 'Request a separate final expense call',
     text: 'Medicare rules keep life insurance out of Medicare appointments, so final expense always has its own appointment, only when you ask for one.',
-    primary: { label: 'Book a separate final expense call', href: '/book-a-call?finalExpense=1' },
+    primary: { label: 'Request a separate final expense call', href: '#final-expense-request' },
     secondary: { label: 'Licensing details', href: '/legal/licensing' },
   },
 };

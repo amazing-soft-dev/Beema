@@ -21,8 +21,8 @@ export function LeadForm({
   submitLabel = 'Request a call',
   title,
 }: {
-  endpoint: '/api/contact' | '/api/callback';
-  form: 'contact' | 'callback';
+  endpoint: '/api/contact' | '/api/callback' | '/api/final-expense';
+  form: 'contact' | 'callback' | 'final-expense';
   idPrefix: string;
   submitLabel?: string;
   title?: string;

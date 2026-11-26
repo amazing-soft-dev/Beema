@@ -10,7 +10,7 @@ export type AnalyticsEvent =
   | { name: 'book_call_click'; props: { location: string } }
   | { name: 'guide_download'; props: { guide: string; format: 'page-pdf' | 'library-pdf' } }
   | { name: 'guide_print'; props: { guide: string } }
-  | { name: 'form_submit'; props: { form: 'contact' | 'callback' | 'plan-intake' | 'guide-email' | 'newsletter' } }
+  | { name: 'form_submit'; props: { form: 'contact' | 'callback' | 'final-expense' | 'plan-intake' | 'guide-email' | 'newsletter' } }
   | { name: 'tool_result'; props: { tool: 'enrollment-calculator' | 'irmaa-calculator' | 'plan-comparison' | 'plan-match' } }
   | { name: 'chat_open'; props: { location: string } };
 
