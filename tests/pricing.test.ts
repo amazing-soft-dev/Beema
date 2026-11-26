@@ -1,6 +1,6 @@
 import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
-import { tiers } from '../src/content/pricing.ts';
+import { features, tiers } from '../src/content/pricing.ts';
 
 const tier = (id: string) => tiers.find((t) => t.id === id)!;
 
@@ -16,7 +16,19 @@ describe('AI Plan Match tiers', () => {
     for (const id of ['plus', 'family']) {
       const t = tier(id);
       assert.deepEqual(t.billing, ['monthly', 'yearly']);
-      assert.equal(t.monthly! * 12 - t.yearly!, t.monthly! * 2 - (t.monthly! * 12 - t.yearly! - t.monthly! * 2), 'yearly saves about two months');
+      assert.equal(t.monthly! * 12 - t.yearly!, t.monthly! * 2, `${id}: yearly saves two months`);
     }
+  });
+
+  it('charges only for ongoing extras: alerts, reminders and the caregiver dashboard', () => {
+    const paidOnly = features.filter(([, basic, plus, family]) => basic === 'No' && (plus === 'Yes' || family === 'Yes')).map(([f]) => f);
+    assert.deepEqual(paidOnly, ['Alerts when drug costs or doctor networks change', 'Deadline reminders', 'Caregiver dashboard']);
+  });
+
+  it('keeps the match, the yearly review and enrollment free for everyone', () => {
+    for (const name of ['AI plan match', 'Yearly plan review with a licensed agent']) {
+      assert.deepEqual(features.find(([f]) => f === name)!.slice(1), ['Yes', 'Yes', 'Yes'], name);
+    }
+    assert.ok(!features.some(([f]) => /priority|claims|annual ai check/i.test(f)));
   });
 });

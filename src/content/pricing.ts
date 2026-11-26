@@ -21,16 +21,19 @@ export const tiers: Tier[] = [
   { id: 'family', name: 'Family', bestFor: 'Adult children and caregivers managing a parent’s coverage', monthly: 19, yearly: 190, billing: ['monthly', 'yearly'], cta: { label: 'Start Family' } },
 ];
 
-/** Feature rows: [feature, basic, plus, family]. */
+/**
+ * Feature rows: [feature, basic, plus, family]. Paid tiers add ongoing extras only (alerts,
+ * reminders and the caregiver dashboard). Plan recommendations, the yearly review and
+ * enrollment stay free for everyone, so nobody pays for advice or service tied to a plan sale
+ * (owner, 2026-11-25; review INS-30 and INS-31).
+ */
 export const features: [string, string, string, string][] = [
   ['AI plan match', 'Yes', 'Yes', 'Yes'],
   ['Plain-language “why it fits”', 'Yes', 'Yes', 'Yes'],
-  ['Annual AI check before enrollment season', 'No', 'Yes', 'Yes'],
+  ['Yearly plan review with a licensed agent', 'Yes', 'Yes', 'Yes'],
   ['Alerts when drug costs or doctor networks change', 'No', 'Yes', 'Yes'],
   ['Deadline reminders', 'No', 'Yes', 'Yes'],
   ['Caregiver dashboard', 'No', 'No', 'Yes'],
-  ['Help with claims and billing questions', 'No', 'No', 'Yes'],
-  ['Priority calls', 'No', 'No', 'Yes'],
   ['Licensed agent call and enrollment', 'Free, paid by carrier commission', 'Free, paid by carrier commission', 'Free, paid by carrier commission'],
   ['Insurance purchase required', 'No', 'No', 'No'],
 ];
@@ -44,7 +47,7 @@ export const notIncluded = [
 
 export const caregiverFaq: { q: string; a: string }[] = [
   { q: 'Can I manage my parent’s Medicare with the Family tier?', a: 'Yes, once your parent gives written permission. Insurance companies may also need their own authorization form before they talk with you.' },
-  { q: 'Does my parent need a subscription to get help?', a: 'No. Plan advice, enrollment and the yearly review are free for every client. Family adds a dashboard, reminders and help with claims for the person helping them.' },
+  { q: 'Does my parent need a subscription to get help?', a: 'No. Plan advice, enrollment, the yearly review and our calls are free for every client. Family adds a dashboard and reminders for the person helping them.' },
   { q: 'Does buying a plan through you require a subscription?', a: 'Never. Buying insurance through us never requires a subscription, and subscribing never requires buying insurance.' },
-  { q: 'Can we cancel?', a: 'Yes, at any time. The terms will be on the Subscription Terms page before the tiers go on sale.' },
+  { q: 'Can we cancel?', a: 'Yes, at any time, from the link in your receipt email or by calling us. See the Subscription Terms for refunds.' },
 ];

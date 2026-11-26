@@ -59,7 +59,7 @@ export function TierTable() {
                   <span>{p.note}</span>
                 </p>
                 <ul className="flex flex-col gap-2">
-                  {features.slice(0, 8).map(([f, ...v]) => {
+                  {features.slice(0, 6).map(([f, ...v]) => {
                     const yes = v[i] === 'Yes';
                     return (
                       <li key={f} className="flex gap-3">
