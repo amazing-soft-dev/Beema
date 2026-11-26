@@ -9,7 +9,18 @@
  */
 import { type ISODate, initialEnrollmentPeriod } from '../medicare/dates.ts';
 
-export type WorkCoverage = 'none' | 'employer-large' | 'employer-small' | 'retiree' | 'cobra';
+export type WorkCoverage =
+  | 'none'
+  | 'employer-large'
+  | 'employer-small'
+  | 'retiree'
+  | 'cobra'
+  | 'marketplace'
+  /** Special situations a licensed agent must look at first (review 2026-11-25, INS-25). */
+  | 'medicaid'
+  | 'va'
+  | 'tricare'
+  | 'disability-esrd';
 export type Doctors = 'keep-specific' | 'flexible' | 'skip';
 export type Drugs = 'none' | 'few' | 'several' | 'skip';
 export type Budget = 'low-premium' | 'predictable' | 'unsure';

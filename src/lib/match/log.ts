@@ -6,7 +6,7 @@ export const matchLogSchema = z.object({
   answers: z.object({
     zip: z.string().regex(/^\d{5}$/),
     birthMonth: z.string().regex(/^\d{4}-\d{2}$/),
-    work: z.enum(['none', 'employer-large', 'employer-small', 'retiree', 'cobra']),
+    work: z.enum(['none', 'employer-large', 'employer-small', 'retiree', 'cobra', 'marketplace', 'medicaid', 'va', 'tricare', 'disability-esrd']),
     doctors: z.enum(['keep-specific', 'flexible', 'skip']),
     drugs: z.enum(['none', 'few', 'several', 'skip']),
     budget: z.enum(['low-premium', 'predictable', 'unsure']),
