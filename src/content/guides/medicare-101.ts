@@ -52,7 +52,7 @@ export const medicare101 = {
     plans: [
       {
         name: 'Plan G',
-        tag: 'Most popular for new enrollees',
+        tag: 'Fullest coverage for new enrollees',
         summary: 'Covers almost everything Original Medicare does not, except the Part B deductible.',
         youPay: ['The yearly Part B deductible', 'Nothing else for covered services, including Part B excess charges'],
         goodFor: 'People who want predictable costs and freedom to see any doctor who accepts Medicare.',
@@ -66,7 +66,7 @@ export const medicare101 = {
       },
       {
         name: 'High-deductible Plan G',
-        tag: 'Lowest premium, more risk',
+        tag: 'Low premium, more risk',
         summary: 'Same coverage as Plan G after you meet a yearly deductible set by Medicare.',
         youPay: ['All covered costs until you reach the plan deductible, then nothing more for covered services that year'],
         goodFor: 'People who can afford a larger bill in a bad year in exchange for a much lower monthly premium.',

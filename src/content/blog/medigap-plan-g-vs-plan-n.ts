@@ -8,7 +8,7 @@ const { planYear, partB } = medicareFigures;
 export const planGvsN: Article = {
   slug: 'medigap-plan-g-vs-plan-n',
   title: 'Medigap Plan G or Plan N: which is right for you?',
-  description: 'Plan G and Plan N are the two most popular Medigap plans for people turning 65. Here is what each covers, what you pay, and who each one suits.',
+  description: 'Plan G and Plan N are two Medigap plans people turning 65 often compare. Here is what each covers, what you pay, and who each one suits.',
   topic: 'medigap',
   published: '2026-11-16',
   updated: '2026-11-26',

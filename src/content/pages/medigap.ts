@@ -33,7 +33,7 @@ export const medigapPage: ContentPage = {
           type: 'cards',
           items: [
             {
-              tag: 'Most chosen',
+              tag: 'Fullest coverage for new enrollees',
               title: 'Plan G',
               text: `Pays everything Original Medicare leaves except the yearly Part B deductible ($${partB.annualDeductible} in ${planYear}).`,
               points: ['No copays for doctor visits', 'Covers Part B excess charges', 'Foreign travel emergency care (up to plan limits)'],
@@ -45,7 +45,7 @@ export const medigapPage: ContentPage = {
               points: ['Up to $20 copay for some office visits', 'Up to $50 for an emergency room visit that does not lead to a hospital stay', 'Does not cover Part B excess charges'],
             },
             {
-              tag: 'Lowest premium',
+              tag: 'Low premium, high deductible',
               title: 'High-deductible Plan G',
               text: 'Same coverage as Plan G after you pay a yearly deductible set by Medicare. Suits people who want protection from big bills and rarely see a doctor.',
               points: ['Much lower monthly premium', 'You pay costs up to the deductible first', 'The deductible changes every year'],
