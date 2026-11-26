@@ -37,3 +37,13 @@ export const medigapAdNotice = {
   outlineOfCoverage:
     'AN OUTLINE OF COVERAGE FOR EACH MEDICARE SUPPLEMENT (MEDIGAP) POLICY IS AVAILABLE ON REQUEST. CALL US OR ASK YOUR AGENT, AND WE WILL SEND IT WITHIN 14 DAYS.',
 } as const;
+
+/**
+ * Notice for hospital indemnity and other disability policies sold to people eligible for
+ * Medicare (California Ins. Code 10192.17(k); review 2026-11-25, INS-22). The carrier prints it
+ * on the outline of coverage; the page mirrors it, and the carrier's California forms apply.
+ */
+export const notMedigapNotice = {
+  title: 'THIS POLICY IS NOT A MEDICARE SUPPLEMENT POLICY.',
+  text: 'If you are eligible for Medicare, review the Guide to Health Insurance for People with Medicare, available from the insurance company. The application also tells you how much the policy duplicates Medicare benefits.',
+} as const;

@@ -1,7 +1,8 @@
 import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
 import { articles } from '../src/content/blog/index.ts';
-import { disclosures, medigapAdNotice } from '../src/content/disclosures.ts';
+import { disclosures, medigapAdNotice, notMedigapNotice } from '../src/content/disclosures.ts';
+import { hospitalIndemnityPage } from '../src/content/pages/hospital-indemnity.ts';
 import { medigapPage } from '../src/content/pages/medigap.ts';
 
 describe('non-Medicare product disclosures', () => {
@@ -37,5 +38,12 @@ describe('Medigap advertising notices (California)', () => {
       assert.ok(text.includes(medigapAdNotice.outlineOfCoverage));
       assert.ok(text.includes(medigapAdNotice.notConnected));
     }
+  });
+});
+
+describe('hospital indemnity Medicare notice (California 10192.17(k))', () => {
+  it('is on the hospital indemnity page, with the uppercase heading', () => {
+    assert.equal(notMedigapNotice.title, notMedigapNotice.title.toUpperCase());
+    assert.ok(JSON.stringify(hospitalIndemnityPage).includes(notMedigapNotice.title));
   });
 });
