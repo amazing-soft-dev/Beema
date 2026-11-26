@@ -4,6 +4,8 @@
  * Paid tiers are offered only in the states listed in subscriptionStates (never California;
  * review 2026-11-25, INS-30).
  */
+import { site } from './site.ts';
+
 export type Tier = {
   id: 'basic' | 'plus' | 'family';
   name: string;
@@ -14,6 +16,13 @@ export type Tier = {
   billing: ('monthly' | 'yearly')[];
   cta: { label: string; href?: string };
 };
+
+/**
+ * States where Plus and Family may be bought: our licensed states except California, where an
+ * agent may not charge fees the insurer has not authorized (CDI Bulletin 80-6, Ins. Code 1848;
+ * review 2026-11-25, INS-30). The TX, FL and AZ fee rules are still to be confirmed by counsel.
+ */
+export const subscriptionStates = site.licensedStates.filter((s) => s.code !== 'CA').map((s) => ({ code: s.code, name: s.name }));
 
 export const tiers: Tier[] = [
   { id: 'basic', name: 'Basic', bestFor: 'Anyone turning 65 or reviewing coverage', monthly: 0, yearly: 0, billing: ['monthly', 'yearly'], cta: { label: 'Stay on free Basic', href: '/plan-match' } },
