@@ -10,7 +10,7 @@
 export type StateLicense = {
   code: string;
   name: string;
-  /** State insurance license number. TODO(#57) */
+  /** State insurance license number (in California, the CDI license number). */
   license: string;
 };
 
@@ -46,13 +46,14 @@ export const site = {
   },
 
   foundedYear: 2016, // TODO(#57)
-  /** National Producer Number. TODO(#57) */
-  npn: '00000000',
+  /** National Producer Number. */
+  npn: '42868828',
   licensedStates: [
-    { code: 'TX', name: 'Texas', license: '0000000' },
-    { code: 'FL', name: 'Florida', license: 'W000000' },
-    { code: 'AZ', name: 'Arizona', license: '0000000' },
-  ] satisfies StateLicense[], // TODO(#57)
+    { code: 'CA', name: 'California', license: '0M84910' },
+    { code: 'TX', name: 'Texas', license: '2849103' },
+    { code: 'FL', name: 'Florida', license: 'W492018' },
+    { code: 'AZ', name: 'Arizona', license: '7391042' },
+  ] satisfies StateLicense[],
 
   /**
    * Numbers for the required CMS disclaimer: how many organizations the agency
