@@ -61,3 +61,20 @@ describe('ConsentCheckbox', () => {
     assert.doesNotMatch(source, /\brequired\b/);
   });
 });
+
+describe('Book a Call and chat sources', () => {
+  const read = (p: string) => readFileSync(new URL(`../src/${p}`, import.meta.url), 'utf8');
+
+  it('never offers final expense inside the Medicare booking flow', () => {
+    assert.doesNotMatch(read('components/booking/BookingWidget.tsx'), /finalExpense/);
+  });
+
+  it('loads Cal.com and Crisp only after the visitor asks', () => {
+    assert.match(read('components/booking/BookingWidget.tsx'), /calLink && !calendarShown/);
+    assert.match(read('components/chat/ChatButton.tsx'), /state === 'notice'/);
+  });
+
+  it('shows the call-recording notice wherever a call is requested', () => {
+    for (const p of ['components/forms/LeadForm.tsx', 'components/tools/PlanIntake.tsx', 'app/book-a-call/page.tsx']) assert.match(read(p), /<CallRecordingNotice/, p);
+  });
+});
