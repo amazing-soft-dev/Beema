@@ -4,10 +4,12 @@ import { CheckCircle, MinusCircle } from '@phosphor-icons/react';
 import { MotionConfig, motion } from 'motion/react';
 import { useId, useState } from 'react';
 import { Reveal } from '@/components/motion/Reveal';
-import { Button, ButtonLink } from '@/components/ui/Button';
+import { ButtonLink } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { type Tier, features, tiers } from '@/content/pricing';
 import { uiSpring } from '@/lib/motion';
+import { CheckoutStatus } from './CheckoutStatus';
+import { CheckoutStep } from './CheckoutStep';
 
 type Billing = 'monthly' | 'yearly';
 
@@ -23,7 +25,8 @@ function price(t: Tier, billing: Billing) {
 /**
  * Basic, Plus and Family side by side (plan §9) with a clearly labelled Monthly/Yearly
  * choice (a radio group). The price text changes with Framer's variant spring (k 200,
- * c 40). No countdowns or pressure copy; paid tiers stay "Coming soon" until billing exists.
+ * c 40). No countdowns or pressure copy. Paid tiers start with a state and fee-disclosure step,
+ * then Stripe Checkout.
  */
 export function TierTable() {
   const [billing, setBilling] = useState<Billing>('monthly');
@@ -31,6 +34,7 @@ export function TierTable() {
   return (
     <MotionConfig reducedMotion="user">
       <div className="flex flex-col gap-8">
+        <CheckoutStatus />
         <fieldset className="flex flex-wrap items-center gap-4">
           <legend className="t-label mb-3 font-semibold">Show prices</legend>
           {(['monthly', 'yearly'] as Billing[]).map((b) => (
@@ -78,14 +82,7 @@ export function TierTable() {
                       {t.cta.label}
                     </ButtonLink>
                   ) : (
-                    <>
-                      <Button size="lg" variant="outline" disabled aria-describedby={t.id + '-soon'}>
-                        {t.cta.label}
-                      </Button>
-                      <p id={t.id + '-soon'} className="mt-2 text-base">
-                        Coming soon, after our state fee review.
-                      </p>
-                    </>
+                    <CheckoutStep tier={t.id as 'plus' | 'family'} billing={billing} label={t.cta.label} />
                   )}
                 </div>
               </Reveal>
