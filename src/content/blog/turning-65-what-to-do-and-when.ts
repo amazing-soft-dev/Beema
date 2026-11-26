@@ -1,3 +1,4 @@
+import { formatUSD } from '../../lib/medicare/irmaa.ts';
 import { medicareFigures } from '../medicare-figures.ts';
 import { defaultAuthor } from './author.ts';
 import type { Article } from './index.ts';
@@ -10,6 +11,7 @@ export const turning65Steps: Article = {
   description: 'A month-by-month plan for your 65th birthday: when to sign up for Parts A and B, when to choose Medigap or Medicare Advantage, and how to avoid late penalties.',
   topic: 'turning-65',
   published: '2026-11-17',
+  updated: '2026-11-26',
   planYear,
   readMinutes: 5,
   author: defaultAuthor,
@@ -26,7 +28,7 @@ export const turning65Steps: Article = {
       heading: 'Choose how you will fill the gaps',
       blocks: [
         { type: 'p', text: 'Original Medicare pays most costs but not all. You can add a Medigap policy and a Part D drug plan, or choose a Medicare Advantage plan that bundles your coverage.' },
-        { type: 'p', text: `In ${planYear} the standard Part B premium is $${partB.standardMonthly} a month and the Part B deductible is $${partB.annualDeductible} a year, whichever path you choose.` },
+        { type: 'p', text: `In ${planYear} the standard Part B premium is ${formatUSD(partB.standardMonthly)} a month and the Part B deductible is ${formatUSD(partB.annualDeductible)} a year, whichever path you choose.` },
       ],
     },
     {
