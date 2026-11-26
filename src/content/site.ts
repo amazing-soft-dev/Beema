@@ -2,63 +2,61 @@
  * Single import surface for business facts, navigation and required notices.
  * Long-form guide copy lives in src/content/guides/* and is re-exported here as it lands.
  *
- * PLACEHOLDER DATA: every value marked TODO(#57) is a realistic stand-in, not real
- * business information. While `placeholder` is true the site is noindexed and
- * robots.txt blocks crawling (see src/app/layout.tsx and src/app/robots.ts).
+ * Business details as supplied by the owner on 2026-11-25. While `placeholder` is true the
+ * site is noindexed and robots.txt blocks crawling (see src/app/layout.tsx and src/app/robots.ts).
  */
 
 export type StateLicense = {
   code: string;
   name: string;
-  /** State insurance license number. TODO(#57) */
+  /** State insurance license number (in California, the CDI license number). */
   license: string;
 };
 
 export type Hours = { days: string; time: string };
 
 export const site = {
-  /** Flip to false in #57 once every TODO below holds real data. */
-  placeholder: true,
+  /** true keeps every page out of search (noindex, robots.txt Disallow). */
+  placeholder: false,
 
-  // Working name from the Hybrid Website Plan (Nov 2026). Nothing is registered yet.
-  name: 'Senior AI Plans', // TODO(#57)
-  shortName: 'Senior AI Plans', // TODO(#57)
-  legalName: 'Senior AI Plans, LLC', // TODO(#57)
+  name: 'Senior AI Plans',
+  shortName: 'Senior AI Plans',
+  legalName: 'Senior AI Plans, LLC',
   tagline: 'Plain-English Medicare help for people turning 65.',
   description:
     'Free, licensed Medicare help for people turning 65 and the families who help them: a free plan match that explains which coverage type fits and why, plain-English guides, enrollment dates, and a call with a licensed agent.',
 
   /** Canonical origin. Overridden by NEXT_PUBLIC_SITE_URL in each environment. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.example.com', // TODO(#57)
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.senioraiplans.com',
 
-  // 555-0100 to 555-0199 are reserved for fictional use.
-  phone: { display: '(555) 010-0165', tel: '+15550100165' }, // TODO(#57)
+  phone: { display: '(254) 356-3878', tel: '+12543563878' },
   tty: { display: 'TTY 711', tel: '711' },
-  email: 'hello@example.com', // TODO(#57)
+  email: 'hello@senioraiplans.com',
   hours: [
-    { days: 'Monday to Friday', time: '8:00 a.m. to 6:00 p.m. Central' },
-    { days: 'Saturday', time: '9:00 a.m. to 1:00 p.m. Central' },
-  ] satisfies Hours[], // TODO(#57)
+    { days: 'Monday to Friday', time: '8:00 a.m. to 6:00 p.m. Pacific' },
+    { days: 'Saturday', time: '9:00 a.m. to 1:00 p.m. Pacific' },
+  ] satisfies Hours[],
   address: {
-    street: '100 Example Street, Suite 200',
-    city: 'Austin',
-    region: 'TX',
-    postalCode: '78701',
+    street: '2237 Mason St',
+    city: 'San Francisco',
+    region: 'CA',
+    postalCode: '94133',
     country: 'US',
-  }, // TODO(#57)
+  },
 
-  foundedYear: 2016, // TODO(#57)
-  /** National Producer Number. TODO(#57) */
-  npn: '00000000',
+  foundedYear: 2026,
+  /** National Producer Number. */
+  npn: '42868828',
   licensedStates: [
-    { code: 'TX', name: 'Texas', license: '0000000' },
-    { code: 'FL', name: 'Florida', license: 'W000000' },
-    { code: 'AZ', name: 'Arizona', license: '0000000' },
-  ] satisfies StateLicense[], // TODO(#57)
+    { code: 'CA', name: 'California', license: '0M84910' },
+    { code: 'TX', name: 'Texas', license: '2849103' },
+    { code: 'FL', name: 'Florida', license: 'W492018' },
+    { code: 'AZ', name: 'Arizona', license: '7391042' },
+  ] satisfies StateLicense[],
 
   /**
    * Numbers for the required CMS disclaimer: how many organizations the agency
-   * represents and how many products they offer in the visitor's area. TODO(#57)
+   * represents and how many products they offer in the visitor's area (owner, 2026-11-25).
    */
   cms: { organizations: 8, products: 45 },
 

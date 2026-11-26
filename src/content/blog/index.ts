@@ -29,7 +29,7 @@ export type Article = {
   /** Plan year of every cost figure in the article. */
   planYear: number;
   readMinutes: number;
-  /** Author with license line (TODO(#57): real agent and NPN). */
+  /** Author with license line. */
   author: { name: string; license: string };
   sections: { heading: string; blocks: Block[] }[];
   /** Related library PDF slug. */

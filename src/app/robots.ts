@@ -3,7 +3,7 @@ import { site } from '@/content/site';
 
 export const dynamic = 'force-static';
 
-/** Blocks all crawling while the site holds placeholder business details (see site.ts). */
+/** Allows crawling once site.placeholder is false; blocks everything while it is true (see site.ts). */
 export default function robots(): MetadataRoute.Robots {
   if (site.placeholder) {
     return { rules: { userAgent: '*', disallow: '/' } };

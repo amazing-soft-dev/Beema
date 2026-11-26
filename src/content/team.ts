@@ -1,7 +1,7 @@
 /**
- * Advisors. PLACEHOLDER: names, bios, states and photos are stand-ins, marked TODO(#57);
- * swap in the real team (and their portraits in scripts/images/manifest.json) before
- * launch. With a single entry the site switches to "solo" mode: About shows a founder
+ * Advisors shown on About and Meet the Team. Entries marked TODO(#57) are replaced with the
+ * owner's real profiles (and their portraits in scripts/images/manifest.json) as they
+ * arrive. With a single entry the site switches to "solo" mode: About shows a founder
  * bio and the team page shows one card.
  */
 export type Advisor = {
