@@ -28,7 +28,7 @@ export const medicareAdvantagePage: ContentPage = {
           type: 'cards',
           items: [
             { title: 'Networks and referrals', text: 'HMO plans usually need you to use their doctors and get referrals for specialists. PPO plans let you go out of network for a higher cost.' },
-            { title: 'A yearly limit on costs', text: 'Every plan has an out-of-pocket maximum. Once you reach it, the plan pays 100% of covered care for the rest of the year.' },
+            { title: 'A yearly limit on costs', text: 'Every plan has an out-of-pocket maximum for covered Part A and Part B services. Once you reach it, the plan pays 100% of those services for the rest of the year. Drug costs are not included: they count toward the separate Part D yearly cap. PPO plans have one limit for in-network care and a higher, combined limit for in-network and out-of-network care.' },
             { title: 'Built-in extras', text: 'Many plans include drug coverage and some dental, vision, hearing or fitness benefits. Check what is really covered before you count on it.' },
           ],
         },

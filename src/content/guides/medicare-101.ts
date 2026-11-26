@@ -87,7 +87,7 @@ export const medicare101 = {
       { topic: 'Doctors and hospitals', medigap: 'Any provider in the U.S. that accepts Medicare. No referrals.', advantage: 'Usually the plan’s network (HMO or PPO). Some plans need referrals.' },
       { topic: 'Monthly premium', medigap: 'Part B premium plus a Medigap premium and a Part D premium.', advantage: 'Part B premium plus the plan premium, which is $0 for many plans.' },
       { topic: 'Costs when you get care', medigap: 'Little or nothing after the Part B deductible (Plan G).', advantage: 'Copays and coinsurance as you use care.' },
-      { topic: 'Yearly limit on costs', medigap: 'Costs stay low, so most people never need one.', advantage: 'Yes, a maximum out-of-pocket limit (MOOP) for covered care.' },
+      { topic: 'Yearly limit on costs', medigap: 'Costs stay low, so most people never need one.', advantage: 'Yes, a maximum out-of-pocket limit (MOOP) for covered Part A and B services; drugs have their own Part D cap.' },
       { topic: 'Prescription drugs', medigap: 'Add a separate Part D plan.', advantage: 'Usually included.' },
       { topic: 'Dental, vision, hearing', medigap: 'Not included; buy separately if needed.', advantage: 'Often included, with limits.' },
       { topic: 'Coverage when traveling', medigap: 'Anywhere in the U.S., and most plans cover some emergency care abroad.', advantage: 'Mainly in your plan’s area; emergencies are covered anywhere in the U.S.' },
