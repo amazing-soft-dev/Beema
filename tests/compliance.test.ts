@@ -51,7 +51,7 @@ describe('ConsentCheckbox', () => {
     assert.doesNotMatch(source, /\b(defaultChecked|checked)\b/);
   });
 
-  it('is required', () => {
-    assert.match(source, /\brequired\b/);
+  it('is optional (a callback works without automated-contact consent)', () => {
+    assert.doesNotMatch(source, /\brequired\b/);
   });
 });

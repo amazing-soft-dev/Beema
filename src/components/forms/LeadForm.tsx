@@ -12,7 +12,7 @@ import { formsDisabled, useFormSubmit } from './useFormSubmit';
 
 /**
  * The short lead form from the content plan: name, ZIP code, phone, best time to call and
- * the required (unchecked) consent box. Used by the Contact page and the callback panel.
+ * the optional (unchecked) consent box. Used by the Contact page and the callback panel.
  */
 export function LeadForm({
   endpoint,
@@ -49,7 +49,7 @@ export function LeadForm({
         </h2>
       )}
       <p className="text-base">
-        All fields are required. We only use your details to call you back, between 8 a.m. and 9 p.m. your time, and never sell them. Reply STOP to any text to opt out.{' '}
+        All fields except the consent box are required. We only use your details to call you back, between 8 a.m. and 9 p.m. your time, and never sell them. Reply STOP to any text to opt out.{' '}
         <Link href="/legal/privacy" className="underline underline-offset-4">
           Privacy &amp; consent terms
         </Link>

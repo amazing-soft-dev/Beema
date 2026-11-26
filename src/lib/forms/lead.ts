@@ -1,7 +1,7 @@
-import { CONSENT_TEXT } from '@/components/compliance/ConsentCheckbox';
 import { sendLead } from '@/lib/email';
 import type { z } from 'zod';
 import type { contactSchema } from './schemas';
+import { consentRecord } from './consent';
 import { failed, ok, readForm } from './server';
 import { contactSchema as schema } from './schemas';
 
@@ -17,8 +17,8 @@ export async function handleLead(request: Request, subject: string) {
     Phone: d.phone,
     'ZIP code': d.zip,
     'Best time to call': BEST_TIME[d.bestTime] ?? d.bestTime,
-    // The exact wording the visitor agreed to, with the time, for the consent record.
-    'Consent to contact': `Yes, checked at ${new Date().toISOString()}: "${CONSENT_TEXT}"`,
+    // The exact wording the visitor agreed to (or that they did not), with the time.
+    'Consent to contact': consentRecord(d.consent),
   });
   if (!sent.ok) {
     console.error(`[lead] ${subject} email failed: ${sent.reason}`);

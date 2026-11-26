@@ -28,8 +28,11 @@ export const emailField = z.string().trim().toLowerCase().pipe(z.email('Please e
 export const BEST_TIMES = ['morning', 'afternoon', 'evening', 'anytime'] as const;
 export const bestTimeField = z.enum(BEST_TIMES, { error: 'Please choose the best time to call.' });
 
-/** The phone-consent checkbox sends "yes" only when ticked. */
-export const consentField = z.literal('yes', { error: 'Please check the box so we may call you. It is required to request a call.' });
+/**
+ * The phone-consent checkbox sends "yes" only when ticked. It is optional (INS-11): an
+ * unticked box still lets us return the call by hand, never by automated means.
+ */
+export const consentField = z.literal('yes').optional().or(z.literal('').transform(() => undefined));
 
 /** Honeypot: hidden from people, so any value means a bot. */
 export const honeypotField = z.string().max(0).optional().or(z.literal(''));

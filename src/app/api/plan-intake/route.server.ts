@@ -1,5 +1,5 @@
-import { CONSENT_TEXT } from '@/components/compliance/ConsentCheckbox';
 import { sendLead } from '@/lib/email';
+import { consentRecord } from '@/lib/forms/consent';
 import { planIntakeSchema } from '@/lib/forms/schemas';
 import { failed, ok, readForm } from '@/lib/forms/server';
 
@@ -20,7 +20,7 @@ export async function POST(request: Request) {
     'Best time to call': d.bestTime,
     Medicines: list(d.drugs.map((x) => [x.name, x.dose, x.frequency].filter(Boolean).join(', '))),
     Doctors: list(d.doctors.map((x) => [x.name, x.specialty, x.city].filter(Boolean).join(', '))),
-    'Consent to contact': `Yes, checked at ${new Date().toISOString()}: "${CONSENT_TEXT}"`,
+    'Consent to contact': consentRecord(d.consent),
   });
   if (!sent.ok) {
     console.error(`[plan-intake] email failed: ${sent.reason}`);

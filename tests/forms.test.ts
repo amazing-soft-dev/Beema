@@ -1,6 +1,7 @@
 import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
 import { contactSchema, fieldErrors, guideEmailSchema } from '../src/lib/forms/schemas.ts';
+import { consentRecord } from '../src/lib/forms/consent.ts';
 import { rateLimited } from '../src/lib/forms/server.ts';
 
 const valid = { name: 'Pat Doe', zip: '78701', phone: '(555) 010-0123', bestTime: 'morning', consent: 'yes', website: '' };
@@ -15,10 +16,16 @@ describe('contact form schema', () => {
     assert.equal(contactSchema.parse({ ...valid, phone: '1-555-010-0123' }).phone, '+15550100123');
   });
 
-  it('requires the consent box (never assumed)', () => {
-    const r = contactSchema.safeParse({ ...valid, consent: undefined });
-    assert.equal(r.success, false);
-    assert.match(fieldErrors(r.error!).consent!, /check the box/);
+  it('accepts a request without the consent box, and never assumes consent', () => {
+    assert.equal(contactSchema.parse({ ...valid, consent: undefined }).consent, undefined);
+    assert.equal(contactSchema.parse({ ...valid, consent: '' }).consent, undefined);
+    assert.equal(contactSchema.parse(valid).consent, 'yes');
+    assert.equal(contactSchema.safeParse({ ...valid, consent: 'on' }).success, false);
+  });
+
+  it('records manual-only calls when the box is not checked', () => {
+    assert.match(consentRecord(undefined), /^No, not checked .*Manual calls only/);
+    assert.match(consentRecord('yes'), /^Yes, checked at /);
   });
 
   it('gives plain-language errors per field', () => {
