@@ -12,7 +12,12 @@ permissions:
 jobs:
   merge:
     name: Merge if eligible
-    if: github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'pull_request'
+    # Only branches of this repository: a fork could name a branch feat/... and pass its own copy
+    # of the CI workflow, so pull requests from forks are never merged automatically.
+    if: >-
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.head_repository.full_name == github.repository
     runs-on: ubuntu-latest
     steps:
       - name: Merge-commit the pull request CI validated
@@ -24,7 +29,8 @@ jobs:
         run: |
           set -euo pipefail
           pr="$(gh pr list --repo "$REPO" --head "$HEAD_BRANCH" --state open \
-            --json number,baseRefName --jq '.[0] // empty | "\(.number) \(.baseRefName)"')"
+            --json number,baseRefName,isCrossRepository \
+            --jq '[.[] | select(.isCrossRepository | not)][0] // empty | "\(.number) \(.baseRefName)"')"
           if [ -z "$pr" ]; then echo "No open pull request for $HEAD_BRANCH."; exit 0; fi
           read -r number base <<<"$pr"
 
