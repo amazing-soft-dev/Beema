@@ -1,3 +1,4 @@
+import { medigapAdNotice } from '../disclosures.ts';
 import { medicareFigures } from '../medicare-figures.ts';
 import { defaultAuthor } from './author.ts';
 import type { Article } from './index.ts';
@@ -18,7 +19,7 @@ export const planGvsN: Article = {
   sections: [
     {
       heading: 'What they have in common',
-      blocks: [{ type: 'p', text: 'Both plans pay your Part A deductible and coinsurance, hospital costs, skilled nursing coinsurance and most Part B coinsurance. Neither covers the Part B deductible or prescription drugs.' }],
+      blocks: [{ type: 'callout', title: medigapAdNotice.notConnected, text: medigapAdNotice.outlineOfCoverage }, { type: 'p', text: 'Both plans pay your Part A deductible and coinsurance, hospital costs, skilled nursing coinsurance and most Part B coinsurance. Neither covers the Part B deductible or prescription drugs.' }],
     },
     {
       heading: 'Where they differ',

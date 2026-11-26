@@ -1,3 +1,4 @@
+import { medigapAdNotice } from '../disclosures.ts';
 import { medicareFigures } from '../medicare-figures.ts';
 import type { ContentPage } from './types.ts';
 
@@ -27,6 +28,7 @@ export const medigapPage: ContentPage = {
       title: 'Plan G, Plan N and high-deductible Plan G',
       lead: 'Medigap plans are standardized: a Plan G covers the same things with every insurance company. Only the price and service differ.',
       blocks: [
+        { type: 'callout', title: medigapAdNotice.notConnected, text: medigapAdNotice.outlineOfCoverage },
         {
           type: 'cards',
           items: [
