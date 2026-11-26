@@ -132,7 +132,7 @@ export const medigapPage: ContentPage = {
           head: ['', 'Original Medicare + Medigap', 'Medicare Advantage'],
           rows: [
             ['Doctors and hospitals', 'Any in the U.S. that accept Medicare', 'Usually the plan’s network; referrals may be needed'],
-            ['Monthly premium', 'Higher', 'Often low or $0 (you still pay Part B)'],
+            ['Monthly premium', 'Higher', 'Often low or $0 (you must keep paying your Part B premium)'],
             ['Costs when you use care', 'Few or none (depends on the plan)', 'Copays add up, to a yearly limit'],
             ['Drug coverage', 'Separate Part D plan', 'Usually included'],
             ['Dental, vision, hearing', 'Not included', 'Often some extras'],

@@ -44,7 +44,7 @@ export const medicareAdvantagePage: ContentPage = {
           caption: 'Medicare Advantage strengths and trade-offs',
           head: ['Topic', 'Often good', 'Keep in mind'],
           rows: [
-            ['Premium', 'Low or $0 in many areas', 'Copays and coinsurance add up when you use care'],
+            ['Premium', 'Low or $0 in many areas; you must keep paying your Part B premium', 'Copays and coinsurance add up when you use care'],
             ['Doctors', 'Care can be coordinated in one network', 'Your doctor may not be in the network next year'],
             ['Prior approval', 'Plans manage costs', 'Some services need the plan’s approval first'],
             ['Travel', 'Emergencies are covered anywhere in the U.S.', 'Routine care away from home is often limited'],

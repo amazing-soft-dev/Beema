@@ -34,7 +34,7 @@ export const medicare101 = {
         letter: 'C',
         name: 'Medicare Advantage',
         covers: ['Everything Parts A and B cover', 'Usually prescription drugs', 'Often dental, vision and hearing extras'],
-        cost: 'Sold by private insurers. Many plans have a low or $0 premium on top of Part B, plus copays when you get care and a yearly out-of-pocket limit.',
+        cost: 'Sold by private insurers. Many plans have a low or $0 premium, and you must keep paying your Part B premium, plus copays when you get care and a yearly out-of-pocket limit.',
       },
       {
         id: 'part-d',
