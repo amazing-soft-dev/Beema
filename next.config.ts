@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import { securityHeaders } from './src/lib/security-headers';
 
 /**
  * Two build targets:
@@ -34,7 +35,10 @@ const nextConfig: NextConfig = {
     ? { loader: 'custom', loaderFile: './src/lib/image-loader.ts' }
     : // 85 is PHOTO_QUALITY (src/lib/image-widths.ts); Next only serves qualities listed here.
       { formats: ['image/avif', 'image/webp'], qualities: [85] },
-  ...(isStaticExport ? { output: 'export', trailingSlash: true } : {}),
+  ...(isStaticExport
+    ? { output: 'export', trailingSlash: true }
+    : // CSP, clickjacking and referrer headers on every page (the static export has no server to send them).
+      { headers: async () => [{ source: '/:path*', headers: securityHeaders(process.env.NODE_ENV !== 'production') }] }),
 };
 
 export default nextConfig;

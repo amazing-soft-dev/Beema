@@ -22,7 +22,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
-          node-version: latest
+          node-version-file: .nvmrc
           cache: npm
       - run: npm ci
       - name: Check workflow scripts parse
@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
         with:
-          node-version: latest
+          node-version-file: .nvmrc
           cache: npm
       - run: npm ci
       - name: Build server app
@@ -69,8 +69,10 @@ jobs:
       contents: read
       pull-requests: write
     steps:
+      # Dependabot and fork pull requests get a read-only token, so posting would fail the job
+      # and block them for good. They still get the pass/fail status below.
       - name: Post or update the summary comment
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}

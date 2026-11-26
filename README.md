@@ -45,7 +45,7 @@ A merge to `main` only re-runs CI. Actions does not deploy; Vercel deploys from 
 | Images | Unsplash/Pexels photos in a manifest; `sharp` pre-builds responsive WebP files for the static export |
 | PDFs | Playwright (Chromium) renders tagged PDFs; `pdf-lib` adds fillable checkboxes |
 | Quality | ESLint 10 with `eslint-config-next` (zero warnings), Node's test runner, axe |
-| Runtime in CI | Node.js latest |
+| Runtime | Node.js 24 (`.nvmrc`; CI and `engines` read the same version) |
 
 ### TypeScript 7 and typescript-eslint
 
