@@ -2,7 +2,7 @@
  * Book a Call topics (plan §4 Contact › Book a Call, §6 Scope of Appointment rules).
  * Medicare topics and the health add-ons can share one appointment, but the add-ons only if
  * the visitor lists them on the Scope of Appointment. Final expense is life insurance: it is
- * never part of a Medicare appointment and is offered as a separate opt-in.
+ * never part of a Medicare appointment and has its own request form on the final expense page.
  */
 export type TopicId = 'turning-65' | 'medigap' | 'medicare-advantage' | 'part-d' | 'annual-review' | 'dental-vision' | 'hospital-indemnity';
 
@@ -31,10 +31,9 @@ export function topicsFromQuery(value: string | null): TopicId[] {
 export const topicLabel = (id: TopicId) => all.find((t) => t.id === id)?.label ?? id;
 
 /** The note sent with the booking: what the visitor asked to discuss, in plain words. */
-export function bookingNote({ topics, finalExpense, match, remindersConsent }: { topics: TopicId[]; finalExpense: boolean; match?: string; remindersConsent: boolean }) {
+export function bookingNote({ topics, match, remindersConsent }: { topics: TopicId[]; match?: string; remindersConsent: boolean }) {
   const parts = [`Scope of Appointment topics: ${topics.length ? topics.map(topicLabel).join(', ') : 'not chosen yet'}`];
   if (match) parts.push(`Plan match result: ${match}`);
-  if (finalExpense) parts.push('Separately requested: a final expense (life insurance) appointment, to be booked on its own');
   parts.push(`Reminder calls and texts: ${remindersConsent ? 'agreed' : 'not agreed'}`);
   return parts.join('. ');
 }

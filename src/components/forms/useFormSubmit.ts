@@ -18,7 +18,7 @@ export function useFormSubmit(endpoint: string, form: FormName) {
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formEl = e.currentTarget;
-    const data = Object.fromEntries(new FormData(formEl));
+    const data = { ...Object.fromEntries(new FormData(formEl)), page: window.location.pathname };
     setStatus('sending');
     setErrors({});
     try {

@@ -76,10 +76,27 @@ export const notices = {
    * phone number, and copied into each lead email so the exact wording agreed to is on record.
    * Names the business, as the content plan requires. Have it reviewed before launch (#56).
    */
-  phoneConsent: `By checking this box, I agree that ${site.legalName} and its licensed insurance agents may contact me at the phone number I provided about Medicare Advantage plans, Medicare Supplement (Medigap) insurance and Part D prescription drug plans, including by calls and text messages that may use automated technology. Consent is not a condition of any purchase. Message and data rates may apply. I can opt out at any time.`,
-  /** Scope of Appointment note for Book a Call. */
+  phoneConsent: `By checking this box, I agree that ${site.legalName} and its licensed insurance agents may contact me at the phone number I provided about Medicare Advantage plans, Medicare Supplement (Medigap) insurance, Part D prescription drug plans, dental, vision and hearing plans, hospital indemnity insurance and final expense life insurance, including by calls and text messages that may use an autodialer, an artificial or prerecorded voice, or other automated technology. Consent is not a condition of any purchase. Message and data rates may apply. I can opt out at any time.`,
+  /**
+   * Call-recording notice (review 2026-11-25, INS-04/INS-34). Federal rules require recorded
+   * sales calls; California (Penal Code 632) and Florida need every party's consent. Shown
+   * before anyone books or asks for a call; agents also announce it at the start of each call.
+   */
+  callRecording:
+    'Calls with our licensed agents, including the sound of video calls, are recorded for quality and because Medicare rules require it. By continuing a call with us, you agree to the recording. We keep recordings for at least 6 years.',
+  /**
+   * Shown before the chat loads (review 2026-11-25: California Penal Code 631 and the
+   * B&P 17941 bot disclosure). Chats are kept like recorded calls.
+   */
+  chatNotice:
+    'Our chat is run by Crisp. Your messages are saved by Crisp and by us, like a recorded call. Some replies may come from an automated assistant, and it will always say so; questions about plans go to a licensed agent. Please do not type your Medicare number or health details here.',
+  /**
+   * Scope of Appointment note for Book a Call, with the CMS model-form statements (review
+   * 2026-11-25, INS-07). CY2027 rules: the SOA must be complete before the appointment and is
+   * valid for 12 months; there is no 48-hour wait.
+   */
   scopeOfAppointment:
-    'Before your appointment starts, we will confirm which types of coverage you want to discuss, such as Medicare Advantage, Medicare Supplement (Medigap) insurance or prescription drug plans. Medicare rules require us to record this Scope of Appointment, and we will only talk about the products you agree to.',
+    'Before your appointment, you choose which types of coverage you want to discuss, such as Medicare Advantage, Medicare Supplement (Medigap) insurance or prescription drug plans. Medicare rules require us to record this Scope of Appointment before we meet, and we will only talk about the products you choose. It stays valid for 12 months. The person you meet is a licensed agent, not a government employee, and may be paid based on your enrollment in a plan. Booking does not oblige you to enroll in a plan, does not affect your current or future Medicare enrollment, and does not enroll you in anything.',
 } as const;
 
 // Official Medicare cost figures (plan year, IRMAA tables).

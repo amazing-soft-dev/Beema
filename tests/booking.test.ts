@@ -14,10 +14,10 @@ describe('Book a Call topics', () => {
     for (const t of [...medicareTopics, ...addOnTopics]) assert.doesNotMatch(t.label, /final expense|life/i);
   });
 
-  it('records final expense as a separate request in the note', () => {
-    const note = bookingNote({ topics: ['medigap'], finalExpense: true, remindersConsent: false });
+  it('keeps final expense out of the Medicare booking note', () => {
+    const note = bookingNote({ topics: ['medigap'], remindersConsent: false });
     assert.match(note, /Scope of Appointment topics: Medigap/);
-    assert.match(note, /Separately requested: a final expense/);
+    assert.doesNotMatch(note, /final expense|life insurance/i);
     assert.match(note, /Reminder calls and texts: not agreed/);
   });
 });
