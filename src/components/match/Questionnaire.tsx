@@ -15,14 +15,19 @@ type StepId = 'zip' | 'birth' | 'work' | 'consent' | 'doctors' | 'drugs' | 'budg
 
 const choices: Partial<Record<StepId, { question: string; help?: string; options: Choice[] }>> = {
   work: {
-    question: 'Will you have health coverage from a job when you turn 65?',
-    help: 'Yours or your spouse’s, from current work.',
+    question: 'What other health coverage will you have when Medicare starts?',
+    help: 'Yours or your spouse’s. Choose the one that fits best.',
     options: [
-      { value: 'none', label: 'No job coverage' },
-      { value: 'employer-large', label: 'Yes, from a current job at a company with 20 or more employees' },
-      { value: 'employer-small', label: 'Yes, from a current job at a company with fewer than 20 employees' },
+      { value: 'none', label: 'None: no job or other coverage' },
+      { value: 'employer-large', label: 'From a current job at a company with 20 or more employees' },
+      { value: 'employer-small', label: 'From a current job at a company with fewer than 20 employees' },
       { value: 'retiree', label: 'Retiree coverage from a former employer' },
       { value: 'cobra', label: 'COBRA' },
+      { value: 'marketplace', label: 'A Marketplace plan (HealthCare.gov or Covered California)' },
+      { value: 'medicaid', label: 'Medicaid (Medi-Cal in California) or state help with Medicare costs' },
+      { value: 'va', label: 'VA health care' },
+      { value: 'tricare', label: 'TRICARE (military health coverage)' },
+      { value: 'disability-esrd', label: 'I am under 65 and have Medicare because of a disability or kidney failure (ESRD)' },
     ],
   },
   doctors: {

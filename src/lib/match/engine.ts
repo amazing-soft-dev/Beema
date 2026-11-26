@@ -9,7 +9,18 @@
  */
 import { type ISODate, initialEnrollmentPeriod } from '../medicare/dates.ts';
 
-export type WorkCoverage = 'none' | 'employer-large' | 'employer-small' | 'retiree' | 'cobra';
+export type WorkCoverage =
+  | 'none'
+  | 'employer-large'
+  | 'employer-small'
+  | 'retiree'
+  | 'cobra'
+  | 'marketplace'
+  /** Special situations a licensed agent must look at first (review 2026-11-25, INS-25). */
+  | 'medicaid'
+  | 'va'
+  | 'tricare'
+  | 'disability-esrd';
 export type Doctors = 'keep-specific' | 'flexible' | 'skip';
 export type Drugs = 'none' | 'few' | 'several' | 'skip';
 export type Budget = 'low-premium' | 'predictable' | 'unsure';
@@ -27,7 +38,7 @@ export type Answers = {
   travel: Travel;
 };
 
-export type MatchType = 'medigap' | 'medicare-advantage' | 'keep-employer' | 'compare-both';
+export type MatchType = 'medigap' | 'medicare-advantage' | 'keep-employer' | 'compare-both' | 'talk-to-agent';
 
 export type Alternative = { label: string; href: string; detail: string };
 
@@ -98,15 +109,93 @@ const partBWarning: Partial<Record<WorkCoverage, string>> = {
   'employer-small': 'With an employer under 20 employees, Medicare usually pays first, so you normally need Part B at 65.',
 };
 
+/**
+ * Joining an individual Medicare Advantage or Part D plan can end employer retiree coverage
+ * (review 2026-11-25, INS-26), so retirees see this before anything else.
+ */
+export const retireeWarning =
+  'Joining an individual Medicare Advantage or Part D plan can end your retiree coverage from your former employer, sometimes for good and for your spouse too. Ask your retiree plan before you join any plan.';
+
 /** The recommendation for a set of answers. `today` is passed in so results are testable. */
 export function match(a: Answers, today: ISODate): Match {
   const result = recommend(a, today);
-  const warning = partBWarning[a.work];
-  return warning ? { ...result, tradeoffs: [warning, ...result.tradeoffs] } : result;
+  const warnings = [...(a.work === 'retiree' ? [retireeWarning] : []), ...(partBWarning[a.work] ? [partBWarning[a.work]!] : [])];
+  return warnings.length ? { ...result, tradeoffs: [...warnings, ...result.tradeoffs] } : result;
 }
+
+type SpecialCoverage = 'marketplace' | 'medicaid' | 'va' | 'tricare' | 'disability-esrd';
+
+/**
+ * Coverage that changes the usual Medigap-or-Advantage choice. These answers never get a
+ * Medigap or Medicare Advantage result; a licensed agent looks at them first (review
+ * 2026-11-25, INS-25, with the California Medi-Cal right from Ins. Code 10192.11(i)).
+ */
+const special: Record<SpecialCoverage, { summary: string; reasons: [string, string, string]; tradeoffs: string[] }> = {
+  medicaid: {
+    summary: 'With Medicaid (Medi-Cal in California) or state help with Medicare costs, the usual choices work differently. A licensed agent should look at your situation before you choose anything.',
+    reasons: [
+      'Medicaid may already pay your Medicare premiums and most of your costs, so a Medigap policy is usually not useful, and companies may not sell you one while Medicaid pays.',
+      'You may qualify for a Dual Eligible Special Needs Plan (D-SNP) and for Extra Help with drug costs.',
+      'In California, if you later lose Medi-Cal, you have a guaranteed right to buy Medigap with no health questions.',
+    ],
+    tradeoffs: ['Your state Medicaid office or your SHIP can also help you, free of charge.'],
+  },
+  va: {
+    summary: 'VA health care is not Medicare, and you can have both. A licensed agent can help you decide how they should work together.',
+    reasons: [
+      'VA care covers you only at VA facilities (or care the VA approves); Medicare covers care outside the VA.',
+      'If you delay Part B and later want it, you may pay a late penalty for as long as you have Part B.',
+      'VA drug coverage counts as creditable, so you can usually wait to join Part D without a penalty.',
+    ],
+    tradeoffs: ['Ask the VA how your benefits work with Medicare before you drop any coverage.'],
+  },
+  tricare: {
+    summary: 'TRICARE For Life works with Original Medicare and pays after it. A licensed agent can check what, if anything, you need on top.',
+    reasons: [
+      'To keep TRICARE For Life, you must have both Medicare Part A and Part B.',
+      'TRICARE For Life usually covers most of what Original Medicare leaves, so a Medigap policy may duplicate it.',
+      'TRICARE pharmacy coverage counts as creditable drug coverage, so you usually do not need a Part D plan.',
+    ],
+    tradeoffs: ['Do not drop Part B: without it, TRICARE For Life coverage ends.'],
+  },
+  'disability-esrd': {
+    summary: 'Medicare under 65, through a disability or kidney failure (ESRD), has its own rules for Medigap and Medicare Advantage. A licensed agent should look at your state’s rules with you.',
+    reasons: [
+      'Whether companies must sell you a Medigap policy before 65 depends on your state; in California you get 6 months from your Part B start.',
+      'People with ESRD have different Medigap rights, and some plans have special rules for them.',
+      'At 65 you get a new Medigap Open Enrollment, with no health questions.',
+    ],
+    tradeoffs: ['Prices for Medigap before 65 can be much higher than at 65.'],
+  },
+  marketplace: {
+    summary: 'A Marketplace plan usually should end when your Medicare starts. A licensed agent can help you time the change so there is no gap.',
+    reasons: [
+      'Once you have Part A, you can no longer get premium tax credits for a Marketplace plan.',
+      'Marketplace coverage does not let you delay Part B without a late penalty.',
+      'Ending the Marketplace plan too early or too late can leave a gap or a double premium.',
+    ],
+    tradeoffs: ['Cancel the Marketplace plan yourself; it does not end on its own when Medicare starts.'],
+  },
+};
+
+const isSpecial = (work: WorkCoverage): work is SpecialCoverage => work in special;
 
 function recommend(a: Answers, today: ISODate): Match {
   const window = windowFor(a.birthMonth, today);
+
+  if (isSpecial(a.work)) {
+    const s = special[a.work];
+    return {
+      type: 'talk-to-agent',
+      title: 'Talk with a licensed agent first',
+      summary: s.summary,
+      reasons: s.reasons,
+      tradeoffs: s.tradeoffs,
+      window,
+      topic: 'turning-65',
+      learnMore: { label: 'Read the Turning 65 guide', href: '/turning-65' },
+    };
+  }
 
   if (a.work === 'employer-large') {
     return {
@@ -184,8 +273,8 @@ function recommend(a: Answers, today: ISODate): Match {
 }
 
 /** Result keys allowed in a Book a Call link (no personal data travels in the URL). */
-export const matchTypes: MatchType[] = ['medigap', 'medicare-advantage', 'keep-employer', 'compare-both'];
+export const matchTypes: MatchType[] = ['medigap', 'medicare-advantage', 'keep-employer', 'compare-both', 'talk-to-agent'];
 export const matchTitle = (type: string) =>
-  ({ medigap: 'Original Medicare with a Medigap plan', 'medicare-advantage': 'A Medicare Advantage plan', 'keep-employer': 'Keep your job-based coverage for now', 'compare-both': 'Compare both paths' })[
+  ({ medigap: 'Original Medicare with a Medigap plan', 'medicare-advantage': 'A Medicare Advantage plan', 'keep-employer': 'Keep your job-based coverage for now', 'compare-both': 'Compare both paths', 'talk-to-agent': 'Talk with a licensed agent first' })[
     type as MatchType
   ];

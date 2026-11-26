@@ -1,6 +1,6 @@
 import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
-import { type Answers, freeAlternatives, isBirthMonth, isZip, match, matchTitle, windowFor } from '../src/lib/match/engine.ts';
+import { type Answers, freeAlternatives, isBirthMonth, isZip, match, matchTitle, matchTypes, retireeWarning, windowFor } from '../src/lib/match/engine.ts';
 import { home } from '../src/content/home.ts';
 
 const today = '2026-11-17';
@@ -35,7 +35,7 @@ describe('AI Plan Match rules', () => {
   });
 
   it('always gives three reasons and at least one trade-off', () => {
-    for (const work of ['none', 'employer-large', 'employer-small', 'retiree', 'cobra'] as const) {
+    for (const work of ['none', 'employer-large', 'employer-small', 'retiree', 'cobra', 'marketplace', 'medicaid', 'va', 'tricare', 'disability-esrd'] as const) {
       for (const budget of ['low-premium', 'predictable', 'unsure'] as const) {
         const m = run({ work, budget });
         assert.equal(m.reasons.length, 3);
@@ -43,6 +43,28 @@ describe('AI Plan Match rules', () => {
         assert.ok(m.tradeoffs.length >= 1);
       }
     }
+  });
+
+  it('sends Medicaid, VA, TRICARE, Marketplace and under-65 coverage to a licensed agent, never to Medigap or MA', () => {
+    for (const work of ['marketplace', 'medicaid', 'va', 'tricare', 'disability-esrd'] as const) {
+      for (const answers of [{ travel: 'often', budget: 'predictable', doctors: 'keep-specific' }, { travel: 'rarely', budget: 'low-premium', doctors: 'flexible' }] as const) {
+        const m = run({ work, ...answers });
+        assert.equal(m.type, 'talk-to-agent', work);
+        assert.equal(m.title, matchTitle('talk-to-agent'));
+      }
+    }
+    assert.ok(matchTypes.includes('talk-to-agent'));
+  });
+
+  it('mentions the California Medi-Cal Medigap right for Medicaid answers, and Part B for TRICARE', () => {
+    assert.match(run({ work: 'medicaid' }).reasons.join(' '), /lose Medi-Cal/);
+    assert.match(run({ work: 'tricare' }).reasons.join(' '), /Part A and Part B/);
+  });
+
+  it('warns retirees first that an individual plan can end retiree coverage', () => {
+    const m = run({ work: 'retiree', travel: 'rarely', budget: 'low-premium' });
+    assert.equal(m.tradeoffs[0], retireeWarning);
+    assert.match(m.tradeoffs[1]!, /Part B/);
   });
 
   it('warns that COBRA does not delay Part B', () => {
@@ -80,7 +102,7 @@ describe('home plan match example', () => {
   it('is a real engine result: one coverage type, three reasons, no company, no dates', () => {
     const e = home.matchBox.example;
     const m = match(e.answers, e.today);
-    assert.equal(m.type, 'medigap');
+    assert.equal(m.type, 'compare-both', 'the home example must not favor one path');
     assert.equal(new Set(m.reasons).size, 3);
     assert.ok(m.tradeoffs.length >= 2);
     assert.equal(m.window, undefined);
