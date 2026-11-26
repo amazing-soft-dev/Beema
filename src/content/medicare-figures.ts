@@ -33,6 +33,14 @@ export const medicareFigures = {
     lifeChangingEvent: 'https://www.ssa.gov/forms/ssa-44.pdf',
   },
   partB: { standardMonthly: 209.4, annualDeductible: 292 },
+  /** Part A inpatient hospital deductible per benefit period (CMS 2027 fact sheet). */
+  partA: { inpatientDeductible: 1776 },
+  /**
+   * Part D yearly out-of-pocket threshold (cap) for covered drugs. Source: CMS, "Announcement of
+   * Calendar Year 2027 Medicare Advantage Capitation Rates and Part C and Part D Payment Policies",
+   * https://www.cms.gov/files/document/2027-announcement.pdf ($2,100 in 2026).
+   */
+  partD: { outOfPocketCap: 2400 },
   /**
    * Income tiers, lowest first. Joint and individual returns share the six tiers;
    * married filing separately (lived with spouse) only uses tiers 1, 5 and 6.
