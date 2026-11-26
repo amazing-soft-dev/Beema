@@ -34,7 +34,7 @@ export const team: Advisor[] = [
     photo: 'team-advisor-2',
     states: ['TX', 'AZ'],
     yearsExperience: 8,
-    bio: 'James walks clients through Part D drug plans and checks every year that their medicines are still covered at the best price.',
+    bio: 'James walks clients through Part D drug plans and checks every year that their medicines are still covered and what they will cost.',
   },
   {
     slug: 'linda-nguyen',

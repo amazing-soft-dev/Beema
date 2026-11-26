@@ -1,3 +1,4 @@
+import { notMedigapNotice } from '../disclosures.ts';
 import type { ContentPage } from './types.ts';
 
 /** Services › Beyond Medicare › Hospital Indemnity (plan §4; limited-benefit notices). */
@@ -24,6 +25,7 @@ export const hospitalIndemnityPage: ContentPage = {
       eyebrow: 'The basics',
       title: 'How fixed benefits work',
       blocks: [
+        { type: 'callout', tone: 'warning', title: notMedigapNotice.title, text: notMedigapNotice.text },
         {
           type: 'cards',
           items: [

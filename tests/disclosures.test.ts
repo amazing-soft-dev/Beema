@@ -1,6 +1,9 @@
 import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
-import { disclosures } from '../src/content/disclosures.ts';
+import { articles } from '../src/content/blog/index.ts';
+import { disclosures, medigapAdNotice, notMedigapNotice } from '../src/content/disclosures.ts';
+import { hospitalIndemnityPage } from '../src/content/pages/hospital-indemnity.ts';
+import { medigapPage } from '../src/content/pages/medigap.ts';
 
 describe('non-Medicare product disclosures', () => {
   for (const [kind, d] of Object.entries(disclosures)) {
@@ -19,5 +22,28 @@ describe('non-Medicare product disclosures', () => {
   it('flags hospital indemnity as limited benefit with duplication', () => {
     assert.match(disclosures['limited-benefit'].text, /limited-benefit/);
     assert.match(disclosures['limited-benefit'].text, /duplicat/);
+  });
+});
+
+
+describe('Medigap advertising notices (California)', () => {
+  it('outline-of-coverage line is uppercase and the government notice is verbatim', () => {
+    assert.equal(medigapAdNotice.outlineOfCoverage, medigapAdNotice.outlineOfCoverage.toUpperCase());
+    assert.equal(medigapAdNotice.notConnected, 'Not connected with or endorsed by the U.S. Government or the federal Medicare program.');
+  });
+
+  it('appear on the Medigap page and the Plan G vs Plan N article', () => {
+    const blog = articles.find((a) => a.slug === 'medigap-plan-g-vs-plan-n');
+    for (const text of [JSON.stringify(medigapPage), JSON.stringify(blog)]) {
+      assert.ok(text.includes(medigapAdNotice.outlineOfCoverage));
+      assert.ok(text.includes(medigapAdNotice.notConnected));
+    }
+  });
+});
+
+describe('hospital indemnity Medicare notice (California 10192.17(k))', () => {
+  it('is on the hospital indemnity page, with the uppercase heading', () => {
+    assert.equal(notMedigapNotice.title, notMedigapNotice.title.toUpperCase());
+    assert.ok(JSON.stringify(hospitalIndemnityPage).includes(notMedigapNotice.title));
   });
 });

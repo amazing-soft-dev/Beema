@@ -60,7 +60,7 @@ export const home = {
         label: 'Path 2',
         title: 'A Medicare Advantage plan',
         summary: 'A private plan approved by Medicare (also called Part C) replaces Original Medicare and usually includes drug coverage.',
-        pros: ['Low or $0 monthly premium in many areas', 'Often includes drugs, dental, vision and hearing', 'A yearly limit on what you pay out of pocket'],
+        pros: ['Low or $0 monthly premium in many areas (you must keep paying your Part B premium)', 'Often includes drugs, dental, vision and hearing', 'A yearly limit on what you pay out of pocket'],
         tradeoffs: ['You usually use the plan’s network of doctors', 'Copays add up when you use care', 'Coverage away from home can be limited'],
         href: '/medicare-advantage',
         cta: 'Learn about Medicare Advantage',

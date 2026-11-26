@@ -1,3 +1,4 @@
+import { medigapAdNotice } from '../disclosures.ts';
 import { medicareFigures } from '../medicare-figures.ts';
 import type { ContentPage } from './types.ts';
 
@@ -27,11 +28,12 @@ export const medigapPage: ContentPage = {
       title: 'Plan G, Plan N and high-deductible Plan G',
       lead: 'Medigap plans are standardized: a Plan G covers the same things with every insurance company. Only the price and service differ.',
       blocks: [
+        { type: 'callout', title: medigapAdNotice.notConnected, text: medigapAdNotice.outlineOfCoverage },
         {
           type: 'cards',
           items: [
             {
-              tag: 'Most chosen',
+              tag: 'Fullest coverage for new enrollees',
               title: 'Plan G',
               text: `Pays everything Original Medicare leaves except the yearly Part B deductible ($${partB.annualDeductible} in ${planYear}).`,
               points: ['No copays for doctor visits', 'Covers Part B excess charges', 'Foreign travel emergency care (up to plan limits)'],
@@ -43,7 +45,7 @@ export const medigapPage: ContentPage = {
               points: ['Up to $20 copay for some office visits', 'Up to $50 for an emergency room visit that does not lead to a hospital stay', 'Does not cover Part B excess charges'],
             },
             {
-              tag: 'Lowest premium',
+              tag: 'Low premium, high deductible',
               title: 'High-deductible Plan G',
               text: 'Same coverage as Plan G after you pay a yearly deductible set by Medicare. Suits people who want protection from big bills and rarely see a doctor.',
               points: ['Much lower monthly premium', 'You pay costs up to the deductible first', 'The deductible changes every year'],
@@ -72,8 +74,29 @@ export const medigapPage: ContentPage = {
           items: [
             { title: 'Your window opens', text: 'It starts the first day of the month your Part B begins, if you are 65 or older.' },
             { title: 'Any plan, no health questions', text: 'During these 6 months an insurance company cannot turn you down or charge more because of your health.' },
-            { title: 'After it ends', text: 'In most states, companies can ask health questions and may say no or charge more. Some states give extra chances to switch.' },
+            { title: 'After it ends', text: 'In most states, companies can ask health questions and may say no or charge more. Some states give extra chances to switch, such as California’s birthday rule below.' },
             { title: 'Working past 65?', text: 'If you delay Part B because you have job-based coverage, your Medigap window waits until your Part B starts.' },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'california',
+      eyebrow: 'California',
+      title: 'Extra Medigap rights in California',
+      lead: 'California gives people with Medigap more chances to change plans without health questions (California Insurance Code section 10192.11). Rules can change, so we confirm yours before you switch.',
+      blocks: [
+        {
+          type: 'steps',
+          items: [
+            {
+              title: 'The birthday rule',
+              text: 'Every year, for at least 60 days starting on your birthday, you can switch to any Medigap plan with the same or fewer benefits, from any company, with no health questions and no higher price because of your health. For example, Plan G can move to another company’s Plan G or Plan N, but not up to Plan F. Your insurer must remind you 30 to 60 days before.',
+            },
+            { title: 'Losing job or retiree coverage', text: 'You have 6 months to buy Medigap with no health questions after employer, retiree, COBRA or Cal-COBRA coverage, or military base coverage, ends.' },
+            { title: 'Moving or losing a plan', text: 'Moving out of your plan’s area, or your Medicare Advantage plan ending, gives you guaranteed-issue rights; when a Medicare Advantage plan ends, California adds 60 days to the federal window.' },
+            { title: 'Leaving Medi-Cal', text: 'If you lose Medi-Cal, or have share-of-cost Medi-Cal you have not met, you can buy Medigap without health questions.' },
+            { title: 'Under 65 with Medicare', text: 'If you have Medicare because of a disability, you get 6 months from your Part B start to buy Medigap. Companies must offer Plans A, B, D and G, plus K or L and M or N. People with end-stage renal disease are not covered by this rule.' },
           ],
         },
       ],
@@ -109,7 +132,7 @@ export const medigapPage: ContentPage = {
           head: ['', 'Original Medicare + Medigap', 'Medicare Advantage'],
           rows: [
             ['Doctors and hospitals', 'Any in the U.S. that accept Medicare', 'Usually the plan’s network; referrals may be needed'],
-            ['Monthly premium', 'Higher', 'Often low or $0 (you still pay Part B)'],
+            ['Monthly premium', 'Higher', 'Often low or $0 (you must keep paying your Part B premium)'],
             ['Costs when you use care', 'Few or none (depends on the plan)', 'Copays add up, to a yearly limit'],
             ['Drug coverage', 'Separate Part D plan', 'Usually included'],
             ['Dental, vision, hearing', 'Not included', 'Often some extras'],
