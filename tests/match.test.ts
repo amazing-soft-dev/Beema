@@ -80,7 +80,7 @@ describe('home plan match example', () => {
   it('is a real engine result: one coverage type, three reasons, no company, no dates', () => {
     const e = home.matchBox.example;
     const m = match(e.answers, e.today);
-    assert.equal(m.type, 'medigap');
+    assert.equal(m.type, 'compare-both', 'the home example must not favor one path');
     assert.equal(new Set(m.reasons).size, 3);
     assert.ok(m.tradeoffs.length >= 2);
     assert.equal(m.window, undefined);
