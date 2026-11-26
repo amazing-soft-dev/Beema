@@ -2,7 +2,7 @@ import { strict as assert } from 'node:assert';
 import { createHmac } from 'node:crypto';
 import { describe, it } from 'node:test';
 import { checkoutSchema } from '../src/lib/forms/schemas.ts';
-import { checkoutParams, createCheckoutSession, priceIdFor, subscriptionNotice, verifyStripeSignature } from '../src/lib/stripe.ts';
+import { checkoutParams, createCheckoutSession, createPortalSession, priceIdFor, subscriptionNotice, verifyStripeSignature } from '../src/lib/stripe.ts';
 
 const env = { STRIPE_SECRET_KEY: 'sk_test_x', STRIPE_PRICE_PLUS_MONTHLY: 'price_plus_m', STRIPE_PRICE_FAMILY_YEARLY: 'price_family_y' };
 
@@ -83,5 +83,24 @@ describe('Stripe webhook', () => {
     assert.equal(n!.fields.State, 'TX');
     assert.equal(n!.fields.Email, 'pat@example.test');
     assert.equal(subscriptionNotice({ type: 'invoice.paid', data: { object: {} } }), null);
+  });
+});
+
+describe('Stripe billing portal', () => {
+  it('looks up the checkout customer and opens a portal session that returns to Plans & Pricing', async () => {
+    const calls: string[] = [];
+    const fakeFetch = (async (url: string, init: RequestInit) => {
+      calls.push(`${init.method} ${url}`);
+      if (url.includes('checkout/sessions/')) return new Response(JSON.stringify({ customer: 'cus_9' }), { status: 200 });
+      assert.equal(new URLSearchParams(String(init.body)).get('customer'), 'cus_9');
+      return new Response(JSON.stringify({ url: 'https://billing.stripe.com/p/session/x' }), { status: 200 });
+    }) as unknown as typeof fetch;
+    const r = await createPortalSession('cs_test_123', env, fakeFetch, 'https://www.senioraiplans.com');
+    assert.deepEqual(r, { ok: true, data: { url: 'https://billing.stripe.com/p/session/x' } });
+    assert.deepEqual(calls, ['GET https://api.stripe.com/v1/checkout/sessions/cs_test_123', 'POST https://api.stripe.com/v1/billing_portal/sessions']);
+  });
+
+  it('refuses anything that is not a checkout session id', async () => {
+    assert.equal((await createPortalSession('../customers/cus_1', env)).ok, false);
   });
 });
