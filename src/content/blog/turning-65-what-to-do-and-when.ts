@@ -11,6 +11,7 @@ export const turning65Steps: Article = {
   description: 'A month-by-month plan for your 65th birthday: when to sign up for Parts A and B, when to choose Medigap or Medicare Advantage, and how to avoid late penalties.',
   topic: 'turning-65',
   published: '2026-11-17',
+  updated: '2026-11-26',
   planYear,
   readMinutes: 5,
   author: defaultAuthor,

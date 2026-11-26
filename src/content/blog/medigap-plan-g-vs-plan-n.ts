@@ -10,6 +10,7 @@ export const planGvsN: Article = {
   description: 'Plan G and Plan N are the two most popular Medigap plans for people turning 65. Here is what each covers, what you pay, and who each one suits.',
   topic: 'medigap',
   published: '2026-11-16',
+  updated: '2026-11-26',
   planYear,
   readMinutes: 4,
   author: defaultAuthor,
