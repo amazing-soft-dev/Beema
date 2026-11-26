@@ -134,7 +134,12 @@ export function Questionnaire({ onComplete }: { onComplete: (answers: Answers) =
           <p className="font-semibold" id="match-progress-label">
             Question {index + 1} of {steps.length}
           </p>
-          <progress className="match-progress h-3 w-full" max={steps.length} value={index + 1} aria-labelledby="match-progress-label" />
+          <progress
+            className="h-3 w-full appearance-none overflow-hidden rounded-pill bg-line accent-navy-700 [&::-moz-progress-bar]:bg-navy-700 [&::-webkit-progress-bar]:bg-line [&::-webkit-progress-value]:bg-navy-700 [&::-webkit-progress-value]:transition-[width] [&::-webkit-progress-value]:duration-400 [&::-webkit-progress-value]:ease-[cubic-bezier(.22,1,.36,1)]"
+            max={steps.length}
+            value={index + 1}
+            aria-labelledby="match-progress-label"
+          />
         </div>
 
         {/* Keyed by step: each question mounts fresh and fades up. No exit animation, so a

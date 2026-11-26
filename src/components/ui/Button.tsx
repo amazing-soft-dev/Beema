@@ -23,9 +23,12 @@ const base =
 const variants: Record<ButtonVariant, string> = {
   primary:
     'border-gold bg-gold text-on-gold duration-300 ease-[cubic-bezier(.22,1,.36,1)] hover:border-gold-hover hover:bg-gold-hover focus-visible:border-gold-hover focus-visible:bg-gold-hover',
+  // On dark sections (.on-dark) secondary turns gold so it stands apart from the band.
   secondary:
-    'border-navy-700 bg-navy-700 text-white duration-400 ease-[cubic-bezier(.65,0,.35,1)] hover:border-navy-800 hover:bg-navy-800 focus-visible:border-navy-800 focus-visible:bg-navy-800',
-  outline: 'border-ink bg-transparent text-ink duration-400 ease-[cubic-bezier(.65,0,.35,1)] hover:bg-ink hover:text-white focus-visible:bg-ink focus-visible:text-white',
+    'border-navy-700 bg-navy-700 text-white duration-400 ease-[cubic-bezier(.65,0,.35,1)] hover:border-navy-800 hover:bg-navy-800 focus-visible:border-navy-800 focus-visible:bg-navy-800 in-[.on-dark]:border-gold in-[.on-dark]:bg-gold in-[.on-dark]:text-on-gold in-[.on-dark]:hover:border-gold-hover in-[.on-dark]:hover:bg-gold-hover in-[.on-dark]:focus-visible:border-gold-hover in-[.on-dark]:focus-visible:bg-gold-hover',
+  // On dark sections (.on-dark) outline turns white, like `light`.
+  outline:
+    'border-ink bg-transparent text-ink duration-400 ease-[cubic-bezier(.65,0,.35,1)] hover:bg-ink hover:text-white focus-visible:bg-ink focus-visible:text-white in-[.on-dark]:border-white in-[.on-dark]:text-white in-[.on-dark]:hover:bg-white in-[.on-dark]:hover:text-ink in-[.on-dark]:focus-visible:bg-white in-[.on-dark]:focus-visible:text-ink',
   light: 'border-white bg-transparent text-white duration-400 ease-[cubic-bezier(.65,0,.35,1)] hover:bg-white hover:text-ink focus-visible:bg-white focus-visible:text-ink',
 };
 

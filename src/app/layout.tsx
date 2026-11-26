@@ -15,7 +15,6 @@ import { site } from '@/content/site';
 import { themeScript } from '@/lib/theme';
 import './globals.css';
 import './header.css';
-import './ui.css';
 
 // Body face. Self-hosted by next/font at build time (SIL Open Font License).
 const geist = Geist({ subsets: ['latin'], weight: ['400', '500', '600'], variable: '--font-geist', display: 'swap' });
