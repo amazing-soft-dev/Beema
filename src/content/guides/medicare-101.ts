@@ -61,7 +61,7 @@ export const medicare101 = {
         name: 'Plan N',
         tag: 'Lower premium, small copays',
         summary: 'Like Plan G, but you share a little more of the cost at the doctor.',
-        youPay: ['The yearly Part B deductible', 'Up to 0 for some office visits and up to 0 for emergency room visits that do not lead to admission', 'Part B excess charges, if your doctor charges them'],
+        youPay: ['The yearly Part B deductible', 'Up to $20 for some office visits and up to $50 for emergency room visits that do not lead to admission', 'Part B excess charges, if your doctor charges them'],
         goodFor: 'Healthy people who see the doctor a few times a year and want to save on the premium.',
       },
       {
