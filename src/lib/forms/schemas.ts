@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { subscriptionStates } from '../../content/pricing.ts';
 
 /**
  * Form schemas shared by the browser (inline errors) and the API routes (the real check).
@@ -96,4 +97,15 @@ export const planIntakeSchema = z.object({
     .array(z.object({ name: z.string().trim().min(1).max(80), specialty: shortText(60), city: shortText(60) }))
     .max(15, 'Please list 15 doctors or fewer.')
     .default([]),
+});
+
+/** Plus and Family checkout: tier, billing period, a state where they are offered, and the fee disclosure. */
+export const checkoutSchema = z.object({
+  tier: z.enum(['plus', 'family'], { error: 'Please choose Plus or Family.' }),
+  billing: z.enum(['monthly', 'yearly'], { error: 'Please choose monthly or yearly billing.' }),
+  state: z
+    .string()
+    .refine((code) => subscriptionStates.some((s) => s.code === code), { message: 'Plus and Family are not available in your state. Our free help is.' }),
+  disclosure: z.literal('yes', { error: 'Please confirm you have read the fee disclosure.' }),
+  website: honeypotField,
 });
