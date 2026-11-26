@@ -1,5 +1,5 @@
 import { sendLead } from '@/lib/email';
-import { consentRecord } from '@/lib/forms/consent';
+import { consentContext, consentRecord } from '@/lib/forms/consent';
 import { planIntakeSchema } from '@/lib/forms/schemas';
 import { failed, ok, readForm } from '@/lib/forms/server';
 
@@ -21,6 +21,7 @@ export async function POST(request: Request) {
     Medicines: list(d.drugs.map((x) => [x.name, x.dose, x.frequency].filter(Boolean).join(', '))),
     Doctors: list(d.doctors.map((x) => [x.name, x.specialty, x.city].filter(Boolean).join(', '))),
     'Consent to contact': consentRecord(d.consent),
+    ...consentContext(request, d.page),
   });
   if (!sent.ok) {
     console.error(`[plan-intake] email failed: ${sent.reason}`);

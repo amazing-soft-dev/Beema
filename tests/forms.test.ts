@@ -1,7 +1,7 @@
 import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
 import { contactSchema, fieldErrors, guideEmailSchema } from '../src/lib/forms/schemas.ts';
-import { consentRecord } from '../src/lib/forms/consent.ts';
+import { consentContext, consentRecord, consentTextVersion, FORM_VERSION } from '../src/lib/forms/consent.ts';
 import { rateLimited } from '../src/lib/forms/server.ts';
 
 const valid = { name: 'Pat Doe', zip: '78701', phone: '(555) 010-0123', bestTime: 'morning', consent: 'yes', website: '' };
@@ -73,5 +73,24 @@ describe('plan intake schema', () => {
   it('caps each list at 15', () => {
     const drugs = Array.from({ length: 16 }, (_, i) => ({ name: `Drug ${i}` }));
     assert.equal(planIntakeSchema.safeParse({ ...base, drugs }).success, false);
+  });
+});
+
+describe('consent record context', () => {
+  it('keeps the page, form version, consent text version, IP and browser', () => {
+    const req = new Request('https://example.test/api/contact', { headers: { 'x-forwarded-for': '203.0.113.7, 10.0.0.1', 'user-agent': 'TestBrowser/1.0' } });
+    assert.deepEqual(consentContext(req, '/contact'), {
+      'Submitted from page': '/contact',
+      'Form version': FORM_VERSION,
+      'Consent text version': consentTextVersion,
+      'IP address': '203.0.113.7',
+      Browser: 'TestBrowser/1.0',
+    });
+    assert.match(consentTextVersion, /^[0-9a-f]{12}$/);
+  });
+
+  it('accepts only a site path for the page', () => {
+    assert.equal(contactSchema.parse({ ...valid, page: '/book-a-call' }).page, '/book-a-call');
+    assert.equal(contactSchema.parse({ ...valid, page: 'https://evil.test/' }).page, undefined);
   });
 });

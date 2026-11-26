@@ -34,6 +34,9 @@ export const bestTimeField = z.enum(BEST_TIMES, { error: 'Please choose the best
  */
 export const consentField = z.literal('yes').optional().or(z.literal('').transform(() => undefined));
 
+/** The path the form was sent from, for the consent record (never a full URL). */
+export const pageField = z.string().trim().max(200).regex(/^\/(?!\/)/).optional().catch(undefined);
+
 /** Honeypot: hidden from people, so any value means a bot. */
 export const honeypotField = z.string().max(0).optional().or(z.literal(''));
 
@@ -43,6 +46,7 @@ export const contactSchema = z.object({
   phone: phoneField,
   bestTime: bestTimeField,
   consent: consentField,
+  page: pageField,
   website: honeypotField,
 });
 
@@ -82,6 +86,7 @@ export const planIntakeSchema = z.object({
   phone: phoneField,
   bestTime: bestTimeField,
   consent: consentField,
+  page: pageField,
   website: honeypotField,
   drugs: z
     .array(z.object({ name: z.string().trim().min(1).max(80), dose: shortText(40), frequency: shortText(40) }))

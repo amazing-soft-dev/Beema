@@ -49,6 +49,7 @@ export function PlanIntake() {
     const contact = Object.fromEntries(new FormData(e.currentTarget));
     const payload = {
       ...contact,
+      page: window.location.pathname,
       zip: zipValue,
       drugs: drugs.filter((d) => d.name.trim()),
       doctors: doctors.filter((d) => d.name.trim()),
