@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import { site } from '@/content/site';
+import { emailRoute } from './env';
 import { licenseLine, licenseLineHtml } from './license-line';
 
 export { licenseLine, licenseLineHtml };
@@ -26,7 +27,9 @@ export function renderFields(fields: Record<string, string>) {
 
 export async function sendEmail({ to, subject, text, html, replyTo }: { to: string; subject: string; text: string; html: string; replyTo?: string }): Promise<EmailResult> {
   const key = process.env.RESEND_API_KEY;
-  const from = process.env.LEADS_FROM_EMAIL ?? `${site.name} <onboarding@resend.dev>`;
+  const route = leadRoute();
+  if (!route.ok) return { ok: false, reason: route.reason };
+  const { from } = route;
   if (!key) {
     if (process.env.NODE_ENV !== 'production') {
       console.info(`[email:dev] to=${to} subject=${subject}\n${text}`);
@@ -42,11 +45,16 @@ export async function sendEmail({ to, subject, text, html, replyTo }: { to: stri
   }
 }
 
-/** Sends a new lead to the agency inbox (LEADS_TO_EMAIL, falling back to site.email). */
+/** Sender and lead inbox from the environment; development falls back to safe defaults. */
+const leadRoute = () => emailRoute(process.env, { from: `${site.name} <onboarding@resend.dev>`, to: site.email });
+
+/** Sends a new lead to the agency inbox (LEADS_TO_EMAIL; required in production). */
 export function sendLead(subject: string, fields: Record<string, string>) {
+  const route = leadRoute();
+  if (!route.ok) return Promise.resolve<EmailResult>({ ok: false, reason: route.reason });
   const body = renderFields(fields);
   return sendEmail({
-    to: process.env.LEADS_TO_EMAIL ?? site.email,
+    to: route.to,
     subject: `${subject} | ${site.shortName} website`,
     text: `${body.text}\n\n${licenseLine}`,
     html: `${body.html}<p style="font:14px/1.5 Arial,sans-serif">${licenseLineHtml}</p>`,
