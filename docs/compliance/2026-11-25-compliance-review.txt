@@ -1,0 +1,393 @@
+  Website URL                       https://www.senioraiplans.com                     site.ts:32, .env.example
+  Phone                             (254) 356-3878             site.ts:35
+Address: 2237 Mason St, San Francisco, CA 94133
+NPN: 42868828
+Office hours                      M-F 8-6, Sat 9-1 Central       
+Email                             hello@senioraiplans.com
+Founded year                      2026 ("Local, licensed help since 2026")    
+Licensed states + license #s      CA 0M84910, TX 2849103, FL W492018, AZ 7391042
+CMS disclaimer counts             8 organizations / 45 products               
+Advisors (3 people)               Maria Alvarez, James Carter, Linda Nguyen   
+Founder story                     Update Founder story year to 2026
+Blog author                       "licensed agent team, NPN 13356886"
+Reviews / ratings                 Client Quote, Generate templates, Will ask to my clients with that content.
+  Plus / Family prices              "Plus $9 a month and Family around $19 a month, with a yearly option at about two months free.", Start buttons Enable.         src/content/pricing.ts
+  Subscription Terms                Use exist terms and update TBD to the prices.         src/app/legal/subscription-terms
+  Privacy, Terms, all legal pages   Remove "Template text" banner    src/components/legal/LegalPage.tsx
+  Family Dashboard                  Update family dashboard, and remove coming later        src/app/family-dashboard
+  Meet the Team                     Remove menu tag "Coming later"                     src/content/menu.ts
+  Medicare figures                  2027 plan year (checked 2026-11-15)         src/content/medicare-figures.ts
+  10 ready-made PDF guides          stamped plan year 2027, contain stand-in    public/guides/*.pdf
+                                    phone/NPN/business name
+  Guide-page PDFs                   same stand-in data                          public/pdf/*.pdf
+  JSON-LD (Google structured data)  publishes the stand-in address, phone,      src/components/seo/JsonLd.tsx
+                                    NPN, licenses
+  llms.txt                          publishes the stand-in phone                src/app/llms.txt
+  Example plan-match result         fictional person, always a Medigap result   src/content/home.ts:100-110
+  Lead email sender name            Update old name "Silver Path Medicare Advisors" (old name)  .env.example:11
+  Design / motion                   Update to tailwind css, and remove as much classes as possible           src/app/globals.css, motion.css
+                                    (I've updated repo to https://github.com/amazing-soft-dev/SeniorAIPlans") So update remote-url and push to the correct repo.
+
+
+
+SENIOR AI PLANS - SECTION 2 (INS-01 to INS-40) COMPLIANCE REVIEW
+
+Reviewed 2026-11-25. Compliance guidance, not a legal opinion.
+Basis: CY2027 MA/Part D marketing rule (applies to marketing from Oct 1, 2026).
+
+ITEMS TO FIX
+------------
+INS-01  TPMO disclaimer
+  - The current text no longer mentions SHIP. Use:
+    "We do not offer every plan available in your area. Currently we represent [#]
+    organizations which offer [#] products in your area. Please contact Medicare.gov
+    or 1-800-MEDICARE to get information on all of your options."
+  - On calls, say it before any benefits are discussed (no longer "within the first minute").
+  - Source: 42 CFR 422.2267
+    https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-422/subpart-V/section-422.2267
+
+INS-06  48-hour SOA wait
+  - Outdated. CMS dropped the 48-hour wait. The appointment can happen any time after
+    the SOA is done, and SOAs can now be collected at educational events.
+  - Still required: an SOA before the appointment, in writing if in person, valid 12 months.
+  - Take the 48-hour minimum off the Cal.com booking types.
+  - Source: 42 CFR 422.2264
+    https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-422/subpart-V/section-422.2264
+
+INS-04 and INS-34  Call recordings
+  - CMS now requires 6 years, not 10. Years 1-3 must be audio; years 4-6 can be audio
+    or full transcripts. Keeping them 10 years is allowed; state 6 as the legal minimum.
+  - The rest of INS-04 is right: Florida is all-party consent, so announce recording on
+    every call.
+
+INS-13  Sharing leads
+  - "Never share" is fine. If leads are ever shared, CMS requires prior written consent
+    that names each receiving company and lets the person accept or reject each one
+    separately. Applies to manually dialed calls too.
+  - A live transfer with spoken consent on the call is allowed. Sharing with the carrier
+    itself does not need this consent.
+  - Source: 42 CFR 422.2274
+    https://www.ecfr.gov/current/title-42/chapter-IV/subchapter-B/part-422/subpart-V/section-422.2274
+
+INS-15  Superlatives
+  - Proof no longer has to appear on the material itself, but the data must be on file
+    if CMS asks. Citing the source on the page is still fine and is the safer choice.
+
+ITEMS THAT HOLD UP
+------------------
+INS-02, 03, 05, 07-12, 14, 16-33, 35-40.
+Note on INS-10/11: the FCC one-to-one consent rule was struck down in 2025 (IMC v. FCC),
+but the consent text does not rely on it. Prior express written consent still covers
+autodialed and prerecorded calls and texts.
+
+NOT VERIFIED YET (keep [CONFIRM] flags open until FMO or counsel weighs in)
+-------------------------------------------------------------------------
+- Florida telemarketing law (FTSA) details
+- Whether HIPAA business associate agreements apply (INS-35)
+- Texas TDPSA and Washington MHMDA thresholds (INS-36)
+- State fee and agent-compensation rules (INS-30)
+
+GAPS TO ADD
+-----------
+- If the site uses an AI chat: show the TPMO disclaimer before discussing benefits, and
+  keep AI-handled sales conversations like call recordings.
+- No texts or DMs to anyone who has not asked to be contacted.
+
+=====================================================================================
+CALIFORNIA ADDENDUM
+=====================================================================================
+Added 2026-11-25. Compliance
+guidance, not a legal opinion. Federal CMS rules (the sections above) still control
+Medicare Advantage and Part D marketing. In general, California law does not regulate MA
+or Part D plans themselves, but it does regulate the agent's license, Medigap, the
+ancillary products (dental/vision/hearing and hospital indemnity, which California treats
+as "disability insurance"), final expense life insurance, privacy, and call recording.
+Statute links go to leginfo.legislature.ca.gov unless noted.
+
+INS-01  TPMO disclaimer
+  - No change for MA/Part D. Medigap advertising has a separate California disclaimer. Every
+    Medigap ad must prominently show, in substance: "Not connected with or endorsed by the
+    U.S. Government or the federal Medicare program." Ins. Code 10192.19(h).
+    https://codes.findlaw.com/ca/insurance-code/ins-sect-10192-19/
+  - Medigap ads that are not a full sales presentation must also say, in 10-point or larger
+    UPPERCASE type, that an outline of coverage is available on request. If someone asks,
+    the agent must send it within 14 days. Ins. Code 10192.17(l).
+    https://california.public.law/codes/insurance_code_section_10192.17
+
+INS-03  No government look-alikes
+  - Holds, and California puts it in statute. Ins. Code 787(c)-(e) (disability and life ads
+    aimed at people 65+) and 10192.19(e)-(g) (Medigap) ban names, symbols, or wording that
+    suggest a government, Social Security, or Medicare connection. Ads also may not suggest
+    the reader will lose a benefit by not responding (787(f), 10192.19(i)).
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=INS&sectionNum=787
+
+INS-04  Call recording
+  - California is an all-party consent state. Penal Code 632 makes it a crime to record a
+    confidential communication without the consent of all parties, and Penal Code 632.7
+    covers cell and cordless calls. Penal Code 637.2 allows private lawsuits for $5,000 per
+    violation.
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PEN&sectionNum=632
+  - The file's approach (announce recording at the start of every call, "by continuing you
+    agree") is right for California. Give the notice before any substantive talk, and say it
+    again if a new person joins or the call is transferred.
+  - Also covers website chat and AI tools. Plaintiffs sue under Penal Code 631 (wiretapping)
+    over chat widgets, session replay, and pixels when a vendor captures what visitors type.
+    SB 690 (signed Sept 30, 2026, operative Jan 1, 2027) only ends private suits under
+    Penal Code 638.51 (pen register) for website conduct. Section 631 suits are unaffected.
+    Keep chat click-to-load, show a recording/vendor notice before the first message, and use
+    vendors that are contractually barred from using chat data for their own purposes.
+    https://www.mccarter.com/insights/california-finally-addressed-cipa-website-claims-just-not-all-of-them/
+
+INS-05 / INS-06  SOA and booking
+  - No extra California SOA rule for MA/Part D. The CMS SOA rules (no 48-hour wait) control.
+  - NEW for in-home final expense (life insurance) or annuity meetings with anyone 65+:
+    Ins. Code 789.10 requires a separate written notice delivered at least 24 hours and no
+    more than 14 days before the first meeting in the senior's home. If an existing client
+    asks for a same-day visit, the notice can be given at the start of the meeting.
+      - Format: 16-point bold, stand-alone, containing only the listed items: agent's name
+        and California license number, mailing address and phone number, the products to be
+        discussed, the right to have others present, the right to end the meeting, CDI
+        consumer phone numbers, and who is attending.
+      - At the door, before anything except a greeting, state that the visit is about
+        insurance. Leave immediately when asked.
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=INS&sectionNum=789.10
+
+INS-07  SOA wording
+  - No California change.
+
+INS-08 / INS-09  Cross-selling
+  - The CMS separation of non-health products still applies. In California, final expense
+    also triggers Ins. Code 789.10 (above) and the senior advertising rules in 787. Ins. Code
+    785 gives everyone 65+ a statutory duty of honesty, good faith, and fair dealing, but by
+    its own terms the senior article does not apply to Medigap (785(c)(1)) unless a section
+    says otherwise.
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=INS&sectionNum=785
+  - Keep final expense in its own flow, as the file says.
+
+INS-10 / INS-11  Consent for automated calls and texts
+  - Telemarketing registration: insurance licensees are not "telephonic sellers" when the
+    transaction is governed by the Insurance Code, so registering with the California AG is
+    generally not required. Bus. & Prof. Code 17511.1(e)(4).
+    https://california.public.law/codes/business_and_professions_code_section_17511.1
+  - Prerecorded and AI-voice calls: under Pub. Util. Code 2874 (amended by AB 2905, effective
+    Jan 1, 2025), an automatic dialing-announcing device may only be used after a live,
+    natural-voice announcement that:
+      - states the nature of the call and the business's name, address, and phone number;
+      - asks whether the person consents to hear the recorded message; and
+      - says whether the message uses an AI-generated voice.
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PUC&sectionNum=2874
+  - Practical fix: do not send prerecorded or AI-voice calls to California numbers, even with
+    TCPA consent, unless counsel confirms an exemption applies. Keep the consent box optional
+    (INS-11 holds).
+  - Leads from ads must say an agent may contact the person. When following up a lead, the
+    agent must disclose in the first contact that the name came from a lead source.
+    Ins. Code 787 (intro paragraph) and 10192.19(b) (Medigap).
+
+INS-12  Consent records
+  - No California change. Keeping them 10 years is fine.
+
+INS-13  Lead sharing
+  - California adds a second gate: the Insurance Information and Privacy Protection Act
+    (IIPPA), which covers agents.
+      - Ins. Code 791.13 bars disclosing personal information gathered in an insurance
+        transaction without the person's written authorization (dated, signed, under one year
+        old if the recipient is not an insurer or agent), except for listed purposes.
+      - Disclosure for marketing is allowed only without medical-record information and only
+        after the person has been given an opt-out (791.13(k)).
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=INS&sectionNum=791.13
+  - "Never share" (answer A) remains the right policy.
+
+INS-14  Who approves product pages
+  - California resolves the "?". Every ad used by an agent for an insurer's policy needs the
+    insurer's written approval before use: Ins. Code 787(i) (disability and life ads aimed
+    at people 65+) and 10192.19(l) (Medigap).
+  - Medigap insurers must also file every Medigap ad with the Commissioner at least 30 days
+    before use (10192.19(a)). Any California Medigap page or ad therefore goes through the
+    carrier, which files it with CDI.
+  - Generic education naming no carrier or policy is lower risk, but treat any Medigap,
+    dental/vision/hearing, hospital indemnity, or final expense page aimed at California
+    seniors as an ad.
+  - New answer for CA: Yes, carrier approval is required.
+
+INS-15  Superlatives
+  - No specific California statute was found beyond the general ban on misleading ads (Ins.
+    Code 790.03(b), not re-verified this pass). Keep the CMS-based fix.
+
+INS-16 / INS-17  MA premium and out-of-pocket statements
+  - No California change (federal MA rules).
+
+INS-18  Medigap enrollment rights
+  - California's birthday rule (Ins. Code 10192.11(h)): each year, an annual open
+    enrollment of 60 days or more starting on the person's birthday.
+      - Anyone already in a Medigap policy can buy any Medigap policy, from any carrier, with
+        equal or lesser benefits, with no health questions and no higher price for health.
+      - Insurers must send notice 30-60 days before the window.
+      - Example: someone with Plan G can move to another carrier's Plan G or Plan N, but not
+        up to Plan F.
+  - Other California guaranteed-issue rights in 10192.11:
+      - (d): 6 months for people under 65 on Medicare due to disability, starting from Part B
+        enrollment.
+      - (e): 6 months after losing employer or retiree coverage (including COBRA/Cal-COBRA)
+        or military base coverage.
+      - (f): moving out of the plan's area.
+      - (g): an extra 60 days added onto the federal window when an MA plan terminates.
+      - (i): losing Medi-Cal, or having share-of-cost Medi-Cal that hasn't been met.
+  - Under 65: issuers must offer plans A, B, D, G, plus K or L and M or N, to people newly
+    eligible since 2020. The statute text still excludes people with ESRD.
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=INS&sectionNum=10192.11
+    NAIC chart (May 11, 2026):
+    https://content.naic.org/sites/default/files/inline-files/medigapbdayruleandunder65chart.pdf
+  - SB 1236 (2024) proposed a 90-day guaranteed-issue window every Jan 1. The current
+    statute text and the May 2026 NAIC chart do not show it, so treat it as NOT enacted.
+    Re-verify before publishing.
+
+INS-19  "Several companies" claims
+  - No California change.
+
+INS-20  "Free" claims and gifts
+  - No new California limit found. CMS nominal-value limits apply.
+
+INS-21  "Same premium" claim
+  - Holds. In California an appointed agent may not charge any fee the insurer has not
+    authorized (CDI Bulletin 80-6), so for Medigap the premium really is the same.
+    https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/Bulletin80-6.pdf
+
+INS-22  Ancillary product notices
+  - Hospital indemnity and other disability policies sold to people eligible for Medicare
+    must carry this notice on the outline of coverage or policy (insurer duty, 12-point
+    type): "THIS [POLICY] IS NOT A MEDICARE SUPPLEMENT [POLICY]. If you are eligible for
+    Medicare, review the Guide to Health Insurance for People with Medicare available from
+    the company." Ins. Code 10192.17(k).
+  - The application must disclose how much the policy duplicates Medicare, and the Guide to
+    Health Insurance for People with Medicare must be delivered (10192.17).
+  - Mirror this wording on California product pages and use the carrier's state forms.
+  - Event ads: Ins. Code 787(k) bars calling a sales event a "seminar," "class,"
+    "informational meeting," "benefits assistance," or similar unless "and insurance sales
+    presentation" follows immediately, in the same font and type size (disability and life
+    products aimed at 65+).
+
+INS-23  HSA and Part A timing
+  - No California change.
+
+INS-24  License display
+  - Required in California (Ins. Code 1725.5, amended by AB 1578, effective 2024):
+      - The CDI license number (not the NPN) must appear on business cards, written price
+        quotes, and print ads distributed only in California. Size: at least as large as any
+        phone number, address, or fax number shown, or 12-point (8-point on business cards),
+        whichever is larger.
+      - Print ads and quotes must also include the word "Insurance."
+      - The license number must be in every email involving licensed activity, right next to
+        or on the line below the sender's name (or the organization's name).
+      - Fines: $200, then $500, then $1,000.
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=INS&sectionNum=1725.5
+  - Websites are not named in the statute. Showing the CA license number in the footer and
+    on every quote/PDF is the safe default.
+  - Add the license number to the agents' email signatures and the Resend templates.
+
+INS-25 / INS-26  Screen-outs and retiree coverage
+  - Add "Medi-Cal" wording for California duals, and note the Medi-Cal-loss Medigap right
+    (10192.11(i)).
+
+INS-27 / INS-28 / INS-29  AI plan match
+  - Bot disclosure: Bus. & Prof. Code 17941 makes it unlawful to use a bot to communicate with
+    a person in California while misleading them about its artificial identity in order to
+    encourage a sale. A clear, conspicuous "you're chatting with an automated assistant"
+    disclosure gives safe harbor.
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=BPC&sectionNum=17941
+  - CCPA automated decisionmaking (ADMT) rules: approved Sept 22, 2025. Duties for using
+    ADMT to make "significant decisions" (which include healthcare services) start Jan 1,
+    2027: pre-use notice, opt-out, and access rights.
+      - They apply only if the agency is a CCPA "business" (see INS-36).
+      - A tool whose output a licensed agent reviews and can change does not "substantially
+        replace human decisionmaking."
+      - The file's approach (education only, a licensed agent makes any recommendation)
+        keeps the tool outside ADMT. Document that human review.
+    https://cppa.ca.gov/regulations/ccpa_updates.html
+  - CDI Bulletin 2022-5 tells all licensees to avoid unfair discrimination, including
+    through algorithms and outside data used in marketing. Don't route or rank people
+    using proxies like ZIP code in ways that could disadvantage protected groups.
+    https://www.insurance.ca.gov/0250-insurers/0300-insurers/0200-bulletins/bulletin-notices-commiss-opinion/upload/BULLETIN-2022-5-Allegations-of-Racial-Bias-and-Unfair-Discrimination-in-Marketing-Rating-Underwriting-and-Claims-Practices-by-the-Insurance-Industry.pdf
+
+INS-30  Fees on top of commissions  (STRICTER in California)
+  - CDI Bulletin 80-6: an agent may not charge fees the insurer has not authorized.
+    Insurer-authorized fees count as premium and must not be unfairly discriminatory.
+  - The "broker fee" route doesn't exist for health. Ins. Code 1623 defines a broker as
+    someone transacting insurance other than life, disability, or health.
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=INS&sectionNum=1623.
+  - The only fee path is a separate Life and Disability Insurance Analyst license (Ins. Code
+    Chapter 8, from 1831). Even then, Ins. Code 1848 forbids fees for services "customarily
+    associated with" selling, or servicing policies the licensee wrote or earns commission
+    on. Any fee needs a signed written agreement stating that the same information and
+    services are available from the insurer at no cost, and that the licensee earns
+    commissions. Keep agreements 3 years.
+    https://california.public.law/codes/insurance_code_section_1848
+  - Result for CA: do not offer the Plus/Family paid tiers (priority service, plan
+    monitoring, annual check) to California Medicare clients. Answer D (keep hidden) is
+    correct and should be permanent for CA unless counsel clears an analyst-license model.
+
+INS-31  Paid feature naming
+  - Moot for California if the paid tiers are not offered there.
+
+INS-32 / INS-33 / INS-34  Retention and form descriptions
+  - No California minimum longer than CMS was found for SOAs, calls, or consents. An analyst fee
+    agreement (if ever used) must be kept 3 years (Ins. Code 1848).
+
+INS-35  HIPAA and health data
+  - CMIA (Civ. Code 56 et seq.) mainly binds providers, health plans, and their contractors.
+    Civ. Code 56.06(b) also covers a business offering consumer software "designed to
+    maintain medical information" so a person can manage it or a condition.
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=CIV&sectionNum=56.06
+  - A one-time plan-match or drug-list intake probably is not that. A saved drug/doctor
+    profile that clients log in to manage could be argued to fall under it. Have counsel
+    decide before adding saved profiles.
+  - IIPPA (Ins. Code 791.02(q)) separately treats health details given to an agent in an
+    insurance transaction as "medical record information," with the 791.13 disclosure limits.
+
+INS-36  Privacy notices
+  - CCPA/CPRA covers a for-profit business doing business in California that meets any of:
+      - over $26,625,000 annual gross revenue (2025-26 inflation-adjusted figure);
+      - buys, sells, or "shares" personal information of 100,000 or more California
+        consumers or households a year;
+      - earns 50% or more of revenue from selling or sharing personal information.
+    https://privacy.ca.gov/laws-and-regulations/monetary-thresholds-in-the-ccpa/
+  - A small agency likely falls below these at launch. Ad pixels count as "sharing" and can
+    push it over the threshold over time, so re-check yearly.
+  - Data covered by GLBA and medical information covered by CMIA/HIPAA are partly exempt
+    (Civ. Code 1798.145). The 2025 CPPA regulations add insurance-specific clarifications.
+  - IIPPA applies now, whatever the agency's size. Agents must give a written Notice of
+    Information Practices to applicants by policy delivery (Ins. Code 791.04; an abbreviated
+    notice is allowed). Access and correction rights also apply (791.08, 791.09).
+    https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=INS&sectionNum=791.04
+  - Add a California IIPPA notice to the client paperwork. Most carriers supply one at
+    policy delivery, and an agent may rely on a carrier's notice made on its behalf
+    (791.04(d)). Confirm with each carrier.
+
+INS-37 / INS-38  Counsel and monitoring
+  - Counsel should be familiar with California insurance and CIPA issues.
+
+INS-39  Cookies and pixels
+  - Holds for California, and for a stronger reason: CIPA 631 lawsuits over pixels and chat
+    widgets (see INS-04).
+  - If ad pixels are ever added, California needs click-to-load or prior consent. Once over
+    the CCPA threshold, it also needs a "Do Not Sell or Share" link and must honor the Global
+    Privacy Control browser signal.
+
+INS-40  Change approval
+  - Keep it. For California Medigap, dental/vision/hearing, hospital indemnity, and final
+    expense pages, the log should also record the carrier's written approval (INS-14).
+
+CA ITEMS NOT VERIFIED (confirm with counsel or CDI before relying on them)
+-------------------------------------------------------------------------
+- Exemptions in Pub. Util. Code 2872 from the prerecorded-call rules in 2874 (not checked).
+- Whether CDI treats a website as an "advertisement" for Ins. Code 1725.5 license-number
+  display (statute names cards, quotes, print ads, and emails only).
+- That SB 1236 (annual Jan 1 Medigap window) was not enacted. Based on the current 10192.11
+  text and the May 2026 NAIC chart. No signed-bill record was checked.
+- Penal Code 632.7 text and Ins. Code 790.03 were cited from known law, not re-read this
+  pass.
+- Whether CMIA reaches an agency's saved drug/doctor profiles (Civ. Code 56.06(b)), and CMIA
+  limits on re-disclosing carrier-provided medical information.
+- How the 2025 CPPA insurance regulations split CCPA vs. IIPPA duties for an agent that
+  crosses the CCPA threshold.
+- Whether carriers' California IIPPA notices satisfy the agent's own 791.04 duty for this
+  agency's intake flow.
