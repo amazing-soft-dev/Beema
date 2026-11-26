@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { site } from '@/content/site';
+import { uLine } from '@/lib/styles';
 
 export type Crumb = { label: string; href: string };
 
@@ -24,7 +25,7 @@ export function Breadcrumb({ trail }: { trail: Crumb[] }) {
                   </span>
                 ) : (
                   <>
-                    <Link href={c.href} className="u-line inline-flex min-h-12 items-center [--u-bottom:10px]">
+                    <Link href={c.href} className={`${uLine} inline-flex min-h-12 items-center [--u-bottom:10px]`}>
                       {c.label}
                     </Link>
                     <span aria-hidden="true">›</span>

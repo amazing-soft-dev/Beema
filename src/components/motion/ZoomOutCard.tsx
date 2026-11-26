@@ -11,7 +11,7 @@ import { zoomSpring } from '@/lib/motion';
  *   desktop (≥1200)  scale 1.8, y 260
  *   tablet  (≥810)   scale 1.2, y 45
  *   phone            no effect
- * Opacity stays 1. The start pose comes from CSS (.zoom-card in motion.css), so it is right
+ * Opacity stays 1. The start pose comes from CSS (media-gated utilities on the card), so it is right
  * before JavaScript loads; the outer box is observed because it is never transformed.
  * Reduced motion, print and no JavaScript show the card in place, and so does a page that
  * opens or jumps below the card before it was ever half in view.
@@ -56,7 +56,11 @@ export function ZoomOutCard({ children, className = '' }: { children: ReactNode;
 
   return (
     <div ref={outer} className={className}>
-      <div ref={inner} className="zoom-card h-full" data-zoom="pending">
+      <div
+        ref={inner}
+        className="h-full origin-center [@media_screen_and_(min-width:810px)_and_(prefers-reduced-motion:no-preference)_and_(scripting:enabled)]:data-[zoom=pending]:[transform:translateY(45px)_scale(1.2)] [@media_screen_and_(min-width:1200px)_and_(prefers-reduced-motion:no-preference)_and_(scripting:enabled)]:data-[zoom=pending]:[transform:translateY(260px)_scale(1.8)]"
+        data-zoom="pending"
+      >
         {children}
       </div>
     </div>

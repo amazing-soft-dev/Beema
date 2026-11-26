@@ -9,6 +9,7 @@ import { ArrowSwap } from '@/components/ui/ArrowSwap';
 import { Icon } from '@/components/ui/Icon';
 import type { MenuItem } from '@/content/menu';
 import { isActive, isItemActive } from './nav-state';
+import { uLine } from '@/lib/styles';
 
 /**
  * Desktop menu (≥1200). Items with pages under them open a panel on click, tap or keyboard,
@@ -56,7 +57,7 @@ export function DesktopNav({ items }: { items: MenuItem[] }) {
               <Link
                 href={item.href}
                 aria-current={isActive(pathname, item.href) ? 'page' : undefined}
-                className="u-line inline-flex min-h-12 items-center px-3 font-medium [--u-bottom:8px] [--u-inset:12px]"
+                className={`${uLine} inline-flex min-h-12 items-center px-3 font-medium [--u-bottom:8px] [--u-inset:12px]`}
               >
                 {item.label}
               </Link>
@@ -103,7 +104,7 @@ function DropdownItem({
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => onToggle(!open)}
-        className={`u-line inline-flex min-h-12 items-center gap-1 px-3 font-medium [--u-bottom:8px] [--u-inset:12px] ${active ? 'font-semibold' : ''}`}
+        className={`${uLine} inline-flex min-h-12 items-center gap-1 px-3 font-medium [--u-bottom:8px] [--u-inset:12px] ${active ? 'font-semibold' : ''}`}
       >
         {item.label}
         <Icon

@@ -8,6 +8,7 @@ import { ThemeChoices } from '@/components/theme/ThemeSwitch';
 import { Icon } from '@/components/ui/Icon';
 import { availableMenu, footerGroups, site } from '@/content/site';
 import { existingRoutes } from '@/lib/routes';
+import { uLine } from '@/lib/styles';
 
 /**
  * Footer on every page, laid out like the Framer footer (audit/components/footer.md):
@@ -59,7 +60,7 @@ export function SiteFooter() {
               <p className="max-w-[36ch]">{site.tagline} Our help is free to you.</p>
             </div>
             <div>
-              <a href={`tel:${site.phone.tel}`} className="u-line inline-flex min-h-12 items-center gap-3 text-xl font-semibold">
+              <a href={`tel:${site.phone.tel}`} className={`${uLine} inline-flex min-h-12 items-center gap-3 text-xl font-semibold`}>
                 <Icon icon={Phone} weight="fill" />
                 {site.phone.display}
               </a>
@@ -68,7 +69,7 @@ export function SiteFooter() {
               </p>
             </div>
             <div>
-              <a href={`mailto:${site.email}`} className="u-line inline-flex min-h-12 items-center gap-3">
+              <a href={`mailto:${site.email}`} className={`${uLine} inline-flex min-h-12 items-center gap-3`}>
                 <Icon icon={Envelope} />
                 {site.email}
               </a>
@@ -100,7 +101,7 @@ export function SiteFooter() {
                       <ul className={`mt-3 ${wide ? 'columns-2 gap-x-6' : ''}`}>
                         {group.links.map((link) => (
                           <li key={link.href} className="break-inside-avoid">
-                            <Link href={link.href} className="u-line inline-flex min-h-12 items-center py-1 leading-snug [--u-bottom:6px]">
+                            <Link href={link.href} className={`${uLine} inline-flex min-h-12 items-center py-1 leading-snug [--u-bottom:6px]`}>
                               {link.label}
                             </Link>
                           </li>

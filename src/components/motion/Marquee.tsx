@@ -51,8 +51,12 @@ export function Marquee({
 
   return (
     <div className={`flex items-center gap-4 ${className}`}>
-      <div className="marquee min-w-0 flex-1" data-paused={paused ? '' : undefined}>
-        <div ref={trackRef} className="marquee-track">
+      {/* Edge fade from the design; the track holds the items twice and moves by half its width. */}
+      <div className="group min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent_0,#000_8%,#000_92%,transparent_100%)]" data-paused={paused ? '' : undefined}>
+        <div
+          ref={trackRef}
+          className="flex w-max animate-[marquee_var(--marquee-duration,40s)_linear_infinite] group-focus-within:[animation-play-state:paused] group-data-paused:[animation-play-state:paused] motion-reduce:animate-none print:animate-none"
+        >
           {list(0)}
           {list(1)}
         </div>

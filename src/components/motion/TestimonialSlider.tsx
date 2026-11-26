@@ -68,7 +68,7 @@ export function TestimonialSlider({ quotes, label = 'Client stories' }: { quotes
         </div>
         {count > 1 && (
           <div className="flex flex-wrap items-center gap-3">
-            <button type="button" onClick={() => go(index - 1)} className="arrow-btn inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-ink hover:text-white">
+            <button type="button" onClick={() => go(index - 1)} className="transition-[background-color,color,border-color] duration-180 ease-out inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-ink hover:text-white">
               <Icon icon={CaretLeft} weight="bold" label="Previous story" />
             </button>
             <ul className="flex gap-1" aria-label="Choose a story">
@@ -81,7 +81,7 @@ export function TestimonialSlider({ quotes, label = 'Client stories' }: { quotes
                 </li>
               ))}
             </ul>
-            <button type="button" onClick={() => go(index + 1)} className="arrow-btn inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-ink hover:text-white">
+            <button type="button" onClick={() => go(index + 1)} className="transition-[background-color,color,border-color] duration-180 ease-out inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-ink hover:text-white">
               <Icon icon={CaretRight} weight="bold" label="Next story" />
             </button>
             {!reduce && (

@@ -100,7 +100,7 @@ export function FanCarousel({ items, label, start = 0 }: { items: { key: string;
             type="button"
             onClick={() => go(index - 1)}
             disabled={index === 0}
-            className="arrow-btn inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-white hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
+            className="transition-[background-color,color,border-color] duration-180 ease-out inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-white hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
           >
             <Icon icon={CaretLeft} weight="bold" label="Previous" />
           </button>
@@ -111,7 +111,7 @@ export function FanCarousel({ items, label, start = 0 }: { items: { key: string;
             type="button"
             onClick={() => go(index + 1)}
             disabled={index === count - 1}
-            className="arrow-btn inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-white hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
+            className="transition-[background-color,color,border-color] duration-180 ease-out inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-white hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
           >
             <Icon icon={CaretRight} weight="bold" label="Next" />
           </button>
