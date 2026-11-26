@@ -21,6 +21,11 @@ describe('blog articles', () => {
     });
   }
 
+  it('prints money with cents, never "$209.4"', () => {
+    const text = JSON.stringify(articles);
+    assert.doesNotMatch(text, /\$\d+\.\d(?!\d)/);
+  });
+
   it('includes a caregiver guide for the Family tier audience', () => {
     assert.ok(articles.some((a) => a.topic === 'caregivers'));
   });
