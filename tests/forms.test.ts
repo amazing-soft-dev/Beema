@@ -2,7 +2,7 @@ import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
 import { contactSchema, fieldErrors, guideEmailSchema } from '../src/lib/forms/schemas.ts';
 import { consentContext, consentRecord, consentTextVersion, FORM_VERSION } from '../src/lib/forms/consent.ts';
-import { rateLimited } from '../src/lib/forms/server.ts';
+import { rateLimited, readForm } from '../src/lib/forms/server.ts';
 
 const valid = { name: 'Pat Doe', zip: '78701', phone: '(555) 010-0123', bestTime: 'morning', consent: 'yes', website: '' };
 
@@ -92,5 +92,24 @@ describe('consent record context', () => {
   it('accepts only a site path for the page', () => {
     assert.equal(contactSchema.parse({ ...valid, page: '/book-a-call' }).page, '/book-a-call');
     assert.equal(contactSchema.parse({ ...valid, page: 'https://evil.test/' }).page, undefined);
+  });
+});
+
+
+describe('readForm', () => {
+  const post = (body: string, ip: string) => new Request('https://example.test/api/contact', { method: 'POST', headers: { 'content-type': 'application/json', 'x-forwarded-for': ip }, body });
+
+  it('answers 400, not a crash, for a JSON body that is not a form', async () => {
+    for (const [i, body] of ['null', '42', '[]'].entries()) {
+      const r = await readForm(post(body, `198.51.100.${i + 1}`), contactSchema);
+      assert.ok('response' in r);
+      assert.equal(r.response.status, 400);
+    }
+  });
+
+  it('quietly accepts a filled honeypot without validating', async () => {
+    const r = await readForm(post(JSON.stringify({ website: 'spam' }), '198.51.100.9'), contactSchema);
+    assert.ok('response' in r);
+    assert.equal(r.response.status, 200);
   });
 });

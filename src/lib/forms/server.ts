@@ -41,6 +41,10 @@ export async function readForm<S extends z.ZodType>(request: Request, schema: S)
   } catch {
     return { response: json({ ok: false, errors: { form: 'We could not read your form. Please try again.' } }, 400) };
   }
+  // A JSON body of null, a number or a list is not a form.
+  if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
+    return { response: json({ ok: false, errors: { form: 'We could not read your form. Please try again.' } }, 400) };
+  }
   if (typeof raw.website === 'string' && raw.website.length > 0) return { response: json({ ok: true }, 200) };
   const parsed = schema.safeParse(raw);
   if (!parsed.success) return { response: json({ ok: false, errors: fieldErrors(parsed.error) }, 422) };
