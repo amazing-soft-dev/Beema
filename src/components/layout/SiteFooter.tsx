@@ -11,7 +11,7 @@ import { existingRoutes } from '@/lib/routes';
 import { uLine } from '@/lib/styles';
 
 /**
- * Footer on every page, laid out like the Framer footer (audit/components/footer.md):
+ * Footer on every page, laid out as a compact footer:
  * the brand blurb and contact details beside the link columns, the
  * required notices, the copyright line, and a large faded wordmark that rises 150px into
  * place when it scrolls into view. Link underlines unfold on hover and focus (u-line).
@@ -152,7 +152,7 @@ export function SiteFooter() {
         </div>
       </div>
 
-      {/* Framer's faded wordmark, cropped to the top of its letters; it rises 150px into view. */}
+      {/* A faded wordmark, cropped to the top of its letters; it rises 150px into view. */}
       <div aria-hidden="true" className="mx-auto h-[8vw] max-h-28 max-w-[1440px] overflow-clip px-6 select-none lg:px-10 print:hidden">
         <Reveal y="xxl">
           {/* SVG text: decoration at 20% opacity that scales with the width. */}

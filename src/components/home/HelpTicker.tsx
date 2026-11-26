@@ -2,7 +2,7 @@ import { Marquee } from '@/components/motion/Marquee';
 import { home } from '@/content/home';
 
 /**
- * Framer "Trusted by families at" ticker, here the things we help with (we show no carrier
+ * "Trusted by families at" ticker, here the things we help with (we show no carrier
  * logos: plan §6, no implied affiliation). Scrolls at 30px/s with a Pause button.
  */
 export function HelpTicker() {

@@ -12,7 +12,7 @@ import { MatchPreview } from './MatchPreview';
 const icons = [Sparkle, ListChecks, ShieldCheck, ChatsCircle];
 
 /**
- * The free AI Plan Match band on the Framer "Smart Technology" section. It keeps the brand
+ * The free AI Plan Match band on the "Smart Technology" section. It keeps the brand
  * gradient (a photo would compete with the call to action) and shows the product instead:
  * the copy and button beside an example result (MatchPreview) from 1200px, then the four
  * glass cards (white 16%, 1px white 24% border, 10px blur) in one row, fading up in turn.

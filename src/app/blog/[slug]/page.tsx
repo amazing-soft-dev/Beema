@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { ...meta, openGraph: { ...meta.openGraph, type: 'article', publishedTime: a.published, modifiedTime: a.updated ?? a.published } };
 }
 
-/** Blog article (Framer article template): hero, rich text column, related PDF, related posts. */
+/** Blog article (article template): hero, rich text column, related PDF, related posts. */
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const a = findArticle((await params).slug);
   if (!a) notFound();

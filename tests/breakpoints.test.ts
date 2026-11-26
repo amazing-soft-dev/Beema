@@ -21,7 +21,7 @@ describe('breakpoints', () => {
     for (const b of breakpoints) assert.match(b.value, /^\d+px$/, `--breakpoint-${b.name}: ${b.value}`);
   });
 
-  it('keeps the Beema widths in increasing order', () => {
+  it('keeps the design widths in increasing order', () => {
     const widths = breakpoints.map((b) => parseInt(b.value, 10));
     assert.deepEqual(widths, [640, 810, 1200, 1280, 1536]);
   });

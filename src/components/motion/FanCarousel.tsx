@@ -16,7 +16,7 @@ const subscribe = (cb: () => void) => {
 const getLayout = (): Layout => (window.matchMedia(query).matches ? 'fan' : 'flat');
 
 /**
- * Framer Services fan carousel (audit/components/services-carousel.md). From 810px the active
+ * Services fan carousel. From 810px the active
  * card sits flat in the middle and its neighbours tilt away (±7°, skew ±4°), narrow to 83% and
  * dim to 50%; arrows step one card and every card moves on one spring (k 260, c 32). Phones get
  * a flat slideshow. No autoplay. Clicking a side card brings it to the middle. Only the active

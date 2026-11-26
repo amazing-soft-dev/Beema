@@ -21,7 +21,7 @@ export function TwoPaths() {
           <p className="t-lead">{p.lead}</p>
         </div>
 
-        {/* Framer Why Beema: the two columns slide in 200px from their sides. */}
+        {/* The two columns slide in 200px from their sides. */}
         <SlideRow className="-mx-2 px-2">
         <div className="grid gap-6 md:grid-cols-2">
           {p.options.map((o, i) => (

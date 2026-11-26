@@ -69,7 +69,7 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
  * AI Plan Match questionnaire (plan §9): one question per screen, a progress bar, a Back
  * button, no time limits, and "talk to a person instead" on every step. The doctor and
  * drug questions are optional and only asked after a separate, unchecked health-data
- * consent. Each new question fades up 50px (Framer appear) and gets focus.
+ * consent. Each new question fades up 50px and gets focus.
  */
 export function Questionnaire({ onComplete }: { onComplete: (answers: Answers) => void }) {
   const [answers, setAnswers] = useState<Partial<Answers>>({});

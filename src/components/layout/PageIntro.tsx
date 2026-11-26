@@ -4,8 +4,8 @@ import { TextAppear } from '@/components/motion/TextAppear';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 
 /**
- * Inner-page hero, Framer variant A ("green band", here navy; audit/components/
- * inner-page-templates.md): a dark band under the transparent header with the caps
+ * Inner-page hero:
+ * a dark band under the transparent header with the caps
  * eyebrow pill and its ping dot, the H1 rising on load (0.4s), and the lead and actions
  * fading up 50px. `variant="light"` keeps the cream band for pages that need it.
  * `data-hero="dark"` tells the header to start in its clear state over this band.

@@ -2,8 +2,8 @@
 @import './motion.css';
 
 /*
- * Senior-tuned Beema layout in the Senior AI Plans colors.
- * Palette and type come from the Beema design audit (audit/tokens.json), adjusted for
+ * Senior-tuned layout in the Senior AI Plans colors.
+ * Palette and type are tuned for
  * older readers: 18px body text, no gray body copy, ≥48px targets, AA+ contrast.
  * tests/contrast.test.ts parses this block and checks every text/background pair.
  */
@@ -57,7 +57,7 @@
   --radius-card-sm: 8px;
 
   /*
-   * Real Beema breakpoints: tablet 810, desktop 1200. The others keep Tailwind's default
+   * Design breakpoints: tablet 810, desktop 1200. The others keep Tailwind's default
    * widths but are restated in px: Tailwind cannot order rem breakpoints against px ones and
    * emitted sm: after md:/lg:, so sm: utilities overrode them on tablets and desktops.
    */

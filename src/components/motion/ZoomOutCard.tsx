@@ -5,7 +5,7 @@ import { type ReactNode, useEffect, useRef } from 'react';
 import { zoomSpring } from '@/lib/motion';
 
 /**
- * Framer About Us card zoom-out (audit/motion/scroll-reveals.md#about-scale).
+ * About Us card zoom-out.
  * The card starts enlarged and lowered, then settles to its place with a spring when half
  * of it is in view, once:
  *   desktop (≥1200)  scale 1.8, y 260

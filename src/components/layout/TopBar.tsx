@@ -5,7 +5,7 @@ import { site } from '@/content/site';
 import { uLine } from '@/lib/styles';
 
 /**
- * Slim bar above the floating header (Framer "Top Bar"): the click-to-call number and TTY on
+ * Slim bar above the floating header (Top Bar): the click-to-call number and TTY on
  * every page (plan §3), and the theme switch. It is in the page flow, so it scrolls away and
  * the sticky header pill takes over.
  */

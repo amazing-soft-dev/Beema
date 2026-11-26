@@ -13,7 +13,7 @@ import { uLine } from '@/lib/styles';
 
 /**
  * Desktop menu (≥1200). Items with pages under them open a panel on click, tap or keyboard,
- * never on hover (plan §9). The look follows Framer's dropdown (audit/motion/dropdown.md):
+ * never on hover (plan §9). The look follows the design:
  * a plain white panel that fades in within .15s and a caret that turns 180° over .4s.
  * Escape, a click outside, or moving to another page closes it; focus returns to the
  * button on Escape. The item label is also a link to its landing page.

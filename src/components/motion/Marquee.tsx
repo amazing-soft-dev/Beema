@@ -4,11 +4,11 @@ import { Pause, Play } from '@phosphor-icons/react';
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { Icon } from '@/components/ui/Icon';
 
-/** Framer ticker speed (audit/motion/loops-and-sliders.md#marquee). */
+/** Ticker speed. */
 const PX_PER_SECOND = 30;
 
 /**
- * Framer "Trusted by" ticker: the items scroll right to left at ≈30px/s in a seamless loop.
+ * "Trusted by" ticker: the items scroll right to left at ≈30px/s in a seamless loop.
  * Because it moves on its own, a visible Pause / Play button stops it (WCAG 2.2.2), and it
  * also stops while anything inside has keyboard focus. Reduced motion: it does not move.
  * Screen readers get the list once; the repeated copy is hidden from them.

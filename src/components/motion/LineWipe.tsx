@@ -6,16 +6,16 @@ import { wipeSpring } from '@/lib/motion';
 
 type Line = { top: number; height: number };
 
-/** Framer bars travel 886px of 897 (98.77%) and stop just short of the edge. */
+/** The bars travel 886px of 897 (98.77%) and stop just short of the edge. */
 const TRAVEL = '98.77%';
 
 /**
- * Framer About Us line wipe (audit/motion/scroll-reveals.md#line-wipe). A bar in the
+ * About Us line wipe. A bar in the
  * section's background color at 50% opacity sits over each line, so the text first looks
  * tinted; as a line's bar passes the middle of the viewport it slides right (spring k 500,
  * c 60) and the line wipes to full ink, line by line. Scrolling back up reverses it.
  * The text itself is always full contrast; the bars are decoration hidden from assistive
- * tech. Phones (<810px, as in Framer), reduced motion, print and no JavaScript show plain
+ * tech. Phones (<810px), reduced motion, print and no JavaScript show plain
  * text. Lines are measured from the rendered text and re-measured on resize.
  */
 export function LineWipe({
@@ -92,7 +92,7 @@ function WipeBar({ line, className }: { line: Line; className: string }) {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    // Wiped once the bar's top is above the middle of the viewport (Framer threshold .5).
+    // Wiped once the bar's top is above the middle of the viewport (threshold .5).
     const update = () => setWiped(el.getBoundingClientRect().top < window.innerHeight / 2);
     const observer = new IntersectionObserver(update, { rootMargin: '0px 0px -50% 0px', threshold: [0, 1] });
     observer.observe(el);

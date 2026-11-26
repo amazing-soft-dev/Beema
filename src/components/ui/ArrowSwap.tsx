@@ -2,7 +2,7 @@ import { ArrowRight, ArrowUpRight } from '@phosphor-icons/react/dist/ssr';
 import { Icon } from './Icon';
 
 /**
- * Arrow that swaps on hover or focus of its link or button (Framer "Read more ↗"): the
+ * Arrow that swaps on hover or focus of its link or button (Read more ↗): the
  * arrow slides out along its direction and a copy slides in behind it, .6s with a soft
  * ease-out. --ax/--ay set the axis (up-right also moves up).
  */

@@ -11,7 +11,7 @@ import { existingRoutes } from '@/lib/routes';
 export type Action = { label: string; href: string };
 
 /**
- * Closing call to action for content pages (Framer CTA section): a navy panel whose heading
+ * Closing call to action for content pages (CTA section): a navy panel whose heading
  * rises into view and whose buttons fade up in turn, with the CMS disclaimer beneath.
  * Defaults to the plan match and Book a Call; pages pass their own CTAs from the plan.
  */

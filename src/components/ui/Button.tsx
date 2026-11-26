@@ -2,7 +2,7 @@ import Link from 'next/link';
 import type { ComponentProps, ReactNode } from 'react';
 
 /**
- * Pill buttons from the Beema design, sized for older readers: at least 48px tall
+ * Pill buttons from the design, sized for older readers: at least 48px tall
  * (56px for `lg`), 18px labels, and a 3px focus ring from globals.css.
  *
  * primary   gold with ink text, the main call to action
@@ -10,7 +10,7 @@ import type { ComponentProps, ReactNode } from 'react';
  * outline   ink border on light backgrounds
  * light     white outline for dark sections and photos
  *
- * Hover timing from the Framer site (audit/motion/button-hover.md): the gold button eases
+ * Hover timing: the gold button eases
  * out over .3s, the others fill over .4s ease-in-out. Keyboard focus gets the same look.
  */
 export type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'light';

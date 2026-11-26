@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 /**
- * Section labels from the Beema design, enlarged to 16px.
+ * Section labels from the design, enlarged to 16px.
  * line  caps text after a 16px rule ("— TURNING 65")
  * pill  bordered pill ("About us"); `ping` adds a pinging dot (keyframes in motion.css). It keeps its
  *       own width (self-start), so a column of text never stretches it to the full width.
