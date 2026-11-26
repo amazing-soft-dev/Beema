@@ -9,7 +9,7 @@ import { TextAppear } from '@/components/motion/TextAppear';
 import { TierTable } from '@/components/pricing/TierTable';
 import { Icon } from '@/components/ui/Icon';
 import { Photo } from '@/components/ui/Photo';
-import { caregiverFaq, features, notIncluded, tiers } from '@/content/pricing';
+import { caregiverFaq, features, notIncluded, subscriptionStates, tiers } from '@/content/pricing';
 import { freeAlternatives } from '@/lib/match/engine';
 import { buildMetadata } from '@/lib/seo';
 
@@ -48,6 +48,10 @@ export default function PlansPricingPage() {
               <Icon icon={ShieldCheck} weight="fill" className="mt-0.5 shrink-0" />
               No plan purchase required, and buying a plan through us never requires a subscription.
             </Reveal>
+            <p>
+              Plus and Family are offered to residents of {subscriptionStates.map((s) => s.name).join(', ')}. They are not available in California, where our help
+              stays free.
+            </p>
           </div>
           <TierTable />
         </div>

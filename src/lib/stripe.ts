@@ -128,3 +128,19 @@ export async function createCheckoutSession(
   if (!res.ok) return res;
   return res.data.url ? { ok: true, data: { url: res.data.url } } : { ok: false, reason: 'Stripe returned no checkout URL' };
 }
+
+/**
+ * A Stripe Customer Portal link for the subscriber of a finished Checkout Session, so they can
+ * update their card or cancel. The session id comes back on the success URL; Stripe's own
+ * receipt emails carry a portal link too.
+ */
+export async function createPortalSession(checkoutSessionId: string, env: Env = process.env, fetchImpl: typeof fetch = fetch, origin = site.url): Promise<StripeResult<{ url: string }>> {
+  if (!/^cs_[A-Za-z0-9_]+$/.test(checkoutSessionId)) return { ok: false, reason: 'not a checkout session id' };
+  const session = await stripeRequest<{ customer?: string }>(`checkout/sessions/${checkoutSessionId}`, undefined, env, fetchImpl);
+  if (!session.ok) return session;
+  if (!session.data.customer) return { ok: false, reason: 'checkout session has no customer' };
+  const body = new URLSearchParams({ customer: session.data.customer, return_url: new URL('/plans-pricing', origin).toString() });
+  const portal = await stripeRequest<{ url?: string }>('billing_portal/sessions', body, env, fetchImpl);
+  if (!portal.ok) return portal;
+  return portal.data.url ? { ok: true, data: { url: portal.data.url } } : { ok: false, reason: 'Stripe returned no portal URL' };
+}
