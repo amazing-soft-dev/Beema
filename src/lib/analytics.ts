@@ -1,9 +1,8 @@
-import { track as vercelTrack } from '@vercel/analytics';
-
 /**
- * Typed analytics events. Production only: elsewhere `track` does nothing, so previews,
- * local development and the static export never send data.
- * No personal data in properties: never names, phone numbers, emails or ZIP codes.
+ * Typed analytics events. No analytics product runs today: the site moved to Netlify and the
+ * Vercel packages were removed, so `track` is a typed no-op. Call sites keep their events,
+ * ready for a privacy-reviewed tool later. No personal data in properties: never names, phone
+ * numbers, emails or ZIP codes.
  */
 export type AnalyticsEvent =
   | { name: 'call_click'; props: { location: string } }
@@ -14,9 +13,5 @@ export type AnalyticsEvent =
   | { name: 'tool_result'; props: { tool: 'enrollment-calculator' | 'irmaa-calculator' | 'plan-comparison' | 'plan-match' } }
   | { name: 'chat_open'; props: { location: string } };
 
-export const analyticsEnabled = () => process.env.NEXT_PUBLIC_VERCEL_ENV === 'production';
-
-export function track<E extends AnalyticsEvent>(name: E['name'], props: E['props']): void {
-  if (!analyticsEnabled()) return;
-  vercelTrack(name, props);
-}
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export function track<E extends AnalyticsEvent>(name: E['name'], props: E['props']): void {}

@@ -1,18 +1,18 @@
 /**
  * Security headers for every response of the server build (next.config.ts headers()).
  * The Content Security Policy allows only what the site loads: Cal.com (booking, after a
- * click), Crisp (chat, after a click), Vercel Web Analytics and Speed Insights, and the
+ * click), Crisp (chat, after a click) and the
  * redirect to Stripe Checkout. Next.js inlines small scripts (theme, hydration), so scripts
  * keep 'unsafe-inline'; development also needs 'unsafe-eval' for fast refresh.
  */
 export function contentSecurityPolicy(dev = false): string {
   const directives: Record<string, string[]> = {
     'default-src': ["'self'"],
-    'script-src': ["'self'", "'unsafe-inline'", ...(dev ? ["'unsafe-eval'"] : []), 'https://client.crisp.chat', 'https://app.cal.com', 'https://va.vercel-scripts.com'],
+    'script-src': ["'self'", "'unsafe-inline'", ...(dev ? ["'unsafe-eval'"] : []), 'https://client.crisp.chat', 'https://app.cal.com'],
     'style-src': ["'self'", "'unsafe-inline'", 'https://client.crisp.chat'],
     'img-src': ["'self'", 'data:', 'blob:', 'https:'],
     'font-src': ["'self'", 'data:', 'https://client.crisp.chat'],
-    'connect-src': ["'self'", 'https://client.crisp.chat', 'wss://client.relay.crisp.chat', 'https://*.crisp.chat', 'https://app.cal.com', 'https://api.cal.com', 'https://vitals.vercel-insights.com', 'https://va.vercel-scripts.com'],
+    'connect-src': ["'self'", 'https://client.crisp.chat', 'wss://client.relay.crisp.chat', 'https://*.crisp.chat', 'https://app.cal.com', 'https://api.cal.com'],
     'frame-src': ['https://app.cal.com', 'https://cal.com', 'https://game.crisp.chat'],
     'media-src': ["'self'", 'https://client.crisp.chat'],
     'form-action': ["'self'", 'https://checkout.stripe.com', 'https://billing.stripe.com'],

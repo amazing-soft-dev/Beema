@@ -3,7 +3,6 @@ import { Geist } from 'next/font/google';
 import Script from 'next/script';
 import type { ReactNode } from 'react';
 import { preload } from 'react-dom';
-import { Analytics } from '@/components/analytics/Analytics';
 import { CallTracking } from '@/components/analytics/CallTracking';
 import { ChatButton } from '@/components/chat/ChatButton';
 import { CallbackPanel } from '@/components/layout/CallbackPanel';
@@ -70,7 +69,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <PrintFooter />
         <SiteFooter />
         <JsonLd data={agencyJsonLd()} />
-        <Analytics />
         <CallTracking />
         <ChatButton />
       </body>

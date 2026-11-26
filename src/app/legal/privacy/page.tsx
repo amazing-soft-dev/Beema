@@ -35,7 +35,7 @@ export default function PrivacyPage() {
                 the form version, your IP address and your browser.
               </li>
               <li>Call recordings and chat messages, and the Scope of Appointment you complete before an appointment.</li>
-              <li>Basic visit statistics (pages viewed, device type) from Vercel Web Analytics, which does not use cookies. We do not use advertising cookies or pixels.</li>
+              <li>Standard server logs kept by our host (such as the page requested, time and IP address) to run and protect the site. We do not use analytics, advertising cookies or pixels.</li>
             </ul>
           ),
         },
@@ -61,8 +61,7 @@ export default function PrivacyPage() {
               <ul>
                 <li>With an insurance company when you decide to apply for one of its plans.</li>
                 <li>
-                  With the service providers that run parts of this website for us, who may use it only to provide that service: Vercel (hosting and visit
-                  statistics), Resend (email delivery), Cal.com (appointment booking, only after you open the calendar) and Crisp (chat, only after you start a chat).
+                  With the service providers that run parts of this website for us, who may use it only to provide that service: Netlify (hosting), Resend (email delivery), Cal.com (appointment booking, only after you open the calendar) and Crisp (chat, only after you start a chat).
                 </li>
                 <li>When the law requires it.</li>
               </ul>
