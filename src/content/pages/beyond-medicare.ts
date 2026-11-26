@@ -75,7 +75,7 @@ export const beyondMedicarePage: ContentPage = {
   pdf: 'gap-worksheet',
   next: {
     title: 'Book an extra-protection review',
-    text: 'A licensed agent looks at your Medicare coverage first, then at whether a separate policy would really help. Separate from any Medicare appointment.',
+    text: 'A licensed agent looks at your Medicare coverage first, then at whether a separate policy would really help. Dental, vision and hearing plans and hospital indemnity can share your Medicare appointment only if you list them on your Scope of Appointment; otherwise we book them on their own. Final expense life insurance is always a separate appointment.',
     primary: { label: 'Book an extra-protection review', href: '/book-a-call?topic=extra-protection' },
   },
 };
