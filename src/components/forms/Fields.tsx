@@ -1,4 +1,4 @@
-import type { ComponentProps, ReactNode } from 'react';
+import { type ComponentProps, type ReactNode, useId } from 'react';
 
 /**
  * Accessible form fields: a visible label, an optional hint and an error message, all
@@ -66,12 +66,17 @@ export function SelectField({
   );
 }
 
-/** Off-screen field that people never see; bots that fill it are ignored by the API. */
+/**
+ * Off-screen field that people never see; bots that fill it are ignored by the API. Each one
+ * gets its own id, so two forms on one page (say, the callback panel and the contact form)
+ * never share an id.
+ */
 export function Honeypot() {
+  const id = `website-${useId()}`;
   return (
     <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
-      <label htmlFor="website">Leave this field empty</label>
-      <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
+      <label htmlFor={id}>Leave this field empty</label>
+      <input id={id} name="website" type="text" tabIndex={-1} autoComplete="off" defaultValue="" />
     </div>
   );
 }
