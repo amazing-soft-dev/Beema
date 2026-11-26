@@ -275,132 +275,133 @@
   }
 }
 
-@layer components {
-  /*
-   * Logo: the light (navy and gold) mark by default, the dark (white and teal) mark on dark
-   * surfaces. `data-tone` forces one; `auto` follows `.on-dark` (and the dark theme).
-   */
-  .logo-mark > [data-logo='dark'],
-  .logo-mark[data-tone='dark'] > [data-logo='light'],
-  .on-dark .logo-mark[data-tone='auto'] > [data-logo='light'] {
+/*
+ * Design utilities (Tailwind v4 @utility, so they take variants like md: and drop out of the
+ * CSS when unused). Single-property utilities written next to them (font-semibold,
+ * max-w-[78ch]) still win, because Tailwind orders utilities with fewer properties later.
+ */
+
+/*
+ * Logo: the light (navy and gold) mark by default, the dark (white and teal) mark on dark
+ * surfaces. `data-tone` forces one; `auto` follows `.on-dark` (and the dark theme).
+ */
+@utility logo-mark {
+  & > [data-logo='dark'],
+  &[data-tone='dark'] > [data-logo='light'],
+  .on-dark &[data-tone='auto'] > [data-logo='light'] {
     display: none;
   }
-  .logo-mark[data-tone='dark'] > [data-logo='dark'],
-  .on-dark .logo-mark[data-tone='auto'] > [data-logo='dark'] {
+  &[data-tone='dark'] > [data-logo='dark'],
+  .on-dark &[data-tone='auto'] > [data-logo='dark'] {
     display: block;
   }
   @media screen {
-    :root[data-theme='dark'] .logo-mark[data-tone='auto'] > [data-logo='light'] {
+    :root[data-theme='dark'] &[data-tone='auto'] > [data-logo='light'] {
       display: none;
     }
-    :root[data-theme='dark'] .logo-mark[data-tone='auto'] > [data-logo='dark'] {
+    :root[data-theme='dark'] &[data-tone='auto'] > [data-logo='dark'] {
       display: block;
     }
   }
   @media screen and (prefers-color-scheme: dark) {
-    :root:not([data-theme='light']) .logo-mark[data-tone='auto'] > [data-logo='light'] {
+    :root:not([data-theme='light']) &[data-tone='auto'] > [data-logo='light'] {
       display: none;
     }
-    :root:not([data-theme='light']) .logo-mark[data-tone='auto'] > [data-logo='dark'] {
+    :root:not([data-theme='light']) &[data-tone='auto'] > [data-logo='dark'] {
       display: block;
     }
   }
+}
 
-  /* Layout: 24px gutters on phone and tablet, 40px on desktop; 1200px reading container */
-  .container-x {
-    width: 100%;
-    max-width: 1280px;
-    margin-inline: auto;
-    padding-inline: 24px;
+/* Layout: 24px gutters on phone and tablet, 40px on desktop; 1280px container. */
+@utility container-x {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  @media (min-width: 1200px) {
+    padding-inline: 40px;
   }
-  .section-y {
-    padding-block: 64px;
-  }
-
-  /* Headings: phone / tablet (≥810) / desktop (≥1200) */
-  .t-h1 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 2.25rem; /* 36 */
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-  }
-  .t-h2 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.875rem; /* 30 */
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-  }
-  .t-h3 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.5rem; /* 24 */
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-  }
-  .t-h4 {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1.375rem; /* 22 */
-    line-height: 1.3;
-  }
-  .t-lead {
-    font-size: var(--text-lead);
-    line-height: 1.5;
-  }
-  .t-label {
-    font-size: var(--text-base);
-    font-weight: 500;
-    line-height: 1.3;
-  }
-  .t-caps {
-    font-size: var(--text-sm);
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
+}
+@utility section-y {
+  padding-block: 64px;
   @media (min-width: 810px) {
-    .section-y {
-      padding-block: 96px;
-    }
-    .t-h1 {
-      font-size: 2.75rem; /* 44 */
-    }
-    .t-h2 {
-      font-size: 2.25rem; /* 36 */
-    }
-    .t-h3 {
-      font-size: 1.75rem; /* 28 */
-    }
-    .t-h4 {
-      font-size: 1.5rem; /* 24 */
-    }
+    padding-block: 96px;
   }
   @media (min-width: 1200px) {
-    .container-x {
-      padding-inline: 40px;
-    }
-    .section-y {
-      padding-block: 128px;
-    }
-    .t-h1 {
-      font-size: 3.5rem; /* 56 */
-    }
-    .t-h2 {
-      font-size: 2.75rem; /* 44 */
-    }
-    .t-h3 {
-      font-size: 2rem; /* 32 */
-    }
-    .t-h4 {
-      font-size: 1.625rem; /* 26 */
-    }
-    .t-lead {
-      font-size: 1.5rem; /* 24 */
-    }
+    padding-block: 128px;
   }
+}
+
+/* Headings: phone / tablet (≥810) / desktop (≥1200). */
+@utility t-h1 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 2.25rem; /* 36 */
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  @media (min-width: 810px) {
+    font-size: 2.75rem; /* 44 */
+  }
+  @media (min-width: 1200px) {
+    font-size: 3.5rem; /* 56 */
+  }
+}
+@utility t-h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.875rem; /* 30 */
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  @media (min-width: 810px) {
+    font-size: 2.25rem; /* 36 */
+  }
+  @media (min-width: 1200px) {
+    font-size: 2.75rem; /* 44 */
+  }
+}
+@utility t-h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.5rem; /* 24 */
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  @media (min-width: 810px) {
+    font-size: 1.75rem; /* 28 */
+  }
+  @media (min-width: 1200px) {
+    font-size: 2rem; /* 32 */
+  }
+}
+@utility t-h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.375rem; /* 22 */
+  line-height: 1.3;
+  @media (min-width: 810px) {
+    font-size: 1.5rem; /* 24 */
+  }
+  @media (min-width: 1200px) {
+    font-size: 1.625rem; /* 26 */
+  }
+}
+@utility t-lead {
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  @media (min-width: 1200px) {
+    font-size: 1.5rem; /* 24 */
+  }
+}
+@utility t-label {
+  font-size: var(--text-base);
+  font-weight: 500;
+  line-height: 1.3;
+}
+@utility t-caps {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 /*
