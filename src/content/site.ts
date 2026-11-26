@@ -20,32 +20,30 @@ export const site = {
   /** Flip to false in #57 once every TODO below holds real data. */
   placeholder: true,
 
-  // Working name from the Hybrid Website Plan (Nov 2026). Nothing is registered yet.
-  name: 'Senior AI Plans', // TODO(#57)
-  shortName: 'Senior AI Plans', // TODO(#57)
-  legalName: 'Senior AI Plans, LLC', // TODO(#57)
+  name: 'Senior AI Plans',
+  shortName: 'Senior AI Plans',
+  legalName: 'Senior AI Plans, LLC',
   tagline: 'Plain-English Medicare help for people turning 65.',
   description:
     'Free, licensed Medicare help for people turning 65 and the families who help them: a free plan match that explains which coverage type fits and why, plain-English guides, enrollment dates, and a call with a licensed agent.',
 
   /** Canonical origin. Overridden by NEXT_PUBLIC_SITE_URL in each environment. */
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.example.com', // TODO(#57)
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.senioraiplans.com',
 
-  // 555-0100 to 555-0199 are reserved for fictional use.
-  phone: { display: '(555) 010-0165', tel: '+15550100165' }, // TODO(#57)
+  phone: { display: '(254) 356-3878', tel: '+12543563878' },
   tty: { display: 'TTY 711', tel: '711' },
-  email: 'hello@example.com', // TODO(#57)
+  email: 'hello@senioraiplans.com',
   hours: [
     { days: 'Monday to Friday', time: '8:00 a.m. to 6:00 p.m. Central' },
     { days: 'Saturday', time: '9:00 a.m. to 1:00 p.m. Central' },
   ] satisfies Hours[], // TODO(#57)
   address: {
-    street: '100 Example Street, Suite 200',
-    city: 'Austin',
-    region: 'TX',
-    postalCode: '78701',
+    street: '2237 Mason St',
+    city: 'San Francisco',
+    region: 'CA',
+    postalCode: '94133',
     country: 'US',
-  }, // TODO(#57)
+  },
 
   foundedYear: 2016, // TODO(#57)
   /** National Producer Number. TODO(#57) */
