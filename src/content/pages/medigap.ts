@@ -74,8 +74,29 @@ export const medigapPage: ContentPage = {
           items: [
             { title: 'Your window opens', text: 'It starts the first day of the month your Part B begins, if you are 65 or older.' },
             { title: 'Any plan, no health questions', text: 'During these 6 months an insurance company cannot turn you down or charge more because of your health.' },
-            { title: 'After it ends', text: 'In most states, companies can ask health questions and may say no or charge more. Some states give extra chances to switch.' },
+            { title: 'After it ends', text: 'In most states, companies can ask health questions and may say no or charge more. Some states give extra chances to switch, such as California’s birthday rule below.' },
             { title: 'Working past 65?', text: 'If you delay Part B because you have job-based coverage, your Medigap window waits until your Part B starts.' },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'california',
+      eyebrow: 'California',
+      title: 'Extra Medigap rights in California',
+      lead: 'California gives people with Medigap more chances to change plans without health questions (California Insurance Code section 10192.11). Rules can change, so we confirm yours before you switch.',
+      blocks: [
+        {
+          type: 'steps',
+          items: [
+            {
+              title: 'The birthday rule',
+              text: 'Every year, for at least 60 days starting on your birthday, you can switch to any Medigap plan with the same or fewer benefits, from any company, with no health questions and no higher price because of your health. For example, Plan G can move to another company’s Plan G or Plan N, but not up to Plan F. Your insurer must remind you 30 to 60 days before.',
+            },
+            { title: 'Losing job or retiree coverage', text: 'You have 6 months to buy Medigap with no health questions after employer, retiree, COBRA or Cal-COBRA coverage, or military base coverage, ends.' },
+            { title: 'Moving or losing a plan', text: 'Moving out of your plan’s area, or your Medicare Advantage plan ending, gives you guaranteed-issue rights; when a Medicare Advantage plan ends, California adds 60 days to the federal window.' },
+            { title: 'Leaving Medi-Cal', text: 'If you lose Medi-Cal, or have share-of-cost Medi-Cal you have not met, you can buy Medigap without health questions.' },
+            { title: 'Under 65 with Medicare', text: 'If you have Medicare because of a disability, you get 6 months from your Part B start to buy Medigap. Companies must offer Plans A, B, D and G, plus K or L and M or N. People with end-stage renal disease are not covered by this rule.' },
           ],
         },
       ],
