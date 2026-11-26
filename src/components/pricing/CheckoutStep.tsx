@@ -69,9 +69,16 @@ export function CheckoutStep({ tier, billing, label }: { tier: 'plus' | 'family'
               {s.name}
             </option>
           ))}
+          <option value="CA">California</option>
           <option value="other">Another state</option>
         </select>
       </label>
+      {state === 'CA' && (
+        <p role="note">
+          Plus and Family are not offered to California residents: California does not allow agents to charge these service fees. Everything else we do, including
+          plan advice, enrollment and your yearly review, is free in California: call {call}.
+        </p>
+      )}
       {state === 'other' && (
         <p role="note">
           Plus and Family are offered only in {subscriptionStates.map((s) => s.name).join(', ')} for now. Our plan match, plan advice and enrollment help are free
@@ -87,7 +94,7 @@ export function CheckoutStep({ tier, billing, label }: { tier: 'plus' | 'family'
           {error}
         </p>
       )}
-      <Button type="submit" size="lg" disabled={sending || state === 'other'}>
+      <Button type="submit" size="lg" disabled={sending || state === 'other' || state === 'CA'}>
         {sending ? 'Opening secure checkout…' : 'Continue to secure checkout'}
       </Button>
       <p>Payment is handled by Stripe. You can cancel at any time.</p>

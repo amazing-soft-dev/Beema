@@ -1,6 +1,7 @@
 import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
-import { features, tiers } from '../src/content/pricing.ts';
+import { features, subscriptionStates, tiers } from '../src/content/pricing.ts';
+import { site } from '../src/content/site.ts';
 
 const tier = (id: string) => tiers.find((t) => t.id === id)!;
 
@@ -30,5 +31,16 @@ describe('AI Plan Match tiers', () => {
       assert.deepEqual(features.find(([f]) => f === name)!.slice(1), ['Yes', 'Yes', 'Yes'], name);
     }
     assert.ok(!features.some(([f]) => /priority|claims|annual ai check/i.test(f)));
+  });
+});
+
+
+describe('where Plus and Family are offered', () => {
+  it('is every licensed state except California', () => {
+    assert.ok(!subscriptionStates.some((s) => s.code === 'CA'));
+    assert.deepEqual(
+      subscriptionStates.map((s) => s.code),
+      site.licensedStates.filter((s) => s.code !== 'CA').map((s) => s.code),
+    );
   });
 });
