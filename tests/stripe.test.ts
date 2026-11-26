@@ -1,7 +1,8 @@
 import { strict as assert } from 'node:assert';
+import { createHmac } from 'node:crypto';
 import { describe, it } from 'node:test';
 import { checkoutSchema } from '../src/lib/forms/schemas.ts';
-import { checkoutParams, createCheckoutSession, priceIdFor } from '../src/lib/stripe.ts';
+import { checkoutParams, createCheckoutSession, priceIdFor, subscriptionNotice, verifyStripeSignature } from '../src/lib/stripe.ts';
 
 const env = { STRIPE_SECRET_KEY: 'sk_test_x', STRIPE_PRICE_PLUS_MONTHLY: 'price_plus_m', STRIPE_PRICE_FAMILY_YEARLY: 'price_family_y' };
 
@@ -52,5 +53,35 @@ describe('checkout form', () => {
     assert.ok(!checkoutSchema.safeParse({ ...valid, state: 'NY' }).success);
     assert.ok(!checkoutSchema.safeParse({ ...valid, disclosure: undefined }).success);
     assert.ok(!checkoutSchema.safeParse({ ...valid, tier: 'basic' }).success);
+  });
+});
+
+
+describe('Stripe webhook', () => {
+  const secret = 'whsec_test';
+  const body = '{"type":"checkout.session.completed"}';
+  const now = 1_800_000_000_000;
+  const t = now / 1000;
+  const sign = (ts: number, payload = body) => createHmac('sha256', secret).update(`${ts}.${payload}`).digest('hex');
+
+  it('accepts a correctly signed, recent event', () => {
+    assert.ok(verifyStripeSignature(body, `t=${t},v1=${sign(t)}`, secret, now));
+    assert.ok(verifyStripeSignature(body, `t=${t},v1=deadbeef,v1=${sign(t)}`, secret, now));
+  });
+
+  it('rejects a wrong signature, a changed body, an old timestamp or a missing secret', () => {
+    assert.ok(!verifyStripeSignature(body, `t=${t},v1=${sign(t)}0`, secret, now));
+    assert.ok(!verifyStripeSignature(body + ' ', `t=${t},v1=${sign(t)}`, secret, now));
+    assert.ok(!verifyStripeSignature(body, `t=${t - 600},v1=${sign(t - 600)}`, secret, now));
+    assert.ok(!verifyStripeSignature(body, `t=${t},v1=${sign(t)}`, undefined, now));
+    assert.ok(!verifyStripeSignature(body, null, secret, now));
+  });
+
+  it('turns subscription events into an agency email and ignores the rest', () => {
+    const n = subscriptionNotice({ type: 'checkout.session.completed', data: { object: { id: 'cs_1', customer: 'cus_1', customer_details: { email: 'pat@example.test' }, metadata: { tier: 'plus', billing: 'monthly', state: 'TX' } } } });
+    assert.equal(n!.subject, 'New subscription started');
+    assert.equal(n!.fields.State, 'TX');
+    assert.equal(n!.fields.Email, 'pat@example.test');
+    assert.equal(subscriptionNotice({ type: 'invoice.paid', data: { object: {} } }), null);
   });
 });

@@ -5,7 +5,61 @@
  * Without the key or a price id, checkout is "not configured" and the site tells visitors to
  * call instead.
  */
+import { createHmac, timingSafeEqual } from 'node:crypto';
 import { site } from '../content/site.ts';
+
+/**
+ * Checks a Stripe-Signature header ("t=<unix seconds>,v1=<hex HMAC>") against the raw request
+ * body, as Stripe documents: HMAC-SHA256 of "<t>.<body>" with the endpoint secret, compared in
+ * constant time, and rejected when older than `toleranceSeconds` (replay protection).
+ */
+export function verifyStripeSignature(payload: string, header: string | null, secret: string | undefined, nowMs = Date.now(), toleranceSeconds = 300): boolean {
+  if (!header || !secret) return false;
+  const parts = header.split(',').map((p) => p.trim().split('='));
+  const t = Number(parts.find(([k]) => k === 't')?.[1]);
+  const signatures = parts.filter(([k]) => k === 'v1').map(([, v]) => v ?? '');
+  if (!Number.isFinite(t) || !signatures.length) return false;
+  if (Math.abs(nowMs / 1000 - t) > toleranceSeconds) return false;
+  const expected = Buffer.from(createHmac('sha256', secret).update(`${t}.${payload}`).digest('hex'));
+  return signatures.some((sig) => {
+    const given = Buffer.from(sig);
+    return given.length === expected.length && timingSafeEqual(given, expected);
+  });
+}
+
+/** The parts of a Stripe event the agency email needs. */
+export type StripeEvent = {
+  type: string;
+  data: { object: { id?: string; status?: string; customer?: string; customer_details?: { email?: string; name?: string }; metadata?: Record<string, string>; cancel_at_period_end?: boolean } };
+};
+
+const EVENT_SUBJECTS: Record<string, string> = {
+  'checkout.session.completed': 'New subscription started',
+  'customer.subscription.updated': 'Subscription changed',
+  'customer.subscription.deleted': 'Subscription cancelled',
+};
+
+/** Lead-email subject and fields for the events we act on; null for every other event. */
+export function subscriptionNotice(event: StripeEvent): { subject: string; fields: Record<string, string> } | null {
+  const subject = EVENT_SUBJECTS[event.type];
+  if (!subject) return null;
+  const o = event.data.object;
+  const m = o.metadata ?? {};
+  return {
+    subject,
+    fields: {
+      Event: event.type,
+      Tier: m.tier ?? 'unknown',
+      Billing: m.billing ?? 'unknown',
+      State: m.state ?? 'unknown',
+      ...(o.customer_details?.email ? { Email: o.customer_details.email } : {}),
+      ...(o.customer_details?.name ? { Name: o.customer_details.name } : {}),
+      ...(o.status ? { Status: o.status + (o.cancel_at_period_end ? ' (cancels at period end)' : '') } : {}),
+      'Stripe customer': o.customer ?? 'unknown',
+      'Stripe object': o.id ?? 'unknown',
+    },
+  };
+}
 
 export type PaidTier = 'plus' | 'family';
 export type Billing = 'monthly' | 'yearly';
