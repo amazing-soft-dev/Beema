@@ -1,0 +1,15 @@
+# Netlify production build. The Next.js runtime plugin is also selected in the
+# Netlify UI; listing it here keeps the repo and the site on the same setup.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "24"
+  # Public mailbox addresses, not credentials. The inbox is rendered on every
+  # page from src/content/site.ts, so a value scan matches the build output.
+  # RESEND_API_KEY stays scanned.
+  SECRETS_SCAN_OMIT_KEYS = "LEADS_TO_EMAIL,LEADS_FROM_EMAIL"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
