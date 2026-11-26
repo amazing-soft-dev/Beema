@@ -1,6 +1,6 @@
 # Senior AI Plans: Turning 65 Medicare site
 
-The Hybrid Website Plan (November 2026) in code: plain-English Medicare help for people turning 65 and the families who help them, the free AI Plan Match, Medicare and Beyond Medicare pages, a blog, large-print PDFs, booking and contact forms, built for older readers. Carrier commissions on Medicare and add-on products are about 80% of the business; the AI Plan Match (free Basic now, optional Plus and Family later) is the other 20%. Work lands on `dev` through an automatic pull request, and a green CI run promotes it to `main`. Production is a Next.js app that Vercel deploys from `main`.
+The Hybrid Website Plan (November 2026) in code: plain-English Medicare help for people turning 65 and the families who help them, the free AI Plan Match, Medicare and Beyond Medicare pages, a blog, large-print PDFs, booking and contact forms, built for older readers. Carrier commissions on Medicare and add-on products are about 80% of the business; the AI Plan Match (free Basic now, optional Plus and Family later) is the other 20%. Work lands on `dev` through an automatic pull request, and a green CI run promotes it to `main`. Production is a Next.js app that Netlify deploys from `main` (site `senioraiplans`, build settings in `netlify.toml`).
 
 Repository: [amazing-soft-dev/SeniorAIPlans](https://github.com/amazing-soft-dev/SeniorAIPlans) (renamed from `Beema`; old URLs redirect, but update your remote with `git remote set-url origin https://github.com/amazing-soft-dev/SeniorAIPlans.git`).
 
@@ -29,7 +29,7 @@ The path for a change:
 
 **Merge passing pull request** (`.github/workflows/merge-passing-pr.yml`) starts after CI succeeds on a pull request and merge-commits it if the head is still the commit CI validated (`--match-head-commit`). Eligible pairs: a prefix branch into `dev`, and `dev` into `main`. Anything else is left alone.
 
-A merge to `main` only re-runs CI. Actions does not deploy; Vercel deploys from its Git connection, with Production tracking `main`. Dependabot opens weekly pull requests for npm and GitHub Actions; a person merges or closes them.
+A merge to `main` only re-runs CI. Actions does not deploy; Netlify deploys from its Git connection, with Production tracking `main`, and builds a deploy preview for each pull request into `main` (the `dev` → `main` release pull request). `netlify.toml` lets the secrets scan skip only `LEADS_TO_EMAIL` and `LEADS_FROM_EMAIL`, which hold the public inbox shown on every page; every other variable stays scanned (`tests/netlify-config.test.ts`). Dependabot opens weekly pull requests for npm and GitHub Actions; a person merges or closes them.
 
 ## Tech stack
 
@@ -88,7 +88,7 @@ Anything that moves on its own has a visible pause control and stops for reduced
 
 ## Two build targets
 
-- **Server** (default `next build`) is what Vercel runs. Form routes and Resend work. Images use Next's optimizer (AVIF, then WebP).
+- **Server** (default `next build`) is what Netlify runs, through its Next.js runtime. Form routes and Resend work. Images use Next's optimizer (AVIF, then WebP).
 - **Static** (`NEXT_OUTPUT=export`) writes plain HTML to `out/`. There is no server, so `/api` is omitted and forms show a "call us" fallback. `npm run images` pre-builds WebP variants and a custom loader serves them. CI still builds and checks this export.
 
 ## Scripts
@@ -96,7 +96,7 @@ Anything that moves on its own has a visible pause control and stops for reduced
 | Script | What it does |
 | --- | --- |
 | `npm run dev` | Development server (fetches the Switzer font first) |
-| `npm run build` / `start` | Server build (what Vercel runs) / serve it |
+| `npm run build` / `start` | Server build (what Netlify runs) / serve it |
 | `npm run build:static` | Static export to `out/`, then `check:export` |
 | `npm run lint` / `typecheck` / `test` | ESLint (zero warnings) / TypeScript 7 / unit tests |
 | `npm run images:fetch` / `images` | Download manifest photos / build WebP variants |
