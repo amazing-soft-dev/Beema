@@ -1,21 +1,21 @@
 {
-  "hash": "c99687ebb7251057b8cf6f736b0c3b26992e199d7847758866e5b3c86d91056d",
-  "generatedAt": "2026-11-26T08:47:14.187Z",
+  "hash": "42d308038da2a9df89def0c94d1039b9a057e031e7d90207f8737e6e3fce3829",
+  "generatedAt": "2026-11-26T09:02:27.692Z",
   "files": {
     "turning-65": {
       "path": "/pdf/turning-65.pdf",
       "title": "Turning 65: your step-by-step Medicare guide",
-      "bytes": 257992
+      "bytes": 257558
     },
     "medicare-101": {
       "path": "/pdf/medicare-101.pdf",
       "title": "Medicare 101",
-      "bytes": 306007
+      "bytes": 305906
     },
     "faq": {
       "path": "/pdf/faq.pdf",
       "title": "Medicare questions and answers",
-      "bytes": 106730
+      "bytes": 106279
     }
   }
 }
