@@ -24,6 +24,10 @@ export type Tier = {
  */
 export const subscriptionStates = site.licensedStates.filter((s) => s.code !== 'CA').map((s) => ({ code: s.code, name: s.name }));
 
+/** Ticked before checkout (review 2026-11-25, INS-30; California Ins. Code 1848 wording as a floor). */
+export const feeDisclosure =
+  'I understand that this subscription is a service, not insurance. Plan information, plan advice and enrollment help are available free from insurance companies, from Medicare and from Senior AI Plans. Senior AI Plans, LLC earns commissions from insurance companies when people enroll in plans through us. I never have to buy insurance to subscribe, or subscribe to buy insurance.';
+
 export const tiers: Tier[] = [
   { id: 'basic', name: 'Basic', bestFor: 'Anyone turning 65 or reviewing coverage', monthly: 0, yearly: 0, billing: ['monthly', 'yearly'], cta: { label: 'Stay on free Basic', href: '/plan-match' } },
   { id: 'plus', name: 'Plus', bestFor: 'Seniors who want year-round watching', monthly: 9, yearly: 90, billing: ['monthly', 'yearly'], cta: { label: 'Start Plus' } },

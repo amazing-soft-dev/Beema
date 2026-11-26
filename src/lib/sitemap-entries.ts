@@ -1,8 +1,8 @@
 import { articleHref, articles } from '../content/blog/index.ts';
 import { listStaticRoutes } from './routes.ts';
 
-/** Pages marked noindex (phase 5 placeholders); kept out of the sitemap and llms.txt. */
-export const noindexRoutes = new Set(['/family-dashboard']);
+/** Pages marked noindex; kept out of the sitemap and llms.txt. None today: the Family Dashboard page is live. */
+export const noindexRoutes = new Set<string>();
 
 /** Pages people are most likely to need: the guides, the free match and booking. */
 const important = new Set(['/turning-65', '/medicare-101', '/medigap', '/medicare-advantage', '/part-d', '/plan-match', '/services', '/book-a-call']);
