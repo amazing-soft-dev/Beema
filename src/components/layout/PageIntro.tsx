@@ -54,7 +54,7 @@ export function PageIntro({
   const dark = variant === 'dark';
   return (
     <section
-      className={`under-header relative isolate overflow-hidden ${dark ? 'on-dark bg-ink text-white [&_h1]:text-white' : 'bg-sand'}`}
+      className={`relative isolate -mt-(--header-space) overflow-hidden pt-(--header-space) print:mt-0 print:pt-0 ${dark ? 'on-dark bg-ink text-white [&_h1]:text-white' : 'bg-sand'}`}
       data-hero={dark ? 'dark' : undefined}
     >
       {!aside && <HeroDecor dark={dark} />}

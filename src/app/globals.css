@@ -239,6 +239,42 @@
   }
 }
 
+/*
+ * Floating header space (HeaderShell): the sticky, zero-height header covers the top of the
+ * page, so <main> starts below it; dark heroes slide up under it with
+ * -mt-(--header-space) pt-(--header-space). 16 + 56px pill + 16, or 24 + 66 + 24 from 1200px.
+ */
+:root {
+  --header-space: 88px;
+}
+@media (min-width: 1200px) {
+  :root {
+    --header-space: 114px;
+  }
+}
+@layer base {
+  #main {
+    padding-top: var(--header-space);
+  }
+  /* Phones: room for the fixed quick-action bar, which also lifts the chat button. */
+  @media (max-width: 809px) {
+    body {
+      padding-bottom: calc(72px + env(safe-area-inset-bottom));
+    }
+    [data-chat-button] {
+      bottom: calc(80px + env(safe-area-inset-bottom)) !important;
+    }
+  }
+  @media print {
+    body {
+      padding-bottom: 0;
+    }
+    #main {
+      padding-top: 0;
+    }
+  }
+}
+
 @layer components {
   /*
    * Logo: the light (navy and gold) mark by default, the dark (white and teal) mark on dark

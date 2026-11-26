@@ -12,7 +12,7 @@ import { TopBar } from './TopBar';
  * - Below 1200: logo and a Menu button that opens the full-screen MobileMenu dialog; on
  *   phones a bottom bar keeps the match, call and booking buttons on screen.
  *   Without JavaScript, the footer repeats every menu link.
- * The sticky wrapper has no height, so the page starts under the header; header.css adds
+ * The sticky wrapper has no height, so the page starts under the header; globals.css adds
  * the matching top space to <main>, and dark heroes slide up beneath it.
  */
 export function SiteHeader() {
