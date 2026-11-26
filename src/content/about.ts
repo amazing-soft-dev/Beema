@@ -1,8 +1,7 @@
 import { site } from './site.ts';
 
 /**
- * About Us copy. The founder story is placeholder text, marked TODO(#57) like every
- * other business fact, and must be replaced with the agency's own story before launch.
+ * About Us copy, as approved by the owner (2026-11-25).
  */
 export const about = {
   intro: {
@@ -12,7 +11,6 @@ export const about = {
   },
   story: {
     title: 'Our story',
-    // TODO(#57): replace with the agency's real story.
     paragraphs: [
       `We started ${site.shortName} in ${site.foundedYear} after watching our own parents struggle with Medicare letters, deadlines and sales calls. They needed someone patient who would explain their choices in plain words and then let them decide.`,
       'Today our licensed advisors help families every week, by phone, by video or in person. Most of the people we work with are turning 65 or are still working past 65 and are not sure when to sign up.',
