@@ -46,6 +46,37 @@ describe('IRMAA 2027 (CMS fact sheet, Nov 17 2026)', () => {
     assert.equal(r.extraYearly, 2989.2);
   });
 
+  it('pins every 2027 Part B total and Part D adjustment at the top of each individual band', () => {
+    const edges: [number, number, number][] = [
+      [112_000, 209.4, 0],
+      [141_000, 293.1, 15.4],
+      [177_000, 418.8, 39.7],
+      [212_000, 544.4, 64],
+      [499_999, 670, 88.3],
+      [500_000, 711.8, 96.4],
+    ];
+    for (const [magi, b, d] of edges) {
+      const r = calculateIrmaa(magi, 'individual');
+      assert.equal(r.partBMonthly, b, `Part B at ${magi}`);
+      assert.equal(r.partDAdjustment, d, `Part D at ${magi}`);
+    }
+  });
+
+  it('pins the 2027 joint band edges at twice the individual ones', () => {
+    assert.equal(partB(282_000, 'joint'), 293.1);
+    assert.equal(partB(282_001, 'joint'), 418.8);
+    assert.equal(partB(354_000, 'joint'), 418.8);
+    assert.equal(partB(354_001, 'joint'), 544.4);
+    assert.equal(partB(424_001, 'joint'), 670);
+  });
+
+  it('charges married filing separately $670.00 / $88.30 between $112,000 and $388,000', () => {
+    const r = calculateIrmaa(200_000, 'separate');
+    assert.equal(r.partBMonthly, 670);
+    assert.equal(r.partDAdjustment, 88.3);
+    assert.equal(calculateIrmaa(388_000, 'separate').partBMonthly, 711.8);
+  });
+
   it('rejects negative or non-numeric income', () => {
     assert.throws(() => calculateIrmaa(-1, 'joint'), /zero or more/);
     assert.throws(() => calculateIrmaa(Number.NaN, 'joint'), /zero or more/);
