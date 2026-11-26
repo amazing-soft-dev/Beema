@@ -16,15 +16,16 @@ export default function AiHealthDataPage() {
     <LegalPage
       title="AI Tool & Health Data Notice"
       lead="How our free AI Plan Match works, what it does not do, and what happens to the answers you give it."
-      updated="November 17, 2026"
+      updated="November 26, 2026"
       sections={[
         {
           heading: 'What the AI Plan Match does',
           body: (
             <p>
               The <Link href="/plan-match">AI Plan Match</Link> asks a few questions about your situation and suggests a <strong>type</strong> of coverage, such as
-              Original Medicare with a Medigap plan, Medicare Advantage, or keeping job-based coverage for now, with three reasons and the trade-offs. It follows
-              written rules that we review; it does not choose a specific plan or company.
+              Original Medicare with a Medigap plan, Medicare Advantage, or keeping job-based coverage for now, with three reasons and the trade-offs. If you have
+              Medicaid (Medi-Cal), VA, TRICARE or Marketplace coverage, or Medicare before 65, it asks you to talk with a licensed agent first instead. It follows
+              written rules that our licensed agents review; it does not choose a specific plan or company.
             </p>
           ),
         },
@@ -41,7 +42,18 @@ export default function AiHealthDataPage() {
         },
         {
           heading: 'A licensed person reviews every match',
-          body: <p>Before any enrollment, a licensed agent reviews the match with you, checks your doctors and prescriptions against real plans, and corrects anything that does not fit.</p>,
+          body: (
+            <>
+              <p>
+                The tool only explains; it never makes a decision about your coverage. Before any enrollment, a licensed agent reviews the match with you, checks your
+                doctors and prescriptions against real plans, and corrects anything that does not fit. Any recommendation comes from that licensed person.
+              </p>
+              <p>
+                Each year a licensed agent also reviews a sample of recent results to check that the rules are fair and do not steer anyone. The rules do not use
+                your ZIP code or age to rank or route you.
+              </p>
+            </>
+          ),
         },
         {
           heading: 'Data sources and plan year',
@@ -56,9 +68,10 @@ export default function AiHealthDataPage() {
           heading: 'What we collect',
           body: (
             <ul>
-              <li>Your answers: ZIP code, birth month and year, job coverage, budget and travel preference.</li>
+              <li>Your answers: ZIP code, birth month and year, other coverage, budget and travel preference. The match is worked out in your browser.</li>
               <li>Only if you agree separately: whether you want to keep specific doctors and roughly how many prescriptions you take.</li>
               <li>We do not ask for your name, Medicare number or diagnoses in the tool.</li>
+              <li>Only your ZIP code, birth month and the result are sent to us, and we cut them down to the first three digits of the ZIP code and the birth year.</li>
             </ul>
           ),
         },

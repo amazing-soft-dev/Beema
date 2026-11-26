@@ -101,12 +101,14 @@ export const home = {
     /**
      * Sample shown beside the box. The result is worked out by the real match engine from
      * these answers (MatchPreview), so it always reads exactly like the tool. Not a real person.
+     * It shows the "compare both" result, so the home page never appears to favor one path
+     * (review 2026-11-25, INS-28).
      */
     example: {
       label: 'Example result',
-      caption: 'Example for someone who travels often, wants to keep their doctors and prefers predictable costs.',
+      caption: 'Example for someone who travels a few times a year, is open to new doctors and is not sure yet what matters more: a low premium or predictable costs.',
       today: '2026-01-15',
-      answers: { zip: '00000', birthMonth: '1955-06', work: 'none', doctors: 'keep-specific', drugs: 'few', budget: 'predictable', travel: 'often' },
+      answers: { zip: '00000', birthMonth: '1955-06', work: 'none', doctors: 'flexible', drugs: 'few', budget: 'unsure', travel: 'sometimes' },
     },
   },
   checklist: { title: 'Turning 65? Get the free checklist' },
