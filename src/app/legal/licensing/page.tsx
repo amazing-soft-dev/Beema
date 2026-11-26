@@ -9,7 +9,7 @@ export default function LicensingPage() {
     <LegalPage
       title="Licensing"
       lead={`${site.legalName} is a licensed insurance agency. Here are our license details so you can check them yourself.`}
-      updated="November 15, 2026"
+      updated="November 26, 2026"
       sections={[
         {
           heading: 'Agency details',
@@ -37,8 +37,11 @@ export default function LicensingPage() {
                     <th scope="col" className="py-3 pr-6">
                       State
                     </th>
-                    <th scope="col" className="py-3">
+                    <th scope="col" className="py-3 pr-6">
                       License number
+                    </th>
+                    <th scope="col" className="py-3">
+                      Lines of authority
                     </th>
                   </tr>
                 </thead>
@@ -48,7 +51,8 @@ export default function LicensingPage() {
                       <th scope="row" className="py-3 pr-6 font-medium">
                         {s.name}
                       </th>
-                      <td className="py-3">{s.license}</td>
+                      <td className="py-3 pr-6">{s.license}</td>
+                      <td className="py-3">{s.lines.join(' and ')}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -63,6 +67,19 @@ export default function LicensingPage() {
               You can look up any agent or agency through the <a href="https://nipr.com/help/look-up-your-npn">National Insurance Producer Registry</a> or your
               state’s department of insurance. Our individual advisors’ licensed states are listed on the <a href="/about/team">Meet the Team</a> page.
             </p>
+          ),
+        },
+        {
+          heading: 'What each line of authority covers',
+          body: (
+            <ul>
+              <li>
+                <strong>Health:</strong> Medicare Advantage, Medicare Supplement (Medigap), Part D drug plans, hospital indemnity, and dental, vision and hearing plans.
+              </li>
+              <li>
+                <strong>Life:</strong> final expense life insurance, which we discuss only in a separate appointment.
+              </li>
+            </ul>
           ),
         },
       ]}

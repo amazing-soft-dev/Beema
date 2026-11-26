@@ -1,3 +1,4 @@
+import { medigapAdNotice } from '../disclosures.ts';
 import { medicareFigures } from '../medicare-figures.ts';
 import { defaultAuthor } from './author.ts';
 import type { Article } from './index.ts';
@@ -7,7 +8,7 @@ const { planYear, partB } = medicareFigures;
 export const planGvsN: Article = {
   slug: 'medigap-plan-g-vs-plan-n',
   title: 'Medigap Plan G or Plan N: which is right for you?',
-  description: 'Plan G and Plan N are the two most popular Medigap plans for people turning 65. Here is what each covers, what you pay, and who each one suits.',
+  description: 'Plan G and Plan N are two Medigap plans people turning 65 often compare. Here is what each covers, what you pay, and who each one suits.',
   topic: 'medigap',
   published: '2026-11-16',
   updated: '2026-11-26',
@@ -18,7 +19,7 @@ export const planGvsN: Article = {
   sections: [
     {
       heading: 'What they have in common',
-      blocks: [{ type: 'p', text: 'Both plans pay your Part A deductible and coinsurance, hospital costs, skilled nursing coinsurance and most Part B coinsurance. Neither covers the Part B deductible or prescription drugs.' }],
+      blocks: [{ type: 'callout', title: medigapAdNotice.notConnected, text: medigapAdNotice.outlineOfCoverage }, { type: 'p', text: 'Both plans pay your Part A deductible and coinsurance, hospital costs, skilled nursing coinsurance and most Part B coinsurance. Neither covers the Part B deductible or prescription drugs.' }],
     },
     {
       heading: 'Where they differ',

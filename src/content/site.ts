@@ -11,6 +11,12 @@ export type StateLicense = {
   name: string;
   /** State insurance license number (in California, the CDI license number). */
   license: string;
+  /**
+   * Lines of authority on the license. Health covers Medicare, Medigap, hospital indemnity and
+   * dental plans; Life covers final expense. Health and Life in every state, as the About page
+   * states (plan assumption 2, 2026-11-26): confirm against each state license.
+   */
+  lines: readonly ('Health' | 'Life')[];
 };
 
 export type Hours = { days: string; time: string };
@@ -48,10 +54,10 @@ export const site = {
   /** National Producer Number. */
   npn: '42868828',
   licensedStates: [
-    { code: 'CA', name: 'California', license: '0M84910' },
-    { code: 'TX', name: 'Texas', license: '2849103' },
-    { code: 'FL', name: 'Florida', license: 'W492018' },
-    { code: 'AZ', name: 'Arizona', license: '7391042' },
+    { code: 'CA', name: 'California', license: '0M84910', lines: ['Health', 'Life'] },
+    { code: 'TX', name: 'Texas', license: '2849103', lines: ['Health', 'Life'] },
+    { code: 'FL', name: 'Florida', license: 'W492018', lines: ['Health', 'Life'] },
+    { code: 'AZ', name: 'Arizona', license: '7391042', lines: ['Health', 'Life'] },
   ] satisfies StateLicense[],
 
   /**

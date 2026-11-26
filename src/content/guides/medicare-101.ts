@@ -34,7 +34,7 @@ export const medicare101 = {
         letter: 'C',
         name: 'Medicare Advantage',
         covers: ['Everything Parts A and B cover', 'Usually prescription drugs', 'Often dental, vision and hearing extras'],
-        cost: 'Sold by private insurers. Many plans have a low or $0 premium on top of Part B, plus copays when you get care and a yearly out-of-pocket limit.',
+        cost: 'Sold by private insurers. Many plans have a low or $0 premium, and you must keep paying your Part B premium, plus copays when you get care and a yearly out-of-pocket limit.',
       },
       {
         id: 'part-d',
@@ -52,7 +52,7 @@ export const medicare101 = {
     plans: [
       {
         name: 'Plan G',
-        tag: 'Most popular for new enrollees',
+        tag: 'Fullest coverage for new enrollees',
         summary: 'Covers almost everything Original Medicare does not, except the Part B deductible.',
         youPay: ['The yearly Part B deductible', 'Nothing else for covered services, including Part B excess charges'],
         goodFor: 'People who want predictable costs and freedom to see any doctor who accepts Medicare.',
@@ -66,7 +66,7 @@ export const medicare101 = {
       },
       {
         name: 'High-deductible Plan G',
-        tag: 'Lowest premium, more risk',
+        tag: 'Low premium, more risk',
         summary: 'Same coverage as Plan G after you meet a yearly deductible set by Medicare.',
         youPay: ['All covered costs until you reach the plan deductible, then nothing more for covered services that year'],
         goodFor: 'People who can afford a larger bill in a bad year in exchange for a much lower monthly premium.',
@@ -87,7 +87,7 @@ export const medicare101 = {
       { topic: 'Doctors and hospitals', medigap: 'Any provider in the U.S. that accepts Medicare. No referrals.', advantage: 'Usually the plan’s network (HMO or PPO). Some plans need referrals.' },
       { topic: 'Monthly premium', medigap: 'Part B premium plus a Medigap premium and a Part D premium.', advantage: 'Part B premium plus the plan premium, which is $0 for many plans.' },
       { topic: 'Costs when you get care', medigap: 'Little or nothing after the Part B deductible (Plan G).', advantage: 'Copays and coinsurance as you use care.' },
-      { topic: 'Yearly limit on costs', medigap: 'Costs stay low, so most people never need one.', advantage: 'Yes, a maximum out-of-pocket limit (MOOP) for covered care.' },
+      { topic: 'Yearly limit on costs', medigap: 'Costs stay low, so most people never need one.', advantage: 'Yes, a maximum out-of-pocket limit (MOOP) for covered Part A and B services; drugs have their own Part D cap.' },
       { topic: 'Prescription drugs', medigap: 'Add a separate Part D plan.', advantage: 'Usually included.' },
       { topic: 'Dental, vision, hearing', medigap: 'Not included; buy separately if needed.', advantage: 'Often included, with limits.' },
       { topic: 'Coverage when traveling', medigap: 'Anywhere in the U.S., and most plans cover some emergency care abroad.', advantage: 'Mainly in your plan’s area; emergencies are covered anywhere in the U.S.' },

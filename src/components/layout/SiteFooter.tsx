@@ -37,6 +37,8 @@ function footerColumns(groups: FooterGroup[]): FooterGroup[][] {
 export function SiteFooter() {
   const { address } = site;
   const states = site.licensedStates.map((s) => s.name).join(', ');
+  // California requires the CDI license number on ads and quotes (Ins. Code 1725.5).
+  const caLicense = site.licensedStates.find((s) => s.code === 'CA')?.license;
   const routes = existingRoutes();
   const groups = footerGroups(availableMenu(routes), routes);
   return (
@@ -116,7 +118,8 @@ export function SiteFooter() {
         <div className="grid gap-4 border-t border-white/20 py-6 text-base lg:grid-cols-2 lg:gap-x-12">
           <div className="flex flex-col gap-4">
             <p>
-              {site.legalName} is a licensed insurance agency in {states}. National Producer Number (NPN) {site.npn}.{' '}
+              {site.legalName} is a licensed insurance agency in {states}. National Producer Number (NPN) {site.npn}. California insurance license{' '}
+              {caLicense}.{' '}
               <Link href="/legal/licensing" className="underline underline-offset-4">
                 Licensing details
               </Link>

@@ -25,3 +25,25 @@ export const disclosures: Record<DisclosureKind, { title: string; text: string }
     text: 'Stand-alone dental, vision and hearing plans are not Medicare and not Medicare Supplement (Medigap) policies, and are not connected with or endorsed by the U.S. government or the federal Medicare program. Plans are underwritten by the issuing company and may have waiting periods, annual maximums and networks. Availability varies by state.',
   },
 };
+
+/**
+ * Medigap advertising notices (review 2026-11-25, California addendum). Every Medigap page or
+ * ad shown in California must prominently say it is not connected with the government (Ins.
+ * Code 10192.19(h)), and an ad that is not a full sales presentation must say, in uppercase
+ * type, that an outline of coverage is available (10192.17(l)). Shown to every visitor.
+ */
+export const medigapAdNotice = {
+  notConnected: 'Not connected with or endorsed by the U.S. Government or the federal Medicare program.',
+  outlineOfCoverage:
+    'AN OUTLINE OF COVERAGE FOR EACH MEDICARE SUPPLEMENT (MEDIGAP) POLICY IS AVAILABLE ON REQUEST. CALL US OR ASK YOUR AGENT, AND WE WILL SEND IT WITHIN 14 DAYS.',
+} as const;
+
+/**
+ * Notice for hospital indemnity and other disability policies sold to people eligible for
+ * Medicare (California Ins. Code 10192.17(k); review 2026-11-25, INS-22). The carrier prints it
+ * on the outline of coverage; the page mirrors it, and the carrier's California forms apply.
+ */
+export const notMedigapNotice = {
+  title: 'THIS POLICY IS NOT A MEDICARE SUPPLEMENT POLICY.',
+  text: 'If you are eligible for Medicare, review the Guide to Health Insurance for People with Medicare, available from the insurance company. The application also tells you how much the policy duplicates Medicare benefits.',
+} as const;

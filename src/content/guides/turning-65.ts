@@ -50,7 +50,7 @@ export const turning65 = {
         {
           title: '20 or more employees: you can usually wait on Part B',
           text: 'Your job plan pays first, so you can delay Part B without a penalty. Many people still take premium-free Part A at 65.',
-          tip: 'Contributing to a Health Savings Account (HSA)? Stop at least 6 months before you sign up for Medicare, because Part A can start up to 6 months back.',
+          tip: 'Contributing to a Health Savings Account (HSA)? Ask your tax adviser when to stop; many people stop about 6 months before they sign up for Medicare, because Part A can start up to 6 months back.',
         },
         {
           title: 'Fewer than 20 employees: sign up on time',

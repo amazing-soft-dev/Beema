@@ -1,5 +1,8 @@
 import { Resend } from 'resend';
 import { site } from '@/content/site';
+import { licenseLine, licenseLineHtml } from './license-line';
+
+export { licenseLine, licenseLineHtml };
 
 /**
  * Lead and guide emails through Resend (server only).
@@ -42,5 +45,10 @@ export async function sendEmail({ to, subject, text, html, replyTo }: { to: stri
 /** Sends a new lead to the agency inbox (LEADS_TO_EMAIL, falling back to site.email). */
 export function sendLead(subject: string, fields: Record<string, string>) {
   const body = renderFields(fields);
-  return sendEmail({ to: process.env.LEADS_TO_EMAIL ?? site.email, subject: `${subject} | ${site.shortName} website`, ...body });
+  return sendEmail({
+    to: process.env.LEADS_TO_EMAIL ?? site.email,
+    subject: `${subject} | ${site.shortName} website`,
+    text: `${body.text}\n\n${licenseLine}`,
+    html: `${body.html}<p style="font:14px/1.5 Arial,sans-serif">${licenseLineHtml}</p>`,
+  });
 }
