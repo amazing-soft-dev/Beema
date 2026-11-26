@@ -4,11 +4,11 @@ import { Pause, Play } from '@phosphor-icons/react';
 import { type ReactNode, useEffect, useRef, useState } from 'react';
 import { Icon } from '@/components/ui/Icon';
 
-/** Framer ticker speed (audit/motion/loops-and-sliders.md#marquee). */
+/** Ticker speed. */
 const PX_PER_SECOND = 30;
 
 /**
- * Framer "Trusted by" ticker: the items scroll right to left at ≈30px/s in a seamless loop.
+ * "Trusted by" ticker: the items scroll right to left at ≈30px/s in a seamless loop.
  * Because it moves on its own, a visible Pause / Play button stops it (WCAG 2.2.2), and it
  * also stops while anything inside has keyboard focus. Reduced motion: it does not move.
  * Screen readers get the list once; the repeated copy is hidden from them.
@@ -51,8 +51,12 @@ export function Marquee({
 
   return (
     <div className={`flex items-center gap-4 ${className}`}>
-      <div className="marquee min-w-0 flex-1" data-paused={paused ? '' : undefined}>
-        <div ref={trackRef} className="marquee-track">
+      {/* Edge fade from the design; the track holds the items twice and moves by half its width. */}
+      <div className="group min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(90deg,transparent_0,#000_8%,#000_92%,transparent_100%)]" data-paused={paused ? '' : undefined}>
+        <div
+          ref={trackRef}
+          className="flex w-max animate-[marquee_var(--marquee-duration,40s)_linear_infinite] group-focus-within:[animation-play-state:paused] group-data-paused:[animation-play-state:paused] motion-reduce:animate-none print:animate-none"
+        >
           {list(0)}
           {list(1)}
         </div>

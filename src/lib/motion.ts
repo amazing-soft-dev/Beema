@@ -1,6 +1,6 @@
 /**
- * Motion values read from the Beema Framer bundle (audit/motion/*.md, checked 2026-11-15).
- * Framer animates with JS springs; motion/react reproduces them with the same constants.
+ * Motion values for the site, tuned for older readers.
+ * Springs run in JS with motion/react, using these constants.
  */
 
 /** Appear effects (text, fade up, column slide): over-damped, ≈0.75s to 90%, long tail. */
@@ -22,7 +22,7 @@ export const heroTextDelay = 0.4;
 /** Text rises from 75px below at opacity .001. */
 export const textOffset = 75;
 
-/** Fade-up offsets used across the Framer pages, in px. */
+/** Fade-up offsets used across the pages, in px. */
 export const fadeOffset = { sm: 35, md: 50, lg: 75, xl: 100, xxl: 150 } as const;
 export type FadeOffset = keyof typeof fadeOffset;
 /** Staggered blocks start 0.2s apart (.2, .4, .6 … 1.2s). */
@@ -32,8 +32,8 @@ export const staggerStep = 0.2;
 export const slideOffset = 200;
 
 /**
- * Text and the About card start when half of the element is in view, once (Framer
- * threshold .5).
+ * Text and the About card start when half of the element is in view, once
+ * (threshold .5).
  */
 export const textViewport = { once: true, amount: 0.5 } as const;
 

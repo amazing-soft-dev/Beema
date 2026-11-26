@@ -6,7 +6,7 @@ import { type Article, articleHref, topics } from '@/content/blog';
 const date = (iso: string) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 
 /**
- * Framer blog card (audit/components/cards.md): topic tag, title, summary and a "Read more ↗"
+ * Blog card: topic tag, title, summary and a "Read more ↗"
  * link whose arrow swaps on hover. The whole card is one link; it fades up in a stagger.
  */
 export function ArticleCard({ article: a, stagger }: { article: Article; stagger?: number }) {

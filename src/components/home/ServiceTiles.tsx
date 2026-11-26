@@ -28,7 +28,7 @@ const cardPhotos: Record<string, ReactNode> = {
 };
 
 /**
- * Service tiles in the Framer Services fan carousel (dark section). Each card has a photo on
+ * Service tiles in the Services fan carousel (dark section). Each card has a photo on
  * its top part and its text on solid navy below. Each card names its group (AI Plan Match,
  * Medicare or Beyond Medicare) so the tool and the add-ons never read as Medicare plans.
  */

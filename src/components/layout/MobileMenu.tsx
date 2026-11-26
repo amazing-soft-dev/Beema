@@ -16,7 +16,7 @@ const noSubscribe = () => () => {};
 
 /**
  * Full-screen menu below 1200px, built on the native <dialog> element. It fades in over
- * 0.2s like Framer's menu (audit/motion/mobile-menu.md; motion.css .menu-dialog).
+ * 0.2s (utilities on the dialog: opacity with transition-discrete and starting:).
  * showModal() traps focus, makes the page behind inert and closes on Escape.
  * We add: focus back on the Menu button, page scroll lock, and closing on navigation.
  */
@@ -92,7 +92,7 @@ export function MobileMenu({ items, showMatch }: { items: MenuItem[]; showMatch:
         ref={dialogRef}
         id="mobile-menu"
         aria-label="Menu"
-        className="menu-dialog m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto bg-white p-0 text-ink backdrop:bg-ink/40"
+        className="m-0 h-dvh max-h-none w-full max-w-none overflow-y-auto bg-white p-0 text-ink opacity-0 transition-[opacity,overlay,display] transition-discrete duration-200 ease-[cubic-bezier(.22,1,.36,1)] backdrop:bg-ink/40 open:opacity-100 motion-reduce:transition-none starting:open:opacity-0"
       >
         <div className="container-x flex min-h-20 items-center justify-between border-b border-line">
           <Logo />

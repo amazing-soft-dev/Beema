@@ -7,11 +7,11 @@ import { type FadeOffset, fadeOffset, revealSpring, revealViewport, staggerStep 
 type Tag = 'div' | 'section' | 'li' | 'article' | 'figure' | 'p' | 'ul' | 'ol' | 'aside' | 'header';
 
 /**
- * Framer "appear on scroll" (audit/motion/scroll-reveals.md#fade-up): fade in and rise into
+ * "appear on scroll": fade in and rise into
  * place once, with the reveal spring.
- * - `y`: a Framer offset preset (sm 35, md 50, lg 75, xl 100, xxl 150) or pixels. Negative
- *   values drop in from above (Framer's inverted block uses −75).
- * - `stagger`: position in a group; Framer starts siblings 0.2s apart (.2, .4, .6 …).
+ * - `y`: an offset preset (sm 35, md 50, lg 75, xl 100, xxl 150) or pixels. Negative
+ *   values drop in from above (the inverted block uses −75).
+ * - `stagger`: position in a group; siblings start 0.2s apart (.2, .4, .6 …).
  * - `delay`: extra seconds on top of the stagger.
  * - `onMount`: start on load instead of on scroll (hero content).
  * Reduced motion keeps a short fade (MotionConfig). No JavaScript: globals.css shows it.

@@ -24,7 +24,7 @@ function price(t: Tier, billing: Billing) {
 
 /**
  * Basic, Plus and Family side by side (plan §9) with a clearly labelled Monthly/Yearly
- * choice (a radio group). The price text changes with Framer's variant spring (k 200,
+ * choice (a radio group). The price text changes with the variant spring (k 200,
  * c 40). No countdowns or pressure copy. Paid tiers start with a state and fee-disclosure step,
  * then Stripe Checkout.
  */

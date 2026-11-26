@@ -3,7 +3,7 @@ import { PHOTO_QUALITY } from '@/lib/image-widths';
 import { photo } from '@/lib/photos';
 
 /**
- * Manifest photo in a rounded, cropped frame (Beema image cards: 16px radius, no shadow).
+ * Manifest photo in a rounded, cropped frame (16px radius, no shadow).
  * The parent decides the size; the image fills it with the photo's focal point.
  * `id` must be a string literal so `npm run check:images` can count each use.
  */

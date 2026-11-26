@@ -1,11 +1,10 @@
 /*
- * CSS-driven motion matched to the Beema Framer site (audit/motion/*.md).
- * JS springs live in src/lib/motion.ts; these are the loops and hovers CSS does better.
- * Imported by globals.css. Print and reduced motion turn every loop off.
+ * Keyframes for the loops that Tailwind utilities run (animate-[name_…] in the components).
+ * Everything else (hovers, the menu fade, the zoom-card start pose) is utilities on the
+ * component; JS springs live in src/lib/motion.ts. Imported by globals.css.
  */
 
-/* Marquee ticker: right to left at ≈30px/s, seamless (loops-and-sliders.md#marquee).
-   The track holds the items twice and moves by half its width. */
+/* Marquee ticker (Marquee): right to left, seamless; the track holds the items twice. */
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -14,181 +13,13 @@
     transform: translateX(-50%);
   }
 }
-.marquee {
-  overflow: hidden;
-  /* ticker-edge fade from the Framer tokens */
-  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
-}
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee var(--marquee-duration, 40s) linear infinite;
-}
-.marquee[data-paused] .marquee-track,
-.marquee:focus-within .marquee-track {
-  animation-play-state: paused;
-}
-@media (prefers-reduced-motion: reduce) {
-  .marquee-track {
-    animation: none;
-  }
-}
-@media print {
-  .marquee-track {
-    animation: none;
-  }
-}
 
-/* About card zoom-out start pose (scroll-reveals.md#about-scale); ZoomOutCard springs it to
-   rest when half of the card is in view. Framer's matrix(1.8,0,0,1.8,0,260) = move 260px
-   down, then scale 1.8. */
-.zoom-card {
-  transform-origin: 50% 50%;
-}
-@media screen and (min-width: 810px) and (prefers-reduced-motion: no-preference) {
-  @media (scripting: enabled) {
-    .zoom-card[data-zoom='pending'] {
-      transform: translateY(45px) scale(1.2);
-    }
-  }
-}
-@media screen and (min-width: 1200px) and (prefers-reduced-motion: no-preference) {
-  @media (scripting: enabled) {
-    .zoom-card[data-zoom='pending'] {
-      transform: translateY(260px) scale(1.8);
-    }
-  }
-}
-
-/* Link underline that unfolds (nav-underline.md): a 2px line edge-on at rotateY(90deg)
-   turns flat over .4s ease-in-out. Also on keyboard focus and for the current page, so
-   nothing depends on hover. */
-.u-line {
-  position: relative;
-}
-.u-line::after {
-  content: '';
-  position: absolute;
-  inset-inline: var(--u-inset, 0);
-  bottom: var(--u-bottom, 0.35em);
-  height: 2px;
-  border-radius: 2px;
-  background: currentColor;
-  transform: perspective(200px) rotateY(90deg);
-  transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
-}
-.u-line:hover::after,
-.u-line:focus-visible::after,
-.u-line[aria-current='page']::after,
-.u-line[aria-expanded='true']::after {
-  transform: none;
-}
-
-/* "Read more ↗" arrow swap (button-hover.md): the arrow leaves along its direction and a
-   copy arrives from the opposite side, .6s with a soft ease-out. --ax/--ay set the axis. */
-.arrow-swap {
-  position: relative;
-  display: inline-flex;
-  overflow: hidden;
-  flex-shrink: 0;
-  --ax: 100%;
-  --ay: 0%;
-}
-.arrow-swap[data-dir='up-right'] {
-  --ax: 100%;
-  --ay: -100%;
-}
-.arrow-swap > * {
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.arrow-swap > :last-child {
-  position: absolute;
-  inset: 0;
-  transform: translate(calc(var(--ax) * -1), calc(var(--ay) * -1));
-}
-:is(a, button):is(:hover, :focus-visible) .arrow-swap > :first-child {
-  transform: translate(var(--ax), var(--ay));
-}
-:is(a, button):is(:hover, :focus-visible) .arrow-swap > :last-child {
-  transform: none;
-}
-
-/* Round arrow buttons for carousels and sliders: fill on hover in ≈.18s (button-hover.md). */
-.arrow-btn {
-  transition:
-    background-color 0.18s ease-out,
-    color 0.18s ease-out,
-    border-color 0.18s ease-out;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .u-line::after {
-    transition: none;
-  }
-  .arrow-swap > * {
-    transition: none;
-  }
-}
-
-/* Ping dot on hero eyebrow pills (buttons-and-pills.md §8): a ring grows from the dot to
-   2.25x and fades, every 1.5s. Decorative; still for reduced motion and print. */
-@keyframes ping {
+/* Ping dot on hero eyebrow pills (Eyebrow): a ring grows to 2.25x and fades. Named apart
+   from Tailwind's own `ping` keyframes, which scale to 2x. */
+@keyframes ping-ring {
   75%,
   100% {
     transform: scale(2.25);
     opacity: 0;
-  }
-}
-.ping-dot {
-  position: relative;
-  display: inline-flex;
-  width: 8px;
-  height: 8px;
-  flex-shrink: 0;
-  border-radius: 999px;
-  background: currentColor;
-}
-.ping-dot::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: currentColor;
-  opacity: 0.75;
-  animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .ping-dot::before {
-    animation: none;
-    opacity: 0;
-  }
-}
-@media print {
-  .ping-dot::before {
-    animation: none;
-    opacity: 0;
-  }
-}
-
-/* Mobile menu (mobile-menu.md): the full-screen panel fades in over .2s ease-out, no slide,
-   no link stagger; it fades out the same way. */
-.menu-dialog {
-  opacity: 0;
-  transition:
-    opacity 0.2s cubic-bezier(0.22, 1, 0.36, 1),
-    overlay 0.2s allow-discrete,
-    display 0.2s allow-discrete;
-}
-.menu-dialog[open] {
-  opacity: 1;
-}
-@starting-style {
-  .menu-dialog[open] {
-    opacity: 0;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  .menu-dialog {
-    transition: none;
   }
 }
