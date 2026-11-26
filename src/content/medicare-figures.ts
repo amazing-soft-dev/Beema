@@ -2,11 +2,11 @@
  * Official Medicare cost figures, one plan year at a time.
  * Refresh every fall when CMS publishes next year's fact sheet (runbook: docs, #56).
  *
- * Source: CMS fact sheet "2026 Medicare Parts A & B Premiums and Deductibles", Nov 14, 2025,
- * https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles
+ * Source: CMS fact sheet "2027 Medicare Parts A & B Premiums and Deductibles", Nov 17, 2026,
+ * https://www.cms.gov/newsroom/fact-sheets/2027-medicare-parts-b-premiums-deductibles
  * Look-back year: SSA, "Premiums: Rules for Higher-Income Beneficiaries"
- * (2026 premiums are generally based on 2024 tax returns).
- * Checked 2026-11-15: no official 2027 fact sheet had been published yet.
+ * (2027 premiums are generally based on 2025 tax returns).
+ * Checked against cms.gov on 2026-11-26.
  */
 
 export type FilingStatus = 'individual' | 'joint' | 'separate';
@@ -23,16 +23,16 @@ export type IrmaaTier = {
 };
 
 export const medicareFigures = {
-  planYear: 2026,
+  planYear: 2027,
   /** Tax year whose income (MAGI) is used, usually two years before the plan year. */
-  incomeYear: 2024,
-  verifiedOn: '2026-11-15',
+  incomeYear: 2025,
+  verifiedOn: '2026-11-26',
   sources: {
-    cms: 'https://www.cms.gov/newsroom/fact-sheets/2026-medicare-parts-b-premiums-deductibles',
+    cms: 'https://www.cms.gov/newsroom/fact-sheets/2027-medicare-parts-b-premiums-deductibles',
     ssa: 'https://www.ssa.gov/benefits/medicare/medicare-premiums.html',
     lifeChangingEvent: 'https://www.ssa.gov/forms/ssa-44.pdf',
   },
-  partB: { standardMonthly: 202.9, annualDeductible: 283 },
+  partB: { standardMonthly: 209.4, annualDeductible: 292 },
   /**
    * Income tiers, lowest first. Joint and individual returns share the six tiers;
    * married filing separately (lived with spouse) only uses tiers 1, 5 and 6.
