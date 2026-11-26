@@ -4,6 +4,7 @@ import Cal from '@calcom/embed-react';
 import { Desktop, MapPin, Phone, Sparkle } from '@phosphor-icons/react';
 import { useState, useSyncExternalStore } from 'react';
 import { LeadForm } from '@/components/forms/LeadForm';
+import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { type TopicId, addOnTopics, bookingNote, medicareTopics, topicLabel, topicsFromQuery } from '@/content/booking';
 import { site } from '@/content/site';
@@ -41,6 +42,8 @@ export function BookingWidget() {
   const [picked, setPicked] = useState<TopicId[] | null>(null);
   const topics = picked ?? topicsFromQuery(params.get('topic') ?? (match ? 'turning-65' : null));
   const [reminders, setReminders] = useState(false);
+  // Cal.com loads only after the visitor asks for it (review INS-04/INS-39, California CIPA 631).
+  const [calendarShown, setCalendarShown] = useState(false);
   const toggle = (id: TopicId) => setPicked(topics.includes(id) ? topics.filter((t) => t !== id) : [...topics, id]);
   const note = bookingNote({ topics, match, remindersConsent: reminders });
   const topicText = topics.length ? topics.map(topicLabel).join(', ').toLowerCase() : 'Medicare';
@@ -110,7 +113,21 @@ export function BookingWidget() {
 
       <div>
         <h2 className="t-label mb-3 font-semibold">3. Pick a time</h2>
-        {calLink ? (
+        {calLink && !calendarShown ? (
+          <div className="flex flex-col items-start gap-4 rounded-card bg-surface p-6 md:p-8">
+            <p>
+              Our booking calendar is run by <strong>Cal.com</strong>. When you open it, Cal.com receives your browser details, the choices above and anything you type
+              in the calendar, so it can book and confirm your appointment. Prefer not to? Call{' '}
+              <a href={`tel:${site.phone.tel}`} className="font-semibold text-navy-700 underline underline-offset-4">
+                {site.phone.display}
+              </a>{' '}
+              ({site.tty.display}) instead.
+            </p>
+            <Button size="lg" onClick={() => setCalendarShown(true)}>
+              Show the calendar
+            </Button>
+          </div>
+        ) : calLink ? (
           <div className="overflow-hidden rounded-card border-2 border-line bg-white">
             <Cal
               key={`${meeting}-${advisor?.slug ?? 'any'}`}
