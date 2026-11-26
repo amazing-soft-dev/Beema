@@ -25,7 +25,9 @@ export function PlanMatchTool() {
       void fetch('/api/plan-match', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ answers, result: { type: m.type, reasons: m.reasons } }),
+        // Only the ZIP and birth month leave the browser, and the server keeps just ZIP3 and the
+        // birth year (AI Tool & Health Data Notice). The other answers stay here.
+        body: JSON.stringify({ answers: { zip: answers.zip, birthMonth: answers.birthMonth }, result: { type: m.type, reasons: m.reasons } }),
         keepalive: true,
       }).catch(() => {});
     }
