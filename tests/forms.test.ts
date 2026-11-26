@@ -2,7 +2,7 @@ import { strict as assert } from 'node:assert';
 import { describe, it } from 'node:test';
 import { contactSchema, fieldErrors, guideEmailSchema } from '../src/lib/forms/schemas.ts';
 import { consentContext, consentRecord, consentTextVersion, FORM_VERSION } from '../src/lib/forms/consent.ts';
-import { rateLimited } from '../src/lib/forms/server.ts';
+import { endpointKey, rateLimited, readForm } from '../src/lib/forms/server.ts';
 
 const valid = { name: 'Pat Doe', zip: '78701', phone: '(555) 010-0123', bestTime: 'morning', consent: 'yes', website: '' };
 
@@ -92,5 +92,43 @@ describe('consent record context', () => {
   it('accepts only a site path for the page', () => {
     assert.equal(contactSchema.parse({ ...valid, page: '/book-a-call' }).page, '/book-a-call');
     assert.equal(contactSchema.parse({ ...valid, page: 'https://evil.test/' }).page, undefined);
+  });
+});
+
+
+describe('readForm', () => {
+  const post = (body: string, ip: string) => new Request('https://example.test/api/contact', { method: 'POST', headers: { 'content-type': 'application/json', 'x-forwarded-for': ip }, body });
+
+  it('answers 400, not a crash, for a JSON body that is not a form', async () => {
+    for (const [i, body] of ['null', '42', '[]'].entries()) {
+      const r = await readForm(post(body, `198.51.100.${i + 1}`), contactSchema);
+      assert.ok('response' in r);
+      assert.equal(r.response.status, 400);
+    }
+  });
+
+  it('quietly accepts a filled honeypot without validating', async () => {
+    const r = await readForm(post(JSON.stringify({ website: 'spam' }), '198.51.100.9'), contactSchema);
+    assert.ok('response' in r);
+    assert.equal(r.response.status, 200);
+  });
+});
+
+describe('per-endpoint rate limits', () => {
+  const req = (path: string, ip: string) => new Request(`https://example.test${path}`, { headers: { 'x-forwarded-for': ip } });
+
+  it('keys each endpoint and address separately', () => {
+    assert.equal(endpointKey(req('/api/contact', '203.0.113.20')), '/api/contact 203.0.113.20');
+    const t = 1_900_000_000_000;
+    for (let i = 0; i < 6; i++) rateLimited(endpointKey(req('/api/contact', '203.0.113.21')), t + i);
+    assert.equal(rateLimited(endpointKey(req('/api/contact', '203.0.113.21')), t + 7), true);
+    assert.equal(rateLimited(endpointKey(req('/api/newsletter', '203.0.113.21')), t + 8), false, 'another form keeps its own allowance');
+  });
+
+  it('honours a higher limit where asked', () => {
+    const t = 1_900_000_100_000;
+    const results = Array.from({ length: 30 }, (_, i) => rateLimited('plan-match-test', t + i, 30));
+    assert.ok(results.every((r) => r === false));
+    assert.equal(rateLimited('plan-match-test', t + 31, 30), true);
   });
 });
