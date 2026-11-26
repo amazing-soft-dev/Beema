@@ -109,11 +109,18 @@ const partBWarning: Partial<Record<WorkCoverage, string>> = {
   'employer-small': 'With an employer under 20 employees, Medicare usually pays first, so you normally need Part B at 65.',
 };
 
+/**
+ * Joining an individual Medicare Advantage or Part D plan can end employer retiree coverage
+ * (review 2026-11-25, INS-26), so retirees see this before anything else.
+ */
+export const retireeWarning =
+  'Joining an individual Medicare Advantage or Part D plan can end your retiree coverage from your former employer, sometimes for good and for your spouse too. Ask your retiree plan before you join any plan.';
+
 /** The recommendation for a set of answers. `today` is passed in so results are testable. */
 export function match(a: Answers, today: ISODate): Match {
   const result = recommend(a, today);
-  const warning = partBWarning[a.work];
-  return warning ? { ...result, tradeoffs: [warning, ...result.tradeoffs] } : result;
+  const warnings = [...(a.work === 'retiree' ? [retireeWarning] : []), ...(partBWarning[a.work] ? [partBWarning[a.work]!] : [])];
+  return warnings.length ? { ...result, tradeoffs: [...warnings, ...result.tradeoffs] } : result;
 }
 
 type SpecialCoverage = 'marketplace' | 'medicaid' | 'va' | 'tricare' | 'disability-esrd';
