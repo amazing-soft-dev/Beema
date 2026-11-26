@@ -28,6 +28,12 @@ describe('required notices', () => {
     assert.doesNotMatch(notices.scopeOfAppointment, /48/);
   });
 
+  it('chat notice names the vendor, says chats are saved and discloses automated replies', () => {
+    assert.match(notices.chatNotice, /Crisp/);
+    assert.match(notices.chatNotice, /saved/);
+    assert.match(notices.chatNotice, /automated assistant/);
+  });
+
   it('phone consent names the business', () => {
     assert.ok(notices.phoneConsent.includes(site.legalName));
   });

@@ -85,6 +85,12 @@ export const notices = {
   callRecording:
     'Calls with our licensed agents, including the sound of video calls, are recorded for quality and because Medicare rules require it. By continuing a call with us, you agree to the recording. We keep recordings for at least 6 years.',
   /**
+   * Shown before the chat loads (review 2026-11-25: California Penal Code 631 and the
+   * B&P 17941 bot disclosure). Chats are kept like recorded calls.
+   */
+  chatNotice:
+    'Our chat is run by Crisp. Your messages are saved by Crisp and by us, like a recorded call. Some replies may come from an automated assistant, and it will always say so; questions about plans go to a licensed agent. Please do not type your Medicare number or health details here.',
+  /**
    * Scope of Appointment note for Book a Call, with the CMS model-form statements (review
    * 2026-11-25, INS-07). CY2027 rules: the SOA must be complete before the appointment and is
    * valid for 12 months; there is no 48-hour wait.
