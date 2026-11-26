@@ -1,12 +1,14 @@
 /**
- * AI Plan Match tiers (Hybrid Website Plan §2). Prices stay "TBD" until the state fee
- * review (§6); set them here once confirmed in writing.
+ * AI Plan Match tiers (Hybrid Website Plan §2). Prices set by the owner on 2026-11-25: Plus $9 a
+ * month, Family $19 a month, and a yearly option at about two months free ($90 and $190).
+ * Paid tiers are offered only in the states listed in subscriptionStates (never California;
+ * review 2026-11-25, INS-30).
  */
 export type Tier = {
   id: 'basic' | 'plus' | 'family';
   name: string;
   bestFor: string;
-  /** null = price to be decided; 0 = free. */
+  /** Whole US dollars; null = price to be decided; 0 = free. */
   monthly: number | null;
   yearly: number | null;
   billing: ('monthly' | 'yearly')[];
@@ -15,8 +17,8 @@ export type Tier = {
 
 export const tiers: Tier[] = [
   { id: 'basic', name: 'Basic', bestFor: 'Anyone turning 65 or reviewing coverage', monthly: 0, yearly: 0, billing: ['monthly', 'yearly'], cta: { label: 'Stay on free Basic', href: '/plan-match' } },
-  { id: 'plus', name: 'Plus', bestFor: 'Seniors who want year-round watching', monthly: null, yearly: null, billing: ['monthly', 'yearly'], cta: { label: 'Start Plus' } },
-  { id: 'family', name: 'Family', bestFor: 'Adult children and caregivers managing a parent’s coverage', monthly: null, yearly: null, billing: ['yearly'], cta: { label: 'Start Family' } },
+  { id: 'plus', name: 'Plus', bestFor: 'Seniors who want year-round watching', monthly: 9, yearly: 90, billing: ['monthly', 'yearly'], cta: { label: 'Start Plus' } },
+  { id: 'family', name: 'Family', bestFor: 'Adult children and caregivers managing a parent’s coverage', monthly: 19, yearly: 190, billing: ['monthly', 'yearly'], cta: { label: 'Start Family' } },
 ];
 
 /** Feature rows: [feature, basic, plus, family]. */
