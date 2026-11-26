@@ -15,7 +15,7 @@ describe('security headers', () => {
   it('allows the services the site uses, and only those', () => {
     assert.match(directive('frame-src'), /https:\/\/app\.cal\.com/);
     assert.match(directive('script-src'), /https:\/\/client\.crisp\.chat/);
-    assert.match(directive('script-src'), /https:\/\/va\.vercel-scripts\.com/);
+    assert.doesNotMatch(csp, /vercel/, 'no analytics hosts once the Vercel packages are gone');
     assert.match(directive('form-action'), /https:\/\/checkout\.stripe\.com/);
     assert.doesNotMatch(directive('script-src'), /\*/);
   });
