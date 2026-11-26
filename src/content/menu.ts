@@ -88,7 +88,7 @@ export const menu: MenuItem[] = [
         links: [
           { label: 'About Us', href: '/about', description: 'Who we are and how we are paid' },
           { label: 'Reviews', href: '/reviews', description: 'What our clients say' },
-          { label: 'Meet the Team', href: '/about/team', description: 'Our licensed agents', later: true },
+          { label: 'Meet the Team', href: '/about/team', description: 'Our licensed agents' },
         ],
       },
     ],
