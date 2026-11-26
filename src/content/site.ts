@@ -17,7 +17,7 @@ export type Hours = { days: string; time: string };
 
 export const site = {
   /** true keeps every page out of search (noindex, robots.txt Disallow). */
-  placeholder: true,
+  placeholder: false,
 
   name: 'Senior AI Plans',
   shortName: 'Senior AI Plans',
