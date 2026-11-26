@@ -1,4 +1,5 @@
 import { BookingWidget } from '@/components/booking/BookingWidget';
+import { CallRecordingNotice } from '@/components/compliance/CallRecordingNotice';
 import { CmsDisclaimer } from '@/components/compliance/CmsDisclaimer';
 import { ScopeOfAppointmentNotice } from '@/components/compliance/ScopeOfAppointmentNotice';
 import { Breadcrumb } from '@/components/content/Breadcrumb';
@@ -32,6 +33,7 @@ export default function BookACallPage() {
               <strong>Your consent.</strong> By booking, you agree that {site.legalName} may contact you about the appointment and the plan types you choose. We will not
               discuss other products unless you ask, and final expense life insurance is always a separate appointment.
             </p>
+            <CallRecordingNotice className="rounded-card-sm bg-surface p-5 lg:col-span-2" />
           </div>
           <Reveal y="lg">
             <BookingWidget />

@@ -15,6 +15,12 @@ describe('required notices', () => {
     assert.equal(notices.govDisclaimer, 'This website is not connected with or endorsed by the U.S. government or the federal Medicare program.');
   });
 
+  it('call-recording notice asks for consent and states the 6-year minimum', () => {
+    assert.match(notices.callRecording, /recorded/);
+    assert.match(notices.callRecording, /you agree to the recording/);
+    assert.match(notices.callRecording, /at least 6 years/);
+  });
+
   it('phone consent names the business', () => {
     assert.ok(notices.phoneConsent.includes(site.legalName));
   });

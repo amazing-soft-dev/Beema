@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { CheckCircle, PaperPlaneTilt, WarningCircle } from '@phosphor-icons/react';
+import { CallRecordingNotice } from '@/components/compliance/CallRecordingNotice';
 import { ConsentCheckbox } from '@/components/compliance/ConsentCheckbox';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
@@ -61,6 +62,7 @@ export function LeadForm({
       </div>
       <SelectField id={id('bestTime')} name="bestTime" label="Best time to call" options={BEST_TIME_OPTIONS} required defaultValue="" error={errors.bestTime} />
       <ConsentCheckbox id={id('consent')} error={errors.consent} />
+      <CallRecordingNotice />
       <Honeypot />
       {errors.form && (
         <p role="alert" className="flex gap-2 font-medium text-error">
