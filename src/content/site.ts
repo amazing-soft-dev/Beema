@@ -76,7 +76,7 @@ export const notices = {
    * phone number, and copied into each lead email so the exact wording agreed to is on record.
    * Names the business, as the content plan requires. Have it reviewed before launch (#56).
    */
-  phoneConsent: `By checking this box, I agree that ${site.legalName} and its licensed insurance agents may contact me at the phone number I provided about Medicare Advantage plans, Medicare Supplement (Medigap) insurance and Part D prescription drug plans, including by calls and text messages that may use automated technology. Consent is not a condition of any purchase. Message and data rates may apply. I can opt out at any time.`,
+  phoneConsent: `By checking this box, I agree that ${site.legalName} and its licensed insurance agents may contact me at the phone number I provided about Medicare Advantage plans, Medicare Supplement (Medigap) insurance, Part D prescription drug plans, dental, vision and hearing plans, hospital indemnity insurance and final expense life insurance, including by calls and text messages that may use an autodialer, an artificial or prerecorded voice, or other automated technology. Consent is not a condition of any purchase. Message and data rates may apply. I can opt out at any time.`,
   /**
    * Call-recording notice (review 2026-11-25, INS-04/INS-34). Federal rules require recorded
    * sales calls; California (Penal Code 632) and Florida need every party's consent. Shown

@@ -31,6 +31,14 @@ describe('required notices', () => {
   it('phone consent names the business', () => {
     assert.ok(notices.phoneConsent.includes(site.legalName));
   });
+
+  it('phone consent covers every product line we call about, and prerecorded or artificial voices', () => {
+    for (const product of ['Medicare Advantage', 'Medigap', 'Part D', 'dental, vision and hearing', 'hospital indemnity', 'final expense']) {
+      assert.ok(notices.phoneConsent.includes(product), product);
+    }
+    assert.match(notices.phoneConsent, /artificial or prerecorded voice/);
+    assert.match(notices.phoneConsent, /not a condition of any purchase/);
+  });
 });
 
 describe('ConsentCheckbox', () => {
