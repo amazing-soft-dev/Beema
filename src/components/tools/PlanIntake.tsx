@@ -2,6 +2,7 @@
 
 import { ArrowLeft, ArrowRight, CheckCircle, Plus, Trash, WarningCircle } from '@phosphor-icons/react';
 import { useState, useSyncExternalStore } from 'react';
+import { CallRecordingNotice } from '@/components/compliance/CallRecordingNotice';
 import { ConsentCheckbox } from '@/components/compliance/ConsentCheckbox';
 import { BEST_TIME_OPTIONS, Honeypot, SelectField, TextField } from '@/components/forms/Fields';
 import { formsDisabled } from '@/components/forms/useFormSubmit';
@@ -48,6 +49,7 @@ export function PlanIntake() {
     const contact = Object.fromEntries(new FormData(e.currentTarget));
     const payload = {
       ...contact,
+      page: window.location.pathname,
       zip: zipValue,
       drugs: drugs.filter((d) => d.name.trim()),
       doctors: doctors.filter((d) => d.name.trim()),
@@ -162,6 +164,7 @@ export function PlanIntake() {
                 <SelectField id="bestTime" label="Best time to call" options={BEST_TIME_OPTIONS} defaultValue="" required error={errors.bestTime} />
               </div>
               <ConsentCheckbox id="intake-consent" error={errors.consent} />
+              <CallRecordingNotice />
               <Honeypot />
               {errors.form && (
                 <p role="alert" className="flex gap-2 font-medium text-error">

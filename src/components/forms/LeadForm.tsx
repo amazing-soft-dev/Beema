@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { CheckCircle, PaperPlaneTilt, WarningCircle } from '@phosphor-icons/react';
+import { CallRecordingNotice } from '@/components/compliance/CallRecordingNotice';
 import { ConsentCheckbox } from '@/components/compliance/ConsentCheckbox';
 import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
@@ -11,7 +12,7 @@ import { formsDisabled, useFormSubmit } from './useFormSubmit';
 
 /**
  * The short lead form from the content plan: name, ZIP code, phone, best time to call and
- * the required (unchecked) consent box. Used by the Contact page and the callback panel.
+ * the optional (unchecked) consent box. Used by the Contact page and the callback panel.
  */
 export function LeadForm({
   endpoint,
@@ -20,8 +21,8 @@ export function LeadForm({
   submitLabel = 'Request a call',
   title,
 }: {
-  endpoint: '/api/contact' | '/api/callback';
-  form: 'contact' | 'callback';
+  endpoint: '/api/contact' | '/api/callback' | '/api/final-expense';
+  form: 'contact' | 'callback' | 'final-expense';
   idPrefix: string;
   submitLabel?: string;
   title?: string;
@@ -48,7 +49,7 @@ export function LeadForm({
         </h2>
       )}
       <p className="text-base">
-        All fields are required. We only use your details to call you back, between 8 a.m. and 9 p.m. your time, and never sell them. Reply STOP to any text to opt out.{' '}
+        All fields except the consent box are required. We only use your details to call you back, between 8 a.m. and 9 p.m. your time, and never sell them. Reply STOP to any text to opt out.{' '}
         <Link href="/legal/privacy" className="underline underline-offset-4">
           Privacy &amp; consent terms
         </Link>
@@ -61,6 +62,7 @@ export function LeadForm({
       </div>
       <SelectField id={id('bestTime')} name="bestTime" label="Best time to call" options={BEST_TIME_OPTIONS} required defaultValue="" error={errors.bestTime} />
       <ConsentCheckbox id={id('consent')} error={errors.consent} />
+      <CallRecordingNotice />
       <Honeypot />
       {errors.form && (
         <p role="alert" className="flex gap-2 font-medium text-error">

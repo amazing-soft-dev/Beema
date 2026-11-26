@@ -4,6 +4,7 @@ import Cal from '@calcom/embed-react';
 import { Desktop, MapPin, Phone, Sparkle } from '@phosphor-icons/react';
 import { useState, useSyncExternalStore } from 'react';
 import { LeadForm } from '@/components/forms/LeadForm';
+import { Button } from '@/components/ui/Button';
 import { Icon } from '@/components/ui/Icon';
 import { type TopicId, addOnTopics, bookingNote, medicareTopics, topicLabel, topicsFromQuery } from '@/content/booking';
 import { site } from '@/content/site';
@@ -22,7 +23,8 @@ const noSubscribe = () => () => {};
 /**
  * Meeting type, the Scope of Appointment topics, a separate final expense opt-in and an
  * optional reminders consent, then the Cal.com calendar for that event type.
- * Links can pre-fill it: ?topic=medigap, ?finalExpense=1, ?match=<type> (the AI Plan Match
+ * Final expense is not offered here: it has its own request form on the final expense page.
+ * Links can pre-fill it: ?topic=medigap, ?match=<type> (the AI Plan Match
  * result, shown back to the visitor and sent in the booking notes; no personal data).
  * NEXT_PUBLIC_CAL_LINK is the Cal.com username or team (e.g. "senior-ai-plans"), with event
  * types named "phone", "video" and "in-person". Without it, visitors get the phone number
@@ -39,11 +41,11 @@ export function BookingWidget() {
   const match = matchTitle(params.get('match') ?? '');
   const [picked, setPicked] = useState<TopicId[] | null>(null);
   const topics = picked ?? topicsFromQuery(params.get('topic') ?? (match ? 'turning-65' : null));
-  const [finalExpenseChoice, setFinalExpense] = useState<boolean | null>(null);
-  const finalExpense = finalExpenseChoice ?? params.get('finalExpense') === '1';
   const [reminders, setReminders] = useState(false);
+  // Cal.com loads only after the visitor asks for it (review INS-04/INS-39, California CIPA 631).
+  const [calendarShown, setCalendarShown] = useState(false);
   const toggle = (id: TopicId) => setPicked(topics.includes(id) ? topics.filter((t) => t !== id) : [...topics, id]);
-  const note = bookingNote({ topics, finalExpense, match, remindersConsent: reminders });
+  const note = bookingNote({ topics, match, remindersConsent: reminders });
   const topicText = topics.length ? topics.map(topicLabel).join(', ').toLowerCase() : 'Medicare';
 
   return (
@@ -93,16 +95,13 @@ export function BookingWidget() {
         <p className="mt-2 text-base">Dental, vision and hearing plans and hospital indemnity are not Medicare. We discuss them only if you check them here.</p>
       </fieldset>
 
-      <fieldset className="rounded-card-sm border-2 border-line p-4">
-        <legend className="t-label px-1 font-semibold">Final expense life insurance (separate)</legend>
-        <label className="flex cursor-pointer items-start gap-3">
-          <input type="checkbox" checked={finalExpense} onChange={(e) => setFinalExpense(e.target.checked)} className="mt-1 size-6 shrink-0 accent-navy-700" />
-          <span>
-            I would also like a <strong>separate</strong> appointment about final expense life insurance. Medicare rules keep life insurance out of Medicare appointments,
-            so we will book it on its own.
-          </span>
-        </label>
-      </fieldset>
+      <p className="rounded-card-sm border-2 border-line p-4 text-base">
+        <strong>Final expense life insurance</strong> is never part of a Medicare appointment. To talk about it, use the{' '}
+        <a href="/beyond-medicare/final-expense#final-expense-request" className="font-semibold text-navy-700 underline underline-offset-4">
+          separate final expense request
+        </a>
+        .
+      </p>
 
       <label className="flex cursor-pointer items-start gap-3 text-base">
         <input type="checkbox" checked={reminders} onChange={(e) => setReminders(e.target.checked)} className="mt-0.5 size-6 shrink-0 accent-navy-700" />
@@ -114,7 +113,21 @@ export function BookingWidget() {
 
       <div>
         <h2 className="t-label mb-3 font-semibold">3. Pick a time</h2>
-        {calLink ? (
+        {calLink && !calendarShown ? (
+          <div className="flex flex-col items-start gap-4 rounded-card bg-surface p-6 md:p-8">
+            <p>
+              Our booking calendar is run by <strong>Cal.com</strong>. When you open it, Cal.com receives your browser details, the choices above and anything you type
+              in the calendar, so it can book and confirm your appointment. Prefer not to? Call{' '}
+              <a href={`tel:${site.phone.tel}`} className="font-semibold text-navy-700 underline underline-offset-4">
+                {site.phone.display}
+              </a>{' '}
+              ({site.tty.display}) instead.
+            </p>
+            <Button size="lg" onClick={() => setCalendarShown(true)}>
+              Show the calendar
+            </Button>
+          </div>
+        ) : calLink ? (
           <div className="overflow-hidden rounded-card border-2 border-line bg-white">
             <Cal
               key={`${meeting}-${advisor?.slug ?? 'any'}`}

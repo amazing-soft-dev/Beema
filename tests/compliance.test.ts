@@ -15,8 +15,35 @@ describe('required notices', () => {
     assert.equal(notices.govDisclaimer, 'This website is not connected with or endorsed by the U.S. government or the federal Medicare program.');
   });
 
+  it('call-recording notice asks for consent and states the 6-year minimum', () => {
+    assert.match(notices.callRecording, /recorded/);
+    assert.match(notices.callRecording, /you agree to the recording/);
+    assert.match(notices.callRecording, /at least 6 years/);
+  });
+
+  it('Scope of Appointment note carries the model-form statements and no 48-hour wait', () => {
+    for (const phrase of ['before we meet', 'valid for 12 months', 'may be paid based on your enrollment', 'does not oblige you to enroll', 'does not affect your current or future Medicare enrollment']) {
+      assert.ok(notices.scopeOfAppointment.includes(phrase), phrase);
+    }
+    assert.doesNotMatch(notices.scopeOfAppointment, /48/);
+  });
+
+  it('chat notice names the vendor, says chats are saved and discloses automated replies', () => {
+    assert.match(notices.chatNotice, /Crisp/);
+    assert.match(notices.chatNotice, /saved/);
+    assert.match(notices.chatNotice, /automated assistant/);
+  });
+
   it('phone consent names the business', () => {
     assert.ok(notices.phoneConsent.includes(site.legalName));
+  });
+
+  it('phone consent covers every product line we call about, and prerecorded or artificial voices', () => {
+    for (const product of ['Medicare Advantage', 'Medigap', 'Part D', 'dental, vision and hearing', 'hospital indemnity', 'final expense']) {
+      assert.ok(notices.phoneConsent.includes(product), product);
+    }
+    assert.match(notices.phoneConsent, /artificial or prerecorded voice/);
+    assert.match(notices.phoneConsent, /not a condition of any purchase/);
   });
 });
 
@@ -30,7 +57,24 @@ describe('ConsentCheckbox', () => {
     assert.doesNotMatch(source, /\b(defaultChecked|checked)\b/);
   });
 
-  it('is required', () => {
-    assert.match(source, /\brequired\b/);
+  it('is optional (a callback works without automated-contact consent)', () => {
+    assert.doesNotMatch(source, /\brequired\b/);
+  });
+});
+
+describe('Book a Call and chat sources', () => {
+  const read = (p: string) => readFileSync(new URL(`../src/${p}`, import.meta.url), 'utf8');
+
+  it('never offers final expense inside the Medicare booking flow', () => {
+    assert.doesNotMatch(read('components/booking/BookingWidget.tsx'), /finalExpense/);
+  });
+
+  it('loads Cal.com and Crisp only after the visitor asks', () => {
+    assert.match(read('components/booking/BookingWidget.tsx'), /calLink && !calendarShown/);
+    assert.match(read('components/chat/ChatButton.tsx'), /state === 'notice'/);
+  });
+
+  it('shows the call-recording notice wherever a call is requested', () => {
+    for (const p of ['components/forms/LeadForm.tsx', 'components/tools/PlanIntake.tsx', 'app/book-a-call/page.tsx']) assert.match(read(p), /<CallRecordingNotice/, p);
   });
 });

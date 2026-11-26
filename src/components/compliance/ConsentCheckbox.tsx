@@ -5,9 +5,10 @@ export const CONSENT_FIELD = 'consent';
 export const CONSENT_TEXT = notices.phoneConsent;
 
 /**
- * Phone-contact consent checkbox. Required on every form that asks for a phone number.
- * Always unchecked by default (never pass defaultChecked), names the business, and has a
- * 24px box with the whole label as the click target.
+ * Phone-contact consent checkbox, shown on every form that asks for a phone number.
+ * Optional (review INS-11): without it we call back by hand only. Always unchecked by
+ * default (never pass defaultChecked), names the business, and has a 24px box with the
+ * whole label as the click target.
  */
 export function ConsentCheckbox({
   id = 'consent',
@@ -28,12 +29,13 @@ export function ConsentCheckbox({
           name={CONSENT_FIELD}
           type="checkbox"
           value="yes"
-          required
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
           className="mt-0.5 size-6 shrink-0 cursor-pointer accent-navy-700"
         />
-        <span>{CONSENT_TEXT}</span>
+        <span>
+          <strong>Optional.</strong> {CONSENT_TEXT}
+        </span>
       </label>
       {error && (
         <p id={errorId} className="mt-2 font-medium text-error" role="alert">
