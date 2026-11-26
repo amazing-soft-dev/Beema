@@ -7,7 +7,7 @@ export const turning65Checklist: ChecklistGroup[] = [
     items: [
       'Find your Medicare dates with the enrollment calculator, or call us.',
       'Still working? Ask your employer how many employees it has and whether its drug coverage is creditable.',
-      'Contributing to a Health Savings Account (HSA)? Plan to stop 6 months before your Medicare starts.',
+      'Contributing to a Health Savings Account (HSA)? Ask your tax adviser when to stop (often 6 months before Medicare starts).',
       'Make a list of your medicines (name, strength, how often) and the doctors you want to keep.',
     ],
   },

@@ -36,7 +36,7 @@ export const faqGroups: FaqGroup[] = [
     items: [
       { q: 'I am still working. Do I need Part B?', a: 'If your employer has 20 or more employees and you have its health coverage, you can usually delay Part B without a penalty. With fewer than 20 employees, Medicare usually pays first, so sign up on time.', link: { label: 'Still working past 65', href: '/turning-65#working' } },
       { q: 'What happens when I retire?', a: 'You have 8 months after your job or job coverage ends to sign up for Part B, and 63 days to join a Part D plan without a penalty.', link: { label: 'Late penalties', href: '/turning-65#penalties' } },
-      { q: 'Should I stop my Health Savings Account?', a: 'Yes, stop contributing at least 6 months before you sign up for Medicare, because Part A coverage can start up to 6 months earlier than you apply.' },
+      { q: 'Should I stop my Health Savings Account?', a: 'Ask your tax adviser before you sign up. You cannot add money to a Health Savings Account once Medicare starts, and Part A coverage can start up to 6 months before the date you apply, so many people stop contributing about 6 months ahead.' },
     ],
   },
   {
