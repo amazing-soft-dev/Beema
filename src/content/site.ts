@@ -2,9 +2,8 @@
  * Single import surface for business facts, navigation and required notices.
  * Long-form guide copy lives in src/content/guides/* and is re-exported here as it lands.
  *
- * PLACEHOLDER DATA: every value marked TODO(#57) is a realistic stand-in, not real
- * business information. While `placeholder` is true the site is noindexed and
- * robots.txt blocks crawling (see src/app/layout.tsx and src/app/robots.ts).
+ * Business details as supplied by the owner on 2026-11-25. While `placeholder` is true the
+ * site is noindexed and robots.txt blocks crawling (see src/app/layout.tsx and src/app/robots.ts).
  */
 
 export type StateLicense = {
@@ -17,7 +16,7 @@ export type StateLicense = {
 export type Hours = { days: string; time: string };
 
 export const site = {
-  /** Flip to false in #57 once every TODO below holds real data. */
+  /** true keeps every page out of search (noindex, robots.txt Disallow). */
   placeholder: true,
 
   name: 'Senior AI Plans',
@@ -57,7 +56,7 @@ export const site = {
 
   /**
    * Numbers for the required CMS disclaimer: how many organizations the agency
-   * represents and how many products they offer in the visitor's area. TODO(#57)
+   * represents and how many products they offer in the visitor's area (owner, 2026-11-25).
    */
   cms: { organizations: 8, products: 45 },
 
