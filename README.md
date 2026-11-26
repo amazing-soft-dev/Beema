@@ -41,7 +41,7 @@ A merge to `main` only re-runs CI. Actions does not deploy; Netlify deploys from
 | Motion | Motion (motion/react) with the values in `src/lib/motion.ts` (see Motion below); reduced motion keeps short fades; content visible without JavaScript |
 | Forms | zod schemas shared by browser and server; Resend email from Node route handlers |
 | Booking and chat | Cal.com embed; Crisp chat loaded only on click |
-| Analytics | Vercel Web Analytics and Speed Insights, production only (stubbed out of every other build) |
+| Analytics | None for now: `track()` in `src/lib/analytics.ts` is a typed no-op, so call sites keep their events for a later, privacy-reviewed tool |
 | Images | Unsplash/Pexels photos in a manifest; `sharp` pre-builds responsive WebP files for the static export |
 | PDFs | Playwright (Chromium) renders tagged PDFs; `pdf-lib` adds fillable checkboxes |
 | Quality | ESLint 10 with `eslint-config-next` (zero warnings), Node's test runner, axe |
