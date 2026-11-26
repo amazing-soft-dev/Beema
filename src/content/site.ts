@@ -34,9 +34,9 @@ export const site = {
   tty: { display: 'TTY 711', tel: '711' },
   email: 'hello@senioraiplans.com',
   hours: [
-    { days: 'Monday to Friday', time: '8:00 a.m. to 6:00 p.m. Central' },
-    { days: 'Saturday', time: '9:00 a.m. to 1:00 p.m. Central' },
-  ] satisfies Hours[], // TODO(#57)
+    { days: 'Monday to Friday', time: '8:00 a.m. to 6:00 p.m. Pacific' },
+    { days: 'Saturday', time: '9:00 a.m. to 1:00 p.m. Pacific' },
+  ] satisfies Hours[],
   address: {
     street: '2237 Mason St',
     city: 'San Francisco',
