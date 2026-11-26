@@ -7,11 +7,11 @@ import { Icon } from '@/components/ui/Icon';
 import type { ClientQuote } from '@/content/reviews';
 import { uiSpring } from '@/lib/motion';
 
-/** Framer "Results & Reflections" slider changes about every 8.6s (loops-and-sliders.md). */
+/** "Results & Reflections" slider changes about every 8.6s. */
 const AUTOPLAY_MS = 8600;
 
 /**
- * Testimonial slider from the Framer home page: one quote at a time sliding sideways inside a
+ * Testimonial slider from the home page: one quote at a time sliding sideways inside a
  * clipped box, dot buttons, and autoplay. Because it moves on its own there is a visible
  * Pause button (WCAG 2.2.2); it also pauses while hovered or focused, and never autoplays for
  * reduced motion. Paid endorsements are labelled (CMS testimonial rules).
@@ -68,7 +68,7 @@ export function TestimonialSlider({ quotes, label = 'Client stories' }: { quotes
         </div>
         {count > 1 && (
           <div className="flex flex-wrap items-center gap-3">
-            <button type="button" onClick={() => go(index - 1)} className="arrow-btn inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-ink hover:text-white">
+            <button type="button" onClick={() => go(index - 1)} className="transition-[background-color,color,border-color] duration-180 ease-out inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-ink hover:text-white">
               <Icon icon={CaretLeft} weight="bold" label="Previous story" />
             </button>
             <ul className="flex gap-1" aria-label="Choose a story">
@@ -81,7 +81,7 @@ export function TestimonialSlider({ quotes, label = 'Client stories' }: { quotes
                 </li>
               ))}
             </ul>
-            <button type="button" onClick={() => go(index + 1)} className="arrow-btn inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-ink hover:text-white">
+            <button type="button" onClick={() => go(index + 1)} className="transition-[background-color,color,border-color] duration-180 ease-out inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-ink hover:text-white">
               <Icon icon={CaretRight} weight="bold" label="Next story" />
             </button>
             {!reduce && (

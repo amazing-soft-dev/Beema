@@ -7,8 +7,8 @@ import { heroTextDelay, revealSpring, textDelay, textOffset, textViewport } from
 type Tag = 'h1' | 'h2' | 'h3' | 'h4' | 'p';
 
 /**
- * Framer "text appear" (audit/motion/word-rise.md): lines rise 75px from opacity .001 with
- * the reveal spring, 0.2s after half the text is in view, once. Framer splits the text
+ * "text appear": lines rise 75px from opacity .001 with
+ * the reveal spring, 0.2s after half the text is in view, once. The text is split
  * into lines, but every line starts at the same moment, so moving the block looks the same
  * and keeps the text one node for screen readers, copy-paste and translation.
  * `onMount` is the hero version: it starts on load, 0.4s in.

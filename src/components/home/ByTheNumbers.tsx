@@ -6,7 +6,7 @@ import { Photo } from '@/components/ui/Photo';
 import { home } from '@/content/home';
 
 /**
- * Framer "By The Numbers": the block fades up, then each figure counts up in about 0.8s once
+ * "By The Numbers": the block fades up, then each figure counts up in about 0.8s once
  * in view. The figures are Medicare's own rules, not sales claims. The dates sit on a calendar
  * photo, softly blurred so its own digits read as texture rather than competing figures,
  * behind an ink overlay (86–92%), so the white figures keep well over 4.5:1 on any part of

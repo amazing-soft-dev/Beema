@@ -37,8 +37,8 @@ A merge to `main` only re-runs CI. Actions does not deploy; Vercel deploys from 
 | --- | --- |
 | Framework | Next.js 16.4 (App Router, Turbopack). React Compiler is on (`reactCompiler` and `turbopackRustReactCompiler` in `next.config.ts`) |
 | UI | React 19.3, TypeScript 7 (strict). TypeScript 6 is installed side by side for typescript-eslint (see below) |
-| Styling | Tailwind CSS v4, CSS-first in `src/app/globals.css`: navy and gold tokens from the logo, with dark values for `prefers-color-scheme` and `data-theme`. `header.css` (floating header), `ui.css` (surface rules) and `motion.css` (loops and hovers) sit beside it. There is no `tailwind.config` |
-| Motion | Motion (motion/react) with the Beema Framer values in `src/lib/motion.ts` (see Motion below); reduced motion keeps short fades; content visible without JavaScript |
+| Styling | Tailwind CSS v4, CSS-first in `src/app/globals.css`: navy and gold tokens from the logo, with dark values for `prefers-color-scheme` and `data-theme`. Components style themselves with utilities; shared pieces are `@utility` rules in `globals.css` (type scale, layout, logo) and `src/lib/styles.ts` (link underline), and `motion.css` holds only keyframes. There is no `tailwind.config` |
+| Motion | Motion (motion/react) with the values in `src/lib/motion.ts` (see Motion below); reduced motion keeps short fades; content visible without JavaScript |
 | Forms | zod schemas shared by browser and server; Resend email from Node route handlers |
 | Booking and chat | Cal.com embed; Crisp chat loaded only on click |
 | Analytics | Vercel Web Analytics and Speed Insights, production only (stubbed out of every other build) |
@@ -57,11 +57,11 @@ TypeScript 7.0 has no programmatic API yet, so typescript-eslint and Next's buil
 - Favicons and the web manifest come from `public/brand/senior_ai_plans_{light,dark}/`, switched by `prefers-color-scheme`.
 - Themes: Light, Dark or the device setting (header switch, mobile menu and footer). Tokens keep their names in both themes, so components need no `dark:` classes; `.on-dark` sections stay dark. `tests/contrast.test.ts` checks both themes, and CI runs axe on every page in light and dark.
 
-## Motion (matched to beemas.framer.website)
+## Motion
 
-Values come from the audit of the Framer bundle (`audit/motion/`, kept out of git) and live in `src/lib/motion.ts`. Components in `src/components/motion/`:
+Values live in `src/lib/motion.ts`; springs run with motion/react and the loops and hovers are Tailwind utilities on each component (keyframes in `src/app/motion.css`). Components in `src/components/motion/`:
 
-| Effect | Component | Framer values |
+| Effect | Component | Values |
 | --- | --- | --- |
 | Text appear | `TextAppear` | rise 75px from opacity .001, spring k 300 / c 100, 0.2s after half in view; hero 0.4s after load |
 | Fade up | `Reveal` | 35/50/75/100/150px offsets, siblings 0.2s apart, drop-in with negative offsets |
@@ -74,7 +74,7 @@ Values come from the audit of the Framer bundle (`audit/motion/`, kept out of gi
 | Testimonial slider | `TestimonialSlider` | autoplay about every 8.6s with Pause, dots and arrows |
 | Parallax | `Parallax` | CTA background drifts about −0.1× the scroll |
 | Header | `HeaderShell` | floating pill, clear over dark heroes, solid on scroll (.65s / .4s), drop-in after 0.7s |
-| Hovers | `motion.css` | underline unfolds from rotateY(90°) in .4s, arrow swap .6s, buttons .3s / .4s, ping dot 1.5s |
+| Hovers | `uLine`, `ArrowSwap`, `Button`, `Eyebrow` | underline unfolds from rotateY(90°) in .4s, arrow swap .6s, buttons .3s / .4s, ping dot 1.5s |
 
 Anything that moves on its own has a visible pause control and stops for reduced motion; dropdowns open on click or keyboard, not hover (plan §9).
 

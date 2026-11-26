@@ -8,7 +8,7 @@ import { Icon } from '@/components/ui/Icon';
 import type { Block, ContentSection } from '@/content/pages/types';
 
 /**
- * A content page's sections in the Framer motion vocabulary: headings rise into view
+ * A content page's sections in the site motion vocabulary: headings rise into view
  * (TextAppear), paragraphs and blocks fade up 50px, cards stagger 0.2s apart. Sections
  * alternate white and surface backgrounds.
  */

@@ -10,7 +10,7 @@ import { Photo } from '@/components/ui/Photo';
 import { home } from '@/content/home';
 
 /**
- * Framer "About Us" section, used for who the site is for (plan §4 Home: seniors and the
+ * "About Us" section, used for who the site is for (plan §4 Home: seniors and the
  * adult children who help them): the lead wipes to full ink line by line, then the photo card
  * zooms out (scale 1.8 from 260px lower on desktop) when half of it is in view, with the two
  * audiences on top. The section clips the card's start pose.

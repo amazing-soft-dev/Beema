@@ -3,12 +3,12 @@
 import { animate, useInView, useReducedMotion } from 'motion/react';
 import { useEffect, useRef } from 'react';
 
-/** Framer's numbers settle in ≈0.8s with a strong ease-out (audit/motion/loops-and-sliders.md). */
+/** Numbers settle in ≈0.8s with a strong ease-out. */
 const DURATION = 0.8;
 const EASE = [0.16, 1, 0.3, 1] as const;
 
 /**
- * Count-up number (Framer "By The Numbers"): counts from 0 to `value` once the number is in
+ * Count-up number (By The Numbers): counts from 0 to `value` once the number is in
  * view, keeping the target's decimals, with an optional prefix and suffix ("$", "%", "x").
  * Screen readers and the server render read the final value; the animated digits are
  * hidden from them. Reduced motion shows the final value at once.
@@ -35,7 +35,7 @@ export function Counter({
   useEffect(() => {
     const el = ref.current;
     if (!el || reduce) return;
-    // Hydrated with motion allowed: show 0 until the number scrolls into view, like Framer.
+    // Hydrated with motion allowed: show 0 until the number scrolls into view, as designed.
     if (!inView) {
       el.textContent = format(0);
       return;

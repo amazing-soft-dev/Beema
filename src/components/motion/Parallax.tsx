@@ -4,7 +4,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
 import { type ReactNode, useRef } from 'react';
 
 /**
- * Framer CTA banner background parallax (audit/components/home-sections.md §6): the layer is
+ * CTA banner background parallax: the layer is
  * taller than its section and drifts against the scroll at about −0.1× while the section
  * crosses the viewport. Decorative; still for reduced motion.
  */

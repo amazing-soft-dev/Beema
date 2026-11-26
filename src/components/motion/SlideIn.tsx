@@ -7,7 +7,7 @@ import { revealSpring, revealViewport, slideOffset, staggerStep } from '@/lib/mo
 type Tag = 'div' | 'article' | 'section' | 'li' | 'figure' | 'aside';
 
 /**
- * Framer column slide (audit/motion/column-slide.md): a column fades in while sliding 200px
+ * Column slide: a column fades in while sliding 200px
  * in from its side with the reveal spring, once. Use the left and right columns of one row
  * together; they move toward the centre at the same time.
  * Wrap the row in <SlideRow> (or give an ancestor `overflow-x: clip`) so the off-screen
@@ -26,7 +26,7 @@ export function SlideIn({
   children: ReactNode;
   from: 'left' | 'right';
   as?: Tag;
-  /** Framer uses 200px for columns and 80px for one smaller block. */
+  /** 200px for columns and 80px for one smaller block. */
   distance?: number;
   stagger?: number;
   className?: string;
@@ -52,7 +52,7 @@ export function SlideIn({
   );
 }
 
-/** A row whose columns slide in: clips sideways overflow like Framer's section does. */
+/** A row whose columns slide in: clips sideways overflow like the section does. */
 export function SlideRow({ children, className = '' }: { children: ReactNode; className?: string }) {
   return <div className={`overflow-x-clip ${className}`}>{children}</div>;
 }

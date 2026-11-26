@@ -69,7 +69,7 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
  * AI Plan Match questionnaire (plan §9): one question per screen, a progress bar, a Back
  * button, no time limits, and "talk to a person instead" on every step. The doctor and
  * drug questions are optional and only asked after a separate, unchecked health-data
- * consent. Each new question fades up 50px (Framer appear) and gets focus.
+ * consent. Each new question fades up 50px and gets focus.
  */
 export function Questionnaire({ onComplete }: { onComplete: (answers: Answers) => void }) {
   const [answers, setAnswers] = useState<Partial<Answers>>({});
@@ -134,7 +134,12 @@ export function Questionnaire({ onComplete }: { onComplete: (answers: Answers) =
           <p className="font-semibold" id="match-progress-label">
             Question {index + 1} of {steps.length}
           </p>
-          <progress className="match-progress h-3 w-full" max={steps.length} value={index + 1} aria-labelledby="match-progress-label" />
+          <progress
+            className="h-3 w-full appearance-none overflow-hidden rounded-pill bg-line accent-navy-700 [&::-moz-progress-bar]:bg-navy-700 [&::-webkit-progress-bar]:bg-line [&::-webkit-progress-value]:bg-navy-700 [&::-webkit-progress-value]:transition-[width] [&::-webkit-progress-value]:duration-400 [&::-webkit-progress-value]:ease-[cubic-bezier(.22,1,.36,1)]"
+            max={steps.length}
+            value={index + 1}
+            aria-labelledby="match-progress-label"
+          />
         </div>
 
         {/* Keyed by step: each question mounts fresh and fades up. No exit animation, so a

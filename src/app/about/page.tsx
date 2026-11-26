@@ -39,7 +39,7 @@ export default function AboutPage() {
         </div>
       </PageIntro>
 
-      {/* Framer About Us: the photo card zooms out as it enters; the section clips the start pose. */}
+      {/* About Us: the photo card zooms out as it enters; the section clips the start pose. */}
       <section className="section-y overflow-x-clip" aria-labelledby="story-heading">
         <div className="container-x grid gap-10 lg:grid-cols-2 lg:gap-16">
           <div className="flex flex-col gap-5">
@@ -62,7 +62,7 @@ export default function AboutPage() {
             <TextAppear id="mission-heading" className="t-h2">
               {a.mission.title}
             </TextAppear>
-            {/* Framer line wipe: each line wipes to full ink as it passes mid-screen. */}
+            {/* Line wipe: each line wipes to full ink as it passes mid-screen. */}
             <LineWipe className="t-lead" barClassName="bg-surface">
               {a.mission.text}
             </LineWipe>

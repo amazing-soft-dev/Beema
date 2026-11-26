@@ -8,7 +8,7 @@ const tones: Record<CardTone, string> = {
   sand: 'bg-sand',
 };
 
-/** Rounded content card (16px radius, no shadows, as in the Beema design). */
+/** Rounded content card (16px radius, no shadows, as in the design). */
 export function Card({ tone = 'white', className = '', children, ...rest }: { tone?: CardTone; children: ReactNode } & Omit<ComponentProps<'div'>, 'children'>) {
   return (
     <div className={`rounded-card p-6 md:p-8 ${tones[tone]} ${className}`.trim()} {...rest}>

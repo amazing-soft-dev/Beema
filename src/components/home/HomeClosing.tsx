@@ -18,7 +18,7 @@ import { home } from '@/content/home';
 import { reviews } from '@/content/reviews';
 import { bookCall, site } from '@/content/site';
 
-/** Framer "Results & Reflections": the testimonial slider once real, permitted stories exist. */
+/** "Results & Reflections": the testimonial slider once real, permitted stories exist. */
 export function HomeReviews() {
   const r = home.reviews;
   const quotes = reviews.quotes.filter((q) => q.consent && q.planMember);
@@ -84,7 +84,7 @@ export function ChecklistBand() {
   );
 }
 
-/** Framer Blogs section: the three latest articles. */
+/** Blogs section: the three latest articles. */
 export function LatestArticles() {
   return (
     <section className="section-y bg-surface" aria-labelledby="articles-heading">
@@ -112,7 +112,7 @@ export function LatestArticles() {
 }
 
 /**
- * Framer CTA banner: a dark band whose advisor photo drifts against the scroll (parallax), the
+ * CTA banner: a dark band whose advisor photo drifts against the scroll (parallax), the
  * heading rising into view, a three-point checklist and the calls to action, then the
  * not-government notice.
  */

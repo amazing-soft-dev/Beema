@@ -4,8 +4,8 @@ import { TextAppear } from '@/components/motion/TextAppear';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 
 /**
- * Inner-page hero, Framer variant A ("green band", here navy; audit/components/
- * inner-page-templates.md): a dark band under the transparent header with the caps
+ * Inner-page hero:
+ * a dark band under the transparent header with the caps
  * eyebrow pill and its ping dot, the H1 rising on load (0.4s), and the lead and actions
  * fading up 50px. `variant="light"` keeps the cream band for pages that need it.
  * `data-hero="dark"` tells the header to start in its clear state over this band.
@@ -54,7 +54,7 @@ export function PageIntro({
   const dark = variant === 'dark';
   return (
     <section
-      className={`under-header relative isolate overflow-hidden ${dark ? 'on-dark bg-ink text-white [&_h1]:text-white' : 'bg-sand'}`}
+      className={`relative isolate -mt-(--header-space) overflow-hidden pt-(--header-space) print:mt-0 print:pt-0 ${dark ? 'on-dark bg-ink text-white [&_h1]:text-white' : 'bg-sand'}`}
       data-hero={dark ? 'dark' : undefined}
     >
       {!aside && <HeroDecor dark={dark} />}

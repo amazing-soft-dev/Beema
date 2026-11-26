@@ -16,7 +16,7 @@ const subscribe = (cb: () => void) => {
 const getLayout = (): Layout => (window.matchMedia(query).matches ? 'fan' : 'flat');
 
 /**
- * Framer Services fan carousel (audit/components/services-carousel.md). From 810px the active
+ * Services fan carousel. From 810px the active
  * card sits flat in the middle and its neighbours tilt away (±7°, skew ±4°), narrow to 83% and
  * dim to 50%; arrows step one card and every card moves on one spring (k 260, c 32). Phones get
  * a flat slideshow. No autoplay. Clicking a side card brings it to the middle. Only the active
@@ -100,7 +100,7 @@ export function FanCarousel({ items, label, start = 0 }: { items: { key: string;
             type="button"
             onClick={() => go(index - 1)}
             disabled={index === 0}
-            className="arrow-btn inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-white hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
+            className="transition-[background-color,color,border-color] duration-180 ease-out inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-white hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
           >
             <Icon icon={CaretLeft} weight="bold" label="Previous" />
           </button>
@@ -111,7 +111,7 @@ export function FanCarousel({ items, label, start = 0 }: { items: { key: string;
             type="button"
             onClick={() => go(index + 1)}
             disabled={index === count - 1}
-            className="arrow-btn inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-white hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
+            className="transition-[background-color,color,border-color] duration-180 ease-out inline-flex size-12 items-center justify-center rounded-pill border-2 border-current hover:bg-white hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
           >
             <Icon icon={CaretRight} weight="bold" label="Next" />
           </button>

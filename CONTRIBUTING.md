@@ -17,7 +17,7 @@ Every change goes through an issue, a branch and an automatic pull request (see 
 ## House rules
 
 - **Older readers first.** 18px body text, no gray body copy, targets at least 48px, plain words, acronyms spelled out on first use, forms that ask only for what we need, and dropdowns that open on click or keyboard (never hover only).
-- **Motion matches the Framer design.** Use the components in `src/components/motion` and the values in `src/lib/motion.ts`; do not invent new timings. Anything that moves on its own (marquee, slider) needs a visible Pause button and must stop for reduced motion.
+- **Motion follows the design system.** Use the components in `src/components/motion` and the values in `src/lib/motion.ts`; do not invent new timings. Anything that moves on its own (marquee, slider) needs a visible Pause button and must stop for reduced motion.
 - **Brand.** Use `<Logo>` and `<LogoMark>`, never the PNGs directly. A new color is a token in `globals.css` with a dark value and a contrast test pair.
 - **Keep the three groups apart.** The AI Plan Match and the subscriptions are our own service; Beyond Medicare products are not Medicare, and every page about them shows its `ProductDisclosure`. Final expense is never part of a Medicare appointment.
 - **Compliance text is fixed.** The CMS disclaimer, government notice, consent and Scope of Appointment wording live in `src/content/site.ts`. The consent box is never pre-checked (a test enforces this).

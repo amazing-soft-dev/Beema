@@ -13,7 +13,7 @@ export type LogoTone = 'auto' | 'light' | 'dark';
  * - `dark` (white and teal) for dark surfaces and the dark theme.
  * Files are pre-sized (2x) by scripts/brand/build-logos.mjs, so next/image is left unoptimized.
  * `auto` follows the surface: `.on-dark` sections and `[data-theme="dark"]` get the dark logo
- * (globals.css, `.logo-mark`). Decorative: the link or text next to it names the brand.
+ * (the logo-mark utility in globals.css). Decorative: the link or text next to it names the brand.
  */
 export function LogoMark({ size = 40, tone = 'auto', className = '' }: { size?: number; tone?: LogoTone; className?: string }) {
   const width = Math.round(size * RATIO);
