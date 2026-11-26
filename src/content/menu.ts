@@ -31,7 +31,7 @@ export const menu: MenuItem[] = [
         links: [
           { label: 'Free plan match', href: '/plan-match', description: 'Which coverage type fits you, and why' },
           { label: 'Plans & Pricing', href: '/plans-pricing', description: 'Basic is free; Plus and Family add year-round help' },
-          { label: 'Family Dashboard', href: '/family-dashboard', description: 'For adult children helping a parent', later: true },
+          { label: 'Family Dashboard', href: '/family-dashboard', description: 'For adult children helping a parent' },
         ],
       },
       {
