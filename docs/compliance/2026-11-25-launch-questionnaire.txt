@@ -1,0 +1,551 @@
+SENIOR AI PLANS - PRE-LAUNCH QUESTIONNAIRE
+Prepared 2026-11-25 from a full review of the codebase (branch dev @ 135f084).
+Repo: amazing-soft-dev/Beema (PUBLIC)   Local checks today: lint PASS, typecheck PASS, tests PASS (189/189)
+
+HOW TO ANSWER
+- Each question has an ID (OWN-, INS-, DEV-), the reason it is asked, the file it affects,
+  and lettered options. Write the letter after "ANSWER:" and add notes if needed.
+  "X" = something else (write it in). "?" = don't know yet / needs research.
+- Section 1 is for the OWNER. Section 2 is for the LICENSED INSURANCE / COMPLIANCE reviewer.
+  Section 3 is for the SENIOR DEVELOPER. Anyone may add notes to any question.
+- HIGH = I believe this blocks a public launch until answered.
+- Send the file back (or paste answers in chat). I will not change code until answers are in;
+  then I will write the update plan.
+
+
+=====================================================================================
+OWNER ANSWERS RECEIVED 2026-11-25 (in chat)
+=====================================================================================
+- OWN-02 Advisors: KEEP the 3 stock-photo advisor cards and portraits. Remove only any
+  "sample"/"template" wording about them. Real profiles will be added later.
+  Remaining wording found: team.ts:2 code comment ("PLACEHOLDER ... stand-ins"); nothing
+  visible on /about/team. (Risk noted: before placeholder mode is turned off, invented
+  people must not be shown as licensed agents.)
+- OWN-07 Tiers: Free Basic everywhere. Plus and Family ONLY in states where fees are allowed.
+  Fees ONLY for ongoing extras (alerts, family dashboard), never for plan recommendations or
+  enrollment. -> Still open: which features stay paid ("Annual AI check", "Help with claims",
+  "Priority calls"?), the list of allowed states (INS-30), and how a visitor's state is chosen.
+- OWN-09 Figures: update to official 2027 CMS figures (site, tests, all PDFs).
+- OWN-15 / DEV-01 Repo: "This is my repo." -> keep it as it is. Still open: may the merge job
+  at least reject PRs from forks? (It adds no friction for the owner.)
+- Still open for the owner: the "Template text" banner on the legal pages. Should it be
+  removed too, or kept until counsel reviews the pages?
+
+
+=====================================================================================
+SECTION 0 - EVERYTHING ON THE SITE THAT IS STAND-IN, SAMPLE OR "UNDER REVIEW" TODAY
+=====================================================================================
+The visible "Sample" labels were removed in issues #318, #319 and #320, but the data behind
+them is still invented. While site.placeholder = true the site is noindex and robots.txt
+blocks crawling. Anyone who has the URL can still read every page.
+
+  Item                              Current stand-in value                      File
+  --------------------------------  ------------------------------------------  ---------------------------
+  Business name / legal name        Senior AI Plans / Senior AI Plans, LLC      src/content/site.ts:24-26
+                                    (working name, nothing registered)
+  Website URL                       https://www.example.com                     site.ts:32, .env.example
+  Phone                             (555) 010-0165 (fictional range)            site.ts:35
+  Email                             hello@example.com                           site.ts:37
+  Office hours                      M-F 8-6, Sat 9-1 Central                    site.ts:38-41
+  Address                           100 Example Street, Suite 200, Austin TX    site.ts:42-48
+  Founded year                      2016 ("Local, licensed help since 2016")    site.ts:50, about.ts:10
+  NPN                               00000000                                    site.ts:52
+  Licensed states + license #s      TX 0000000, FL W000000, AZ 0000000          site.ts:53-57
+  CMS disclaimer counts             8 organizations / 45 products               site.ts:63
+  Advisors (3 people)               Maria Alvarez, James Carter, Linda Nguyen   src/content/team.ts
+                                    - invented names, bios, years, languages,
+                                      states; Unsplash stock portraits
+  Founder story                     invented "watched our parents" story        src/content/about.ts:14-20
+  Blog author                       "licensed agent team, NPN 00000000"         src/content/blog/author.ts
+  Reviews / ratings                 empty (shows "coming soon")                 src/content/reviews.ts
+  Home page reviews band            says "Real reviews ... shared with          src/content/home.ts:88
+                                    permission" although there are none
+  Plus / Family prices              "Price TBD", Start buttons disabled         src/content/pricing.ts
+  Subscription Terms                labelled draft; billing/refunds TBD         src/app/legal/subscription-terms
+  Privacy, Terms, all legal pages   "Template text" banner while placeholder    src/components/legal/LegalPage.tsx
+  Family Dashboard                  page exists, noindex, "Coming later"        src/app/family-dashboard
+  Meet the Team                     menu tag "Coming later"                     src/content/menu.ts
+  Medicare figures                  2026 plan year (checked 2026-11-15)         src/content/medicare-figures.ts
+  10 ready-made PDF guides          stamped plan year 2026, contain stand-in    public/guides/*.pdf
+                                    phone/NPN/business name
+  Guide-page PDFs                   same stand-in data                          public/pdf/*.pdf
+  JSON-LD (Google structured data)  publishes the stand-in address, phone,      src/components/seo/JsonLd.tsx
+                                    NPN, licenses
+  llms.txt                          publishes the stand-in phone                src/app/llms.txt
+  Example plan-match result         fictional person, always a Medigap result   src/content/home.ts:100-110
+  Lead email sender name            "Silver Path Medicare Advisors" (old name)  .env.example:11
+  Design / motion                   copied from beemas.framer.website           src/app/globals.css, motion.css
+                                    (repo is also named "Beema")
+
+OWN-00  Is any of the table above actually REAL and should be kept as is?
+        ANSWER (list the rows that are real):
+
+
+=====================================================================================
+SECTION 1 - OWNER (business facts and decisions)
+=====================================================================================
+
+OWN-01 [HIGH] Business identity. Supply the final values (write them in):
+        Brand name ......................:
+        Registered legal entity name ....:
+        Domain (canonical URL) ..........:
+        Main phone / TTY ................:
+        Public email ....................:
+        Office hours + time zone ........:
+        Street address (or none) ........:
+        Year licensed / founded .........:
+        Agency NPN ......................:
+        Is "Senior AI Plans" confirmed as not sounding like a government program?  A) Yes  B) Rename  C) ?
+        ANSWER:
+
+OWN-02 [HIGH] Advisors on the Meet the Team page and in About.
+        Today: 3 invented "licensed advisors" with stock photos. Showing invented people as
+        licensed agents is a deceptive-practice risk.
+        A) Replace with our real agents (I will send names, NPNs, states, bios, real photos)
+        B) Solo agency: one real founder only (site switches to "solo mode" automatically)
+        C) Hide the team page and all advisor names until real data is ready
+        D) X
+        ANSWER:                       Number of real agents:
+
+OWN-03 [HIGH] Founder / "Our story" text (about.ts).
+        A) I will write the real story   B) Remove the story section for launch   C) X
+        ANSWER:
+
+OWN-04 Founding year claim "Local, licensed Medicare help since <year>".
+        A) Keep with the real year  B) Remove the "since" line  C) X
+        ANSWER:
+
+OWN-05 [HIGH] Licensed states for launch (each needs a license number and lines of authority).
+        A) TX, FL, AZ (as now)  B) Different list: ______  C) One state only: ______
+        ANSWER:
+
+OWN-06 Reviews. home.ts says "Real reviews from Google, Facebook and Trustpilot".
+        A) We have real profiles - I will send links, ratings, counts and permitted quotes
+        B) Hide the reviews page and home band until we have reviews
+        C) Keep the honest "coming soon" state, but reword the home band
+        ANSWER:
+
+OWN-07 Paid AI Plan Match tiers (Plus / Family) and the Plans & Pricing page.
+        A) Launch free Basic only; hide Plans & Pricing + Subscription Terms entirely
+        B) Keep the page live with "Price TBD / Coming soon" (as now)
+        C) Launch paid tiers now (needs INS-30 answered, prices, payment provider)
+        ANSWER:                       Prices if C (monthly / yearly):
+
+OWN-08 Family Dashboard page ("coming later", noindex).
+        A) Remove from menu and site for launch  B) Keep as "coming later"  C) X
+        ANSWER:
+
+OWN-09 [HIGH] Medicare figures. Today is inside the 2027 Annual Enrollment Period, but the site
+        shows 2026 Part B premium, deductible and IRMAA tables (and all 10 PDFs say 2026).
+        A) Update to the official 2027 CMS figures before launch (I will verify on CMS.gov)
+        B) Keep 2026 but label clearly "2026 figures"
+        C) Show both 2026 and 2027
+        ANSWER:
+
+OWN-10 Ready-made PDF guides in public/guides (10 files).
+        A) Keep the site-generated PDFs; re-render with real data
+        B) A designer will supply new PDFs; I will upload them
+        ANSWER:
+
+OWN-11 Third-party accounts. Which exist today? (circle all that exist)
+        Resend (verified domain)  /  Cal.com (event types phone, video, in-person)  /
+        Crisp chat  /  Vercel project  /  Google Business Profile  /  CRM: ______  /
+        Email marketing tool: ______
+        ANSWER:
+
+OWN-12 Who answers the website chat (Crisp)?
+        A) Licensed agents  B) Unlicensed staff  C) AI bot  D) No chat at launch
+        ANSWER:
+
+OWN-13 Where should leads (contact, callback, plan intake, newsletter) go?
+        Today: plain email only, via Resend; nothing is stored anywhere else.
+        A) Email is fine (give inbox address: ______)
+        B) A CRM (name: ______) plus an email notification
+        C) A database we own plus an email notification
+        ANSWER:
+
+OWN-14 The visual design and motion are copied from the Framer site beemas.framer.website.
+        A) We bought / licensed that template (I can show the receipt)
+        B) Not licensed - redesign the copied parts
+        C) ?
+        ANSWER:
+
+OWN-15 The GitHub repo is PUBLIC and the LICENSE file is Apache-2.0 (lets anyone reuse the
+        brand, copy and PDFs).
+        A) Make the repo private and change LICENSE to "All rights reserved"
+        B) Keep public, change LICENSE to "All rights reserved"
+        C) Keep as is
+        ANSWER:
+
+OWN-16 Target launch date, and is there a freeze period (e.g. no changes Oct 15 - Dec 7)?
+        Launch date: ______      A) Freeze during AEP   B) No freeze
+        ANSWER:
+
+OWN-17 Is the "Hybrid Website Plan (November 2026)" document referenced in the code (plan §2,
+        §3, §6, §10) available? The code cites it but it is not in the repo.
+        A) Yes - I will add it to docs/   B) No, the code is the source of truth
+        ANSWER:
+
+
+=====================================================================================
+SECTION 2 - LICENSED INSURANCE / COMPLIANCE REVIEWER
+=====================================================================================
+Please answer for each licensed state from OWN-05. The site acts as a TPMO (third-party
+marketing organization) for Medicare Advantage and Part D, and also markets Medigap, DVH,
+hospital indemnity and final expense.
+
+--- Required notices ---------------------------------------------------------------
+
+INS-01 [HIGH] TPMO disclaimer wording (site.ts:73; footer, chat greeting, tools, PDFs).
+        Current text ends: "...Please contact Medicare.gov or 1-800-MEDICARE to get
+        information on all of your options." It does NOT mention SHIP.
+        A) Replace with the current CMS wording: "We do not offer every plan available in your
+           area. Currently we represent [#] organizations which offer [#] products in your
+           area. Please contact Medicare.gov, 1-800-MEDICARE, or your local State Health
+           Insurance Program (SHIP) to get information on all of your options."
+        B) Other exact text (paste it):
+        ANSWER:
+
+INS-02 [HIGH] Organization / product counts in the disclaimer (today fixed "8 / 45" for
+        every visitor everywhere).
+        A) One national count is acceptable: orgs ___ products ___
+        B) Counts must vary by state (give counts per state)
+        C) Counts must vary by county/ZIP - website needs a lookup table (who maintains it?)
+        ANSWER:
+
+INS-03 Government non-affiliation notice: "This website is not connected with or endorsed by
+        the U.S. government or the federal Medicare program."   A) OK   B) Change to: ______
+        ANSWER:
+
+INS-04 [HIGH] Call recording. There is no recording notice anywhere on the site. TPMO calls
+        must be recorded and kept 10 years; Florida requires all-party consent.
+        A) Add a recording notice to Book a Call, callback forms, privacy policy (give text)
+        B) Agents announce it on the call only; site notice not required
+        C) X
+        ANSWER:                       Text:
+
+--- Scope of Appointment (SOA) and booking -----------------------------------------
+
+INS-05 [HIGH] Today the SOA is a set of checkboxes sent as text in the Cal.com booking note.
+        Nothing enforces 48 hours between SOA and appointment.
+        A) The website checkbox record is enough; agents re-confirm on the recorded call
+        B) Website must collect a proper SOA (name, date, products, e-signature) and store it
+        C) SOA is done by our own system (name it: ______); website only collects interest
+        ANSWER:
+
+INS-06 48-hour rule. Should Cal.com allow booking a Medicare sales appointment sooner than 48
+        hours after the SOA?
+        A) Set minimum notice to 48 hours for all Medicare appointment types
+        B) Allow sooner (exceptions apply: walk-in / beneficiary-initiated / last 4 days of
+           a period) - describe how agents handle it
+        ANSWER:
+
+INS-07 SOA note text (site.ts:84). It does not say: no obligation to enroll, current coverage
+        not affected, agent may be paid. A) Add these  B) Text is fine  C) Paste text:
+        ANSWER:
+
+INS-08 [HIGH] Contradiction: the Beyond Medicare page says the extra-protection review is
+        "separate from any Medicare appointment", but the booking form lets dental/vision/
+        hearing and hospital indemnity share the Medicare appointment if listed on the SOA.
+        A) DVH + hospital indemnity MAY share the appointment if on the SOA (fix the page)
+        B) They must ALWAYS be a separate appointment (fix the booking form)
+        ANSWER:
+
+INS-09 Final expense (life) request is a checkbox inside the Medicare booking flow and lands in
+        the same booking note (marked "to be booked on its own").
+        A) Acceptable   B) Must be a separate form/page   C) Remove final expense for launch
+        ANSWER:
+
+--- Consent (TCPA / telemarketing) ------------------------------------------------
+
+INS-10 [HIGH] Phone-contact consent (site.ts:81) covers only MA, Medigap and Part D, but the
+        agency also calls about DVH, hospital indemnity and final expense.
+        A) Broaden one consent to all product lines (paste text)
+        B) Separate consent per product line
+        C) Keep as is
+        Also: add "artificial or prerecorded voice" wording?  Y / N
+        ANSWER:
+
+INS-11 The consent box is REQUIRED to submit the callback form, while its text says "Consent is
+        not a condition of any purchase".
+        A) Keep required (a callback needs consent)
+        B) Make optional; manual calls only when unchecked
+        ANSWER:
+
+INS-12 What consent proof must be kept and for how long? Today it is a line in a lead email
+        (text + time) - no IP address, page, form version or durable storage.
+        A) Email record is enough
+        B) Need durable record: text, timestamp, IP, page URL, form version - keep ___ years
+        ANSWER:
+
+INS-13 CY2025 rule on sharing beneficiary data with another TPMO: do we share leads with any
+        other agency, FMO or call center?   A) Never   B) Yes, with: ______ (needs written consent)
+        ANSWER:
+
+--- Product page claims ------------------------------------------------------------
+
+INS-14 Medigap and hospital indemnity web pages: must they be filed with any state DOI as
+        advertising (NAIC Medigap advertising rules)?   A) No  B) Yes, states: ______  C) ?
+        ANSWER:
+
+INS-15 Superlatives: Medigap page "Most chosen" (Plan G), "Lowest premium" (high-deductible
+        G); blog "the two most popular Medigap plans".
+        A) Allowed as is (source: ______)   B) Remove   C) Reword to: ______
+        ANSWER:
+
+INS-16 "$0 / low premium" statements for Medicare Advantage (home Path 2 card, Medicare 101,
+        plan match). Some places say "you still pay your Part B premium", some do not.
+        A) Every $0 mention must add "you must continue to pay your Part B premium"
+        B) Once per page is enough   C) Fine as is
+        ANSWER:
+
+INS-17 MA out-of-pocket maximum text: "Every plan has an out-of-pocket maximum... plan pays
+        100%". Should it say it covers Part A/B services only (not drugs) and that PPOs have
+        separate in/out-of-network limits?   A) Yes, add   B) Fine as is
+        ANSWER:
+
+INS-18 Medigap underwriting statements: "most states ask health questions", "some states give
+        extra chances". Add state-specific rules (birthday/anniversary rules, guaranteed issue)
+        for our states?   A) Yes (supply the rules)  B) Generic is fine
+        ANSWER:
+
+INS-19 "We compare several companies" / "plans we offer in your ZIP" (Medigap, MA, Part D
+        pages). Do our carrier appointments support this in every licensed state?
+        A) Yes   B) Reword to: ______
+        ANSWER:
+
+INS-20 Use of the word "free" (free plan match, free call, free annual review).
+        A) Acceptable   B) Restrict to: ______
+        ANSWER:
+
+INS-21 "Your premium is the same as if you went to the insurer or Medicare.gov" (home, FAQ,
+        About). True for every product line and state?   A) Yes   B) Limit to: ______
+        ANSWER:
+
+INS-22 Non-Medicare disclosures (src/content/disclosures.ts: general, life, limited-benefit,
+        dental-vision). Do any of our states require statutory wording on the web page itself
+        (not only in the carrier's quote)?   A) Current text approved   B) Changes: ______
+        ANSWER:
+
+INS-23 FAQ "Should I stop my HSA?" answers "Yes, stop contributing 6 months before" - reads
+        as tax advice.   A) Soften to "talk to your tax adviser"   B) Keep
+        ANSWER:
+
+INS-24 Licensing page shows only the agency license number. Add per state: license #, lines of
+        authority (health, life), agent of record / responsible producer?
+        A) Yes (supply data)   B) Current layout is enough
+        ANSWER:
+
+--- AI Plan Match -----------------------------------------------------------------
+
+INS-25 [HIGH] The match tool's "current coverage" question offers only: none, large employer,
+        small employer, retiree, COBRA. People with Medicaid / dual eligibility, VA, TRICARE,
+        under-65 disability, ESRD or Marketplace coverage can be routed toward Medigap.
+        A) Add those options; route them to "talk to a licensed agent" instead of a result
+        B) Add a short eligibility screen before the tool
+        C) X
+        ANSWER:
+
+INS-26 [HIGH] Retiree coverage warning covers Part B only. Should it also warn that joining an
+        individual MA or Part D plan can END employer retiree coverage?   A) Yes   B) No
+        ANSWER:
+
+INS-27 [HIGH] Sign-off on the rules in src/lib/match/engine.ts (Medigap scores up to 6 points,
+        MA up to 5; a gap of 1 or less returns "compare both"). Who signs off, and does a
+        software "recommendation" count as advice under producer law in our states?
+        Sign-off by (name / FMO): ______
+        A) Rules approved as is   B) Changes needed (attach)   C) Not before FMO review
+        ANSWER:
+
+INS-28 Home page example result always shows a Medigap match.
+        A) Fine   B) Show "compare both" instead   C) Rotate / show both paths
+        ANSWER:
+
+INS-29 Claims "a licensed agent reviews every match before any enrollment", "never favors what
+        pays us more", "never pushes a plan". Can operations stand behind each?
+        A) Yes, all   B) Remove / reword: ______
+        ANSWER:
+
+--- Fees alongside commissions ----------------------------------------------------
+
+INS-30 [HIGH] Plus / Family subscriptions charge fees for an annual AI check, alerts,
+        claims/billing help and priority calls, while the agency also earns MA/Part D
+        commissions. Do our states allow an agent to charge these fees?
+        A) Allowed in all our states with a written fee agreement (attach)
+        B) Allowed only in: ______
+        C) Not allowed / too risky - drop paid tiers
+        D) Not decided - keep tiers hidden until written confirmation
+        Also: could "priority calls" or a paid annual check look like an inducement or unequal
+        treatment of non-paying Medicare clients?  Y / N   Does claims help need another
+        license (e.g. public adjuster)?  Y / N
+        ANSWER:
+
+INS-31 Pricing table shows "Annual AI check: No" for free Basic, while the Annual Review page
+        says the yearly review is free for everyone.
+        A) Rename the paid feature so free clients clearly still get a full review
+        B) Fine as is
+        ANSWER:
+
+--- Privacy, health data, retention -----------------------------------------------
+
+INS-32 [HIGH] What the AI notice promises vs what the code does: the notice says only "3-digit
+        ZIP + birth year + result and reasons" are kept and "full answers stay in your
+        browser". The server log actually also keeps work coverage, doctors preference, drug
+        count, budget and travel answers. Nothing deletes logs after 24 months.
+        A) Change the code to log only what the notice says
+        B) Change the notice to describe what is logged (give retention: ___ months)
+        ANSWER:
+
+INS-33 Privacy policy says the tool collects "the medicines and doctors you list"; the plan
+        match only asks a doctor preference and a drug count (the separate Plan Comparison
+        intake form does collect drug and doctor names).   A) Fix wording per form   B) X
+        ANSWER:
+
+INS-34 Retention periods to publish in the privacy policy:
+        SOA records ___ yrs   Call recordings ___ yrs   Leads ___   Plan-match log ___
+        ANSWER:
+
+INS-35 Does any part of the business receive PHI from carriers (HIPAA business associate)?
+        Do Crisp, Cal.com, Resend or the lead inbox need a BAA or DPA?
+        A) No PHI; no BAAs needed   B) BAAs needed with: ______
+        ANSWER:
+
+INS-36 State privacy law sections (e.g. Texas TDPSA, Florida, Washington My Health My Data,
+        CCPA if we serve CA visitors) - required in the privacy policy?
+        A) Yes, counsel will supply   B) No
+        ANSWER:
+
+INS-37 Terms of Use are a template (browsewrap, one-line liability, no governing law). Who
+        provides the final Terms and Privacy Policy?   A) Counsel: ______   B) Use template as is
+        ANSWER:
+
+INS-38 Accessibility statement promises a reply "within two business days".
+        A) We can commit   B) Change to ___ days
+        ANSWER:
+
+INS-39 Is a cookie / consent banner required? (Cal.com iframe loads on page view; analytics
+        are cookieless; Crisp loads only on click.)   A) Yes   B) No
+        ANSWER:
+
+INS-40 Who is the compliance approver for future website changes (name / role)? Should every
+        content change to dev -> main require their approval?   A) Yes   B) Only legal/compliance files
+        Approver: ______
+        ANSWER:
+
+
+=====================================================================================
+SECTION 3 - SENIOR DEVELOPER
+=====================================================================================
+
+--- CI/CD and repository ---------------------------------------------------------
+
+DEV-01 [HIGH] Auto-merge to production with zero human review. A merge to main deploys within
+        minutes. merge-passing-pr.yml finds the PR by branch name only and never checks that
+        the head repo is this repo, so a fork PR named "feat/..." that passes its own CI copy
+        could be auto-merged (the repo is public).
+        A) Reject fork PRs in the merge job AND require 1 human approval on dev -> main
+        B) Reject fork PRs only; keep fully automatic
+        C) Require approval on both dev and main; drop auto-merge
+        ANSWER:
+
+DEV-02 Pin the required "CI passed" status check to the GitHub Actions app (integration_id)?
+        A) Yes   B) No
+        ANSWER:
+
+DEV-03 CI comment step fails on Dependabot/fork PRs (read-only token), so those PRs can never
+        pass. Skip the comment for those actors?   A) Yes   B) Other fix: ______
+        ANSWER:
+
+DEV-04 GH_TOKEN is a personal access token exposed to any pushed feat/** branch workflow.
+        Owner: ______  Expiry: ______
+        A) Replace with a GitHub App token   B) Fine-grained PAT, minimal scope   C) Keep
+        ANSWER:
+
+DEV-05 Node version: CI uses "latest", package.json says ">=24".
+        A) Pin 24.x in CI, engines and .nvmrc (and Vercel)   B) Pin another: ___   C) Keep
+        ANSWER:
+
+DEV-06 Pin GitHub Actions to commit SHAs instead of @v7 tags?   A) Yes   B) No
+        ANSWER:
+
+DEV-07 Rollback procedure and alerting owner. A) Vercel Instant Rollback; owner: ______   B) X
+        ANSWER:
+
+--- Runtime, data and security ---------------------------------------------------
+
+DEV-08 [HIGH] Missing env vars fail silently: LEADS_TO_EMAIL falls back to hello@example.com
+        (lead lost while visitor sees success); LEADS_FROM_EMAIL falls back to
+        onboarding@resend.dev.
+        A) Fail the production build/boot when RESEND_API_KEY, LEADS_TO_EMAIL, LEADS_FROM_EMAIL
+           or NEXT_PUBLIC_SITE_URL is missing   B) Runtime warning only
+        ANSWER:
+
+DEV-09 [HIGH] Security headers: no CSP, frame-ancestors/X-Frame-Options, Referrer-Policy or
+        Permissions-Policy anywhere.
+        A) Add headers() in next.config.ts with a CSP allowing Cal.com, Crisp, Vercel
+        B) Add via vercel.json   C) Not needed
+        ANSWER:
+
+DEV-10 Spam / abuse: honeypot only; rate limit is in memory per instance, shared by all
+        endpoints (5 per 10 min) and resets after 5,000 IPs. guide-email and newsletter can mail
+        any address (spam relay risk).
+        A) Cloudflare Turnstile + durable limiter (Upstash / Vercel KV) + per-endpoint limits
+        B) Turnstile only   C) Durable limiter only   D) Keep
+        ANSWER:
+
+DEV-11 Newsletter: the "list" is an email to the agency; unsubscribe is a mailto link.
+        A) Integrate a mailing tool (name: ______) with double opt-in
+        B) Remove newsletter for launch   C) Keep
+        ANSWER:
+
+DEV-12 Error monitoring. Failures are only console.error.   A) Sentry  B) Vercel log drain  C) None
+        ANSWER:
+
+DEV-13 Preview deployments: should Vercel Preview get real Resend/Cal.com keys (sends real
+        leads) or test keys?   A) Test keys / sandbox   B) Real keys
+        ANSWER:
+
+DEV-14 Plan-match logs live only in Vercel runtime logs (short retention). If INS-32 requires a
+        24-month log with deletion, where should it live?
+        A) Log drain to ______   B) Database table with a TTL job   C) Don't keep a log
+        ANSWER:
+
+--- Launch guards and tests ------------------------------------------------------
+
+DEV-15 [HIGH] Add a CI guard that fails if site.placeholder is false while any TODO(#57) value,
+        555 phone, example.com, or 00000000 NPN remains?   A) Yes   B) No
+        ANSWER:
+
+DEV-16 Derive the noindex route list from page metadata instead of the hand-kept list in
+        sitemap-entries.ts?   A) Yes   B) No
+        ANSWER:
+
+DEV-17 Add route-level tests for /api/* with Resend mocked (honeypot, null body -> currently a
+        500, env-missing behavior)?   A) Yes   B) Later
+        ANSWER:
+
+DEV-18 Small defects found - approve fixing all?   A) Yes all   B) Only: ______
+        - Blog "turning 65" shows "$202.9" instead of "$202.90"
+        - Honeypot input uses fixed id="website" -> duplicate IDs on pages with two forms
+        - "Coming later" menu badges are text-sm, under the 18px house rule
+        - .env.example still says "Silver Path Medicare Advisors"
+        - JSON body "null" crashes readForm with a 500
+        ANSWER:
+
+DEV-19 Static export build (out/) - is it still needed, or is Vercel server build the only
+        target?   A) Keep both   B) Drop static export
+        ANSWER:
+
+DEV-20 Font: Switzer is downloaded from Fontshare at build time and silently falls back to
+        Geist when unreachable.   A) Fail the build if missing   B) Keep fallback
+        ANSWER:
+
+DEV-21 Open Dependabot PR #360 (resend 6.38.1 -> 6.39.0) and any others: merge after CI?
+        A) Yes   B) Hold until after launch
+        ANSWER:
+
+
+=====================================================================================
+END - thank you. Return this file (or paste answers in chat) and I will write the
+update plan from the answers.
+=====================================================================================
